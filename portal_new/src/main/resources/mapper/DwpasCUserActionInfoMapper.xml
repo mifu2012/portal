@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasCUserActionInfoMapper">
+	<!-- 用户行为信息 -->
+	<resultMap id="DwpasCUserActionInfoResultMap" type="DwpasCUserActionInfo">
+		<id property="actionCode" column="ACTION_CODE" jdbcType="VARCHAR" />
+		<result property="actionName" column="ACTION_NAME" jdbcType="VARCHAR" />
+		<result property="isShow" column="IS_SHOW" jdbcType="DECIMAL" />
+		<result property="isDefault" column="IS_DEFAULT" jdbcType="DECIMAL" />
+		<result property="showSort" column="SHOW_SORT" jdbcType="DECIMAL" />
+	</resultMap>
+	
+	
+	<!-- 查询根据传入对象所有userActionInfo表数据 -->
+	<select id="queryDwpasUserActionList" resultMap="DwpasCUserActionInfoResultMap">
+		select ACTION_CODE, ACTION_NAME, IS_SHOW, IS_DEFAULT, SHOW_SORT
+		 from dwpas_c_user_action
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="isShow!=null and isShow!=''">
+				AND IS_SHOW=#{isShow}
+			</if>
+			<if test="isDefault!=null and isDefault!=''">
+				AND IS_DEFAULT=#{isDefault}
+			</if>
+			<if test="actionName!=null and actionName!=''">
+				AND ACTION_NAME=#{actionName}
+			</if>
+		</trim>
+	</select>
+	
+	<!--根据用户行为code 查询用户行为信息 -->
+	<select id="getUserActionInfoById" resultMap="DwpasCUserActionInfoResultMap">
+    <![CDATA[
+        select ACTION_CODE, ACTION_NAME, IS_SHOW, IS_DEFAULT, SHOW_SORT
+		 from dwpas_c_user_action
+		  where (ACTION_CODE = #{actionCode,jdbcType=VARCHAR})
+    ]]>
+	</select>
+	
+</mapper>

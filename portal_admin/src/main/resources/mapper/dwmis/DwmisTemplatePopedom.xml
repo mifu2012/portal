@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DwmisTemplatePopedomMapper">
+	<resultMap id="UserMap" type="User">
+		<result property="userId" column="user_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="loginname" column="loginname" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="password" column="password" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="username" column="username" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="rights" column="rights" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="status" column="status" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="roleId" column="role_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="lastLogin" column="last_login" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<result property="dwpasRights" column="dwpas_rights" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dwmisRights" column="dwmis_rights" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<resultMap id="RoleMap" type="Role">
+		<result property="roleId" column="role_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="roleName" column="role_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="rights" column="rights" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dwpasRights" column="dwpas_rights" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dwmisRights" column="dwmis_rights" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 查询所有用户 -->
+	<select id="listTBuser" resultMap="UserMap">
+		select
+		user_id,loginname,password,username,rights,status,role_id,last_login,dwmis_rights,dwpas_rights
+		from tb_user where status=0
+	</select>
+
+	<!-- 查询所有角色 -->
+	<select id="listTBrole" resultMap="RoleMap">
+		select
+		role_id,role_name,rights,dwmis_rights,dwpas_rights from tb_role
+	</select>
+
+	<!-- 修改选定用户模板权限 -->
+	<update id="updateUserTemp" parameterType="User">
+		update tb_user set
+		<if test="dwmisRights!=null and dwmisRights!=''">
+			dwmis_rights=#{dwmisRights,jdbcType=INTEGER},
+		</if>
+		user_id=user_id
+		where
+		user_id=#{userId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 修改没有选定模板 -->
+	<update id="updateUserNoTemplate" parameterType="User">
+		update tb_user
+		set
+		dwmis_rights=0 where
+		user_id=#{userId,jdbcType=INTEGER}
+		<if test="dwmisRights!=null and dwmisRights!=''">
+			and dwmis_rights=#{dwmisRights,jdbcType=INTEGER}
+		</if>
+	</update>
+
+	<!-- 修改选定角色模板权限 -->
+	<update id="updateRoleTemp" parameterType="Role">
+		update tb_role set
+		<if test="dwmisRights!=null and dwmisRights!=''">
+			dwmis_rights=#{dwmisRights,jdbcType=INTEGER},
+		</if>
+		role_id=role_id
+		where
+		role_id=#{roleId,jdbcType=INTEGER}
+	</update>
+
+	<!-- 修改没有选定模板 -->
+	<update id="updateRoleNoTemplate" parameterType="Role">
+		update tb_role
+		set
+		dwpas_rights=0,dwmis_rights=null where
+		role_id=#{roleId,jdbcType=INTEGER}
+		<if test="dwmisRights!=null and dwmisRights!=''">
+			and dwmis_rights=#{dwmisRights,jdbcType=INTEGER}
+		</if>
+	</update>
+</mapper>

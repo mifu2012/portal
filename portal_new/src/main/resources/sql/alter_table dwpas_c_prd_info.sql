@@ -1,0 +1,1 @@
+alter table dwpas_c_prd_info modify column product_mark char(100)

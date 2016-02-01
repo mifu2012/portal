@@ -1,0 +1,4 @@
+alter table dwpas_c_column_info
+add CHART_TYPE int(2) DEFAULT '-1',
+add CHART_TYPE_DESC varchar(255) DEFAULT NULL,
+add  CHART_URL varchar(255) DEFAULT NULL;

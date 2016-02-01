@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.ReportMapper">
+	<!-- 报表主表 -->
+	<resultMap type="ReportDesign" id="ReportDesignMap">
+		<id column="report_id" property="reportId" />
+		<result column="report_name" property="reportName" />
+		<result column="report_sql" property="reportSql" />
+		<result column="report_define" property="reportDefine" />
+		<result column="remark" property="remark" />
+		<result column="data_source_id" property="dataSourceId" />
+	</resultMap>
+	<!-- 报表查询条件控件 -->
+	<resultMap type="ReportConfig" id="ReportConfigResultMap">
+		<id column="id" property="configId" />
+		<result column="report_id" property="reportId" />
+		<result column="show_name" property="showName" />
+		<result column="control_type" property="controlType" />
+		<result column="code" property="code" />
+		<result column="sql_column" property="sqlColumn" />
+		<result column="default_value" property="defaultValue" />
+	</resultMap>
+	<!-- 维度从表 -->
+	<resultMap id="DimensionDetailMap" type="DimensionDetail">
+		<result property="primaryKeyId" column="ID" />
+		<result property="dimensionId" column="DIMENSION_ID" />
+		<result property="key" column="KEY_OF_VALUE" />
+		<result property="value" column="VALUE_OF_KEY" />
+	</resultMap>
+	
+	<!-- 用户和权限 hgt -->
+	<resultMap type="User" id="userAndRoleResultMap">
+		<id column="user_id" property="userId" />
+		<result column="loginname" property="loginName" />
+		<result column="username" property="userName" />
+		<result column="password" property="passWord" />
+		<result column="user_rights" property="rights" />
+		<result column="status" property="status" />
+		<result column="user_dwmis_rights" property="dwmisRights" />
+		<result column="user_dwpas_rights" property="dwpasRights" />
+		<result column="user_report_rights" property="reportRights" />
+		<result column="last_login" property="lastLogin" />
+		<association property="role" column="role_id" javaType="Role">
+			<id column="role_id" property="roleId" />
+			<result column="role_name" property="roleName" />
+			<result column="role_rights" property="rights" />
+			<result column="role_dwmis_rights" property="dwmisRights" />
+		    <result column="role_dwpas_rights" property="dwpasRights" />
+		    <result column="role_report_rights" property="reportRights" />
+		</association>
+	</resultMap>
+	<!-- 通过Id查询维度从表信息 -->
+	<select id="getDimensionDetailById" parameterType="int" resultMap="DimensionDetailMap">
+		SELECT id,dimension_id,key_of_value,value_of_key from tb_rpt_dimension_detail 
+			where id=#{primaryKeyId}
+	</select>
+	<!-- 查询维度组 -->
+	<select id="listDimensionDetail" parameterType="int" resultMap="DimensionDetailMap">
+		SELECT a.* FROM  tb_rpt_dimension_detail a where 
+			a.dimension_id =(SELECT b.dimension_id from tb_rpt_dimension_detail b where b.id=#{primaryKeyId})
+	</select>
+	
+
+	<!-- 查询报表菜单 start -->
+	<select id="listAllParentReport" resultMap="ReportDesignMap">
+		select report_id,report_name,parent_id from tb_rpt_design where parent_id is null
+	</select>
+	<select id="listSubReportByParentId" parameterType="int" resultMap="ReportDesignMap">
+		select report_id,report_name,parent_id,is_report from tb_rpt_design where parent_id=#{parentId}
+	</select>
+	<!-- 查询报表菜单 end -->
+	<!-- 查询用户报表权限 -->
+	<select id="getUserAndRoleById" parameterType="int"
+		resultMap="userAndRoleResultMap">
+		select u.user_id,u.username,u.report_rights as
+		user_rights,u.loginname,u.password,r.role_id,r.role_name,r.report_rights as
+		role_rights
+		from tb_user u
+		left join tb_role r on u.role_id=r.role_id
+		where u.status=0 and u.user_id=#{userId}
+	</select>
+	<!-- 查询报表 -->
+	<select id="queryReportById" parameterType="int" resultMap="ReportDesignMap">
+		select * from tb_rpt_design where report_id=#{reportId}
+	</select>
+	<!-- 查询从表信息 -->
+	<select id="queryConfigById" parameterType="int" resultMap="ReportConfigResultMap">
+		select * from tb_rpt_report_config  where report_id=#{reportId}
+	</select>
+	<!-- 获取所有报表叶子节点 -->
+	<select id="getChildReport" resultMap="ReportDesignMap">
+		select * from tb_rpt_design where report_id not in (select
+		DISTINCT(parent_id) from tb_rpt_design where parent_id is not null)
+	</select>
+	<!-- 获取申请通过的报表 -->
+	<select id="getreportMenuList" parameterType="int" resultMap="ReportDesignMap">
+		select b.* from tb_rpt_self_apply a LEFT JOIN tb_rpt_design b on  a.report_id= b.report_id
+		where a.user_id=#{userId} and a.state =3
+	</select>
+</mapper>

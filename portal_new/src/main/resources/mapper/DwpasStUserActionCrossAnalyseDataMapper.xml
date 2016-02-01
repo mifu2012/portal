@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasStUserActionCrossAnalyseDataMapper">
+	<!-- 用户行为交叉分析数据 -->
+	<resultMap id="DwpasStUserActionCrossAnalyseDataResultMap"
+		type="DwpasStUserActionCrossAnalyseData">
+		<result property="actionCode" column="ACTION_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="reportDate" column="REPORT_DATE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="relActionCode" column="REL_ACTION_CODE"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="crossUserCnt" column="CROSS_USER_CNT"
+			javaType="long" jdbcType="NUMERIC" />
+		<result property="crossUserRate" column="CROSS_USER_RATE"
+			javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<!-- 用户行为交叉 -->
+	<select id="getDwpasStUserActionData" resultMap="DwpasStUserActionCrossAnalyseDataResultMap" parameterType="java.util.HashMap">
+    <![CDATA[
+        select action_code, report_date, rel_action_code, cross_user_cnt, cross_user_rate, gmt_create, gmt_modified from dwpas_st_user_cross_analyse_data 
+        where ((action_code = #{actionCode}) AND (report_date = #{reportDate}) AND (rel_action_code = #{relActionCode})) order by cross_user_cnt DESC
+    ]]>
+	</select>
+</mapper>

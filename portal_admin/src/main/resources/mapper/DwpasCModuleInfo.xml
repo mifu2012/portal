@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DwpasCModuleInfoMapper">
+	<resultMap id="DwpasCModuleInfoMap" type="DwpasCmoduleInfo">
+		<result property="moduleId" column="MODULE_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuId" column="MENU_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="moduleCode" column="module_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="moduleName" column="MODULE_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dateType" column="DATE_TYPE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="tabShow" column="TAB_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 与菜单关联查询，有同名字段，不要删除 -->
+		<result property="isShow" column="IS_HIDDEN" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<!-- 新增 -->
+		<result property="position" column="POSITION" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="width" column="WIDTH" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="height" column="HEIGHT" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- X坐标即LEFT -->
+		<result property="positionX" column="POSITION_X" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- Y坐标即TOP -->
+		<result property="positionY" column="POSITION_Y" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="moduleType" column="MODULE_TYPE" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="moduleSort" column="MODULE_SORT" javaType="int"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 根据ID删除某删除 -->
+	<delete id="delModuleInfoById">
+		delete from dwpas_c_module_info where MODULE_ID =
+		#{moduleId,jdbcType=VARCHAR}
+	</delete>
+	<!-- 查询某模块信息 -->
+	<select id="getModuleInfoById" resultMap="DwpasCModuleInfoMap">
+		SELECT
+		cmi.MENU_ID,
+		cmi.MODULE_ID,
+		cmi.MODULE_CODE,
+		cmi.MODULE_NAME,
+		cmi.REMARK,
+		cmi.HEIGHT,
+		cmi.IS_SHOW,
+		cmi.MODULE_SORT,
+		cmi.MODULE_TYPE,
+		cmi.POSITION,
+		cmi.WIDTH,
+		cmi.DATE_TYPE,
+		cmi.TAB_SHOW
+		FROM
+		dwpas_c_module_info cmi
+		WHERE
+		cmi.MODULE_ID =
+		#{moduleId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="selectModuleByMenuId" resultMap="DwpasCModuleInfoMap"
+		parameterType="java.util.HashMap">
+		select
+		MODULE_ID,MENU_ID,module_code,MODULE_NAME,DATE_TYPE,IS_SHOW,REMARK,TAB_SHOW
+		from dwpas_c_module_info where menu_id=#{menuId,jdbcType=VARCHAR}
+		and
+		date_type=#{dateType,jdbcType=VARCHAR}
+		order by MODULE_SORT
+	</select>
+	<insert id="insertDwpasCModuleInfo" parameterType="java.util.HashMap">
+		insert into
+		dwpas_c_module_info
+		(MODULE_ID,
+		MENU_ID,
+		MODULE_CODE,
+		MODULE_NAME,
+		DATE_TYPE,
+		IS_SHOW,
+		REMARK,
+		GMT_CREATE,POSITION,WIDTH,HEIGHT,MODULE_TYPE,MODULE_SORT,POSITION_X,POSITION_Y,TAB_SHOW)
+		select
+		CONCAT(#{newTid,jdbcType=INTEGER}, '_', cmi.MODULE_CODE, '_',
+		cmi.DATE_TYPE) as MODULE_ID,
+		CONCAT(#{newTid,jdbcType=INTEGER}, '_',
+		csm.MENU_CODE) as MENU_ID,
+		cmi.MODULE_CODE,
+		cmi.MODULE_NAME,
+		cmi.DATE_TYPE,
+		cmi.IS_SHOW,
+		cmi.REMARK,
+		now() as GMT_CREATE,
+		cmi.POSITION,
+		cmi.WIDTH,
+		cmi.HEIGHT,
+		cmi.MODULE_TYPE,
+		cmi.MODULE_SORT,
+		cmi.POSITION_X,
+		cmi.POSITION_Y,
+		cmi.TAB_SHOW
+		from dwpas_c_module_info
+		cmi,
+		dwpas_c_system_menu csm
+		where csm.template_id =
+		#{oldTid,jdbcType=INTEGER}
+		and cmi.MENU_ID = csm.MENU_ID;
+	</insert>
+	<delete id="deleteDwpasCModuleInfo" parameterType="list">
+   <![CDATA[
+              delete  from  dwpas_c_module_info where MENU_ID in
+        ]]>
+		<foreach collection="list" item="menuId" open="(" separator=","
+			close=")">
+			#{menuId}
+		</foreach>
+	</delete>
+	<select id="getModuleByMenuIds" resultMap="DwpasCModuleInfoMap"
+		parameterType="list">
+   <![CDATA[
+            select MODULE_ID,MENU_ID,MODULE_NAME,DATE_TYPE,IS_SHOW,REMARK,TAB_SHOW  from dwpas_c_module_info  where menu_id  in
+        ]]>
+		<foreach collection="list" item="menuIds" open="(" separator=","
+			close=")">
+			#{menuIds}
+		</foreach>
+	</select>
+	<update id="updateDwpasCModuleInfo" parameterType="DwpasCmoduleInfo">
+		update
+		dwpas_c_module_info set
+			MODULE_NAME=#{moduleName,jdbcType=VARCHAR},REMARK=#{remark,jdbcType=VARCHAR},IS_SHOW=#{isShow,jdbcType=INTEGER},
+			POSITION=#{position,jdbcType=INTEGER},HEIGHT=#{height,jdbcType=INTEGER},TAB_SHOW=#{tabShow,jdbcType=INTEGER},
+			MODULE_TYPE=#{moduleType,jdbcType=INTEGER}
+		where MODULE_ID=#{moduleId,jdbcType=VARCHAR}
+	</update>
+	<!-- 保存模块全部的信息 -->
+	<insert id="insertModuleAllInfo" parameterType="DwpasCmoduleInfo">
+		INSERT INTO
+		dwpas_c_module_info(
+		MODULE_ID,
+		MENU_ID,
+		MODULE_CODE,
+		MODULE_NAME,
+		DATE_TYPE,
+		IS_SHOW,
+		REMARK,
+		POSITION,
+		WIDTH,
+		HEIGHT,
+		MODULE_TYPE,
+		MODULE_SORT,
+		POSITION_X,
+		POSITION_Y,
+		TAB_SHOW
+		)
+		VALUES
+		(
+		#{moduleId,jdbcType=VARCHAR},
+		#{menuId,jdbcType=VARCHAR},
+		#{moduleCode,jdbcType=VARCHAR},
+		#{moduleName,jdbcType=VARCHAR},
+		#{dateType,jdbcType=VARCHAR},
+		#{isShow},
+		#{remark,jdbcType=VARCHAR},
+		#{position},
+		#{width},
+		#{height},
+		#{moduleType},
+		#{moduleSort},
+		#{positionX},
+		#{positionY},
+		#{tabShow,jdbcType=INTEGER}
+		)
+	</insert>
+	<!-- 修改模块信息 -->
+	<update id="updateModuleInfo" parameterType="DwpasCmoduleInfo">
+		UPDATE
+		dwpas_c_module_info
+		SET module_name = #{moduleName,jdbcType=VARCHAR},
+		is_show =
+		#{isShow},
+		remark = #{remark,jdbcType=VARCHAR},
+		position =
+		#{position},
+		position_x =
+		#{positionX},
+		position_y =
+		#{positionY},
+		width =
+		#{width},
+		height =
+		#{height},
+		module_sort = #{moduleSort},
+		TAB_SHOW=#{tabShow}
+		WHERE
+		module_id =
+		#{moduleId,jdbcType=VARCHAR}
+	</update>
+</mapper>

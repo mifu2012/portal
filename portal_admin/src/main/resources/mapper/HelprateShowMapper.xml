@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="HelprateShowMapper">
+    <!-- ============================================= -->
+    <!-- RESULT MAPS                                   -->
+    <!-- ============================================= -->
+
+    <!-- result maps for database table DWPAS_C_HELPRATE_SHOW -->
+    <resultMap id="HelprateShowMap" type="HelprateShow">
+        <result property="productId" column="PRODUCT_ID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="preAlertValue" column="PRE_ALERT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="alertValue" column="ALERT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="maxValue" column="MAX_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="minValue" column="MIN_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="showOrder" column="SHOW_ORDER" javaType="java.math.BigDecimal" jdbcType="INTEGER" />
+        <result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="DATE"/>
+        <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" jdbcType="DATE"/>
+    </resultMap>
+
+
+    <!-- ============================================= -->
+    <!-- mapped statements for IbatisDwpasCHelprateShowDAO -->
+    <!-- ============================================= -->
+    <!-- mapped statement for IbatisDwpasCHelprateShowDAO.qryAll -->
+    <select id="HelprateShowQueryAll" resultMap="HelprateShowMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-HELPRATE-SHOW-QRY-ALL*/ product_id, pre_alert_value, alert_value, max_value, min_value, show_order, gmt_create, gmt_modified from dwpas_c_helprate_show order by show_order ASC
+    ]]>
+    </select>
+
+    <!-- mapped statement for IbatisDwpasCHelprateShowDAO.insert -->
+    <insert id="HelprateShowInsert" >
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-C-HELPRATE-SHOW-INSERT*/ into dwpas_c_helprate_show(product_id,pre_alert_value,alert_value,max_value,min_value,show_order,gmt_create,gmt_modified) values (#{productId}, #{preAlertValue}, #{alertValue}, #{maxValue}, #{minValue}, #{showOrder}, now(), now())
+    ]]>
+    </insert>
+
+    <!-- mapped statement for IbatisDwpasCHelprateShowDAO.delete -->
+    <delete id="HelprateShowDelete">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-C-HELPRATE-SHOW-DELETE*/ from dwpas_c_helprate_show where product_id = #{productId}
+    ]]>
+    </delete>
+
+    <!-- mapped statement for IbatisDwpasCHelprateShowDAO.update -->
+    <update id="HelprateShowUpdate">
+    <![CDATA[
+        update /*MS-DWPAS-DWPAS-C-HELPRATE-SHOW-UPDATE*/ dwpas_c_helprate_show set pre_alert_value=#{preAlertValue}, alert_value=#{alertValue}, max_value=#{maxValue}, min_value=#{minValue}, show_order=#{showOrder}, gmt_modified=now() where product_id = #{productId}
+    ]]>
+    </update>
+
+    <!-- mapped statement for IbatisDwpasCHelprateShowDAO.qryAllByProductIds -->
+    <select id="HelprateShowQueryAllByProductIds" resultMap="HelprateShowMap">
+        select /*MS-DWPAS-DWPAS-C-HELPRATE-SHOW-QRY-ALL-BY-PRODUCT-IDS*/ product_id, pre_alert_value, alert_value, max_value, min_value, show_order, gmt_create, gmt_modified from dwpas_c_helprate_show where product_id in
+		         <foreach collection="" open="(" close=")" separator=",">#[]#</foreach>
+    </select>
+
+    <!-- mapped statement for IbatisDwpasCHelprateShowDAO.qryOneByProductId -->
+    <select id="HelprateShowQueryByProductId" resultMap="HelprateShowMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-HELPRATE-SHOW-QRY-ONE-BY-PRODUCT-ID*/ product_id, pre_alert_value, alert_value, max_value, min_value, show_order, gmt_create, gmt_modified from dwpas_c_helprate_show where product_id = #{productId}
+    ]]>
+    </select>
+
+</mapper>

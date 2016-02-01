@@ -1,0 +1,37 @@
+BODY {
+	 COLOR: #222222; LINE-HEIGHT: 19px; FONT-FAMILY: tahoma, arial, 'courier new', verdana, sans-serif;SCROLLBAR-FACE-COLOR: #f6f6f6; FONT-SIZE: 9pt; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #cccccc; SCROLLBAR-3DLIGHT-COLOR: #cccccc; SCROLLBAR-ARROW-COLOR: #330000; SCROLLBAR-TRACK-COLOR: #f6f6f6; SCROLLBAR-DARKSHADOW-COLOR: #ffffff; TEXT-DECORATION: none;
+}
+INPUT {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 9pt; BORDER-LEFT: #666666 1px solid; COLOR: #666666; BORDER-BOTTOM: #666666 1px solid; HEIGHT: 18px; BACKGROUND-COLOR: #ffffff
+}
+DIV {
+	FONT-SIZE: 10px; COLOR: #222222; LINE-HEIGHT: 19px; FONT-FAMILY: tahoma, arial, 'courier new', verdana, sans-serif
+}
+SPAN {
+	FONT-SIZE: 9px; COLOR: #222222; LINE-HEIGHT: 19px; FONT-FAMILY: tahoma, arial, 'courier new', verdana, sans-serif
+}
+LI {
+	FONT-SIZE: 11px; COLOR: #222222; LINE-HEIGHT: 19px; FONT-FAMILY: tahoma, arial, 'courier new', verdana, sans-serif;list-style-type:none;
+}
+A {
+	FONT-SIZE: 14px; COLOR: #222222; LINE-HEIGHT: 19px; FONT-FAMILY: tahoma, arial, 'courier new', verdana, sans-serif
+}
+A {
+	COLOR: #2c78c5; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: red; TEXT-DECORATION: none
+}
+.divctrl{ 
+ cursor:hand;height:20px; 
+}
+.pop_input
+{
+    border-right:1px #253E7A solid;
+     border-left:1px #253E7A solid;
+    border-top:1px #253E7A solid;
+     border-bottom:1px #253E7A solid;
+    background-color:#ffffff;
+	cursor:hand;
+    font-size:9pt;
+}

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration      
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"      
+    "http://mybatis.org/dtd/mapper-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 全局映射器启用缓存 -->
+		<setting name="cacheEnabled" value="true" />
+		<!-- 查询时，关闭关联对象即时加载以提高性能 -->
+		<setting name="lazyLoadingEnabled" value="false" />
+		<!-- 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指 定)，不会加载关联表的所有字段，以提高性能 -->
+		<setting name="aggressiveLazyLoading" value="false" />
+		<!-- 对于未知的SQL查询，允许返回不同的结果集以达到通用的效果 -->
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<!-- 允许使用列标签代替列名 -->
+		<setting name="useColumnLabel" value="true" />
+		<!-- 允许使用自定义的主键值(比如由程序生成的UUID 32位编码作为键值)，数据表的PK生成策略将被覆盖 -->
+		<setting name="useGeneratedKeys" value="true" />
+		<!-- 给予被嵌套的resultMap以字段-属性的映射支持 -->
+		<setting name="autoMappingBehavior" value="FULL" />
+		<!-- 对于批量更新操作缓存SQL以提高性能 -->
+		<!-- <setting name="defaultExecutorType" value="BATCH" /> -->
+		<!-- 数据库超过25000秒仍未响应则超时 -->
+		<setting name="defaultStatementTimeout" value="25000" />
+	</settings>
+
+	<typeAliases>
+		<!-- 指标信息配置表 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCKpiInfo"
+			alias="DwpasCKpiInfo" />
+		<!-- 指标统计数据表 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasStKpiData"
+			alias="DwpasStKpiData" />
+		<!-- 产品健康度六维度配置表，一个产品对应一条配置信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCPrdDim"
+			alias="DwpasCPrdDim" />
+		<!-- 通用指标信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCComKpiInfo"
+			alias="DwpasCComKpiInfo" />
+		<!-- 产品信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCPrdInfo"
+			alias="DwpasCPrdInfo" />
+		<!--使用特征信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCUserFeature"
+			alias="DwpasCUserFeature" />
+		<!--使用特征数据 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasStUserFeatureDs"
+			alias="DwpasStUserFeatureDs" />
+		<!-- 经纬仪页面配置信息 -->
+		<!-- 栏目管理 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCColumnInfo"
+			alias="DwpasCColumnInfo" />
+		<!-- 栏目关联的指标信息集 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasRColumnComKpi"
+			alias="DwpasRColumnComKpi" />
+		<!-- 产品配置 -->
+		<!-- <typeAlias type="com.infosmart.portal.pojo.ProdInfo" alias="ProdInfo" 
+			/> -->
+		<!-- 平台交叉用户指标关联 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCCrossUserKpiDO"
+			alias="DwpasCCrossUserKpiDO" />
+		<!-- 指标信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCKpiInfoDO"
+			alias="DwpasCKpiInfoDO" />
+		<!-- 指标大类 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCSysType"
+			alias="DwpasCSysType" />
+		<!-- 商品信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCPrdInfoDO"
+			alias="DwpasCPrdInfoDO" />
+		<!-- 大事件 -->
+		<typeAlias type="com.infosmart.portal.pojo.BigEventPo"
+			alias="BigEventPo" />
+		<!-- Kpi数据值 -->
+		<typeAlias type="com.infosmart.portal.vo.dwpas.ProdKpiData"
+			alias="ProdKpiDataDTO" />
+		<!-- <typeAlias type="com.infosmart.portal.pojo.DwpasCHelprateShow" alias="DwpasCHelprateShow" 
+			/> -->
+		<!-- 风向标DwpasStDrogueData zy -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasStDrogueData"
+			alias="DwpasStDrogueData" />
+		<!-- 参数 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCSysType"
+			alias="DwpasCSysType" />
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCSysParam"
+			alias="DwpasCSysParam" />
+		<!-- 产品全图 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasStPlatformData"
+			alias="DwpasStPlatformData" />
+		<!-- 支付宝用户数统计 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCKpiUserCnt"
+			alias="DwpasCKpiUserCnt" />
+		<!-- zy龙虎榜 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCrossUserKpi"
+			alias="DwpasCrossUserKpi" />
+		<!-- 指标监控 部门信息等 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasStDeptKpiData"
+			alias="DwpasStDeptKpiData" />
+		<!-- 产品交叉分析数据 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasStCrossAnalyseData"
+			alias="DwpasStCrossAnalyseData" />
+		<!-- 通用 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCHelprateShow"
+			alias="DwpasCHelprateShow" />
+		<!-- 用户求助 -->
+		<typeAlias type="com.infosmart.portal.pojo.UserAskTop"
+			alias="UserAskTop" />
+		<!-- DwpasRColumnComKpi -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasRColumnComKpi"
+			alias="DwpasRColumnComKpi" />
+		<!-- 用户体验 -->
+		<!-- <typeAlias type="com.infosmart.portal.pojo.UserExperienceInfo" alias="UserExperienceInfo"/> -->
+		<typeAlias type="com.infosmart.portal.pojo.ChannelInfo"
+			alias="ChannelInfo" />
+		<!-- 用户体验数据信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.UserExperienceDataInfo"
+			alias="UserExperienceDataInfo" />
+		<!-- 登录用户信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.User" alias="User" />
+		<!-- 日志信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.SysLog" alias="SysLog" />
+		<!-- 通用 -->
+		<!-- <typeAlias type="com.infosmart.portal.pojo.DwpasCKpiInfoDO" alias="DwpasCKpiInfoDO"/> -->
+		<!-- 经纬仪模板 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCTemplateInfo"
+			alias="DwpasCTemplateInfo" />
+		<!-- 报表主表信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.report.ReportDesign"
+			alias="ReportDesign" />
+		<!-- 报表数据源信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.report.ReportDataSource"
+			alias="ReportDataSource" />
+		<!-- 报表从表信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.report.ReportConfig"
+			alias="ReportConfig" />
+		<!-- 信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.Role" alias="Role" />
+		<!-- 系统菜单表 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCSystemMenu"
+			alias="DwpasCSystemMenu" />
+		<!-- 系统模块信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCModuleInfo"
+			alias="DwpasCModuleInfo" />
+		<!-- 大事记与KPI关联信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasMisKpiEventRel"
+			alias="DwpasMisKpiEventRel" />
+		<!-- 瞭望塔—大事件信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.MisEventPo"
+			alias="MisEventPo" />
+		<!-- 系统参数定义 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisMisTypePo"
+			alias="DwmisMisTypePo" />
+		<!-- 瞭望塔之部门信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisMisDptmnt"
+			alias="DwmisMisDptmnt" />
+		<!-- 瞭望塔之指标信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisKpiInfo"
+			alias="DwmisKpiInfo" />
+		<!-- 瞭望塔之指标数据 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisKpiData"
+			alias="DwmisKpiData" />
+		<!-- 瞭望塔之绩效分解 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisKpiGoal"
+			alias="DwmisKpiGoal" />
+		<!-- 瞭望塔之部门指标数据 -->
+		<typeAlias type="com.infosmart.portal.vo.dwmis.DwmisDeptKpiData"
+			alias="DwmisDeptKpiData" />
+		<!-- 瞭望塔模块信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisModuleInfo"
+			alias="DwmisModuleInfo" />
+		<!-- 瞭望塔主题信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisSubjectInfo"
+			alias="DwmisSubjectInfo" />
+		<!-- 瞭望塔图例信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.dwmis.DwmisLegendInfo"
+			alias="DwmisLegendInfo" />
+		<!-- 报表自助服务 -->
+		<typeAlias type="com.infosmart.portal.pojo.report.SelfApply"
+			alias="SelfApply" />
+		<!-- 维度从表 -->
+		<typeAlias type="com.infosmart.portal.pojo.report.DimensionDetail"
+			alias="DimensionDetail" />
+
+		<!-- 用户行为信息 -->
+		<typeAlias type="com.infosmart.portal.pojo.DwpasCUserActionInfo"
+			alias="DwpasCUserActionInfo" />
+		<!-- 用户行为相关联数据信息 -->
+		<typeAlias
+			type="com.infosmart.portal.pojo.DwpasStUserActionCrossAnalyseData"
+			alias="DwpasStUserActionCrossAnalyseData" />
+
+		<!-- 用户页面分享 -->
+		<typeAlias type="com.infosmart.portal.pojo.UserPageShareInfo"
+			alias="UserPageShareInfo" />
+		<!-- 图表配置 zy -->
+		<typeAlias type="com.infosmart.portal.pojo.report.ReportChartFiled"
+			alias="reportChartFiled" />
+	</typeAliases>
+
+	<plugins>
+		<plugin interceptor="com.infosmart.portal.util.dwmis.PagePlugin">
+			<property name="dialect" value="mysql" />
+			<property name="pageSqlId" value=".*listPage.*" />
+		</plugin>
+	</plugins>
+
+	<!-- 拦截器 -->
+	<!-- <plugins> -->
+	<!-- 分页拦截器 -->
+	<!-- <plugin -->
+	<!-- interceptor="com.infosmart.portal.interceptor.DiclectStatementHandlerInterceptor"> -->
+	<!-- 数据库方言 -->
+	<!-- <property name="databaseDialect" value="MySQL" /> -->
+	<!-- </plugin> -->
+	<!-- <plugin -->
+	<!-- interceptor="com.infosmart.portal.interceptor.DiclectResultSetHandlerInterceptor" 
+		/> -->
+	<!-- </plugins> -->
+
+	<mappers>
+		<!-- 指标信息配置表 -->
+		<mapper resource="mapper/DwpasCKpiInfoMapper.xml" />
+		<!-- 指标统计数据表 -->
+		<mapper resource="mapper/DwpasStKpiDataMapper.xml" />
+		<!-- 产品健康度六维度配置表，一个产品对应一条配置信息 -->
+		<mapper resource="mapper/DwpasCPrdDimMapper.xml" />
+		<!-- 通用指标 -->
+		<mapper resource="mapper/DwpasCComKpiInfoMapper.xml" />
+		<!-- 产品信息 -->
+		<mapper resource="mapper/DwpasCPrdInfoMapper.xml" />
+		<!-- 产品与指标关联表 -->
+		<mapper resource="mapper/DwpasRPrdKpiMapper.xml" />
+		<!-- 指标与通用指标关联 -->
+		<mapper resource="mapper/DwpasRKpiComkpiMapper.xml" />
+		<!-- 产品使用特征数据 -->
+		<mapper resource="mapper/DwpasStUserFeatureDsMapper.xml" />
+		<!-- 栏目管理 -->
+		<mapper resource="mapper/DwpasCColumnInfoSqlMap.xml" />
+		<!-- 获取产品信息 -->
+		<mapper resource="mapper/DwpasCPrdInfoMapping.xml" />
+		<!-- 指标大类 -->
+		<mapper resource="mapper/DwpasCSysTypeMapper.xml" />
+		<!-- 通用 -->
+		<mapper resource="mapper/DwpasCHelprateShowMapping.xml" />
+		<!-- 大事件 -->
+		<mapper resource="mapper/BigEventMapper.xml" />
+		<!-- 风向 标zy -->
+		<mapper resource="mapper/DwpasStDrogueDataMapper.xml" />
+		<mapper resource="mapper/DwpasCSysParam.xml" />
+		<!-- 产品全图 -->
+		<mapper resource="mapper/DwpasStPlatformData.xml" />
+		<!-- 支付宝用户数统计 -->
+		<mapper resource="mapper/DwpasCKpiUserCntMapping.xml" />
+		<!-- zy 龙虎榜 -->
+		<mapper resource="mapper/DwpasCrossUserKpiMapper.xml" />
+		<mapper resource="mapper/DwpasCComKpiInfoMapper.xml" />
+		<mapper resource="mapper/DwpasLongHuBangMapper.xml" />
+		<!-- 指标监控 部门信息等 -->
+		<mapper resource="mapper/dwpasstDeptKpiDate.xml" />
+		<!-- 产品交叉分析数据 -->
+		<mapper resource="mapper/DwpasPrdCrossAnlayseDataMapping.xml" />
+		<!-- 用户咨询 -->
+		<mapper resource="mapper/DwpasUserCounselMapper.xml" />
+		<!-- 指标信息 -->
+		<mapper resource="mapper/DwpasCKpiInfoMapping.xml" />
+		<!-- 用户求助Top10 -->
+		<mapper resource="mapper/DwpasStCatTop10Date.xml" />
+		<mapper resource="mapper/DwpasStCatTop10Month.xml" />
+		<!-- 用户体验引入情况 -->
+		<mapper resource="mapper/DwpasStLogCampMapping.xml" />
+		<!-- 场景交叉 -->
+		<mapper resource="mapper/DwpasStCrossAnalyseDataMapper.xml" />
+		<!-- 用户登录 -->
+		<mapper resource="mapper/User.xml" />
+		<!-- 日志 -->
+		<mapper resource="mapper/SysLogMapper.xml" />
+		<!-- 报表 -->
+		<mapper resource="mapper/ReportMapper.xml" />
+		<!-- 系统菜单 -->
+		<mapper resource="mapper/DwpasCSysMenu.xml" />
+		<!-- 瞭望塔—大事件 -->
+		<mapper resource="mapper/dwmis/MisEventMapper.xml" />
+		<!-- 参数定义 -->
+		<mapper resource="mapper/dwmis/DwmisMisType.xml" />
+		<!-- 瞭望塔之KPI绩效分解表 -->
+		<mapper resource="mapper/dwmis/DwmisKpiGoal.xml" />
+		<!-- 瞭望塔之部门管理 -->
+		<mapper resource="mapper/dwmis/DwmisMisDptmnt.xml" />
+		<!-- 瞭望塔之指标信息 -->
+		<mapper resource="mapper/dwmis/DwmisKpiInfo.xml" />
+		<!-- 瞭望塔之指标数据 -->
+		<mapper resource="mapper/dwmis/DwmisMisKpiData.xml" />
+		<!-- 瞭望塔模块 -->
+		<mapper resource="mapper/dwmis/DwmisModuleInfo.xml" />
+		<!-- 报表自助服务 -->
+		<mapper resource="mapper/SelfApplyMapper.xml" />
+		<!-- 页面配置 -->
+		<mapper resource="mapper/DwpasPageSetting.xml" />
+		<!-- 用户行为信息 -->
+		<mapper resource="mapper/DwpasCUserActionInfoMapper.xml" />
+		<!-- 用户行为数据信息 -->
+		<mapper resource="mapper/DwpasStUserActionCrossAnalyseDataMapper.xml" />
+		<!-- 自定义报表设置 -->
+		<!-- <mapper resource="mapper/SelfReportMapper.xml" /> -->
+		<!-- 用户页面分享 -->
+		<mapper resource="mapper/UserPageShareMapper.xml" />
+		<mapper resource="mapper/reportChartFiled.xml" />
+		<!-- 报表新XML -->
+		<mapper resource="mapper/report/ReportDesignMapper.xml" />
+	</mappers>
+</configuration>

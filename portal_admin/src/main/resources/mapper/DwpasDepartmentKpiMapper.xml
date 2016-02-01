@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.dwpasstDepartmentKpiMapper">
+	<!-- 部门信息数据 -->
+	<resultMap id="dwpasDepartmentKpiMap" type="dwpasDepartmentKpiInfo">
+		<result property="id" column="id" />
+		<result property="deptId" column="dept_id" />
+		<result property="deptName" column="dept_name" />
+		<result property="kpiCode" column="kpi_code" />
+		<result property="kpiName" column="kpi_name" />
+		<result property="unit" column="unit" />
+		<result property="kpiFulfillValue" column="KPI_FULFILL_VALUE" />
+		<result property="kpiTaskValue" column="KPI_TASK_VALUE" />
+		<result property="reportDate" column="REPORT_DATE" />
+	</resultMap>
+
+	<select id="listPageAllDepartmentKpiInfos" resultMap="dwpasDepartmentKpiMap"
+		parameterType="dwpasDepartmentKpiInfo">
+		select
+		id,dept_id,dept_name,kpi_code,kpi_name,unit,KPI_FULFILL_VALUE,KPI_TASK_VALUE,REPORT_DATE
+		from dwpas_st_dept_kpi_data where 1=1
+		<if test="deptName!=null and deptName!=''">
+			and dept_name like "%"#{deptName}"%"
+		</if>
+		<if test="reportDate!=null and reportDate!=''">
+			and REPORT_DATE=#{reportDate}
+		</if>
+	</select>
+
+	<delete id="deleteDepartmentKpiInfoById">
+		delete from dwpas_st_dept_kpi_data where id=#{id}
+	</delete>
+
+	<insert id="insertDepartmentKpiInfo" parameterType="dwpasDepartmentKpiInfo">
+		insert into
+		dwpas_st_dept_kpi_data
+		(dept_id,dept_name,kpi_code,kpi_name,unit,KPI_FULFILL_VALUE,KPI_TASK_VALUE,REPORT_DATE)
+		values
+		(#{deptId},#{deptName},#{kpiCode},#{kpiName},#{unit},#{kpiFulfillValue},#{kpiTaskValue},#{reportDate})
+
+	</insert>
+
+	<!-- 根据Id查询部门指标信息(modify by mf 2012/10/16) -->
+	<select id="getDepartmentKpiInfoById" resultMap="dwpasDepartmentKpiMap"
+		parameterType="java.lang.String">
+		SELECT
+		id,dept_id,dept_name,kpi_code,kpi_name,unit,KPI_FULFILL_VALUE,KPI_TASK_VALUE,REPORT_DATE
+		FROM dwpas_st_dept_kpi_data where id=#{id}
+	</select>
+
+	<!-- 修改部门指标信息(modify by mf 2012/10/16) -->
+	<update id="updateDepartmentKpiInfo" parameterType="dwpasDepartmentKpiInfo">
+		UPDATE
+		dwpas_st_dept_kpi_data SET
+		dept_id=#{deptId},
+		dept_name=#{deptName},
+		kpi_code=#{kpiCode},
+		kpi_name=#{kpiName},
+		unit=#{unit},
+		KPI_FULFILL_VALUE=#{kpiFulfillValue},
+		KPI_TASK_VALUE=#{kpiTaskValue},
+		REPORT_DATE=#{reportDate}
+		WHERE id=#{id}
+	</update>
+</mapper>

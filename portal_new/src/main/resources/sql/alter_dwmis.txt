@@ -1,0 +1,2 @@
+alter table DWMIS_LEGEND_MODULE_R
+add sort int ;

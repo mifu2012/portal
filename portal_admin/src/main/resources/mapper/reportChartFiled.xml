@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reportChartFiledMapper">
+
+	<!-- result maps for database table DWPAS_C_COM_KPI_INFO -->
+	<resultMap id="reportChartFiledMap" type="reportChartFiled">
+		<result property="chartId" column="chart_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="chartType" column="chart_type" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="reportId" column="report_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="fields" column="fields" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="xFields" column="xfields" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="url" column="url" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="updateId" column="update_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="left" column="POSITION_X" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="top" column="POSITION_Y" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="width" column="width" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="height" column="height" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="GMT_CREATE" column="GMT_CREATE" />
+		<result property="GMT_MODIFIED" column="GMT_MODIFIED" />
+		<!-- 汇总类型 -->
+		<result property="summaryType" column="SUMMARY_TYPE" javaType="int"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 查询某图表已选择字段 -->
+	<select id="getIsSelOrNotTableFiled" parameterType="java.lang.Integer"
+		resultMap="reportChartFiledMap">
+		select * from tb_rpt_report_chart where
+		chart_id=#{chartId}
+	</select>
+	<!-- 查询所有图表的字段 -->
+	<select id="getAllReportChart" resultMap="reportChartFiledMap"
+		parameterType="java.lang.Integer">
+		select * from
+		tb_rpt_report_chart
+		where report_id =#{reportId}
+	</select>
+	<!-- 修改图表字段 -->
+	<update id="updateChartFiled" parameterType="reportChartFiled">
+		update
+		tb_rpt_report_chart set
+		<if test="chartType!=null and chartType!=''">
+			chart_type=#{chartType},
+		</if>
+		<if test="left!=0">
+			POSITION_X=#{left},
+		</if>
+		<if test="top!=0">
+			POSITION_Y=#{top},
+		</if>
+		<if test="width!=0">
+			width=#{width},
+		</if>
+		<if test="height!=0">
+			height=#{height},
+		</if>
+		<if test="fields!=null and fields!=''">
+			fields=#{fields},
+		</if>
+		<if test="xFields!=null and xFields!=''">
+			xfields=#{xFields},
+		</if>
+		<if test="url!=null and url!=''">
+			url=#{url},
+		</if>
+		<if test="updateId!=null and updateId!=''">
+			update_id=#{updateId},
+		</if>
+		<!-- 汇总方式 -->
+		<if test="summaryType>0">
+			SUMMARY_TYPE=#{summaryType},
+		</if>
+		GMT_MODIFIED=now()
+		where
+		chart_id=#{chartId}
+	</update>
+	<!-- 删除图表 -->
+	<delete id="delChartFiled" parameterType="java.lang.Integer">
+		delete from
+		tb_rpt_report_chart where chart_id=#{chartId}
+	</delete>
+
+	<!-- 根据表和字段名查询字段数据 -->
+	<!-- <select id="getReportChartDate" parameterType="java.util.HashMap" resultType="java.util.HashMap"> 
+		<![CDATA[ select ${fileds} ${tableName} limit 0,10 ]]> </select> -->
+	<!-- 添加图表 -->
+	<insert id="addChartFiled" parameterType="reportChartFiled">
+		insert into
+		tb_rpt_report_chart(report_id,url,update_id,GMT_CREATE,chart_type,width,height,summary_type)
+		values(#{reportId},#{url},#{updateId},now(),#{chartType},#{width},#{height},#{summaryType})
+		<selectKey resultType="int" keyProperty="chartId">
+			SELECT
+			LAST_INSERT_ID() as id
+		</selectKey>
+	</insert>
+</mapper>

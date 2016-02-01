@@ -1,0 +1,38 @@
+<settings>
+  <data_type>csv</data_type>
+  <thousands_separator>,</thousands_separator>
+  <decimals_separator>.</decimals_separator>
+  <background>
+     <color>EFF0F2</color>
+    <alpha>100</alpha>
+    <border_color>EFF0F2</border_color>
+    <border_alpha>100</border_alpha>
+  </background>
+  <balloon>
+    <show><![CDATA[{title} {value} ({percents}%)]]></show>
+  </balloon>
+ <legend>
+    <max_columns>1</max_columns>
+    <spacing>0</spacing>
+    <align>center</align>
+    <key>
+      <size>12</size>
+    </key>
+    <values>
+      <enabled>1</enabled>
+      <width>0</width>
+    </values>
+  </legend>
+  <pie>
+    <x>50%</x>
+    <y>50%</y>
+    <radius>40%</radius>
+  </pie>
+  <strings>
+      <no_data>数据正在准备中，请稍后再试。</no_data>
+      <export_as_image>数据正在准备中，请稍后再试。</export_as_image>
+      <error_in_data_file>数据正在准备中，请稍后再试。</error_in_data_file>
+      <collecting_data>数据正在准备中，请稍后再试。</collecting_data>
+      <wrong_zoom_value>数据正在准备中，请稍后再试。</wrong_zoom_value>
+  </strings>
+</settings>

@@ -1,0 +1,356 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0 {
+    position:absolute;
+    left:60px;
+    top:100px;
+    width:260px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u1_original {
+    background-image: url('../产品360°分析-产品健康度-更换分析产品_files/u1_original.png');
+}
+
+.u1_container {
+    position:absolute;
+    left:70px;
+    top:150px;
+    width:790px;
+    height:392px;
+}
+
+#u1_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:790px;
+    height:392px;
+}
+
+.u2 {
+    position:absolute;
+    left:2px;
+    top:188px;
+    width:786px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u1 {
+    position:absolute;
+    left:70px;
+    top:150px;
+    width:790px;
+    height:392px
+}
+
+.u3 {
+    position:absolute;
+    left:60px;
+    top:130px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4_original {
+    background-image: url('../产品360°分析-产品健康度-更换分析产品_files/u4_original.png');
+}
+
+.u4_container {
+    position:absolute;
+    left:56px;
+    top:10px;
+    width:796px;
+    height:46px;
+}
+
+#u4_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:796px;
+    height:46px;
+}
+
+.u5 {
+    position:absolute;
+    left:2px;
+    top:15px;
+    width:792px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4 {
+    position:absolute;
+    left:56px;
+    top:10px;
+    width:796px;
+    height:46px
+}
+
+.u6_original {
+    background-image: url('../产品360°分析-产品健康度-更换分析产品_files/u6_original.png');
+}
+
+.u6_container {
+    position:absolute;
+    left:205px;
+    top:15px;
+    width:139px;
+    height:40px;
+}
+
+#u6_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:139px;
+    height:40px;
+}
+
+.u7 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:135px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6 {
+    position:absolute;
+    left:205px;
+    top:15px;
+    width:139px;
+    height:40px
+}
+
+.u8_text {
+    position:absolute;
+    left:76px;
+    top:21px;
+    width:103px;
+    height:23px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u8 {
+    position:absolute;
+    left:76px;
+    top:21px;
+    width:103px;
+    height:23px
+}
+
+.u9 {
+    position:absolute;
+    left:219px;
+    top:24px;
+    width:120px;
+    height:23px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u10_original {
+    background-image: url('../产品360°分析-产品健康度-更换分析产品_files/u10_original.png');
+}
+
+.u10_container {
+    position:absolute;
+    left:56px;
+    top:57px;
+    width:795px;
+    height:30px;
+}
+
+#u10_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:795px;
+    height:30px;
+}
+
+.u11 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:791px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u10 {
+    position:absolute;
+    left:56px;
+    top:57px;
+    width:795px;
+    height:30px
+}
+
+.u12_original {
+    background-image: url('../产品360°分析-产品健康度-更换分析产品_files/u12_original.png');
+}
+
+.u12_container {
+    position:absolute;
+    left:160px;
+    top:56px;
+    width:85px;
+    height:30px;
+}
+
+#u12_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:85px;
+    height:30px;
+}
+
+.u13 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:81px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u12 {
+    position:absolute;
+    left:160px;
+    top:56px;
+    width:85px;
+    height:30px
+}
+
+.u14_text {
+    position:absolute;
+    left:71px;
+    top:60px;
+    width:70px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u14 {
+    position:absolute;
+    left:71px;
+    top:60px;
+    width:70px;
+    height:19px
+}
+
+.u15 {
+    position:absolute;
+    left:169px;
+    top:60px;
+    width:100px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16_text {
+    position:absolute;
+    left:296px;
+    top:60px;
+    width:114px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16 {
+    position:absolute;
+    left:296px;
+    top:60px;
+    width:114px;
+    height:19px
+}
+

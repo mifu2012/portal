@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.RoleMapper">
+
+	<resultMap type="Role" id="roleResultMap">
+		<id column="role_id" property="roleId"/>
+		<result column="role_name" property="roleName"/>
+		<result column="rights" property="rights"/>
+		<result column="report_rights" property="reportRights"/>
+		<result column="dwpas_rights" property="dwpasRights"/>
+		<result column="dwmis_rights" property="dwmisRights"/>
+	</resultMap>
+	
+	<select id="listAllRoles" resultMap="roleResultMap">
+		select * from tb_role
+	</select>
+	<select id="getRoleById" parameterType="int" resultMap="roleResultMap">
+		select * from tb_role where role_id=#{roleId}
+	</select>
+	<select id="getCountByName" parameterType="Role" resultType="int">
+		select count(role_id) from tb_role where role_name=#{roleName}
+		<if test="roleId!=null or roleId>0">
+		 and role_id!=#{roleId}
+		</if>
+	</select>
+	<!-- useGeneratedKeys="true" keyProperty="roleId" -->
+	<insert id="insertRole" parameterType="Role" >
+		insert into tb_role (role_name) values (#{roleName})
+	</insert>
+	
+	<update id="updateRoleBaseInfo" parameterType="Role">
+		update tb_role set role_name=#{roleName} where role_id=#{roleId}
+	</update>
+	<update id="updateRoleRights" parameterType="Role">
+		update tb_role set rights=#{rights} where role_id=#{roleId}
+	</update>
+	<update id="updateReportRights" parameterType="Role">
+		update tb_role set report_rights=#{reportRights} where role_id=#{roleId}
+	</update>
+	<update id="updateDwpasRights" parameterType="Role">
+		update tb_role set dwpas_rights=#{dwpasRights,jdbcType=VARCHAR}  where role_id=#{roleId,jdbcType=INTEGER}
+	</update>
+	<update id="updateDwmisRights" parameterType="Role">
+		update tb_role set dwmis_rights=#{dwmisRights,jdbcType=INTEGER}  where role_id=#{roleId,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteRoleById" parameterType="int">
+		delete from tb_role where role_id=#{roleId}
+	</delete>
+</mapper>

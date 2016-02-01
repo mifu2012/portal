@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.UserPageShare">
+    <resultMap id="UserPageShareInfoResultMap" type="UserPageShareInfo">
+        <result column="ID" property="id" jdbcType="INTEGER" 
+		    javaType="int" />
+        
+		<result column="SEND_USER" property="sendUserId" jdbcType="VARCHAR"
+			javaType="string" />
+		<result column="SEND_USER_NAME" property="sendUserName" jdbcType="VARCHAR"
+			javaType="string" />
+		<result column="RECEIVE_USER" property="receiveUserId" jdbcType="VARCHAR"
+			javaType="string" />
+		<result column="RECEIVE_USER_NAME" property="receiveUserName" jdbcType="VARCHAR"
+			javaType="string" />
+		<result column="URL" property="url" jdbcType="VARCHAR"
+			javaType="string" />
+		<result column="IS_READED" property="isReaded" jdbcType="INTEGER"
+			javaType="int" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR"
+		    javaType="string" />
+		<result column="FLAG" property="flag" jdbcType="INTEGER" 
+		    javaType="int" />
+		<result column="GMT_SEND" property="gmtSend"  jdbcType="TIMESTAMP"
+			javaType="java.util.Date" />
+		<result column="ORIGIN_ID" property="originId"  jdbcType="INTEGER"
+			javaType="int" />
+	</resultMap>
+	
+	<!-- 共享插入或者回复时，插入已发送信息 -->
+	<insert id="insertSendInfo" parameterType="UserPageShareInfo" >
+	insert into tb_page_share (SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,REMARK,FLAG,GMT_SEND,ORIGIN_ID)
+	 values(#{sendUserId},#{sendUserName},#{receiveUserId},#{receiveUserName},#{url},#{remark},0,now(),#{originId})
+	 <selectKey resultType="int" keyProperty="id" >
+	 SELECT LAST_INSERT_ID()  as id  
+	 </selectKey>
+	</insert>
+	
+	<!-- 共享时，插入对方用户接收到的信息 -->
+	<insert id="insertReceiveInfo" parameterType="java.util.List" >
+	insert into tb_page_share(SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,IS_READED,REMARK,FLAG,GMT_SEND,ORIGIN_ID) values
+	 <foreach collection="list"  item="userPageShareInfoList" index="index" separator=",">
+			(#{userPageShareInfoList.sendUserId},#{userPageShareInfoList.sendUserName},#{userPageShareInfoList.receiveUserId},#{userPageShareInfoList.receiveUserName},#{userPageShareInfoList.url},0,#{userPageShareInfoList.remark},1,now(),#{userPageShareInfoList.originId})
+		</foreach>
+	</insert>
+	
+	<!-- 回复时，插入对方用户接收到的信息 -->
+	<insert id="insertReplayReceiveInfo" parameterType="UserPageShareInfo" >
+	insert into tb_page_share(SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,IS_READED,REMARK,FLAG,GMT_SEND,ORIGIN_ID) values
+	(#{sendUserId},#{sendUserName},#{receiveUserId},#{receiveUserName},#{url},0,#{remark},1,now(),#{originId})
+	</insert>
+	
+	
+	<!-- 更新阅读的状态 -->
+	<update id="updateIsReaded" parameterType="int">
+	update tb_page_share set IS_READED=1 where id=#{Id}
+	</update>
+	
+	<!-- 获得用户发送的共享记录 -->
+	<select id="listPageSendInfosBySendUserId" parameterType="UserPageShareInfo" resultMap="UserPageShareInfoResultMap">
+	select
+	 ID,SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,IS_READED,REMARK,FLAG,GMT_SEND,ORIGIN_ID
+	 from tb_page_share where SEND_USER=#{sendUserId} and FLAG=0 order by ID desc
+	</select>
+	
+	<!-- 获得接收的共享信息 -->
+	<select id="listPageReceiveInfosByReceiveUserId" parameterType="UserPageShareInfo"  resultMap="UserPageShareInfoResultMap">
+	select
+	 ID,SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,IS_READED,REMARK,FLAG,GMT_SEND,ORIGIN_ID
+	 from tb_page_share where RECEIVE_USER=#{receiveUserId} and FLAG=1 order by ID desc
+	</select>
+	
+	<!-- 查询未读信息，以获得未读数在页面显示 -->
+	<select id="getUnReadedInfo" resultMap="UserPageShareInfoResultMap" >
+	select
+	 SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME
+	 from tb_page_share where RECEIVE_USER=#{receiveUserId} and IS_READED=0
+	</select>
+	
+	<!-- 删除共享信息 -->
+	 <delete id="deleteShareInfoById"  parameterType="int">
+	 delete  from tb_page_share where id=#{Id}
+	 </delete>
+	 
+	 <!-- 获取相关的回复信息 -->
+	 <select id="getAllReplayShareInfo" parameterType="java.util.HashMap" resultMap="UserPageShareInfoResultMap" >
+	 select * from (select ID,SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,IS_READED,REMARK,FLAG,GMT_SEND,ORIGIN_ID
+	 from tb_page_share where ((SEND_USER=#{userId} and FLAG=0 ) or(RECEIVE_USER=#{userId} and FLAG=1))  and ORIGIN_ID=#{originId} 
+     union 
+     select ID,SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,IS_READED,REMARK,FLAG,GMT_SEND,ORIGIN_ID
+	 from tb_page_share where SEND_USER=#{userId} and FLAG=0  and id=#{originId} )  t   order by ID asc
+	 
+<!-- 	 select ID,SEND_USER,SEND_USER_NAME,RECEIVE_USER,RECEIVE_USER_NAME,URL,IS_READED,REMARK,FLAG,GMT_SEND,ORIGIN_ID
+	 from tb_page_share where ((SEND_USER=#{userId} and FLAG=0 ) or(RECEIVE_USER=#{userId} and FLAG=1))  and ORIGIN_ID=#{originId} order by ID asc  -->
+	 </select>
+</mapper>

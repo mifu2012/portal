@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="KpiComKpiInfoMapper">
+    <!-- result maps for database table DWPAS_R_KPI_COMKPI -->
+    <resultMap id="KpiComKpiInfoMap" type="KpiComKpiInfo">
+        <result property="kpiCode" column="KPI_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="comKpiCode" column="COM_KPI_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="DATE"/>
+        <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" jdbcType="DATE"/>
+    </resultMap>
+	<resultMap id="DwpasCKpiInfoResultMap" type="DwpasCKpiInfo">
+	    <result column="kpi_type" property="kpiType" jdbcType="VARCHAR" />
+		<result column="kpi_code" property="kpiCode" jdbcType="VARCHAR" />
+		<result column="kpi_name" property="kpiName" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 获取此通用指标关联的指标 -->
+	<select id="getRelativeKPI" resultMap="DwpasCKpiInfoResultMap">
+		select
+		a.kpi_code,a.kpi_name,a.kpi_type
+		from dwpas_c_kpi_info a
+		inner join dwpas_r_kpi_comkpi b
+		on a.kpi_code = b.kpi_code
+		where b.com_kpi_code = #{comKpiCode}
+	</select>
+
+	<!-- 搜索此通用指标不关联的指标 -->
+	<select id="getUnRelativeKPI" resultMap="DwpasCKpiInfoResultMap" parameterType="java.util.Map">
+	<choose>
+	<when test=" kpiCode !=null and kpiCode != '' ">
+	select a.KPI_CODE,a.KPI_NAME, a.KPI_TYPE
+         from dwpas_c_kpi_info a
+         where a.KPI_CODE not in
+         <foreach collection="kpiCodesList" item="kpiCodes" separator="," open="(" close=")">
+         #{kpiCodes}
+         </foreach>
+         and (a.kpi_code like CONCAT(CONCAT('%',upper(#{kpiCode})),'%')
+			     or a.kpi_name like CONCAT(CONCAT('%',upper(#{kpiCode})),'%'))
+<!-- 		and a.is_use = '1'
+		and a.is_show = '1' -->
+			order by a.kpi_Code
+	</when>
+	<otherwise>
+	select a.KPI_CODE,a.KPI_NAME, a.KPI_TYPE
+         from dwpas_c_kpi_info a
+         where a.KPI_CODE not in
+         <foreach collection="kpiCodesList" item="kpiCodes" separator="," open="(" close=")">
+         #{kpiCodes}
+         </foreach>
+<!--          and a.is_use = '1'
+		and a.is_show = '1' -->
+         order by a.kpi_Code limit 0,200
+	</otherwise>
+	</choose>
+	  
+	</select>
+       <!-- 点击链接查询未关联指标 -->
+       <select id="getNotRelateKpiBySetValue" parameterType="java.lang.String" resultMap="DwpasCKpiInfoResultMap">
+        select a.KPI_CODE,a.KPI_NAME, a.KPI_TYPE
+         from dwpas_c_kpi_info a
+         where a.KPI_CODE not in (select b.KPI_CODE from dwpas_r_kpi_comkpi b where b.com_kpi_code=#{kpiCode})
+<!--          and a.is_use = '1'
+		and a.is_show = '1' -->
+         order by a.KPI_CODE limit 0,200
+       </select>
+	<!-- 插入此通用指标关联的指标 -->
+	<insert id="insertRelativeKPI" >		
+		insert into dwpas_r_kpi_comkpi (kpi_code,com_Kpi_code,GMT_CREATE,GMT_MODIFIED)
+		values(#{comAndkpiCode.kpiCode},#{comAndkpiCode.comKpiCode},now(),now())
+	</insert>
+	<!-- zy修改的保存按钮 -->
+    <insert id="saveRelativeKPI" parameterType="java.util.List" >
+		insert into dwpas_r_kpi_comkpi(kpi_code,com_Kpi_code,GMT_CREATE,GMT_MODIFIED) values
+		<foreach collection="list" item="kpiInfoList" index="index"  separator=",">  
+	       (#{kpiInfoList.kpiCode}, #{kpiInfoList.comKpiCode},now(),now())
+	    </foreach>
+	</insert>
+	<!-- 删除此通用指标关联的指标 -->
+	<delete id="deleteRelativeKPI">
+		delete from dwpas_r_kpi_comkpi where com_kpi_code = #{comKpiCode}
+	</delete>
+    <insert id="KpiComKpiInfoInsert">
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-R-KPI-COMKPI-INSERT*/ into dwpas_r_kpi_comkpi(kpi_code,com_kpi_code,gmt_create,gmt_modified) values (#{kpiCode}, #{comKpiCode}, now(), now())
+    ]]>
+    </insert>
+
+    <!-- mapped statement for IbatisDwpasRKpiComkpiDAO.deleteByComKpiCode -->
+    <delete id="KpiComKpiInfoDeleteByComKpiCode">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-R-KPI-COMKPI-DELETE-BY-COM-KPI-CODE*/ from dwpas_r_kpi_comkpi where com_kpi_code = #{comKpiCode}
+    ]]>
+    </delete>
+
+    <!-- mapped statement for IbatisDwpasRKpiComkpiDAO.deleteByKpiCode -->
+    <delete id="KpiComKpiInfoDeleteByKpiCode">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-R-KPI-COMKPI-DELETE-BY-KPI-CODE*/ from dwpas_r_kpi_comkpi where kpi_code = #{kpiCode}
+    ]]>
+    </delete>
+
+    <!-- mapped statement for IbatisDwpasRKpiComkpiDAO.qryAllBycomKpiCode -->
+    <select id="KpiComKpiInfoQueryAllByComKpiCode" resultMap="KpiComKpiInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-R-KPI-COMKPI-QRY-ALL-BYCOM-KPI-CODE*/ kpi_code, com_kpi_code, gmt_create, gmt_modified from dwpas_r_kpi_comkpi where com_kpi_code = #{comKpiCode}
+    ]]>
+    </select>
+	
+</mapper>

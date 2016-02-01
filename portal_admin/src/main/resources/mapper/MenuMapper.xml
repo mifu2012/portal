@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.MenuMapper">
+
+	<resultMap type="Menu" id="menuResultMap">
+		<id column="menu_id" property="menuId"/>
+		<result column="menu_name" property="menuName"/>
+		<result column="menu_url" property="menuUrl"/>
+		<result column="parent_id" property="parentId"/>
+	</resultMap>
+	
+	<resultMap type="Menu" id="menuAndChildMap">
+		<id column="menu_id" property="menuId"/>
+		<result column="menu_name" property="menuName"/>
+		<result column="menu_url" property="menuUrl"/>
+		<result column="parent_id" property="parentId"/>
+		<collection property="subMenuList" resultMap="childMenuMap"
+		javaType="java.util.ArrayList" column="menu_id">
+		</collection>
+	</resultMap>
+	<resultMap type="Menu" id="childMenuMap">
+	    <id column="sub_menu_id" property="menuId"/>
+	    <result column="sub_menu_name" property="menuName"/>
+		<result column="sub_menu_url" property="menuUrl"/>
+		<result column="sub_parent_id" property="parentId"/>
+	</resultMap>
+	
+
+	<select id="listAllParentMenu" resultMap="menuAndChildMap">
+	select
+		f.menu_id,f.menu_name,f.menu_url,f.parent_id,
+		s.menu_id as sub_menu_id,s.menu_name as sub_menu_name,s.menu_url as
+		sub_menu_url ,s.parent_id as sub_parent_id 
+		from tb_menu f left JOIN tb_menu s
+		on f.menu_id=s.parent_id
+		where
+		f.parent_id is null
+	</select>
+	<select id="listSubMenuByParentId" parameterType="int" resultMap="menuResultMap">
+		select * from tb_menu where parent_id=#{parentId}
+	</select>
+	<select id="getMenuById" parameterType="int" resultMap="menuResultMap">
+		select * from tb_menu where menu_id=#{menuId}
+	</select>
+	<select id="listAllSubMenu" resultMap="menuResultMap">
+		select * from tb_menu where parent_id is not null
+	</select>
+	<select id="QuerySubMenuByName" resultMap="menuResultMap" parameterType="java.lang.String">
+		select * from tb_menu where menu_name = #{menuName}
+	</select>
+	<!-- useGeneratedKeys="true" keyProperty="menuId" -->
+	<insert id="insertMenu" parameterType="Menu"  >
+		insert into tb_menu (menu_name,menu_url,parent_id) values (#{menuName},#{menuUrl},#{parentId})
+	</insert>
+	
+	<update id="updateMenu" parameterType="Menu">
+		update tb_menu set 
+		menu_name=#{menuName},
+		menu_url=#{menuUrl},
+		parent_id=#{parentId} 
+		where menu_id=#{menuId}
+	</update>
+	
+	<delete id="deleteMenuById" parameterType="int">
+		delete from tb_menu where menu_id=#{menuId} or parent_id=#{menuId}
+	</delete>
+</mapper>

@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="KpiInfoMapper">
+	<sql id="common_sql">
+		kpi_code,parent_code,kpi_name,disp_name,kpi_type,is_overall,is_show,show_order,is_average,is_max,is_variation,is_percent,unit,decimal_num,convert_num,convert_type,is_cal_kpi,role_formula,is_use,gmt_create
+	</sql>
+	<resultMap id="KpiInfoMap" type="KpiInfo">
+		<result property="kpiCode" column="KPI_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="parentCode" column="PARENT_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiName" column="KPI_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dispName" column="DISP_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiType" column="KPI_TYPE" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="isShow" column="IS_SHOW" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="showOrder" column="SHOW_ORDER" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="isAverage" column="IS_AVERAGE" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="isMax" column="IS_MAX" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="isVariation" column="IS_VARIATION" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="isPercent" column="IS_PERCENT" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="unit" column="UNIT" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="decimalNum" column="DECIMAL_NUM" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="convertNum" column="CONVERT_NUM" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="convertType" column="CONVERT_TYPE" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="isCalKpi" column="IS_CAL_KPI" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="roleFormula" column="ROLE_FORMULA" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="roleFormulaDesc" column="ROLE_FORMULA_DESC"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="isUse" column="IS_USE" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="isOverall" column="IS_OVERALL" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 列出所有的大盘指标 -->
+	<select id="listAllOverallKpiInfo" parameterType="int"
+		resultMap="KpiInfoMap">
+		SELECT
+		<include refid="common_sql" />
+		FROM dwpas_c_kpi_info
+		WHERE is_overall = 1
+		AND kpi_type = #{kpiType}
+		AND
+		is_use = 1
+	</select>
+	<!--列出指标 -->
+	<select id="listPageKpiinfo" resultMap="KpiInfoMap"
+		parameterType="KpiInfo">
+		select
+		<include refid="common_sql" />
+		from dwpas_c_kpi_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="kpiCode !=null and kpiCode != ''">
+				kpi_code LIKE CONCAT(CONCAT('%',
+				#{kpiCode}),'%')
+			</if>
+			<if test="kpiName !=null and kpiName != '' ">
+				AND kpi_name LIKE CONCAT(CONCAT('%',
+				#{kpiName}),'%')
+			</if>
+			<if test="dispName !=null and dispName != '' ">
+				AND disp_name LIKE CONCAT(CONCAT('%',
+				#{dispName}),'%')
+			</if>
+		</trim>
+	</select>
+	<select id="QueryKpiinfo" resultMap="KpiInfoMap" parameterType="KpiInfo">
+		select DISTINCT kpi_code, kpi_name, IS_CAL_KPI, gmt_create,kpi_type,
+		gmt_modified from dwpas_c_kpi_info
+		where is_cal_kpi = '0'
+		<if test="kpiName !=null and kpiName != '' ">
+			and ( kpi_code LIKE
+			CONCAT(CONCAT('%',upper(#{kpiName})),'%')
+			or
+			kpi_name Like
+			CONCAT(CONCAT('%',
+			#{kpiName}),'%') )
+		</if>
+		ORDER BY KPI_TYPE
+	</select>
+	<select id="KpiInfoQueryAll" resultMap="KpiInfoMap">
+		select
+		kpi_code,
+		parent_code, kpi_name, disp_name, kpi_type, is_overall,
+		is_show,
+		show_order, is_average, is_max, is_variation, is_percent,
+		unit,
+		decimal_num, convert_num, convert_type, is_cal_kpi,
+		role_formula,role_formula_desc, is_use,remark, gmt_create,
+		gmt_modified from dwpas_c_kpi_info order by show_order ASC
+	</select>
+	<!-- 根据productId选择六维度指标信息 -->
+	<select id="KpiInfoByProductId" resultMap="KpiInfoMap"
+		parameterType="java.lang.String">
+		select cki.kpi_code,cki.parent_code, cki.kpi_name,
+		cki.disp_name,
+		cki.kpi_type, cki.is_overall, cki.is_show,
+		cki.show_order,
+		cki.is_average, cki.is_max, cki.is_variation,
+		cki.is_percent,
+		cki.unit, cki.decimal_num, cki.convert_num,
+		cki.convert_type,
+		cki.is_cal_kpi, cki.role_formula, cki.is_use
+		from
+		dwpas_c_kpi_info cki,dwpas_r_prd_kpi rpk
+		where
+		rpk.product_id=#{productId}
+		and cki.kpi_code=rpk.kpi_code
+		and
+		cki.kpi_type=3
+		and cki.is_show=1
+		and cki.is_use=1
+		order by show_order ASC
+	</select>
+
+	<select id="KpiInfoQueryBaseAll" resultMap="KpiInfoMap">
+		select
+		kpi_code,
+		parent_code, kpi_name, disp_name, kpi_type, is_overall,
+		is_show,
+		show_order, is_average, is_max, is_variation, is_percent,
+		unit,
+		decimal_num, convert_num, convert_type, is_cal_kpi,
+		role_formula,role_formula_desc, is_use,remark, gmt_create,
+		gmt_modified from dwpas_c_kpi_info where is_cal_kpi = '0' order by
+		kpi_type,show_order ASC
+	</select>
+	<insert id="KpiInfoInsert">
+		insert into
+		dwpas_c_kpi_info(kpi_code,parent_code,kpi_name,disp_name,kpi_type,is_overall,is_show,show_order,is_average,is_max,is_variation,is_percent,unit,decimal_num,convert_num,convert_type,is_cal_kpi,role_formula,role_formula_desc,is_use,remark,gmt_create,gmt_modified)
+		values (#{kpiCode}, #{parentCode}, #{kpiName}, #{dispName},
+		#{kpiType}, #{isOverall}, #{isShow}, #{showOrder}, #{isAverage},
+		#{isMax}, #{isVariation}, #{isPercent}, #{unit}, #{decimalNum},
+		#{convertNum}, #{convertType}, #{isCalKpi},
+		#{roleFormula},#{roleFormulaDesc}, #{isUse},#{remark}, now(), now())
+	</insert>
+	<select id="KpiInfoQueryByCode" resultMap="KpiInfoMap"
+		parameterType="java.lang.String">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ONE-BY-CODE*/ kpi_code, parent_code, kpi_name, disp_name, kpi_type, is_overall, is_show, show_order, is_average, is_max, is_variation, is_percent, unit, decimal_num, convert_num, convert_type, is_cal_kpi, role_formula,role_formula_desc, is_use,remark, gmt_create, gmt_modified from dwpas_c_kpi_info where (kpi_code = #{kpiCode})
+    ]]>
+	</select>
+	<delete id="KpiInfoDelete">
+		delete from dwpas_c_kpi_info where (kpi_code =
+		#{kpiCode})
+	</delete>
+	<update id="updateKpiInfo" parameterType="KpiInfo">
+		update dwpas_c_kpi_info
+		set parent_code=#{parentCode}
+		,kpi_name=#{kpiName}
+		,disp_name=#{dispName}
+		,kpi_type=#{kpiType}
+		,is_overall=#{isOverall}
+		,is_show=#{isShow}
+		,show_order=#{showOrder}
+		,is_average=#{isAverage}
+		,is_max=#{isMax}
+		,is_variation=#{isVariation}
+		,is_percent=#{isPercent}
+		,unit=#{unit}
+		,decimal_num=#{decimalNum}
+		,convert_num=#{convertNum}
+		,convert_type=#{convertType}
+		,is_cal_kpi=#{isCalKpi}
+		,role_formula=#{roleFormula}
+		,role_formula_desc=#{roleFormulaDesc}
+		,is_use=#{isUse}
+		,remark=#{remark}
+		,gmt_create=#{gmtCreate}
+		,gmt_modified=#{gmtModified}
+		where kpi_code=#{kpiCode}
+	</update>
+	<delete id="deleteKpiInfos" parameterType="list">
+        <![CDATA[
+            delete from dwpas_c_kpi_info where kpiCode in
+        ]]>
+		<foreach collection="list" item="kpiCodes" open="(" separator=","
+			close=")">
+			#{kpiCodes}
+		</foreach>
+	</delete>
+	<!-- 查询计算指标中是否存在kpiCode -->
+	<select id="selKpiInfoLikeRoleFormula" resultMap="KpiInfoMap">
+		select
+		<include refid="common_sql" />
+		from dwpas_c_kpi_info
+		where is_cal_kpi != 0
+		and ROLE_FORMULA LIKE
+		CONCAT(CONCAT('%',
+		#{kpiCode}),'%')
+	</select>
+	
+	<!-- 插入数据 或者 更新-->
+	<insert id="insertKpiData" parameterType="DwpasStKpiData">
+		INSERT INTO
+		DWPAS_ST_KPI_DATA(
+		KPI_CODE,
+		REPORT_DATE,
+		BASE_VALUE,
+		AGE_VALUE,
+		TREND_VALUE,
+		PER_VALUE,
+		MAX_VALUE,
+		MIN_VALUE,
+		DATE_TYPE,
+		GMT_CREATE,
+		GMT_MODIFIED
+		)
+		VALUES
+		(
+		#{kpiCode,jdbcType=VARCHAR},
+		#{reportDate,jdbcType=VARCHAR},
+		#{baseValue,jdbcType=DECIMAL },
+		#{ageValue,jdbcType=DECIMAL },
+		#{trendValue,jdbcType=DECIMAL },
+		#{perValue,jdbcType=DECIMAL },
+		#{maxValue,jdbcType=DECIMAL },
+		#{minValue,jdbcType=DECIMAL },
+		#{dateType,jdbcType=VARCHAR},
+		NOW(),
+		NOW()
+		)ON DUPLICATE KEY UPDATE
+		BASE_VALUE = #{baseValue,jdbcType=DECIMAL
+		},
+		AGE_VALUE = #{ageValue,jdbcType=DECIMAL },
+		TREND_VALUE =
+		#{trendValue,jdbcType=DECIMAL },
+		PER_VALUE =
+		#{perValue,jdbcType=DECIMAL },
+		MAX_VALUE = #{maxValue,jdbcType=DECIMAL
+		},
+		MIN_VALUE = #{minValue,jdbcType=DECIMAL },
+		GMT_MODIFIED = now()
+	</insert>
+</mapper>

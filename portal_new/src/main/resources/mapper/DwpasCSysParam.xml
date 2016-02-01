@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasCSysParam">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+	<!-- 参数表数据 -->
+	<resultMap id="DwpasCSysParamMap" type="DwpasCSysParam">
+		<result property="parmaId" column="PARAM_ID" />
+		<result property="parmaName" column="PARAM_NAME" />
+		<result property="paramValue" column="PARAM_VALUE" />
+		<result property="getCreate" column="GMT_CREATE" />
+		<result property="getModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<select id="queryCSysParamForIndex" resultMap="DwpasCSysParamMap">
+		select PARAM_VALUE from dwpas_c_sys_param where PARAM_ID='1';
+    </select>
+	<!-- 根据KPI类型，日期，产品ID，查询产品的指标数据 -->
+	<select id="queryProdKpiDataByProdIds" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		select skd.kpi_code,
+		skd.report_date,
+		skd.base_value,
+		skd.age_value,
+		skd.trend_value,
+		skd.per_value,
+		skd.max_value,
+		skd.min_value,
+		skd.gmt_max_time,
+		cki.kpi_name,
+		cki.disp_name,
+		cki.kpi_type,
+		cki.is_overall,
+		cki.is_show,
+		cki.show_order,
+		cki.is_average,
+		cki.is_max,
+		cki.is_variation,
+		cki.is_percent,
+		cki.unit,
+		cki.decimal_num,
+		cki.convert_num,
+		cki.convert_type,
+		cki.is_cal_kpi,
+		cki.role_formula,
+		rpk.product_id
+		from
+		dwpas_st_kpi_data skd,
+		dwpas_r_prd_kpi rpk,
+		dwpas_c_kpi_info cki,
+		dwpas_r_kpi_comkpi rkc
+		where skd.REPORT_DATE =#{reportData}
+		and
+		skd.KPI_CODE = rpk.KPI_CODE
+		and skd.DATE_TYPE = 'D'
+		and
+		cki.KPI_CODE =
+		rkc.kpi_code
+		and cki.kpi_type = 1
+		and cki.is_use = 1
+		and
+		rkc.com_kpi_code
+		=#{commKpiCode}
+		and skd.KPI_CODE = cki.KPI_CODE
+		and
+		rpk.product_id in
+		<foreach collection="prodIds" close=")" open="(" separator=","
+			item="prod">
+			#{prod}
+		</foreach>
+	</select>
+</mapper>

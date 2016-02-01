@@ -1,0 +1,1081 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.dwmis.DwmisMisKpiDataMapper">
+	<!-- 指标数据 -->
+	<resultMap id="DwmisKpiDataMap" type="com.infosmart.portal.pojo.dwmis.DwmisKpiData">
+		<result property="reportDate" column="report_date" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="value" column="value" javaType="java.math.BigDecimal"
+			jdbcType="DECIMAL" />
+		<result property="dateType" column="date_type" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="staCode" column="sta_code" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="kpiId" column="kpi_id" javaType="java.math.BigInteger"
+			jdbcType="INTEGER" />
+		<result property="kpiCode" column="kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 指标编码及指标数据 -->
+	<resultMap id="DwmisKpiDataAndKpiInfoMap" type="DwmisKpiData">
+		<result property="reportDate" column="report_date" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="value" column="value" javaType="java.math.BigDecimal"
+			jdbcType="DECIMAL" />
+		<result property="dateType" column="date_type" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="staCode" column="sta_code" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="kpiId" column="kpi_id" javaType="java.math.BigInteger"
+			jdbcType="INTEGER" />
+		<result property="kpiCode" column="kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<!-- 关联的指标信息 -->
+		<association property="dwmisKpiInfo" column="kpi_code"
+			javaType="DwmisKpiInfo" resultMap="com.infosmart.dwmis.dwmisKpiInfoMapper.dwmisKpiInfoMap">
+		</association>
+	</resultMap>
+	<!-- 部门关联的指标数据 -->
+	<resultMap id="deptKpiDataMap" type="DwmisDeptKpiData">
+		<!-- 关联的部门信息 -->
+		<association property="dwmisMisDptmnt" column="dep_id"
+			resultMap="com.infosmart.dwmis.DwmisMisDptmntMapper.DwmisMisDptmntMap"></association>
+		<!-- 关联的指标信息 -->
+		<association property="dwmisKpiInfo" column="kpi_code"
+			resultMap="com.infosmart.dwmis.dwmisKpiInfoMapper.dwmisKpiFullInfoMap"></association>
+		<!-- KPI绩效分解 -->
+		<association property="dwmisKpiGoal" column="kpi_code"
+			resultMap="com.infosmart.dwmis.DwmisKpiGoalMapper.DwmisKpiGoalMap"></association>
+		<!-- 关联的指标数据 -->
+		<association property="dwmisKpiData" column="kpi_code"
+			resultMap="DwmisKpiDataMap"></association>
+	</resultMap>
+	<!-- KPI各字段为空的统计对象 -->
+	<resultMap id="checkKPIDataNullValueMAP" type="com.infosmart.portal.pojo.dwmis.KPIDataCheck">
+		<result property="totalRecord" column="TOTAL_RECORD" jdbcType="DECIMAL" />
+		<result property="reportDateNullCount" column="REPORT_DATE_NULL_COUNT"
+			jdbcType="DECIMAL" />
+		<result property="valueNullCount" column="VALUE_NULL_COUNT"
+			jdbcType="DECIMAL" />
+		<result property="dateTypeNullCount" column="DATE_TYPE_NULL_COUNT"
+			jdbcType="DECIMAL" />
+		<result property="staCodeNullCount" column="STA_CODE_NULL_COUNT"
+			jdbcType="DECIMAL" />
+		<result property="kpiCodeNullCount" column="KPI_CODE_NULL_COUNT"
+			jdbcType="DECIMAL" />
+	</resultMap>
+	<!-- KPI各字段为空的统计对象 -->
+	<select id="queryKPIDataNullValue" resultMap="checkKPIDataNullValueMAP">
+		select
+		count(*) as
+		TOTAL_RECORD,
+		sum(case when k.report_date is null then 1 else 0
+		end) as
+		REPORT_DATE_NULL_COUNT,
+		sum(case when k.value is null then 1
+		else 0 end)
+		as VALUE_NULL_COUNT,
+		sum(case when k.date_type is null then
+		1 else 0
+		end) as DATE_TYPE_NULL_COUNT,
+		sum(case when k.sta_code is null
+		then 1
+		else 0 end) as STA_CODE_NULL_COUNT,
+		sum(case when k.kpi_code is
+		null
+		then 1 else 0 end)as KPI_CODE_NULL_COUNT
+		from dwmis_kpi_data k
+	</select>
+	<!-- 查找（统计）数据时间为空的对应的无重复的指标CODE集 -->
+	<select id="GET_KPI_CODE_FOR_NULL_REPORT_DATE" resultType="java.lang.String">
+		select distinct(kpi_code)
+		from dwmis_kpi_data
+		where report_date is null
+	</select>
+	<!-- 查找（统计）指标数据值为空的对应的无重复的指标CODE集 -->
+	<select id="GET_KPI_CODE_FOR_NULL_VALUE" resultType="java.lang.String">
+		select
+		distinct(kpi_code)
+		from dwmis_kpi_data
+		where value is null
+	</select>
+	<!-- 查找（统计）时间粒度为空的对应的无重复的指标CODE集 -->
+	<select id="GET_KPI_CODE_FOR_NULL_DATE_TYPE" resultType="java.lang.String">
+		select
+		distinct(kpi_code)
+		from dwmis_kpi_data
+		where date_type is null
+	</select>
+
+	<!-- 查找（统计）统计方式为空的对应的无重复的指标CODE集 -->
+	<select id="GET_KPI_CODE_FOR_NULL_STA_CODE" resultType="java.lang.String">
+		select
+		distinct(kpi_code)
+		from dwmis_kpi_data
+		where sta_code is null
+	</select>
+	<!-- 根据周期获取指定KPI Code 上期值（日为前四周当日平均、周为上上周、月为上上月，都为当期值） -->
+	<select id="GET_LAST_AMOUNT_BY_KPICODE_PERIOD" resultType="java.lang.Double"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select
+		<if test="dateType==1002"> avg(d.value) as value</if>
+		<if test="dateType!=1002"> d.value as value</if>
+		from dwmis_kpi_data d
+		where d.kpi_code = #{kpiCode,jdbcType=VARCHAR}
+		and
+		d.sta_code = 2001
+		and d.date_type = #{dateType,jdbcType=DECIMAL}
+		<!-- 日 -->
+		<if test="dateType==1002">
+			and (d.report_date =
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 - 7)
+			or d.report_date =
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 - 14)
+			or d.report_date =
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 - 21)
+			or d.report_date =
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 - 28))
+		</if>
+		<!-- 周 -->
+		<if test="dateType==1003">
+			and d.report_date &gt;=
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -14)
+			and d.report_date &lt;
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -7)
+		</if>
+		<!-- 月 dateType==1004 -->
+		<if test="dateType==1004">
+			and d.report_date &gt;=
+			DATE_ADD(DATE(#{mySysDate,jdbcType=DATE}), Interval - 2 month)
+			and
+			d.report_date &lt; DATE_ADD(DATE(#{mySysDate,jdbcType=DATE}),
+			Interval - 1 month)
+		</if>
+	</select>
+	<!-- 根据周期获取指定KPI Code当前值（日为昨天、周为上周、月为上月，都为当期值） -->
+	<select id="GET_CURRENT_AMOUNT_BY_KPICODE_PERIOD" resultType="java.lang.Double"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select d.value as value
+		from dwmis_kpi_data d
+		where d.kpi_code =
+		#{kpiCode,jdbcType=VARCHAR}
+		and
+		d.sta_code = 2001
+		and d.date_type =
+		#{dateType,jdbcType=DECIMAL}
+		<!-- 日 -->
+		<if test="dateType==1002">
+			and d.report_date =
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 )
+		</if>
+		<!-- 周 -->
+		<if test="dateType==1003">
+			and d.report_date &gt;=
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -7)
+			and d.report_date &lt;
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -0)
+		</if>
+		<!-- 月 dateType==1004 -->
+		<if test="dateType==1004">
+			and d.report_date &gt;=
+			DATE_ADD(DATE(#{mySysDate,jdbcType=DATE}), Interval - 1 month)
+			and
+			d.report_date &lt; DATE_ADD(DATE(#{mySysDate,jdbcType=DATE}),
+			Interval - 0 month)
+		</if>
+	</select>
+	<!-- 根据周期获取指定KPI Code当前值（日为昨天、周为上周、月为上月，都为当期值） -->
+	<select id="LIST_CURRENT_AMOUNT_BY_KPICODE_PERIOD" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE
+		from
+		dwmis_kpi_data d
+		where d.kpi_code in
+		<foreach collection="kpiCodeList" close=")" open="("
+			separator="," item="kpiCode">
+			#{kpiCode,jdbcType=VARCHAR}
+		</foreach>
+		and
+		d.sta_code = 2001
+		and d.date_type =
+		#{dateType,jdbcType=DECIMAL}
+		<!-- 日 -->
+		<if test="dateType==1002">
+			and d.report_date =
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 )
+		</if>
+		<!-- 周 -->
+		<if test="dateType==1003">
+			and d.report_date &gt;=
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -7)
+			and d.report_date &lt;
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -0)
+		</if>
+		<!-- 月 dateType==1004 -->
+		<if test="dateType==1004">
+			and d.report_date &gt;=
+			DATE_ADD(DATE(#{mySysDate,jdbcType=DATE}), Interval - 1 month)
+			and
+			d.report_date &lt; DATE_ADD(DATE(#{mySysDate,jdbcType=DATE}),
+			Interval - 0 month)
+		</if>
+	</select>
+	<!-- 注意：本接口将被 日累计 七日均值 两种绩效类型调用 -->
+	<!-- 根据时间粒度，统计方式和KPICODE获取最近一天的指标数据 -->
+	<select id="QUERY_KPIDATA_RECENT_VALUE" parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam"
+		resultType="java.lang.Double">
+		select d.value as value
+		from dwmis_kpi_data d
+		where
+		d.kpi_code =
+		#{kpiCode,jdbcType=VARCHAR}
+		and
+		d.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		and
+		d.date_type =
+		#{dateType,jdbcType=DECIMAL}
+		and d.report_date =
+		ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 )
+	</select>
+	<!-- 注意：本接口将被 日累计 七日均值 两种绩效类型调用 -->
+	<!-- 根据时间粒度，统计方式和KPICODE获取最近一天的指标数据 -->
+	<select id="LIST_KPI_DATA_OF_RECENT" parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam"
+		resultMap="DwmisKpiDataMap">
+		select
+		KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE
+		from dwmis_kpi_data
+		d
+		where d.kpi_code in
+		<foreach collection="kpiCodeList" close=")" open="("
+			separator="," item="kpiCode">
+			#{kpiCode,jdbcType=VARCHAR}
+		</foreach>
+		and
+		d.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		and
+		d.date_type =
+		#{dateType,jdbcType=DECIMAL}
+		and d.report_date=#{mySysDate,jdbcType=DATE}
+<!-- 		d.report_date =	ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), -1 ) -->
+	</select>
+	<!--根据指标code搜索相关指标数据信息 -->
+	<select id="LIST_KPICODE_OF_KPIDATA" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select distinct KPI_CODE
+		from DWMIS_KPI_DATA
+		where
+		KPI_CODE like '%#{kpiCode}%'
+	</select>
+	<!-- 根据条件查询某个特定的指标数据 -->
+	<select id="GET_KPIDATA_ON_CONDITION" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE
+		from
+		DWMIS_KPI_DATA d
+		where KPI_CODE = #{kpiCode,jdbcType=VARCHAR}
+		and
+		DATE_TYPE
+		= #{dateType,jdbcType=DECIMAL}
+		and
+		STA_CODE =
+		#{staCode,jdbcType=DECIMAL}
+		<!-- 日粒度 -->
+		<if test="dateType==1002">
+			and DATE_FORMAT(report_date,'%Y%m%d')
+			=#{currentDate,jdbcType=VARCHAR}
+		</if>
+		<!-- 周 -->
+		<if test="dateType==1003">
+			and d.report_date &gt;=
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), 0)
+			and d.report_date &lt;
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), 7)
+		</if>
+		<!-- 月 -->
+		<if test="dateType==1004">
+			and DATE_FORMAT(report_date,'%Y%m')
+			=#{yearMonthOfmySysDate,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<!-- 根据条件查询多个特定的指标数据 -->
+	<select id="LIST_KPIDATA_ON_CONDITION" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE
+		from
+		DWMIS_KPI_DATA d
+		where KPI_CODE in
+		<foreach collection="kpiCodeList" close=")" open="("
+			separator="," item="kpiCode">
+			#{kpiCode,jdbcType=VARCHAR}
+		</foreach>
+		and
+		DATE_TYPE
+		= #{dateType,jdbcType=DECIMAL}
+		and
+		STA_CODE =
+		#{staCode,jdbcType=DECIMAL}
+		<!-- 日粒度 -->
+		<if test="dateType==1002">
+			and DATE_FORMAT(report_date,'%Y%m%d')
+			=#{currentDate,jdbcType=VARCHAR}
+		</if>
+		<!-- 周 -->
+		<if test="dateType==1003">
+			and d.report_date &gt;=
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), 0)
+			and d.report_date &lt;
+			ADDDATE(DATE(#{mySysDate,jdbcType=DATE}), 7)
+		</if>
+		<!-- 月 -->
+		<if test="dateType==1004">
+			and DATE_FORMAT(report_date,'%Y%m')
+			=#{yearMonthOfmySysDate,jdbcType=VARCHAR}
+		</if>
+		order by d.kpi_code, d.report_date desc
+	</select>
+	<!--根据时间粒度，统计方式和KPICODE获取指标数据（峰值） -->
+	<select id="QUERY_KPIDATA_MAX_VALUE_CURRENT" resultType="java.lang.Double"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		<![CDATA[
+			select max(VALUE) as MAX_VALUE 
+			from DWMIS_KPI_DATA 
+			where d.DATE_FORMAT(report_date,'%Y')=#{fixedYear,jdbcType=DECIMAL}
+            and KPI_CODE=#{kpiCode,jdbcType=VARCHAR} 
+            and DATE_TYPE=#{dateType,jdbcType=DECIMAL}
+            and sta_code=#{staCode,jdbcType=DECIMAL}
+		]]>
+	</select>
+	<!--根据时间粒度，统计方式和KPICODE获取指标数据（谷值） -->
+	<select id="QUERY_KPIDATA_MIN_VALUE_CURRENT" resultType="java.lang.Double"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		<![CDATA[
+			select 
+		  	min(VALUE) as MIN_VALUE 
+			from DWMIS_KPI_DATA 
+			where d.DATE_FORMAT(report_date,'%Y')=#{fixedYear,jdbcType=DECIMAL}
+        	and KPI_CODE=#{kpiCode,jdbcType=VARCHAR} 
+        	and DATE_TYPE=#{dateType,jdbcType=DECIMAL}
+        	and sta_code=#{staCode,jdbcType=DECIMAL}
+        ]]>
+	</select>
+	<!-- 根据条件获取最新日期的那条 -->
+	<select id="GET_LAST_KPIDATA_ON_CONDITION" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select *
+		from (select KPI_CODE, REPORT_DATE, VALUE,
+		DATE_TYPE, STA_CODE
+		from DWMIS_KPI_DATA d
+		where d.kpi_code =
+		#{kpiCode,jdbcType=VARCHAR}
+		and d.date_type =
+		#{dateType,jdbcType=DECIMAL}
+		and d.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		and DATE_FORMAT(d.report_date,'%Y')
+		=#{fixedYear,jdbcType=DECIMAL}
+		order by d.report_date desc) a
+		LIMIT 1
+	</select>
+	<!-- 根据条件(多个指标)获取最新日期的那条(需手工再处理) -->
+	<select id="ListLastKpiDataByCondition" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE, REPORT_DATE, VALUE, DATE_TYPE, STA_CODE
+		from
+		DWMIS_KPI_DATA d
+		where d.date_type = #{dateType,jdbcType=INTEGER}
+		and
+		d.sta_code = #{staCode,jdbcType=INTEGER}
+		and
+		DATE_FORMAT(d.report_date,
+		'%Y') = #{fixedYear,jdbcType=INTEGER}
+		and d.kpi_code in
+		<foreach collection="kpiCodeList" close=")" open="("
+			separator="," item="kpiCode">
+			#{kpiCode,jdbcType=VARCHAR}
+		</foreach>
+		order by d.kpi_code, d.report_date desc
+	</select>
+	<!-- 根据时间粒度，统计方式和KPICODE获取今年第一天到目前的指标数据集 -->
+	<select id="QUERY_KPIDATA_RECORD_LIST_BY_RULES" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE, REPORT_DATE, VALUE, DATE_TYPE, STA_CODE
+		from DWMIS_KPI_DATA
+		where DATE_FORMAT(REPORT_DATE, '%Y')
+		=#{fixedYear,jdbcType=INTEGER}
+		and KPI_CODE =
+		#{kpiCode,jdbcType=VARCHAR}
+		and DATE_TYPE =
+		#{dateType,jdbcType=DECIMAL}
+		and STA_CODE = #{staCode,jdbcType=DECIMAL}
+		order by REPORT_DATE DESC
+	</select>
+	<!-- 根据条件获取对应的月当期值 -->
+	<select id="GET_KPIDATA_FOR_MONTH_CURRENT" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE
+		from DWMIS_KPI_DATA
+		where KPI_CODE = #{kpiCode,jdbcType=VARCHAR}
+		and
+		DATE_TYPE
+		= #{dateType,jdbcType=DECIMAL}
+		and STA_CODE =
+		#{staCode,jdbcType=DECIMAL}
+		and DATE_FORMAT(REPORT_DATE, '%Y') =
+		#{fixedYear,jdbcType=INTEGER}
+	</select>
+	<!-- 根据KPICODE和时间粒度获取关联指标在两年内的当期数据集 -->
+	<select id="QUERY_RELATED_KPIDATA_FOR_DETAIL_VIEW" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		<![CDATA[
+			select KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE 
+			from DWMIS_KPI_DATA 
+			where KPI_CODE  = #{kpiCode,jdbcType=VARCHAR}
+			and DATE_TYPE = #{dateType,jdbcType=DECIMAL}
+			and STA_CODE = 2001
+			and REPORT_DATE >= DATE_ADD(DATE(#{currentDate,jdbcType=VARCHAR}), Interval -24 month)
+			order by REPORT_DATE DESC
+		]]>
+	</select>
+	<!--根据指标CODE获取时间范围在两年内的大事记列表 dwmis -->
+	<select id="QUERY_EVENT_LIST_BY_KPICODE" resultMap="com.infosmart.mapper.MisEventPo.MISEVENT"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select EVENT_ID,
+		EVENT_START_DATE,
+		EVENT_ENT_DATE,
+		EVENT_TYPE,
+		TITLE,
+		IS_PUBLIC,
+		CONTENT,
+		CREATE_USER,
+		CREATE_DATE
+		from
+		DWMIS_MIS_EVENT
+		where EXISTS (select EVENT_ID
+		from MIS_KPI_EVENT_R
+		where
+		KPI_CODE =
+		#{kpiCode,jdbcType=VARCHAR}
+		AND DWMIS_MIS_EVENT.EVENT_ID =
+		MIS_KPI_EVENT_R.event_id)
+		and EVENT_START_DATE >=
+		DATE_ADD(DATE(#{currentDate,jdbcType=VARCHAR}), Interval - 24 month)
+		and IS_SOURCE_MIS = 1
+		order by EVENT_START_DATE
+	</select>
+	<!--根据KPICODE和时间粒度获取（关联中）主指标（去年同期的）两年内的数据集，没有统计方式默认为“当期值” -->
+	<select id="QUERY_RELATED_MAI_KPIDATA_LAST_PERIOD" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE
+		from
+		DWMIS_KPI_DATA
+		where KPI_CODE=#{kpiCode,jdbcType=VARCHAR}
+		<if test="staCode!=null and staCode!=''"> and STA_CODE=#{staCode,jdbcType=DECIMAL}</if>
+		<if test="staCode==null or staCode==''">and STA_CODE=2001</if>
+		and DATE_TYPE=#{dateType,jdbcType=DECIMAL}
+		and REPORT_DATE &lt;
+		DATE_ADD(DATE(#{currentDate,jdbcType=VARCHAR}), Interval - 12 month)
+		and REPORT_DATE >=
+		DATE_ADD(DATE(#{currentDate,jdbcType=VARCHAR}),
+		Interval - 36 month)
+		order by REPORT_DATE
+		DESC
+	</select>
+	<!-- 根据KPICODE和时间粒度获取（关联中）目前主指标在两年内的数据集 ，没有统计方式默认为“当期值” -->
+	<select id="QUERY_RELATED_MAIN_KPIDATA_FOR_DETAIL_VIEW"
+		resultMap="DwmisKpiDataMap" parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE,REPORT_DATE,VALUE,DATE_TYPE,STA_CODE
+		from
+		DWMIS_KPI_DATA
+		where KPI_CODE=#{kpiCode,jdbcType=VARCHAR}
+		<if test="staCode!=null and staCode!=''"> and STA_CODE=#{staCode,jdbcType=DECIMAL}</if>
+		<if test="staCode==null or staCode==''">and STA_CODE=2001</if>
+		and DATE_TYPE=#{dateType,jdbcType=DECIMAL}
+		and REPORT_DATE >=
+		DATE_ADD(DATE(#{currentDate,jdbcType=VARCHAR}),
+		Interval - 24 month)
+		order by REPORT_DATE
+		DESC
+	</select>
+	<!-- 根据指标查询某天(周/月)的指标数据 -->
+	<select id="queryKpiDataByMultiKpiCode" resultMap="DwmisKpiDataAndKpiInfoMap"
+		parameterType="java.util.HashMap">
+		SELECT
+		kd.report_date,
+		kd.`value`,
+		kd.date_type,
+		kd.sta_code,
+		kd.kpi_code,
+		ki.*
+		FROM
+		dwmis_kpi_data kd,
+		(
+		SELECT
+		KPI_CODE,
+		TYPE_ID,
+		type_name,
+		UNIT_ID,
+		unit_name,
+		SIZE_ID,
+		size_name,
+		GOAL_TYPE,
+		goal_type_name,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		IS_SHOW,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		DAY_OFFSET,
+		kpi_name_show,
+		SHOW_ORDER,
+		decimal_num
+		FROM
+		dwmis_kpi_info ki
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_unit_id,
+		mt.type_name AS unit_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 5000
+		)ut ON ki.unit_id =
+		ut.parent_unit_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS size_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 6000
+		)st ON ki.size_id = st.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS
+		parent_size_id,
+		mt.type_name AS type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 4000
+		)type ON ki.type_id = type.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS goal_type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON ki.GOAL_TYPE =
+		goal_type.parent_size_id
+		)ki
+		WHERE
+		kd.kpi_code = ki.kpi_code
+		<!-- 按指标查询 -->
+		<if test="kpiCodeList!=null">
+			AND kd.kpi_code in
+			<foreach collection="kpiCodeList" close=")" open="("
+				separator="," item="kpiCode">
+				#{kpiCode,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+		<!-- 日期类型 -->
+		AND kd.date_type = #{dateType,jdbcType=DECIMAL}
+		<!-- 统计方式 -->
+		AND
+		kd.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		<if test="dateType==1002">
+			<!-- day -->
+			<!-- 日期格式:年月日 -->
+			AND DATE_FORMAT(report_date,'%Y%m%d')
+			=#{report_date,jdbcType=VARCHAR}
+		</if>
+		<if test="dateType==1003">
+			<!-- weekly -->
+			AND report_date &gt;= ADDDATE(DATE(#{report_date,jdbcType=VARCHAR}),
+			0)
+			AND report_date &lt;
+			ADDDATE(DATE(#{report_date,jdbcType=VARCHAR}),7)
+		</if>
+		<if test="dateType==1004">
+			<!--month -->
+			AND
+			DATE_FORMAT(report_date,'%Y%m')=DATE_FORMAT(DATE(#{report_date,jdbcType=VARCHAR}),'%Y%m')
+		</if>
+		<!-- 排序 -->
+		order by kd.kpi_code
+	</select>
+	<!-- 根据指标查询某时间段(某些天)的指标数据 -->
+	<select id="listKpiDataInTimeZonesByMultiKpiCode" resultMap="DwmisKpiDataAndKpiInfoMap"
+		parameterType="java.util.HashMap">
+		SELECT
+		kd.report_date,
+		kd.`value`,
+		kd.date_type,
+		kd.sta_code,
+		kd.kpi_code,
+		ki.*
+		FROM
+		dwmis_kpi_data kd,
+		(
+		SELECT
+		KPI_CODE,
+		TYPE_ID,
+		type_name,
+		UNIT_ID,
+		unit_name,
+		SIZE_ID,
+		size_name,
+		GOAL_TYPE,
+		goal_type_name,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		IS_SHOW,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		DAY_OFFSET,
+		kpi_name_show,
+		SHOW_ORDER,
+		decimal_num
+		FROM
+		dwmis_kpi_info ki
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_unit_id,
+		mt.type_name AS unit_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 5000
+		)ut ON ki.unit_id =
+		ut.parent_unit_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS size_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 6000
+		)st ON ki.size_id = st.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS
+		parent_size_id,
+		mt.type_name AS type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 4000
+		)type ON ki.type_id = type.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS goal_type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON ki.GOAL_TYPE =
+		goal_type.parent_size_id
+		)ki
+		WHERE
+		kd.kpi_code = ki.kpi_code
+		<!-- 按指标查询 -->
+		<if test="kpiCodeList!=null">
+			AND kd.kpi_code in
+			<foreach collection="kpiCodeList" close=")" open="("
+				separator="," item="kpiCode">
+				#{kpiCode,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+		<!-- 日期类型 -->
+		AND kd.date_type = #{dateType,jdbcType=DECIMAL}
+		<!-- 统计方式 -->
+		AND
+		kd.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		<!-- 日期格式:YYYY-MM-DD -->
+		AND kd.report_date&gt;=DATE(#{beginDate,jdbcType=DATE})
+		AND
+		kd.report_date&lt;=DATE(#{endDate,jdbcType=DATE})
+		<!-- 排序 -->
+		order by kd.kpi_code,kd.report_date
+	</select>
+
+
+	<!-- 根据指标查询某时间段(某些天)的指标数据 -->
+	<select id="listKpiDataInTimeZonesByKpiCode" resultMap="DwmisKpiDataAndKpiInfoMap"
+		parameterType="java.util.HashMap">
+		SELECT
+		kd.report_date,
+		kd.`value`,
+		kd.date_type,
+		kd.sta_code,
+		kd.kpi_code,
+		ki.*
+		FROM
+		dwmis_kpi_data kd,
+		(
+		SELECT
+		KPI_CODE,
+		TYPE_ID,
+		type_name,
+		UNIT_ID,
+		unit_name,
+		SIZE_ID,
+		size_name,
+		GOAL_TYPE,
+		goal_type_name,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		IS_SHOW,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		DAY_OFFSET,
+		kpi_name_show,
+		SHOW_ORDER,
+		decimal_num
+		FROM
+		dwmis_kpi_info ki
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_unit_id,
+		mt.type_name AS unit_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 5000
+		)ut ON ki.unit_id =
+		ut.parent_unit_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS size_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 6000
+		)st ON ki.size_id = st.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS
+		parent_size_id,
+		mt.type_name AS type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 4000
+		)type ON ki.type_id = type.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS goal_type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON ki.GOAL_TYPE =
+		goal_type.parent_size_id
+		)ki
+		WHERE
+		kd.kpi_code = ki.kpi_code
+		<!-- 指标 -->
+		AND kd.kpi_code = #{kpiCode,jdbcType=VARCHAR}
+
+		<!-- 日期类型 -->
+		AND kd.date_type = #{dateType,jdbcType=DECIMAL}
+		<!-- 统计方式 -->
+		AND
+		kd.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		<!-- 日期格式:YYYY-MM-DD -->
+		AND kd.report_date&gt;=DATE(#{beginDate,jdbcType=DATE})
+		AND
+		kd.report_date&lt;=DATE(#{endDate,jdbcType=DATE})
+		<!-- 排序 -->
+		order by kd.kpi_code,kd.report_date
+	</select>
+
+
+
+
+
+	<!-- 根据单个指标查询指标数据 -->
+	<select id="queryKpiDataByKpiCode" resultMap="DwmisKpiDataAndKpiInfoMap"
+		parameterType="java.util.HashMap">
+		SELECT
+		kd.report_date,
+		kd.`value`,
+		kd.date_type,
+		kd.sta_code,
+		kd.kpi_code,
+		ki.*
+		FROM
+		dwmis_kpi_data kd,
+		(
+		SELECT
+		KPI_CODE,
+		TYPE_ID,
+		type_name,
+		UNIT_ID,
+		unit_name,
+		SIZE_ID,
+		size_name,
+		GOAL_TYPE,
+		goal_type_name,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		IS_SHOW,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		DAY_OFFSET,
+		kpi_name_show,
+		SHOW_ORDER,
+		decimal_num
+		FROM
+		dwmis_kpi_info ki
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_unit_id,
+		mt.type_name AS unit_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 5000
+		)ut ON ki.unit_id =
+		ut.parent_unit_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS size_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 6000
+		)st ON ki.size_id = st.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS
+		parent_size_id,
+		mt.type_name AS type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 4000
+		)type ON ki.type_id = type.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS goal_type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON ki.GOAL_TYPE =
+		goal_type.parent_size_id
+		)ki
+		WHERE
+		kd.kpi_code = ki.kpi_code
+		<!-- 按指标查询 -->
+		<if test="kpiCode!=null">
+			AND kd.kpi_code=#{kpiCode,jdbcType=VARCHAR}
+		</if>
+		<!-- 日期类型 -->
+		<if test="dateType!=null">
+			AND kd.date_type = #{dateType,jdbcType=DECIMAL}
+		</if>
+		<!-- 统计方式 -->
+		<if test="staCode!=null">
+			AND kd.sta_code = #{staCode,jdbcType=DECIMAL}
+		</if>
+		<if test="staCodeList!=null">
+			AND kd.sta_code in
+			<foreach collection="staCodeList" close=")" open="("
+				separator="," item="staCode">
+				#{staCode}
+			</foreach>
+		</if>
+		<!-- 时间 -->
+		<if test="queryDate!=null">
+			AND kd.report_date = #{queryDate,jdbcType=DECIMAL}
+		</if>
+		<!-- 排序 -->
+	</select>
+	<!-- 查询指标年累计值 -->
+	<select id="getKpiDataValueByYear" resultType="java.lang.Double"
+		parameterType="java.util.HashMap">
+		select SUM(ka.`value`)
+		from dwmis_kpi_data ka
+		where
+		ka.kpi_code = #{kpiCode,jdbcType=VARCHAR}
+		and ka.date_type =
+		#{dateType,jdbcType=DECIMAL}
+		and ka.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		and
+		DATE_FORMAT(ka.report_date,'%Y')=DATE_FORMAT(DATE(#{reportDate,jdbcType=VARCHAR}),'%Y')
+	</select>
+
+	<!-- 查询指标月累计值 -->
+	<select id="getKpiDataValueByMonth" resultType="java.lang.Double"
+		parameterType="java.util.HashMap">
+		select SUM(ka.`value`)
+		from dwmis_kpi_data ka
+		where
+		ka.kpi_code = #{kpiCode,jdbcType=VARCHAR}
+		and ka.date_type =
+		#{dateType,jdbcType=DECIMAL}
+		and ka.sta_code =
+		#{staCode,jdbcType=DECIMAL}
+		and
+		DATE_FORMAT(ka.report_date,'%Y%m')=DATE_FORMAT(DATE(#{reportDate,jdbcType=VARCHAR}),'%Y%m')
+	</select>
+
+	<select id="getKpiDataMessage" resultMap="DwmisKpiDataMap"
+		parameterType="com.infosmart.portal.pojo.dwmis.DwmisKpiData">
+		select f.KPI_NAME,d.KPI_CODE, d.REPORT_DATE, d.VALUE, d.DATE_TYPE,
+		d.STA_CODE
+		from DWMIS_KPI_DATA d
+		inner join DWMIS_KPI_INFO f
+		on
+		d.kpi_code = f.kpi_code
+		where d.date_type =
+		#{dateType,jdbcType=INTEGER}
+		and d.sta_code =
+		#{staCode,jdbcType=INTEGER}
+		<!-- 按指标查询 -->
+		<if test="kpiCodeList!=null">
+			AND d.kpi_code in
+			<foreach collection="kpiCodeList" close=")" open="("
+				separator="," item="kpiCode">
+				#{kpiCode,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+		<![CDATA[
+		and d.report_date >= #{beginDate,jdbcType=VARCHAR}
+		and d.report_date <= #{endDate,jdbcType=VARCHAR}		
+		]]>
+		order by REPORT_DATE desc
+	</select>
+
+	<!-- 根据KpiCode和日期查询指标数据 -->
+	<select id="getKpiDataByCodeAndDate" resultMap="DwmisKpiDataAndKpiInfoMap"
+		parameterType="java.util.HashMap">
+		SELECT
+		kd.report_date,
+		kd.`value`,
+		kd.date_type,
+		kd.sta_code,
+		kd.kpi_code,
+		ki.*
+		FROM
+		dwmis_kpi_data kd,
+		(
+		SELECT
+		KPI_CODE,
+		TYPE_ID,
+		type_name,
+		UNIT_ID,
+		unit_name,
+		SIZE_ID,
+		size_name,
+		GOAL_TYPE,
+		goal_type_name,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		IS_SHOW,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		DAY_OFFSET,
+		kpi_name_show,
+		SHOW_ORDER,
+		decimal_num
+		FROM
+		dwmis_kpi_info ki
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_unit_id,
+		mt.type_name AS unit_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 5000
+		)ut ON ki.unit_id =
+		ut.parent_unit_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS size_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 6000
+		)st ON ki.size_id = st.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS
+		parent_size_id,
+		mt.type_name AS type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 4000
+		)type ON ki.type_id = type.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS goal_type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON ki.GOAL_TYPE =
+		goal_type.parent_size_id
+		)ki
+		WHERE
+		kd.kpi_code = ki.kpi_code
+		<!-- 按指标查询 -->
+		<if test="kpiCode!=null">
+			AND kd.kpi_code=#{kpiCode,jdbcType=VARCHAR}
+		</if>
+		<!-- 日期类型 -->
+		<if test="dateType!=null">
+			AND kd.date_type = #{dateType,jdbcType=DECIMAL}
+		</if>
+		<!-- 统计方式 -->
+		<if test="staCode!=null">
+			AND kd.sta_code = #{staCode,jdbcType=DECIMAL}
+		</if>
+		<!-- 时间 -->
+		<if test="reportDate!=null">
+			AND kd.report_date = #{reportDate,jdbcType=DECIMAL}
+		</if>
+	</select>
+
+</mapper>

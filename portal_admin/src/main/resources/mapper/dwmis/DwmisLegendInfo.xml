@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.DwmisLegendInfoMapper">
+
+	<resultMap id="DwmisLegendInfoAndCategory" type="com.infosmart.po.dwmis.DwmisLegendInfo">
+		<result column="legend_id" property="legendId" />
+		<result column="category_id" property="categoryId" />
+		<result column="legend_name" property="legendName" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="chart_type" property="chartType" />
+		<result column="chart_type_desc" property="chartTypeDesc" />
+		<result column="chart_url" property="chartUrl" />
+		<result column="show_warn_line" property="showWarnLine" />
+		<result column="stat_code" property="statCode" />
+		<result column="remark" property="remark" />
+		<association property="dwmisLegendCategory" column="category_id"
+			javaType="com.infosmart.po.dwmis.DwmisLegendCategory">
+			<result column="category_id" property="categoryId" />
+			<result column="category_pid" property="categoryPid" />
+			<result column="category_name" property="categoryName" />
+			<result column="gmt_date" property="gmtDate" />
+		</association>
+	</resultMap>
+	<resultMap id="DwmisLegendInfo" type="com.infosmart.po.dwmis.DwmisLegendInfo">
+		<result column="legend_id" property="legendId" />
+		<result column="category_id" property="categoryId" />
+		<result column="legend_name" property="legendName" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="chart_type" property="chartType" />
+		<result column="chart_type_desc" property="chartTypeDesc" />
+		<result column="chart_url" property="chartUrl" />
+		<result column="show_warn_line" property="showWarnLine" />
+		<result column="stat_code" property="statCode" />
+		<result column="remark" property="remark" />
+	</resultMap>
+	<!-- 指标信息记录集 -->
+	<resultMap id="dwmisKpiInfoMap" type="DwmisKpiInfo">
+		<result column="kpi_code" property="kpiCode" jdbcType="VARCHAR" />
+		<result column="kpi_name" property="kpiName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="listPageLegendInfo" resultMap="DwmisLegendInfoAndCategory">
+		select
+		dli.legend_id,dli.category_id,dli.legend_name,dli.gmt_create,dli.chart_type,
+		dli.chart_type_desc,dli.chart_url,dli.show_warn_line,dli.stat_code,dli.remark,
+		dlc.category_pid,dlc.category_name,dlc.gmt_date
+		from
+		dwmis_legend_info
+		dli,dwmis_legend_category dlc where
+		dli.category_id=dlc.category_id
+		<if test="categoryId !=null and categoryId != ''">
+			and dli.category_id=#{categoryId}
+		</if>
+		<if test="legendName !=null and legendName != ''">
+			and dli.legend_name like "%"#{legendName}"%"
+		</if>
+		order by dli.gmt_create asc
+	</select>
+
+	<!-- 查询所有的图例信息 -->
+	<select id="getAllLegendInfos" resultMap="DwmisLegendInfo">
+		SELECT
+		dli.legend_id,
+		dli.category_id,
+		dli.legend_name,
+		dli.gmt_create,
+		dli.chart_type,
+		dli.chart_type_desc,
+		dli.chart_url,
+		dli.show_warn_line,
+		dli.stat_code,
+		dli.remark
+		FROM
+		dwmis_legend_info dli
+		ORDER BY
+		dli.gmt_create ASC
+	</select>
+
+	<insert id="addLegendInfo" parameterType="DwmisLegendInfo">
+		insert into
+		dwmis_legend_info(legend_id,category_id,legend_name,gmt_create,chart_type,
+		chart_type_desc,chart_url,show_warn_line,stat_code,remark)
+		values(#{legendId},#{categoryId},#{legendName},now(),#{chartType},#{chartTypeDesc},#{chartUrl},#{showWarnLine},#{statCode},#{remark})
+	</insert>
+
+	<update id="updateLegendInfo" parameterType="DwmisLegendInfo">
+		update
+		dwmis_legend_info set
+		category_id=#{categoryId},legend_name=#{legendName},chart_type=#{chartType},chart_type_desc=#{chartTypeDesc},chart_url=#{chartUrl},show_warn_line=#{showWarnLine},stat_code=#{statCode},remark=#{remark}
+		where legend_id=#{legendId}
+	</update>
+
+	<delete id="delLegendInfo" parameterType="String">
+		delete from
+		dwmis_legend_info where legend_id=#{legendId}
+	</delete>
+
+	<select id="getLegendInfoById" parameterType="String"
+		resultMap="DwmisLegendInfoAndCategory">
+		select
+		dli.legend_id,dli.category_id,dli.legend_name,dli.gmt_create,dli.chart_type,
+		dli.chart_type_desc,dli.chart_url,dli.show_warn_line,dli.stat_code,dli.remark,
+		dlc.category_pid,dlc.category_name,dlc.gmt_date
+		from
+		dwmis_legend_info
+		dli,dwmis_legend_category dlc where dli.legend_id=#{legendId}
+	</select>
+
+	<!-- 获取此图例不关联的指标 -->
+	<select id="getUnRelativeDwmisKpiInfoByKeyCode" resultMap="dwmisKpiInfoMap">
+		<choose>
+			<when test=" keyCode !=null and keyCode != '' ">
+				select * from(select dki.kpi_code,dki.kpi_name
+				from
+				dwmis_kpi_info dki
+				where
+				dki.kpi_code not in
+				(select dr.kpi_code from
+				dwmis_legend_kpi_r dr
+				where
+				dr.ledend_id=#{ledendId} and
+				dr.kpi_code=dki.kpi_code))c where
+				c.kpi_code like
+				UPPER(CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%'))
+				or
+				c.kpi_name like CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%')
+				order by c.kpi_code
+			</when>
+			<otherwise>
+				select dki.kpi_code,dki.kpi_name
+				from dwmis_kpi_info dki
+				where
+				dki.kpi_code not in
+				(select dr.kpi_code from
+				dwmis_legend_kpi_r
+				dr
+				where
+				dr.ledend_id=#{ledendId} and dr.kpi_code=dki.kpi_code)
+				order
+				by dki.kpi_code
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 批量插入此图例关联的指标 -->
+	<insert id="insertLegendKpiInfo" parameterType="java.util.List">
+		insert into dwmis_legend_kpi_r (legend_id,kpi_code) values
+		<foreach collection="list" item="kpiInfoList" index="index"
+			separator=",">
+			(#{kpiInfoList.legendId},#{kpiInfoList.kpiCode})
+		</foreach>
+	</insert>
+
+	<!-- 删除此图例关联的指标 -->
+	<delete id="delLegendKpiInfo" parameterType="String">
+		delete from
+		dwmis_legend_kpi_r where legend_id=#{legendId}
+	</delete>
+
+</mapper>

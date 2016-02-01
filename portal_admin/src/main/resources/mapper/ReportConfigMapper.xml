@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.ReportConfigMapper">
+
+	<resultMap type="ReportDesign" id="ReportResultMap">
+		<id column="report_id" property="reportId" />
+		<result column="report_name" property="reportName" />
+		<result column="report_sql" property="reportSql" />
+		<result column="report_define" property="reportDefine" />
+		<result column="data_source_id" property="dataSourceId" />
+		<result column="parent_id" property="parentId" />
+		<result column="is_report" property="isReport" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+	<resultMap type="ReportConfig" id="ReportConfigResultMap">
+		<id column="id" property="configId" />
+		<result column="report_id" property="reportId" />
+		<result column="column_label" property="columnLabel" />
+		<result column="control_type" property="controlType" />
+		<result column="code" property="code" />
+		<result column="column_code" property="columnCode" />
+		<result column="default_value" property="defaultValue" />
+		<result column="defaultValueSec" property="defaultValueSec" />
+		<result column="column_type" property="columnType" />
+		<result column="column_type_name" property="columnTypeName" />
+		<result column="column_class_name" property="columnClassName" />
+		<result column="column_sort" property="columnSort" />
+		<result column="date_format" property="dateFormat" />
+	</resultMap>
+	<!-- 查询报表信息 -->
+	<!-- <select id="queryReportConfig" parameterType="int" resultMap="ReportResultMap"> 
+		SELECT crc.report_id, crc.report_name, crc.query_sql, crc.page_size, crc.remark, 
+		rcc.column_code, rcc.column_label, rcc.column_type, rcc.column_type_name, 
+		rcc.column_class_name FROM tb_rpt_report crc LEFT JOIN tb_rpt_report_field 
+		rcc ON crc.report_id = rcc.report_id WHERE crc.report_id = #{reportId} ORDER 
+		BY rcc.column_sort </select> -->
+
+	<!-- 查询所有表结构 infosmart 2012-06-04 -->
+	<select id="listAllParentReport" resultMap="ReportResultMap">
+		SELECT
+		report_id,report_name,parent_id FROM tb_rpt_design WHERE parent_id IS
+		NULL
+	</select>
+
+	<!-- 分页查询 date 2012-06-04 infosmart -->
+	<select id="listAllConfigById" parameterType="int"
+		resultMap="ReportConfigResultMap">
+		select * from tb_rpt_report_config where
+		report_id=#{reportId}
+	</select>
+	<!-- 查询报表主表插件 date 2012-06-04 infosmart -->
+	<select id="queryReportById" parameterType="int" resultMap="ReportResultMap">
+		select * from tb_rpt_design where report_id=#{reportId}
+	</select>
+	<!-- 通过ID查询数据 hgt -->
+	<select id="getReportConfigById" parameterType="int"
+		resultMap="ReportConfigResultMap">
+		select * from tb_rpt_report_config where id=#{configId}
+	</select>
+	<!-- <select id="listAllReportConfig" resultMap="reportConfigResultMap"> 
+		select * from tb_rpt_report_config where parent_id is not null </select> -->
+	<!-- 添加控件 -->
+	<insert id="insertReportConfig" parameterType="ReportConfig"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into tb_rpt_report_config
+		(report_id,column_label,control_type,code,default_value,defaultValueSec,column_code,date_format)<!-- 
+			,column_type,column_type_name,column_class_name -->
+		values
+		(#{reportId},#{columnLabel},#{controlType},#{code},#{defaultValue},#{defaultValueSec},#{columnCode},#{dateFormat})<!-- 
+			,#{columnType},#{columnTypeName},#{columnClassName} -->
+	</insert>
+	<!-- 批量插入查询条件 -->
+	<insert id="insertReportConfigByBatch" parameterType="java.util.ArrayList">
+		insert into tb_rpt_report_config
+		(report_id,column_label,control_type,code,default_value,defaultValueSec,column_code,date_format,COLUMN_SORT)<!-- 
+			,column_type,column_type_name,column_class_name -->
+		values
+		<foreach collection="list" item="reportConfig" index="index"
+			separator=",">
+			(#{reportConfig.reportId},#{reportConfig.columnLabel},#{reportConfig.controlType},#{reportConfig.code},#{reportConfig.defaultValue},#{reportConfig.defaultValueSec},#{reportConfig.columnCode},#{reportConfig.dateFormat},#{reportConfig.columnSort})<!-- 
+				,#{reportConfig.columnType},#{reportConfig.columnTypeName},#{reportConfig.columnClassName} -->
+		</foreach>
+	</insert>
+	<!-- 删除原的查询条件 -->
+	<delete id="deleteReportConfigByRptId" parameterType="java.util.HashMap">
+		delete from
+		tb_rpt_report_config where report_id=#{reportId}
+	</delete>
+	<!-- 添加报表时间 hgt -->
+	<!-- <insert id="insertReportTime" parameterType="ReportDesign" useGeneratedKeys="true" 
+		keyProperty="reportId"> insert into tb_rpt_report (start_time,end_time,default_start_time,default_end_time,start_date_type, 
+		end_date_type,start_time_column,end_time_column,remark,has_start_time,has_end_time, 
+		is_page,page_number) values( #{startTime},#{endTime},#{defaultStartTime},#{defaultEndTime},#{startDateType}, 
+		#{endDateType},#{startTimeColumn},#{endTimeColumn},#{remark},#{hasStartTime},#{hasEndTime}, 
+		#{isPage},#{pageNumber}) </insert> -->
+	<!-- 更新控件 hgt -->
+	<!-- <update id="updateReportTime" parameterType="ReportDesign"> update 
+		tb_rpt_report set start_time=#{startTime}, end_time=#{endTime}, default_start_time=#{defaultStartTime}, 
+		default_end_time=#{defaultEndTime}, start_date_type=#{startDateType}, end_date_type=#{endDateType}, 
+		start_time_column=#{startTimeColumn}, end_time_column=#{endTimeColumn}, remark=#{remark}, 
+		has_start_time=#{hasStartTime}, has_end_time=#{hasEndTime}, is_page=#{isPage}, 
+		page_number=#{pageNumber}, columns_name=#{columnsName}, columns_showName=#{columnsShowName} 
+		, sql_name=#{sqlName} where report_id=#{reportId} </update> -->
+	<!-- 更新控件 hgt -->
+	<update id="updateReportConfig" parameterType="ReportConfig">
+		update
+		tb_rpt_report_config set
+		column_label=#{columnLabel},
+		control_type=#{controlType} ,
+		code=#{code},
+		<!-- column_code=#{columnCode}, -->
+		default_value=#{defaultValue},
+		defaultValueSec=#{defaultValueSec},
+		date_format = #{dateFormat}
+		where
+		id=#{configId}
+	</update>
+
+	<!-- 删除配置 hgt -->
+	<delete id="deleteReportConfigById" parameterType="int">
+		delete from
+		tb_rpt_report_config where id=#{configId}
+	</delete>
+
+	<!-- 测试报表 -->
+	<select id="getReportList" resultType="java.util.HashMap">
+		select user_id,loginname,password,username<!-- ,rights,status,role_id,last_login -->
+		from tb_user
+	</select>
+	<!-- 校验报表查询字段是否重复 -->
+	<select id="checkColumnCode" parameterType="ReportConfig"
+		resultMap="ReportConfigResultMap">
+		select * from tb_rpt_report_config where
+		report_id=#{reportId} and column_code=#{columnCode}
+	</select>
+	
+	<update id="updateColumnSortBefore" parameterType="java.lang.String">
+	UPDATE tb_rpt_report_config  SET COLUMN_SORT = COLUMN_SORT-1 WHERE id=#{beforeId};
+	</update>
+	
+	<update id="updateColumnSortAfter" parameterType="java.lang.String">
+	UPDATE tb_rpt_report_config  SET COLUMN_SORT = COLUMN_SORT+1 WHERE id=#{afterId};
+	</update>
+	
+</mapper>

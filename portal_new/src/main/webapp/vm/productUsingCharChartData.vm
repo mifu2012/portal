@@ -1,0 +1,127 @@
+##用户特征分布图(矩形)
+#set( $layout = "home/layout/null.vm" )
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+    <thousands_separator>,</thousands_separator>
+    <decimals_separator>.</decimals_separator>
+	<background>
+    	<color>EFF0F2</color>
+    	<alpha>100</alpha>
+    	<border_color>EFF0F2</border_color>
+    	<border_alpha>100</border_alpha>
+	</background>
+	<font>微软雅黑</font>                                                    
+	<text_size>12</text_size>
+	
+	<plot_area>
+		<margins>
+			<left>70</left>
+			<right>50</right>
+			<top>15</top>
+			<bottom>40</bottom>
+		</margins>
+	</plot_area>
+    <grid>
+   		 <category>
+      		<alpha>0</alpha>
+      		<dashed>1</dashed>
+      		<dash_length>4</dash_length>
+    	</category>
+    <value>
+      	<color>FFFFFF</color>
+      		<alpha>100</alpha>
+      		<dash_length>1</dash_length>
+      		<approx_count>4</approx_count>
+      		<fill_color>00CC00</fill_color>
+    </value>
+    </grid>
+	<axes>
+		<category>
+			<tick_length>5</tick_length>
+			<width>1</width>
+		</category>
+		<value>
+			<tick_length>0</tick_length>
+			<width>1</width>
+		</value>
+	</axes>
+	<values>
+		<value>
+			<min>0</min>
+		</value>
+	</values>
+	<legend>
+		<enabled>0</enabled>
+	</legend>
+	<angle>0</angle>
+	<column>
+	    <width>37</width>
+		<spacing>0</spacing>
+		<border_alpha>81</border_alpha>
+		<data_labels>{value}</data_labels>
+		<balloon_text>{series}: {value} </balloon_text>
+		<data_labels_position>inside</data_labels_position>
+		<grow_time>3</grow_time>
+	</column>
+	<graphs>
+		##坐标头描�?
+		#foreach($columnGraph in $columnGraphList)
+		<graph gid='$columnGraph.id' >
+			##图类型，矩形或折线＋矩形
+			<type>$columnGraph.type</type>
+			<title>$columnGraph.kpiname</title>
+			##颜色
+			<color>$columnGraph.color</color>
+			<data_labels>{value}</data_labels>
+			<balloon_text>{series}: {value} $columnGraph.unit</balloon_text>
+			#if($graph.type=='line')
+      			<visible_in_legend>0</visible_in_legend>
+      			<balloon_color>$columnGraph.color</balloon_color>
+      			<balloon_alpha>100</balloon_alpha>
+      			<width>5</width>
+      			<bullet>round_outlined</bullet>
+      			<bullet_size>14</bullet_size>
+			#end
+		</graph>
+		#end
+	</graphs>
+	<data>
+		<chart>
+			##X坐标描述
+			<series>
+				#foreach($sermap in $chart.seriesMap.entrySet())
+				<value xid='$sermap.key'>$sermap.value</value>
+				#end
+			</series>
+			##X坐标数据
+			<graphs>
+				##<String, List<GraphDataElement>>
+				#foreach($graph in $chart.graphs.entrySet())
+				<graph gid='$graph.key' data_labels="{value}">
+					#foreach($graphData in $graph.value)
+						##GraphDataElement
+					  <value xid='$graphData.valueDate'>$graphData.value</value>
+					#end
+				</graph>
+				#end
+			</graphs>
+		</chart>
+	</data>
+  <strings>
+      <no_data>数据正在准备中，请稍后再试。</no_data>
+      <export_as_image>数据正在准备中，请稍后再试。</export_as_image>
+      <error_in_data_file>数据正在准备中，请稍后再试。</error_in_data_file>
+      <collecting_data>数据正在准备中，请稍后再试。</collecting_data>
+      <wrong_zoom_value>数据正在准备中，请稍后再试。</wrong_zoom_value>
+  </strings>
+  ##右键菜单
+  <context_menu>            
+	 ##<menu function_name="exportAsImg()" title="导出为图片"></menu>
+	  <menu function_name="columnExcel('$featureType')" title="导出Excel数据"></menu>
+	   <menu function_name="showData('$featureType')" title="查看详细数据"></menu>
+     <default_items>
+       <zoom>false</zoom>
+       <print>true</print>
+     </default_items>
+  </context_menu>
+</settings>

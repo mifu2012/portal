@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--指标走势图数据-->
+<chart cid="25">
+    <series>
+		#if($pageId=='kpiTrends')
+			#set($isMonth = 0)
+			#set($velocityCount = 1)
+			##判断是否是月的展现
+			#if($chartData.seriesMap.entrySet().size() <= 12 )
+    			#foreach($serie in $chartData.seriesMap.entrySet())
+    				#if($serie.value.substring(8,10) == '31' && $velocityCount ==1 )
+    					#set($isMonth = 1)
+    				#end
+    			#end
+			#end
+			##趋势图X轴的展现是否是月： 月：xx月，日粒度：xxxx年xx月xx日
+    		#if($isMonth == 1)
+                #foreach($serie in $chartData.seriesMap.entrySet())
+                    <value xid="$serie.key">$serie.value.substring(5,8)</value>
+        		 #end
+    		 #else
+    			 #foreach($serie in $chartData.seriesMap.entrySet())
+                    <value xid="$serie.key">$serie.value</value>
+        		 #end			
+			#end		
+		#elseif($pageId=='alertReport')
+			#if($period=='1004')
+                #foreach($serie in $chartData.seriesMap.entrySet())
+                    <value xid="$serie.key">$serie.value.substring(0,8)</value>
+        		 #end
+    		 #else
+    			 #foreach($serie in $chartData.seriesMap.entrySet())
+                    <value xid="$serie.key">$serie.value</value>
+        		 #end			
+			#end
+		#elseif($pageId=='finance')
+    		#if($period=='1004')
+                #foreach($serie in $chartData.seriesMap.entrySet())
+                    <value xid="$serie.key">$serie.value.substring(5,8)</value>
+        		 #end
+    		 #else
+    			 #foreach($serie in $chartData.seriesMap.entrySet())
+                    <value xid="$serie.key">$serie.value</value>
+        		 #end			
+			#end
+		#end
+    </series>
+    
+    <graphs>
+        #foreach($graphData in $chartData.graphList)
+            #if($graphData.graphType == "1")
+                <graph gid="$graphData.graphId" title="$graphData.graphName" selected="true"  color="#0faedb" line_width="3" axis="left">
+                    #foreach($valueItem in $graphData.dataList)
+                     <value xid="$valueItem.valueDate">#if($!valueItem.value!=$NaN)$valueItem.value#end</value>
+                    #end
+                </graph>
+            #elseif($graphData.graphType == "2")
+                 <graph gid="$graphData.graphId" title="$graphData.graphName" selected="true"  color="#9999CC" line_width="1" axis="left">
+                    #foreach($valueItem in $graphData.dataList)
+                     <value xid="$valueItem.valueDate">#if($!valueItem.value!=$NaN)$valueItem.value#end</value>
+                    #end
+                </graph>
+            #end
+        #end
+    </graphs>
+</chart>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+ <text_size>13</text_size>
+   <font>Microsoft YaHei</font>
+  <grid>
+    <approx_count>5</approx_count>
+  </grid>	
+  <axes>
+    <labels>
+      <distance>15</distance>
+    </labels>
+  </axes>
+  <values>
+    <enabled>0</enabled>
+  </values>
+  <balloon>
+    <show>{axis} : {description}</show>
+  </balloon>
+  <legend>
+	<enabled>0</enabled>
+  </legend>
+  <radar>
+    <grow_time>2</grow_time>
+    <sequenced_grow>1</sequenced_grow>
+  </radar>
+  <strings>
+      <no_data>数据正在准备中，请稍后再试。</no_data>
+      <export_as_image>数据正在准备中，请稍后再试。</export_as_image>
+      <error_in_data_file>数据正在准备中，请稍后再试。</error_in_data_file>
+      <collecting_data>数据正在准备中，请稍后再试。</collecting_data>
+      <wrong_zoom_value>数据正在准备中，请稍后再试。</wrong_zoom_value>
+  </strings>
+</settings>

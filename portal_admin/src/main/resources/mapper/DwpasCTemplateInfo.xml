@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DwpasCTemplateInfoMapper">
+  <resultMap id="DwpasCTemplateInfoMap" type="DwpasCTemplateInfo">
+        <result property="templateId" column="TEMPLATE_ID" javaType="int" jdbcType="INTEGER"/>
+        <result property="templateName" column="TEMPLATE_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="remark" column="REMARK" javaType="java.lang.String" jdbcType="VARCHAR" />
+        <result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+  </resultMap>
+   <select id="listPageDwpasCTemplateInfo" parameterType="DwpasCTemplateInfo"
+		resultMap="DwpasCTemplateInfoMap">
+    select  TEMPLATE_ID,TEMPLATE_NAME,REMARK,GMT_CREATE  from DWPAS_C_TEMPLATE_INFO
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="templateId !=null ">
+				TEMPLATE_ID =#{templateId,jdbcType=INTEGER}   
+       		</if>
+			<if test="templateName !=null and templateName != '' ">
+			AND	 TEMPLATE_NAME LIKE CONCAT(CONCAT('%',
+				#{templateName,jdbcType=VARCHAR}),'%')   
+       		</if>
+		</trim>
+	</select>
+	<select id="listAllDwpasCTemplateInfo" parameterType="DwpasCTemplateInfo"
+		resultMap="DwpasCTemplateInfoMap">
+	select  TEMPLATE_ID,TEMPLATE_NAME,REMARK,GMT_CREATE  from DWPAS_C_TEMPLATE_INFO
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="templateId !=null ">
+				TEMPLATE_ID =#{templateId,jdbcType=INTEGER}   
+       		</if>
+			<if test="templateName !=null and templateName != '' ">
+			AND	 TEMPLATE_NAME LIKE CONCAT(CONCAT('%',
+				#{templateName,jdbcType=VARCHAR}),'%')   
+       		</if>
+		</trim>
+	</select>
+	<select id="listAllDwpasCTemplateInfo1" 
+		resultMap="DwpasCTemplateInfoMap">
+	select  TEMPLATE_ID,TEMPLATE_NAME,REMARK,GMT_CREATE  from DWPAS_C_TEMPLATE_INFO
+	</select>
+	<select id="getTemplateById" parameterType="int" resultMap="DwpasCTemplateInfoMap">
+		  select  TEMPLATE_ID,TEMPLATE_NAME,REMARK,GMT_CREATE  from DWPAS_C_TEMPLATE_INFO 
+		  where TEMPLATE_ID = #{templateId,jdbcType=INTEGER}
+	</select>
+	<insert id="insertTemplate" parameterType="DwpasCTemplateInfo">
+	INSERT into dwpas_c_template_info
+	(template_name, remark, gmt_create)
+	select #{templateName,jdbcType=VARCHAR}, '复制的模块', now()
+	from dwpas_c_template_info cti
+	where cti.TEMPLATE_ID = #{templateId,jdbcType=INTEGER}
+	 <selectKey  keyProperty="templateId" resultType="int">
+	       SELECT LAST_INSERT_ID() as templateId
+	 </selectKey>
+	</insert>
+	<delete id="deleteTemplate" parameterType="int">
+		delete from DWPAS_C_TEMPLATE_INFO  where TEMPLATE_ID
+		=#{templateId,jdbcType=INTEGER}
+	</delete>
+	<update id="updateTemplate" parameterType="DwpasCTemplateInfo">
+	 update  DWPAS_C_TEMPLATE_INFO set TEMPLATE_NAME=#{templateName,jdbcType=VARCHAR}  where TEMPLATE_ID=#{templateId,jdbcType=INTEGER}
+	</update>
+</mapper>

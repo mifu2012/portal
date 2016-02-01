@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ <chart>
+<axes>
+  <axis xid="0" /> 
+  <axis xid="1" /> 
+  <axis xid="2" /> 
+  <axis xid="3" /> 
+  <axis xid="4" /> 
+  <axis xid="5" /> 
+  </axes>
+ <graphs>
+ <graph gid="1" title="02" color="AB4E4A" bullet="round" bullet_size="14">
+  <value xid="0" description="千笔" >50</value>
+  <value xid="1" description="%" > 50</value>
+  <value xid="2" description="%" > 50</value>
+  <value xid="3" description="%" > 50</value>
+  <value xid="4" description="%" > 50</value>
+  <value xid="5" description="个" > 50</value>
+  </graph>
+ <graph gid="2" title="01" color="198942" bullet="round" bullet_size="14">
+  <value xid="0" description="千笔" > 50</value>
+  <value xid="1" description="%" > 50</value>
+  <value xid="2" description="%" > 50</value>
+  <value xid="3" description="%" > 50</value>
+  <value xid="4" description="%" > 50</value>
+  <value xid="5" description="个" > 50</value>
+  </graph>
+  </graphs>
+  </chart>

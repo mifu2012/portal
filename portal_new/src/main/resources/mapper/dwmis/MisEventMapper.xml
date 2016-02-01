@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.MisEventPo">
+
+	<!-- 参数表数据 -->
+	<resultMap id="MISEVENT" type="MisEventPo">
+		<result property="eventId" column="EVENT_ID" />
+		<result property="eventStartDate" column="EVENT_START_DATE" />
+		<result property="eventEndDate" column="EVENT_ENT_DATE" />
+		<result property="eventType" column="EVENT_TYPE" />
+		<result property="title" column="TITLE" />
+		<result property="eventTypeName" column="TYPE_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="isPublic" column="IS_PUBLIC" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" />
+	</resultMap>
+
+	<resultMap id="MISEVENT_AND_KPICODE" type="MisEventPo">
+		<result property="eventId" column="EVENT_ID" />
+		<result property="eventStartDate" column="EVENT_START_DATE" />
+		<result property="eventEndDate" column="EVENT_ENT_DATE" />
+		<result property="eventType" column="EVENT_TYPE" />
+		<result property="title" column="TITLE" />
+		<result property="eventTypeName" column="TYPE_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="isPublic" column="IS_PUBLIC" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 关联的指标CODE -->
+		<result property="kpiCode" column="KPI_CODE" />
+	</resultMap>
+
+	<resultMap id="DWMISMISTYPE" type="DwmisMisTypePo">
+		<result property="typeId" column="TYPE_ID" />
+		<result property="groupId" column="GROUP_ID" />
+		<result property="typeName" column="TYPE_NAME" />
+		<result property="detail" column="DETAIL" />
+	</resultMap>
+
+	<!-- 列出多指标关联的大事件 -->
+	<select id="listEventByKpiCodes" parameterType="java.util.HashMap"
+		resultMap="MISEVENT_AND_KPICODE">
+		select mke.EVENT_ID,
+		EVENT_START_DATE,
+		EVENT_ENT_DATE,
+		EVENT_TYPE,
+		TITLE,
+		CONTENT,
+		IS_PUBLIC,
+		CREATE_USER,
+		CREATE_DATE,
+		mke.kpi_code
+		from
+		DWMIS_MIS_EVENT me, DWMIS_MIS_KPI_EVENT_R mke
+		where mke.event_id =
+		me.event_id
+		<if test="kpiCodes!=null">
+			and mke.kpi_code in
+			<foreach collection="kpiCodes" close=")" separator="," open="("
+				item="kpiCode">
+				#{kpiCode,jdbcType=VARCHAR}
+			</foreach>
+		</if>
+		<if test="eventType!=null">
+			and EVENT_TYPE = =#{eventType,jdbcType=INTEGER}
+		</if>
+		<if test="title!=null and title!=''">
+			and title LIKE
+			CONCAT(CONCAT('%',
+			#{title,jdbcType=VARCHAR}), '%')
+		</if>
+		order by
+		mke.kpi_code,
+		EVENT_START_DATE DESC
+	</select>
+
+	<!-- 根据指标CODE获得最近最新N条大事记列表 -->
+	<select id="getNewEventsByKpiCode" resultMap="MISEVENT">
+		select
+		EVENT_ID,EVENT_START_DATE,EVENT_ENT_DATE,EVENT_TYPE,TITLE,CONTENT,ATTACH,IS_PUBLIC,CREATE_USER,CREATE_DATE
+		from
+		(
+		select *
+		from MIS_EVENT
+		where EVENT_ID in(
+		select EVENT_ID from
+		MIS_KPI_EVENT_R
+		where KPI_CODE = #{kpiCode}
+		)
+		order by EVENT_START_DATE
+		DESC
+		)a
+		where 1 = 1
+
+	</select>
+
+	<!-- 获得大事记列表 -->
+	<select id="getEventsMessagelistPage" parameterType="MisEventPo"
+		resultMap="MISEVENT">
+		select a.EVENT_ID
+		,a.EVENT_START_DATE
+		,a.EVENT_ENT_DATE
+		,b.TYPE_NAME
+		,a.EVENT_TYPE
+		,a.TITLE
+		,a.CONTENT
+		,a.IS_PUBLIC
+		,a.CREATE_USER
+		,a.CREATE_DATE
+		from DWMIS_MIS_EVENT a
+		left join DWMIS_MIS_TYPE b
+		on
+		a.EVENT_TYPE = b.TYPE_ID
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="eventType !=null and eventType !='' ">
+				a.EVENT_TYPE =#{eventType}
+			</if>
+			<if test="title !=null and title != '' ">
+				AND a.title LIKE CONCAT(CONCAT('%',
+				#{title}),'%')
+			</if>
+		</trim>
+		order by a.EVENT_START_DATE DESC
+	</select>
+
+	<!-- 获得大事记类型列表 -->
+	<select id="getEventsTypeName" resultMap="DWMISMISTYPE">
+		<![CDATA[ 
+		SELECT b.type_id,b.TYPE_NAME
+		FROM dwmis_mis_type b
+		WHERE b.TYPE_NAME != null
+		OR b.TYPE_NAME != ''
+		AND type_id < 8000
+		AND type_id > 7000
+		GROUP BY b.type_id,b.TYPE_NAME
+		]]>
+	</select>
+
+	<!-- 根据事件Id查询大事记信息 -->
+	<select id="getEventMessageById" resultMap="MISEVENT"
+		parameterType="int">
+		select a.EVENT_ID
+		,a.EVENT_START_DATE
+		,a.EVENT_ENT_DATE
+		,b.TYPE_NAME
+		,a.EVENT_TYPE
+		,a.TITLE
+		,a.CONTENT
+		,a.IS_PUBLIC
+		,a.CREATE_USER
+		,a.CREATE_DATE
+		from DWMIS_MIS_EVENT
+		a
+		left join DWMIS_MIS_TYPE b
+		on
+		a.EVENT_TYPE = b.TYPE_ID
+		where a.EVENT_ID
+		= #{eventId}
+	</select>
+
+	<!-- 根据指标CODE获得大事记列表 -->
+	<select id="getEventsByKpiCode" resultMap="MISEVENT">
+		select
+		EVENT_ID,EVENT_START_DATE,EVENT_ENT_DATE,EVENT_TYPE,TITLE,CONTENT,IS_PUBLIC,CREATE_USER,CREATE_DATE
+		from
+		(
+		select *
+		from DWMIS_MIS_EVENT
+		where EVENT_ID in(
+		select EVENT_ID
+		from DWMIS_MIS_KPI_EVENT_R
+		where KPI_CODE = #{kpiCode}
+		)
+
+		<if test="eventType !=null and eventType !='' ">
+			and EVENT_TYPE =#{eventType}
+		</if>
+		<if test="title !=null and title != '' ">
+			AND title LIKE CONCAT(CONCAT('%',
+			#{title}),'%')
+		</if>
+
+		order by EVENT_START_DATE DESC
+		)a
+		where 1 = 1
+
+	</select>
+
+
+	<select id="querySysTypeById" resultMap="DWPASCSYSPARAM">
+    <![CDATA[
+        select param_value from dwpas_c_sys_param where param_id = #{parmaId}
+    ]]>
+	</select>
+
+
+</mapper>

@@ -1,0 +1,487 @@
+body
+{ 
+  font-family: Verdana,Arial,sans-serif,宋体;
+  background-color:#CEDBDE;
+  font-size:10.8pt;
+  scrollbar-face-color:#F0F3FC;
+  scrollbar-shadow-color:#91A9E5;
+  scrollbar-highlight-color:#91A9E5;
+  scrollbar-3dlight-color:#F0F3FC;
+  scrollbar-darkshadow-color:#F0F3FC;
+  scrollbar-track-color:#F4F4F0;
+  scrollbar-arrow-color:#91A9E5;
+  color:#000000;
+}
+/*去掉超级连接下滑线*/
+A
+{
+    FONT-SIZE: 10.8pt;
+    COLOR: black;
+    LINE-HEIGHT: 14pt;
+    TEXT-DECORATION: none;
+}
+
+Table
+{
+  font-size:10.8pt;
+}
+
+/*定义必填标志的CSS*/
+.MustInput
+{
+  COLOR: #ff0000
+}
+
+/*从右向左定义按钮*/
+.Btn1
+{
+  position:relative;
+  left:0px;
+  top:0px;
+  width:70px;
+  height:20px;
+  background-color:#C0E5F6;
+  font-size:10.8pt;
+  color:black;
+}
+.Btn
+{
+
+  top:0px;
+  width:70px;
+  height:20px;
+  background-color:#C0E5F6;
+  font-size:10.8pt;
+  color:black;
+}
+
+.Btn2
+{
+  position:relative;
+  left:24px;
+  top:0px;
+  width:70px;
+  height:20px;
+  background-color:#C0E5F6;
+  font-size:10.8pt;
+  color:black;
+}
+
+.Btn3
+{
+  position:relative;
+  left:48px;
+  top:0px;
+  width:70px;
+  height:20px;
+  background-color:#C0E5F6;
+  font-size:10.8pt;
+  color:black;
+}
+.AppBtn
+{
+  left:48px;
+  top:0px;
+  width:70px;
+  height:20px;
+  background-color:#C0E5F6;
+  font-size:10.8pt;
+  color:black;
+}
+/*定义弹出对话框的CSS*/
+.DialogOuter
+{
+  background-color:#CEDBDE;
+}
+
+.DialogInner
+{
+  background-color:#E8EEFD;
+}
+
+/*定义“请关闭”这几个字的CSS*/
+.Close_Style
+{
+  cursor:hand;
+  font-size:10.8pt;
+  color:red;
+}
+/*定义跳转页面这几个字的CSS*/
+.PageMove_Style
+{
+  font-size:10.8pt;
+}
+
+/*开始定义登录页面Login.htm中的特殊CSS*/
+.Login_LoginDiv
+{
+    position:absolute;
+    width:300px;
+    height:100px;
+    top:130px;
+    left:250px;
+    border-top:0px solid gray;
+    border-bottom:1px solid gray;
+    border-left:0px solid gray;
+    border-right:1px solid  gray;
+}
+
+.Login_Table
+{
+    BACKGROUND-COLOR: #CEDBDE
+}
+
+.Login_Td
+{
+    HEIGHT: 9px;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: #F0F3FC 1px solid;
+    BORDER-LEFT: 0px;
+    BORDER-RIGHT: #F0F3FC 1px solid;
+    PADDING-TOP: 5px;
+    PADDING-BOTTOM: 0px;
+    PADDING-LEFT: 5px;
+    PADDING-RIGHT: 0px;
+    FONT-SIZE: 10.8pt;
+}
+/*结束定义登录页面Login.htm中的特殊CSS*/
+
+/*开始定义JSP版关于用户权限部分的特殊CSS*/
+.FrameList_OuterDiv
+{
+    BACKGROUND-COLOR: #CEDBDE;
+}
+
+.FrameList_InnerDiv
+{
+    BACKGROUND-COLOR: #CEDBDE;
+}
+
+.FrameList_GroupAndDeptDiv
+{
+  position:relative;
+  top:5px;
+  BACKGROUND-COLOR:#8babff;
+  BORDER-BOTTOM: #eeeeee 2px solid;
+  BORDER-LEFT: #333366 2px solid;
+  BORDER-RIGHT: #eeeeee 2px solid;
+  BORDER-TOP: #333366 2px solid;
+}
+/*结束定义JSP版关于用户权限部分的特殊CSS*/
+
+/*开始定义ASP版关于用户权限部分的特殊CSS*/
+.RecordRight_GroupAndDeptDiv
+{
+  position:absolute;
+  width:270px;
+  height:400px;
+  top:0px;
+  left:10px;
+}
+
+.RecordRight_FolderTreeDiv
+{
+  position:relative;
+  width:240px;
+  height:230px;
+  top:0px;
+  left:0px;
+  border-top:2px solid #333366;
+  border-bottom:1px solid #eeeeee;
+  border-left:2px solid #333366;
+  border-right:1px solid  #eeeeee;
+  background-color: #FFFFFF;
+  overflow:auto;
+}
+
+.RecordRight_SelUserDiv
+{
+  position:absolute;
+  width:245px;
+  height:150px;
+  top:290px;
+  left:6px;
+}
+
+.RecordRight_UserCodeDiv
+{
+  POSITION: absolute;
+  TOP: 0px;
+  LEFT: 300px;
+  WIDTH: 155px;
+  HEIGHT: 400px;
+}
+
+.RecordRight_Btn1
+{
+  position:absolute;
+  left:-5px;
+  top:425px;
+  width:150px;
+  height:25px;
+}
+
+.RecordRight_Action
+{
+  POSITION: absolute;
+  TOP: 0px;
+  LEFT: 465px;
+  WIDTH: 145px;
+  HEIGHT: 400px
+}
+
+.RecordRight_Btn2
+{
+  POSITION: absolute;
+  LEFT: 165px;
+  WIDTH: 450px;
+  TOP: 465px;
+  HEIGHT: 25px
+}
+/*结束定义ASP版关于用户权限部分的特殊CSS*/
+/*------------------以上部分每个项目一般都通用，以下部分则为各个项目的特殊定义---------------------*/
+
+/*定义LeftFrm.jsp页的背景颜色*/
+.LeftFrmBg
+{
+  background-color:#F0F3FC;
+}
+
+/*定义NewFolder页中OutFrame的CSS*/
+.NewFolder_OutFrameDiv
+{
+  position:absolute;
+  width:325px;
+  height:165px;
+  top:5px;
+  left:10px;
+  border-top:2px solid #eeeeee;
+  border-bottom:2px solid #333366;
+  border-left:2px solid #eeeeee;
+  border-right:2px solid  #333366;
+  background-color:#CEDBDE;
+}
+
+/*定义MFolder_iFrm页中FolderTree的CSS*/
+.MFolder_iFrm_FolderTreeDiv
+{
+  position:absolute;
+  width:200px;
+  height:220px;
+  top:20px;
+  left:25px;
+  background-color:white;
+  border-top:2px solid #333366;
+  border-bottom:2px solid #eeeeee;
+  border-left:2px solid #333366;
+  border-right:2px solid  #eeeeee;
+  overflow:auto;
+}
+
+/*定义ConfigFolder页中OutFrame的CSS*/
+.ConfigFolder_OutFrameDiv
+{
+  position:absolute;
+  width:380px;
+  height:517px;
+  top:5px;
+  left:10px;
+  border-top:2px solid #eeeeee;
+  border-bottom:2px solid #333366;
+  border-left:2px solid #eeeeee;
+  border-right:2px solid  #333366;
+  background-color:#CEDBDE;
+}
+/*定义问卷调查模块中填写问卷页面的CSS*/
+.cQuestionHeadTable
+{
+    padding-left:15px;
+    padding-right:15px;
+    padding-top:5px;
+}
+/*定义问卷调查模块中查看问卷页面的CSS*/
+.cResultFrame
+{
+    POSITION: relative;
+    LEFT: 0px;
+    TOP:0px;
+    WIDTH: 495px;
+    HEIGHT: 370px;
+    BORDER-RIGHT: #eeeeee 2px solid;
+    BORDER-TOP: #333366 2px solid;
+    BORDER-LEFT: #333366 2px solid;
+    BORDER-BOTTOM: #eeeeee 2px solid;
+    TEXT-ALIGN:left;
+    PADDING-TOP:5px;
+    PADDING-BOTTOM:10px;
+    PADDING-LEFT:15px;
+    PADDING-RIGHT:15px;
+    BACKGROUND-COLOR: white;
+    overflow:auto;
+}
+/*定义问卷调查模块中问卷管理部分的CSS*/
+.cNewQuesDiv
+{
+    position:absolute;
+    width:400px;
+    height:190px;
+    top:10px;
+    left:10px;
+    border-top:2px solid #eeeeee;
+    border-bottom:2px solid #333366;
+    border-left:2px solid #eeeeee;
+    border-right:2px solid  #333366;
+}
+/*定义NewField_iFrm页中OutFrame的CSS*/
+.NewField_iFrm_OutFrameDiv
+{
+    position:absolute;
+    width:575px;
+    height:280px;
+    top:5px;
+    left:10px;
+    border-top:2px solid #eeeeee;
+    border-bottom:2px solid #333366;
+    border-left:2px solid #eeeeee;
+    border-right:2px solid  #333366;
+    background-color:#CEDBDE;
+}
+/*定义意见箱Div的CSS*/
+.SuggestBoxDiv
+{
+    width:100%;
+    BORDER-RIGHT: #808080 1px solid;
+    BORDER-TOP: #ffffff 1px solid;
+    BORDER-LEFT: #ffffff 1px solid;
+    BORDER-BOTTOM: #808080 1px solid;
+}
+
+.CalendarBg
+{
+	background-color:#FFFFFF;
+    font-size:10.8pt;
+}
+
+.btn_common{
+	width:55px;
+	height:20px;
+	padding-top:4px;
+	padding-left: 0px;
+	border:1px #939EB2 solid;
+	text-align:center;
+	background-image:url('../images/Btn_united_bg.gif');
+	cursor:hand;
+	font-size:10.8pt;
+}
+/**弹出界面**/
+.pop_body{
+  	background-color:#C2CEEB;
+  	font-size:10.8pt;
+  	font-family: 宋体;
+ 		margin:8px 8px 8px 8px;
+  	padding:0px 0px 0px 0px;
+  	scrollbar-face-color: #DEE3E7;
+  	scrollbar-highlight-color: #FFFFFF;
+  	scrollbar-shadow-color: #DEE3E7;
+  	scrollbar-3dlight-color: #D1D7DC;
+  	scrollbar-arrow-color:  #006699;
+  	scrollbar-track-color: #EFEFEF;
+  	scrollbar-darkshadow-color: #98AAB1;
+}
+.pop_btn
+{
+	background-color:#C2CEEB;
+	border:1px #939EB2 solid;
+	width:55px;
+	height:20px;
+	padding-top:4px;
+	padding-left: 0px;
+	text-align:center;
+	cursor:hand;
+	font-size:10.8pt;
+}
+.pop_edit
+{
+	border-top: 1px solid #ffffff;
+	border-left: 1px solid #fffffff;
+	border-right: 2px ridge #95A8D7;
+	border-bottom: 2px ridge #95A8D7;
+	background-color:#E0E7F8;
+	padding-top:6px;
+	padding-left:8px;
+	padding-bottom:6px;
+	padding-right:8px;
+	vertical-align:top;
+}
+.pop_submit_td
+{
+	height:30px;
+	text-align:right;
+}
+.pop_input
+{
+	border-right:1px #253E7A solid;
+ 	border-left:1px #253E7A solid;
+	border-top:1px #253E7A solid;
+ 	border-bottom:1px #253E7A solid;
+	background-color:#ffffff;
+	font-size:10.8pt;
+	height:18px;
+}
+.pop_file{
+	height:18px;
+	width:55px;
+	text-align:center;
+	padding-top:1px;
+	border:1px solid #253E7A;
+	background-color:#D4D0C8;
+}
+.pop_select
+{
+	font-size:10.8pt;
+}
+.must_input
+{
+	font-size:10.8pt;
+	color:red;
+}
+
+/**对话框**/
+/*弹出信息提示框背景*/
+.dialog_body
+{
+	background-color:D3E0FF;
+	font-size:10.8pt;
+	font-family: 宋体;
+	margin:0px 0px 0px 0px;  /*top right bottom left*/
+	padding:0px 0px 0px 0px;
+	scrollbar-face-color: #DEE3E7;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-shadow-color: #DEE3E7;
+	scrollbar-3dlight-color: #D1D7DC;
+	scrollbar-arrow-color:  #006699;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #98AAB1;
+}
+.dialog_info_bg
+{
+	background-image:url('../images/dialog/win_info_bg.jpg');
+	background-repeat:no-repeat;
+	background-position:left top;
+	vertical-align:top;
+}
+.dialog_info_td
+{
+	padding-left:15px;
+	padding-top:20px;
+}
+.dialog_pic_td
+{
+	padding-left:20px;
+	padding-top:20px;
+	width:30%;
+}
+.dialog_btn_td
+{
+	height:35px;
+}

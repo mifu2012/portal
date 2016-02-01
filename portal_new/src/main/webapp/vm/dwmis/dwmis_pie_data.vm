@@ -1,0 +1,5 @@
+##通用的饼图
+#set( $layout = "home/layout/null.vm" )
+#foreach($pieData in $pieDataList)
+    $pieData.title;$pieData.value;;$pieData.color;;$pieData.kpicode
+#end

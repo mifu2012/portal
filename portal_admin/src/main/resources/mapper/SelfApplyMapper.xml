@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.po.selfApplyMapper">
+	<!-- 自助服务 -->
+	<resultMap id="SelfApplyMap" type="SelfApply">
+		<result property="id" column="id" />
+		<result property="reportId" column="report_id" />
+		<result property="reportName" column="report_name" />
+		<result property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="state" column="state" />
+		<result property="memo" column="memo" />
+		<result property="updateId" column="update_id" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+	
+	<!-- 通过用户ID查询所有通过的自服务报表 -->
+	<select id="querySelfApplyByUsrID" parameterType="int" resultMap="SelfApplyMap">
+		select sa.* from tb_rpt_self_apply sa,tb_rpt_design r 
+			where sa.report_id =r.report_id and sa.user_id=#{userId} and sa.state=3
+	</select>
+
+	<!-- 分页查询 -->
+	<select id="listPageItem" parameterType="SelfApply" resultMap="SelfApplyMap">
+		SELECT * FROM tb_rpt_self_apply
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="reportName !=null and reportName!=''">
+				report_name LIKE CONCAT(CONCAT('%',#{reportName}),'%') 
+			</if>
+			<if test="userName !=null and userName!=''">
+				and user_name LIKE CONCAT(CONCAT('%',#{userName}),'%') 
+			</if>
+			<if test="state !=null ">
+				and state =#{state}
+			</if>
+		</trim>
+		order by id desc
+	</select>
+	<!-- 通过ID查询数据 -->
+	<select id="getSelfApplyById" parameterType="int" resultMap="SelfApplyMap">
+	select * from tb_rpt_self_apply where id=#{id}
+	</select>
+	<!-- 更新(审批) -->
+	<update id="updateSelfApply" parameterType="SelfApply">
+		update tb_rpt_self_apply set state=#{state},memo=#{memo},update_id=#{updateId} where id=#{id}
+	</update>
+	<!-- 报表名称同步 -->
+	<update id="updateSelfReportName" parameterType="ReportDesign">
+		UPDATE tb_rpt_self_apply set report_name =#{reportName} where report_id=#{reportId}
+	</update>
+	<!-- 批量删除部门信息 -->
+	<delete id="deleteSelfApplyByIds" parameterType="list">
+		<![CDATA[
+            DELETE from tb_rpt_self_apply where report_id in
+        ]]>
+		<foreach collection="list" item="reportIds" open="(" separator=","
+			close=")">
+			#{reportIds}
+		</foreach>
+	</delete>
+</mapper>

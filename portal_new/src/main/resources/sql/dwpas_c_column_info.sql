@@ -1,0 +1,169 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50508
+Source Host           : localhost:3306
+Source Database       : portal
+
+Target Server Type    : MYSQL
+Target Server Version : 50508
+File Encoding         : 65001
+
+Date: 2012-03-03 20:40:19
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for `dwpas_c_column_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `dwpas_c_column_info`;
+CREATE TABLE `dwpas_c_column_info` (
+  `COLUMN_CODE` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '-1',
+  `COLUMN_NAME` varchar(500) CHARACTER SET utf8 NOT NULL,
+  `IS_SHOW` int(11) DEFAULT '1',
+  `REMARK` varchar(500) CHARACTER SET utf8 DEFAULT NULL,
+  `GMT_CREATE` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`COLUMN_CODE`),
+  UNIQUE KEY `UNIQUE_COLUMN_CODE` (`COLUMN_CODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT=' dwpas_c_column_info';
+
+-- ----------------------------
+-- Records of dwpas_c_column_info
+-- ----------------------------
+INSERT INTO dwpas_c_column_info VALUES ('ASK_USER_CONSTITUTE_DAY_PIE_CHART', '求助用户构成', '1', '用户声音_求助用户构成_日', '2012-03-03 20:29:19');
+INSERT INTO dwpas_c_column_info VALUES ('ASK_USER_CONSTITUTE_MONTH_PIE_CHART', '求助用户构成', '1', '用户声音_求助用户构成_月', '2012-03-03 20:29:19');
+INSERT INTO dwpas_c_column_info VALUES ('HELP_RISE_THREAD_CHART', '求助率趋势', '1', '用户声音_求助率趋势', '2012-03-03 20:25:14');
+INSERT INTO dwpas_c_column_info VALUES ('INDEX_ALERT_DASHBOARD_CHART', '用户咨询情况', '1', '首页＿用户咨询情况＿没有子产品线', '2012-03-03 19:39:36');
+INSERT INTO dwpas_c_column_info VALUES ('INDEX_ALERT_DENOMINATOR_DASHBOARD_CHART', '用户咨询情况', '1', '首页＿用户咨询情况＿有子产品线_用户求助率_分母', '2012-03-03 19:39:36');
+INSERT INTO dwpas_c_column_info VALUES ('INDEX_ALERT_MOLECULES_DASHBOARD_CHART', '用户咨询情况', '1', '首页＿用户咨询情况＿有子产品线_用户求助率_分子', '2012-03-03 19:39:36');
+INSERT INTO dwpas_c_column_info VALUES ('INDEX_RECTANGLE_CHART', '业务笔数监控', '1', '首页＿业务笔数监控', '2012-03-03 19:41:10');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_DAY_USER_COUNT', '产品使用用户趋势', '1', '产品发展_产品使用用户趋势_产品用户数_日', '2012-03-03 19:46:45');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_FULL_YEAR_USER_KEEP_PIE_CHART', '全年用户产品构造情况', '1', '用户存留_全年用户产品构造情况', '2012-03-03 20:03:47');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_NEW_USER_RATE_PIE_CHART', '上月产品用户留存', '1', '用户存留_上月产品用户留存_上期新用户留存率', '2012-03-03 20:20:36');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_NEW_USER_VALUE', '上月新用户', '1', '用户存留_上月产品用户留存_新用户数', '2012-03-03 20:14:15');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_OLD_USER_RATE_PIE_CHART', '上月产品用户留存', '1', '用户存留_上月产品用户留存_上期老用户留存率', '2012-03-03 20:21:15');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_OLD_USER_VALUE', '上月产品用户留存', '1', '用户存留_上月产品用户留存_上期老用户数', '2012-03-03 20:21:15');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_SLEEP_USER_RATE_PIE_CHART', '上月休眠用户', '1', '用户存留_上月产品用户留存_上期休眠用户复合率', '2012-03-03 20:21:15');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_SLEEP_USER_VALUE', '上月休眠用户', '1', '用户存留_上月产品用户留存_上期休眠用户数', '2012-03-03 20:21:15');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_TOTAL_LOSE_USER_RATE_PIE_CHART', '上月累计流失用户', '1', '用户存留_上月产品用户留存_上期流失用户复合率', '2012-03-03 20:21:15');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_LAST_MONTH_TOTAL_LOSE_USER_VALUE', '上月累计流失用户', '1', '用户存留_上月产品用户留存_上期流失用户数', '2012-03-03 20:21:15');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_HEALTH_USER_TREND_CHART', '细分用户复活或留存趋势', '1', '用户存留_细分用户复活或留存趋势', '2012-03-03 20:25:14');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_MONTH_PER_USER_ADMOUNT', '户均贡献变化趋势', '1', '户均贡献变化趋势_户均金额_月', '2012-03-03 19:56:11');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_MONTH_PER_USER_TIMES', '户均贡献变化趋势', '1', '户均贡献变化趋势_户均笔数_月', '2012-03-03 19:56:11');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_AMOUNT', '产品使用量增长趋势', '1', '产品使用量增长趋势_业务量_月', '2012-03-03 19:56:10');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_TIMES', '产品使用量增长趋势', '1', '产品使用量增长趋势_业务笔数_月', '2012-03-03 19:56:11');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_MONTH_TOTAL_USER_COUNT', '产品使用用户趋势', '1', '产品使用用户趋势_历史累计使用用户数_月', '2012-03-03 19:56:11');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_MONTH_USER_COUNT', '产品使用用户趋势', '1', '产品使用用户趋势_产品用户数_月', '2012-03-03 19:56:11');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_PER_USER_ADMOUNT', '户均贡献变化趋势', '1', '产品发展_户均贡献变化趋势_户均金额_日', '2012-03-03 19:46:45');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_PER_USER_TIMES', '户均贡献变化趋势', '1', '产品发展_户均贡献变化趋势_户均笔数_日', '2012-03-03 19:46:45');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_TOTAL_TRANSACTIONS_AMOUNT', '产品使用量增长趋势', '1', '产品发展_产品使用量增长趋势_业务量_日', '2012-03-03 19:46:45');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_TOTAL_TRANSACTIONS_TIMES', '产品使用量增长趋势', '1', '产品发展_产品使用量增长趋势_业务笔数_日', '2012-03-03 19:46:45');
+INSERT INTO dwpas_c_column_info VALUES ('PRODUCT_TOTAL_USER_COUNT', '产品使用用户趋势', '1', '产品使用用户趋势_历史累计使用用户数_日', '2012-03-03 19:46:45');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_ACTIVE_USER_PIE_CHART', '活跃用户', '1', '用户特征_活跃用户', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_ACTIVE_USER_WIRELESS_OVERALL_PIE_CHART', '活跃用户大盘', '1', '用户特征_活跃用户大盘', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_DEEP_USER_RATE_THREAD_CHART', '深度活跃用户', '1', '用户特征_深度活跃用户', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_FEMALE_USER_OVERALL_PIE_CHART', '女用户数占比大盘', '1', '用户特征_女用户数占比大盘', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_FEMALE_USER_RATE_PIE_CHART', '女用户数占比', '1', '用户特征_女用户数占比', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_MAN_USER_OVERALL_PIE_CHART', '男用户数占比大盘', '1', '用户特征_男用户数占比大盘', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_MAN_USER_RATE_PIE_CHART', '男用户数占比', '1', '用户特征_男用户数占比', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_NO_USE_WIRELESS_OVERALL_PIE_CHART', '未使用过无线用户数占比大盘', '1', '用户特征_未使用过无线用户数占比大盘', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_NO_USE_WIRELESS_RATE_PIE_CHART', '未使用过无线用户数占比', '1', '用户特征_未使用过无线用户数占比', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_USED_WIRELESS_OVERALL_PIE_CHART', '使用过无线用户数占比大盘', '1', '用户特征_使用过无线用户数占比大盘', '2012-03-03 20:36:19');
+INSERT INTO dwpas_c_column_info VALUES ('USER_CHARACTER_USED_WIRELESS_RATE_PIE_CHART', '使用过无线用户数占比', '1', '用户特征_使用过无线用户数占比', '2012-03-03 20:36:19');
+
+-- ----------------------------
+-- Table structure for `dwpas_r_column_com_kpi`
+-- ----------------------------
+DROP TABLE IF EXISTS `dwpas_r_column_com_kpi`;
+CREATE TABLE `dwpas_r_column_com_kpi` (
+  `COLUMN_CODE` varchar(255) CHARACTER SET utf8 NOT NULL DEFAULT '',
+  `com_kpi_code` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '通用指标code',
+  `GMT_CREATE` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`COLUMN_CODE`,`com_kpi_code`),
+  KEY `FK_RCCK_COM_KPI_CODE` (`com_kpi_code`),
+  CONSTRAINT `FK_RCCK_COLUMN_CODE` FOREIGN KEY (`COLUMN_CODE`) REFERENCES `dwpas_c_column_info` (`COLUMN_CODE`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `FK_RCCK_COM_KPI_CODE` FOREIGN KEY (`com_kpi_code`) REFERENCES `dwpas_c_com_kpi_info` (`com_kpi_code`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='dwpas_r_column_com_kpi';
+
+-- ----------------------------
+-- Records of dwpas_r_column_com_kpi
+-- ----------------------------
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_DAY_PIE_CHART', 'CKC0033', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_DAY_PIE_CHART', 'CKC0034', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_DAY_PIE_CHART', 'CKC0035', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_MONTH_PIE_CHART', 'CKC0056', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_MONTH_PIE_CHART', 'CKC0057', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_MONTH_PIE_CHART', 'CKC0058', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_MONTH_PIE_CHART', 'CKC0059', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('ASK_USER_CONSTITUTE_MONTH_PIE_CHART', 'CKC0071', '2012-03-03 20:30:56');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('HELP_RISE_THREAD_CHART', 'CKC0001', '2012-03-03 20:26:35');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('INDEX_ALERT_DASHBOARD_CHART', 'CKC0001', '2012-03-03 19:51:50');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('INDEX_ALERT_DENOMINATOR_DASHBOARD_CHART', 'CKC0074', '2012-03-03 19:51:50');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('INDEX_ALERT_MOLECULES_DASHBOARD_CHART', 'CKC0073', '2012-03-03 19:51:50');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('INDEX_RECTANGLE_CHART', 'CKC0010', '2012-03-03 19:51:50');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('INDEX_RECTANGLE_CHART', 'CKC0013', '2012-03-03 19:51:50');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_DAY_USER_COUNT', 'CKC0002', '2012-03-03 19:53:29');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_FULL_YEAR_USER_KEEP_PIE_CHART', 'CKC0003', '2012-03-03 20:05:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_FULL_YEAR_USER_KEEP_PIE_CHART', 'CKC0039', '2012-03-03 20:05:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_FULL_YEAR_USER_KEEP_PIE_CHART', 'CKC0067', '2012-03-03 20:05:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_FULL_YEAR_USER_KEEP_PIE_CHART', 'CKC0068', '2012-03-03 20:05:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_FULL_YEAR_USER_KEEP_PIE_CHART', 'CKC0070', '2012-03-03 20:05:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_NEW_USER_RATE_PIE_CHART', 'CKC0044', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_NEW_USER_VALUE', 'CKC0003', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_OLD_USER_RATE_PIE_CHART', 'CKC0043', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_OLD_USER_VALUE', 'CKC0039', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_SLEEP_USER_RATE_PIE_CHART', 'CKC0046', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_SLEEP_USER_VALUE', 'CKC0037', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_TOTAL_LOSE_USER_RATE_PIE_CHART', 'CKC0045', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_LAST_MONTH_TOTAL_LOSE_USER_VALUE', 'CKC0036', '2012-03-03 20:23:45');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_USER_TREND_CHART', 'CKC0043', '2012-03-03 20:26:35');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_USER_TREND_CHART', 'CKC0044', '2012-03-03 20:26:35');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_USER_TREND_CHART', 'CKC0045', '2012-03-03 20:26:35');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_HEALTH_USER_TREND_CHART', 'CKC0046', '2012-03-03 20:26:35');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_ADMOUNT', 'CKC0021', '2012-03-03 20:01:27');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_ADMOUNT', 'CKC0103', '2012-03-03 20:01:27');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_ADMOUNT', 'CKC0104', '2012-03-03 20:01:27');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_ADMOUNT', 'CKC0105', '2012-03-03 20:01:27');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_ADMOUNT', 'CKC0106', '2012-03-03 20:01:27');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_TIMES', 'CKC0020', '2012-03-03 20:02:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_TIMES', 'CKC0108', '2012-03-03 20:02:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_TIMES', 'CKC0109', '2012-03-03 20:02:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_TIMES', 'CKC0110', '2012-03-03 20:02:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_PER_USER_TIMES', 'CKC0111', '2012-03-03 20:02:16');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_AMOUNT', 'CKC0009', '2012-03-03 19:57:38');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_AMOUNT', 'CKC0083', '2012-03-03 19:57:38');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_AMOUNT', 'CKC0084', '2012-03-03 19:57:38');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_AMOUNT', 'CKC0085', '2012-03-03 19:57:38');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_AMOUNT', 'CKC0086', '2012-03-03 19:57:38');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_TIMES', 'CKC0010', '2012-03-03 19:58:44');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_TIMES', 'CKC0088', '2012-03-03 19:58:44');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_TIMES', 'CKC0089', '2012-03-03 19:58:44');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_TIMES', 'CKC0090', '2012-03-03 19:58:44');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_TRANSACTIONS_TIMES', 'CKC0091', '2012-03-03 19:58:44');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_USER_COUNT', 'CKC0097', '2012-03-03 20:00:40');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_USER_COUNT', 'CKC0098', '2012-03-03 20:00:40');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_USER_COUNT', 'CKC0099', '2012-03-03 20:00:40');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_USER_COUNT', 'CKC0100', '2012-03-03 20:00:40');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_TOTAL_USER_COUNT', 'CKC0101', '2012-03-03 20:00:40');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_USER_COUNT', 'CKC0092', '2012-03-03 19:59:55');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_USER_COUNT', 'CKC0093', '2012-03-03 19:59:55');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_USER_COUNT', 'CKC0094', '2012-03-03 19:59:55');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_USER_COUNT', 'CKC0095', '2012-03-03 19:59:55');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_MONTH_USER_COUNT', 'CKC0096', '2012-03-03 19:59:55');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_PER_USER_ADMOUNT', 'CKC0021', '2012-03-03 19:53:30');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_PER_USER_TIMES', 'CKC0020', '2012-03-03 19:53:30');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_TOTAL_TRANSACTIONS_AMOUNT', 'CKC0009', '2012-03-03 19:53:29');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_TOTAL_TRANSACTIONS_TIMES', 'CKC0010', '2012-03-03 19:53:29');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('PRODUCT_TOTAL_USER_COUNT', 'CKC0006', '2012-03-03 19:53:30');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_ACTIVE_USER_PIE_CHART', 'CKC0028', '2012-03-03 20:39:04');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_ACTIVE_USER_WIRELESS_OVERALL_PIE_CHART', 'CKC0028', '2012-03-03 20:39:05');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_DEEP_USER_RATE_THREAD_CHART', 'CKC0022', '2012-03-03 20:39:04');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_FEMALE_USER_OVERALL_PIE_CHART', 'CKC0052', '2012-03-03 20:39:04');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_FEMALE_USER_RATE_PIE_CHART', 'CKC0052', '2012-03-03 20:39:05');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_MAN_USER_OVERALL_PIE_CHART', 'CKC0051', '2012-03-03 20:39:05');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_MAN_USER_RATE_PIE_CHART', 'CKC0051', '2012-03-03 20:39:05');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_NO_USE_WIRELESS_OVERALL_PIE_CHART', 'CKC0054', '2012-03-03 20:39:05');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_NO_USE_WIRELESS_RATE_PIE_CHART', 'CKC0054', '2012-03-03 20:39:05');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_USED_WIRELESS_OVERALL_PIE_CHART', 'CKC0053', '2012-03-03 20:39:05');
+INSERT INTO dwpas_r_column_com_kpi VALUES ('USER_CHARACTER_USED_WIRELESS_RATE_PIE_CHART', 'CKC0053', '2012-03-03 20:39:05');

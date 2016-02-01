@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.infosmart.portal.pojo.DwpasCKpiInfoDOMapper">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+    <resultMap id="RM-DWPAS-C-KPI-INFO" type="DwpasCKpiInfoDO">
+        <result property="kpiCode" column="KPI_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="parentCode" column="PARENT_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="kpiName" column="KPI_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dispName" column="DISP_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="kpiType" column="KPI_TYPE" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="isShow" column="IS_SHOW" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="showOrder" column="SHOW_ORDER" javaType="int" jdbcType="DECIMAL" /><!-- nullValue="0" -->
+        <result property="isAverage" column="IS_AVERAGE" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="isMax" column="IS_MAX" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="isVariation" column="IS_VARIATION" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="isPercent" column="IS_PERCENT" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="unit" column="UNIT" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="decimalNum" column="DECIMAL_NUM" javaType="int" jdbcType="DECIMAL" /><!-- nullValue="0" -->
+        <result property="convertNum" column="CONVERT_NUM" javaType="int" jdbcType="DECIMAL" /><!-- nullValue="0" -->
+        <result property="convertType" column="CONVERT_TYPE" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="isCalKpi" column="IS_CAL_KPI" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="roleFormula" column="ROLE_FORMULA" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="isUse" column="IS_USE" javaType="java.lang.String" jdbcType="CHAR"/>
+        <result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <!-- <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" jdbcType="TIMESTAMP"/> -->
+        <result property="isOverall" column="IS_OVERALL" javaType="java.lang.String" jdbcType="CHAR"/>
+    </resultMap>
+
+
+    <!-- ============================================= -->
+    <!-- mapped statements for IbatisDwpasCKpiInfoDAO -->
+    <!-- ============================================= -->
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryAll -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ALL" resultMap="RM-DWPAS-C-KPI-INFO">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ALL*/ kpi_code, parent_code, kpi_name, disp_name, kpi_type, is_overall, is_show, show_order, is_average, is_max, is_variation, is_percent, unit, decimal_num, convert_num, convert_type, is_cal_kpi, role_formula, is_use, gmt_create, gmt_modified from dwpas_c_kpi_info order by show_order ASC
+    ]]>
+    </select> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.insert -->
+    <!-- <insert id="MS-DWPAS-C-KPI-INFO-INSERT">
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-C-KPI-INFO-INSERT*/ into dwpas_c_kpi_info(kpi_code,parent_code,kpi_name,disp_name,kpi_type,is_overall,is_show,show_order,is_average,is_max,is_variation,is_percent,unit,decimal_num,convert_num,convert_type,is_cal_kpi,role_formula,is_use,gmt_create,gmt_modified) values (#kpiCode#, #parentCode#, #kpiName#, #dispName#, #kpiType#, #isOverall#, #isShow#, #showOrder#, #isAverage#, #isMax#, #isVariation#, #isPercent#, #unit#, #decimalNum#, #convertNum#, #convertType#, #isCalKpi#, #roleFormula#, #isUse#, now(), now())
+    ]]>
+    </insert> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.delete -->
+   <!--  <delete id="MS-DWPAS-C-KPI-INFO-DELETE">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-C-KPI-INFO-DELETE*/ from dwpas_c_kpi_info where (kpi_code = #value#)
+    ]]>
+    </delete> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryOneByCode -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ONE-BY-CODE" resultMap="RM-DWPAS-C-KPI-INFO" parameterClass="java.lang.String">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ONE-BY-CODE*/ kpi_code, parent_code, kpi_name, disp_name, kpi_type, is_overall, is_show, show_order, is_average, is_max, is_variation, is_percent, unit, decimal_num, convert_num, convert_type, is_cal_kpi, role_formula, is_use, gmt_create, gmt_modified from dwpas_c_kpi_info where (kpi_code = #value#)
+    ]]>
+    </select> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryAllByKpiCodes -->
+    <select id="QUERY-ALL-BY-KPI-CODES" resultMap="RM-DWPAS-C-KPI-INFO">
+        select kpi_code, parent_code, kpi_name, disp_name, kpi_type, is_overall, is_show, show_order, is_average, is_max, is_variation, is_percent, unit, decimal_num, convert_num, convert_type, is_cal_kpi, role_formula, is_use, gmt_create, gmt_modified from dwpas_c_kpi_info where kpi_code in
+                <foreach collection="list" item="kpiCode" open="(" close=")"
+					separator=",">
+					#{kpiCode,jdbcType=VARCHAR}
+				</foreach>
+                and is_use='1' order by show_order asc
+    </select>
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryAllByComKpiCodeAndPrdIds -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ALL-BY-COM-KPI-CODE-AND-PRD-IDS" resultMap="java.util.HashMap">
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ALL-BY-COM-KPI-CODE-AND-PRD-IDS*/ ki.kpi_code, ki.parent_code, ki.kpi_name, ki.disp_name, ki.kpi_type, ki.is_overall, ki.is_show, ki.show_order, ki.is_average,
+                    ki.is_max, ki.is_variation, ki.is_percent, ki.unit, ki.decimal_num, ki.convert_num, ki.convert_type,
+                    ki.is_cal_kpi, ki.role_formula, ki.is_use, ki.gmt_create, ki.gmt_modified
+                    from dwpas_c_kpi_info ki, dwpas_r_kpi_comkpi kc, dwpas_r_prd_kpi pk
+                    where kc.com_kpi_code=#comKpiCode#
+                    and ki.kpi_type=#kpiType# and ki.is_use='1'
+                    and pk.product_id in
+		      	    <iterate property="productIds" open="(" close=")" conjunction=",">
+		                   #productIds[]#
+		            </iterate>
+                    and ki.kpi_code=kc.kpi_code
+                    and ki.kpi_code=pk.kpi_code
+                    order by ki.show_order asc
+    </select> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryAllByPrdIdAndComKpiCodes -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ALL-BY-PRD-ID-AND-COM-KPI-CODES" resultMap="RM-DWPAS-C-KPI-INFO">
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ALL-BY-PRD-ID-AND-COM-KPI-CODES*/ ki.kpi_code, ki.parent_code, ki.kpi_name, ki.disp_name, ki.kpi_type, ki.is_overall, ki.is_show, ki.show_order, ki.is_average,
+                    ki.is_max, ki.is_variation, ki.is_percent, ki.unit, ki.decimal_num, ki.convert_num, ki.convert_type,
+                    ki.is_cal_kpi, ki.role_formula, ki.is_use, ki.gmt_create, ki.gmt_modified
+                    from dwpas_c_kpi_info ki, dwpas_r_kpi_comkpi kc, dwpas_r_prd_kpi pk
+                    where pk.product_id=#productId#
+                    and ki.kpi_type=#kpiType# and ki.is_use='1'
+                    and kc.com_kpi_code in
+		      	    <iterate property="comKpiCodes" open="(" close=")" conjunction=",">
+		                   #comKpiCodes[]#
+		            </iterate>
+                    and ki.kpi_code=kc.kpi_code
+                    and ki.kpi_code=pk.kpi_code
+                    order by ki.show_order asc
+    </select> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryOneByPrdIdAndComKpiCode -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ONE-BY-PRD-ID-AND-COM-KPI-CODE" resultMap="RM-DWPAS-C-KPI-INFO">
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ONE-BY-PRD-ID-AND-COM-KPI-CODE*/ ki.kpi_code, ki.parent_code, ki.kpi_name, ki.disp_name, ki.kpi_type, ki.is_overall, ki.is_show, ki.show_order, ki.is_average,
+                    ki.is_max, ki.is_variation, ki.is_percent, ki.unit, ki.decimal_num, ki.convert_num, ki.convert_type,
+                    ki.is_cal_kpi, ki.role_formula, ki.is_use, ki.gmt_create, ki.gmt_modified
+                    from dwpas_c_kpi_info ki, dwpas_r_kpi_comkpi kc, dwpas_r_prd_kpi pk
+                    where pk.product_id=#productId#
+                    and ki.kpi_type=#kpiType# and ki.is_use='1'
+                    and kc.com_kpi_code=#comKpiCode#
+                    and ki.kpi_code=kc.kpi_code
+                    and ki.kpi_code=pk.kpi_code
+                    order by ki.show_order asc
+    </select> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryOneOverallByComKpiCode -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ONE-OVERALL-BY-COM-KPI-CODE" resultMap="RM-DWPAS-C-KPI-INFO">
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ONE-OVERALL-BY-COM-KPI-CODE*/ ki.kpi_code, ki.parent_code, ki.kpi_name, ki.disp_name, ki.kpi_type, ki.is_overall, ki.is_show, ki.show_order, ki.is_average,
+                    ki.is_max, ki.is_variation, ki.is_percent, ki.unit, ki.decimal_num, ki.convert_num, ki.convert_type,
+                    ki.is_cal_kpi, ki.role_formula, ki.is_use, ki.gmt_create, ki.gmt_modified
+                    from dwpas_c_kpi_info ki, dwpas_r_kpi_comkpi kc
+                    where ki.kpi_type=#kpiType# and ki.is_use='1' and ki.is_overall='1'
+                    and kc.com_kpi_code=#comKpiCode#
+                    and ki.kpi_code=kc.kpi_code
+                    order by ki.show_order asc
+    </select> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryAllChildsByParentCodeAndPrdId -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ALL-CHILDS-BY-PARENT-CODE-AND-PRD-ID" resultMap="RM-DWPAS-C-KPI-INFO">
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ALL-CHILDS-BY-PARENT-CODE-AND-PRD-ID*/ ki.kpi_code, ki.parent_code, ki.kpi_name, ki.disp_name, ki.kpi_type, ki.is_overall, ki.is_show, ki.show_order, ki.is_average,
+                    ki.is_max, ki.is_variation, ki.is_percent, ki.unit, ki.decimal_num, ki.convert_num, ki.convert_type,
+                    ki.is_cal_kpi, ki.role_formula, ki.is_use, ki.gmt_create, ki.gmt_modified
+                    from dwpas_c_kpi_info ki, dwpas_r_prd_kpi pk
+                    where pk.product_id=#productId# and ki.parent_code=#parentCode# and ki.kpi_type=#kpiType# and ki.is_overall=#isOverall#
+                    and ki.is_show='1' and ki.is_use='1'
+                    and ki.kpi_code=pk.kpi_code
+                    order by ki.show_order asc
+    </select> -->
+
+    <!-- mapped statement for IbatisDwpasCKpiInfoDAO.qryAllByDO -->
+    <!-- <select id="MS-DWPAS-C-KPI-INFO-QRY-ALL-BY-DO" resultMap="RM-DWPAS-C-KPI-INFO">
+        select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ALL-BY-DO*/ kpi_code, parent_code, kpi_name, disp_name, kpi_type, is_overall, is_show, show_order, is_average, is_max, is_variation, is_percent, unit, decimal_num, convert_num, convert_type, is_cal_kpi, role_formula, is_use, gmt_create, gmt_modified from dwpas_c_kpi_info
+            <dynamic prepend="where">
+                <isNotEmpty prepend="AND" property="kpiCode">
+                   kpi_code=#kpi_code#
+               </isNotEmpty>
+               <isNotEmpty prepend="AND" property="parentCode">
+                   parent_code=#parentCode#
+               </isNotEmpty>
+               <isNotEmpty prepend="AND" property="kpiName">
+                   kpi_name=#kpiName#
+               </isNotEmpty>
+               <isNotEmpty prepend="AND" property="dispName">
+                   disp_name=#dispName#
+               </isNotEmpty>
+               <isNotEmpty prepend="AND" property="kpiType">
+                   kpi_type=#kpiType#
+               </isNotEmpty>
+               <isNotEmpty prepend="AND" property="isOverall">
+                   is_overall=#isOverall#
+               </isNotEmpty>
+               <isNotEmpty prepend="AND" property="isShow">
+                   is_show=#isShow#
+                </isNotEmpty>
+               <isNotEmpty prepend="AND" property="isUse">
+                   is_use=#isUse#
+                </isNotEmpty>
+            </dynamic>
+            order by show_order asc
+    </select> -->
+
+</mapper>

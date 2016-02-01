@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/china.swf" tl_long="73.559248" tl_lat="53.560308" br_long="134.775703" br_lat="18.158606" zoom="95%" zoom_x="3.63%" zoom_y="2.68%">
+  <areas>
+    <area mc_name="CN_AH" color="$!mapdata.AH_COLOR"  title="安徽省">
+	 <description>
+        <![CDATA[会员数:$!mapdata.AH_COUNTS<br>占比(全国):$!mapdata.AH_PERCENT<br>排名(全国):$!mapdata.AH_RANKING<br>销量(全国):$!mapdata.AH_SALES]]>
+     </description>
+	</area>
+    <area mc_name="CN_BJ" title="北京市" color="$!mapdata.BJ_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.BJ_COUNTS<br>占比(全国):$!mapdata.BJ_PERCENT<br>排名(全国):$!mapdata.BJ_RANKING<br>销量(全国):$!mapdata.BJ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_CQ" title="重庆市" color="$!mapdata.CQ_COLOR">
+    <description>
+        <![CDATA[会员数:$!mapdata.CQ_COUNTS<br>占比(全国):$!mapdata.CQ_PERCENT<br>排名(全国):$!mapdata.CQ_RANKING<br>销量(全国):$!mapdata.CQ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_FJ" title="福建省" color="$!mapdata.FJ_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.FJ_COUNTS<br>占比(全国):$!mapdata.FJ_PERCENT<br>排名(全国):$!mapdata.FJ_RANKING<br>销量(全国):$!mapdata.FJ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_GS" title="甘肃省" color="$!mapdata.GS_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.GS_COUNTS<br>占比(全国):$!mapdata.GS_PERCENT<br>排名(全国):$!mapdata.GS_RANKING<br>销量(全国):$!mapdata.GS_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_GD" title="广东省" color="$!mapdata.GD_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.GD_COUNTS<br>占比(全国):$!mapdata.GD_PERCENT<br>排名(全国):$!mapdata.GD_RANKING<br>销量(全国):$!mapdata.GD_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_GX" title="广西" color="$!mapdata.GX_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.GX_COUNTS<br>占比(全国):$!mapdata.GX_PERCENT<br>排名(全国):$!mapdata.GX_RANKING<br>销量(全国):$!mapdata.GX_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_GZ" title="贵州省" color="$!mapdata.GZ_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.GZ_COUNTS<br>占比(全国):$!mapdata.GZ_PERCENT<br>排名(全国):$!mapdata.GZ_RANKING<br>销量(全国):$!mapdata.GZ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_HA" title="海南省" color="$!mapdata.HA_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.HA_COUNTS<br>占比(全国):$!mapdata.HA_PERCENT<br>排名(全国):$!mapdata.HA_RANKING<br>销量(全国):$!mapdata.HA_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_HB" title="河北省" color="$!mapdata.HB_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.HB_COUNTS<br>占比(全国):$!mapdata.HB_PERCENT<br>排名(全国):$!mapdata.HB_RANKING<br>销量(全国):$!mapdata.HB_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_HL" title="黑龙江" color="$!mapdata.HL_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.HL_COUNTS<br>占比(全国):$!mapdata.HL_PERCENT<br>排名(全国):$!mapdata.HL_RANKING<br>销量(全国):$!mapdata.HL_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_HE" title="河南省" color="$!mapdata.HE_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.HE_COUNTS<br>占比(全国):$!mapdata.HE_PERCENT<br>排名(全国):$!mapdata.HE_RANKING<br>销量(全国):$!mapdata.HE_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_HU" title="湖北省" color="$!mapdata.HU_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.HU_COUNTS<br>占比(全国):$!mapdata.HU_PERCENT<br>排名(全国):$!mapdata.HU_RANKING<br>销量(全国):$!mapdata.HU_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_HN" title="湖南省" color="$!mapdata.HN_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.HN_COUNTS<br>占比(全国):$!mapdata.HN_PERCENT<br>排名(全国):$!mapdata.HN_RANKING<br>销量(全国):$!mapdata.HN_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_NM" title="内蒙古" color="$!mapdata.NM_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.NM_COUNTS<br>占比(全国):$!mapdata.NM_PERCENT<br>排名(全国):$!mapdata.NM_RANKING<br>销量(全国):$!mapdata.NM_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_JS" title="江苏省" color="$!mapdata.JS_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.JS_COUNTS<br>占比(全国):$!mapdata.JS_PERCENT<br>排名(全国):$!mapdata.JS_RANKING<br>销量(全国):$!mapdata.JS_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_JX" title="江西省" color="$!mapdata.JX_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.JX_COUNTS<br>占比(全国):$!mapdata.JX_PERCENT<br>排名(全国):$!mapdata.JX_RANKING<br>销量(全国):$!mapdata.JX_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_JL" title="吉林省" color="$!mapdata.JL_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.JL_COUNTS<br>占比(全国):$!mapdata.JL_PERCENT<br>排名(全国):$!mapdata.JL_RANKING<br>销量(全国):$!mapdata.JL_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_LN" title="辽宁省" color="$!mapdata.LN_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.LN_COUNTS<br>占比(全国):$!mapdata.LN_PERCENT<br>排名(全国):$!mapdata.LN_RANKING<br>销量(全国):$!mapdata.LN_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_NX" title="宁夏" color="$!mapdata.NX_COLOR">
+    <description>
+        <![CDATA[会员数:$!mapdata.NX_COUNTS<br>占比(全国):$!mapdata.NX_PERCENT<br>排名(全国):$!mapdata.NX_RANKING<br>销量(全国):$!mapdata.NX_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_QH" title="青海省" color="$!mapdata.QH_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.QH_COUNTS<br>占比(全国):$!mapdata.QH_PERCENT<br>排名(全国):$!mapdata.QH_RANKING<br>销量(全国):$!mapdata.QH_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_SA" title="陕西省" color="$!mapdata.SA_COLOR">
+       <description>
+        <![CDATA[会员数:$!mapdata.SA_COUNTS<br>占比(全国):$!mapdata.SA_PERCENT<br>排名(全国):$!mapdata.SA_RANKING<br>销量(全国):$!mapdata.SA_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_SD" title="山东省" color="$!mapdata.SD_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.SD_COUNTS<br>占比(全国):$!mapdata.SD_PERCENT<br>排名(全国):$!mapdata.SD_RANKING<br>销量(全国):$!mapdata.SD_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_SH" title="上海市" color="$!mapdata.SH_COLOR">
+    <description>
+        <![CDATA[会员数:$!mapdata.SH_COUNTS<br>占比(全国):$!mapdata.SH_PERCENT<br>排名(全国):$!mapdata.SH_RANKING<br>销量(全国):$!mapdata.SH_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_SX" title="山西省" color="$!mapdata.SX_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.SX_COUNTS<br>占比(全国):$!mapdata.SX_PERCENT<br>排名(全国):$!mapdata.SX_RANKING<br>销量(全国):$!mapdata.SX_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_SC" title="四川省" color="$!mapdata.SC_COLOR">
+	  <description>
+        <![CDATA[会员数:$!mapdata.SC_COUNTS<br>占比(全国):$!mapdata.SC_PERCENT<br>排名(全国):$!mapdata.SC_RANKING<br>销量(全国):$!mapdata.SC_SALES]]>
+     </description>
+	</area>
+    <area mc_name="CN_TJ" title="天津市" color="$!mapdata.TJ_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.TJ_COUNTS<br>占比(全国):$!mapdata.TJ_PERCENT<br>排名(全国):$!mapdata.TJ_RANKING<br>销量(全国):$!mapdata.TJ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_XZ" title="西藏" color="$!mapdata.XZ_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.XZ_COUNTS<br>占比(全国):$!mapdata.XZ_PERCENT<br>排名(全国):$!mapdata.XZ_RANKING<br>销量(全国):$!mapdata.XZ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_XJ" title="新疆" color="$!mapdata.XJ_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.XJ_COUNTS<br>占比(全国):$!mapdata.XJ_PERCENT<br>排名(全国):$!mapdata.XJ_RANKING<br>销量(全国):$!mapdata.XJ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_YN" title="云南省" color="$!mapdata.YN_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.YN_COUNTS<br>占比(全国):$!mapdata.YN_PERCENT<br>排名(全国):$!mapdata.YN_RANKING<br>销量(全国):$!mapdata.YN_SALES]]>
+     </description>
+    </area>
+    <area mc_name="CN_ZJ" title="浙江省" color="$!mapdata.ZJ_COLOR">
+      <description>
+        <![CDATA[会员数:$!mapdata.ZJ_COUNTS<br>占比(全国):$!mapdata.ZJ_PERCENT<br>排名(全国):$!mapdata.ZJ_RANKING<br>销量(全国):$!mapdata.ZJ_SALES]]>
+     </description>
+    </area>
+    <area mc_name="TW" title="台湾" color="$!mapdata.TW_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.TW_COUNTS<br>占比(全国):$!mapdata.TW_PERCENT<br>排名(全国):$!mapdata.TW_RANKING<br>销量(全国):$!mapdata.TW_SALES]]>
+     </description>
+    </area>
+    <area mc_name="HK" title="香港" color="$!mapdata.HK_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.HK_COUNTS<br>占比(全国):$!mapdata.HK_PERCENT<br>排名(全国):$!mapdata.HK_RANKING<br>销量(全国):$!mapdata.HK_SALES]]>
+     </description>
+    </area>
+    <area mc_name="MO" title="澳门" color="$!mapdata.MO_COLOR">
+     <description>
+        <![CDATA[会员数:$!mapdata.MO_COUNTS<br>占比(全国):$!mapdata.MO_PERCENT<br>排名(全国):$!mapdata.MO_RANKING<br>销量(全国):$!mapdata.MO_SALES]]>
+     </description>
+    </area>
+    <area title="borders" mc_name="borders_outside" color="#ffffff" balloon="false" alpha="0"></area>
+    <area title="borders" mc_name="borders_inside" color="#ffffff" balloon="false"></area>
+  </areas>
+
+  <movies>
+    <movie title="北京市" file="target" color="#FF60AF" width="15" height="15" long="116.387909" lat="39.90601" fixed_size="true"></movie>
+    <movie title="香港" file="circle" color="#FF60AF" width="5" height="5" long="114.153542" lat="22.411249" fixed_size="true"></movie>
+    <movie title="澳门" file="circle" color="#FF60AF" width="5" height="5" long="113.5502" lat="22.1636915147872" fixed_size="true"></movie>    
+    <movie title="台北" file="target" color="#FF60AF" width="10" height="10" long="121.564194" lat="25.080441" fixed_size="true"></movie>
+ </movies>
+  </map>

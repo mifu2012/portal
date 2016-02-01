@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation=" 
+           http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd 
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd
+           http://www.springframework.org/schema/mvc 
+           http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+	<!-- 自动扫描组件，这里要把service去除，防止重复扫描。 -->
+	<context:component-scan base-package="com.infosmart.portal">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+
+	<!-- 约定优于配置，约定优于配置 -->
+	<!-- 配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理，3.04新增功能，需要重新设置spring-mvc-3.0.xsd -->
+	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/dwmis/images/**" location="/dwmis/images/" />
+	<mvc:resources mapping="/dwmis/js/**" location="/dwmis/js/" />
+	<mvc:resources mapping="/dwmis/css/**" location="/dwmis/css/" />
+	<mvc:resources mapping="/vm/**" location="/vm/" />
+	<mvc:resources mapping="/common/**" location="/common/" />
+	<mvc:resources mapping="/old/**" location="/old/" />
+    <!-- login-->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		<property name="interceptors">
+			
+				<bean class="com.infosmart.portal.interceptor.LoginHandlerInterceptor" />
+			
+		</property>
+	</bean>
+
+	<!-- 配置一个基于注解的定制的WebBindingInitializer，解决日期转换问题，方法级别的处理器映射 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="cacheSeconds" value="0" />
+		<property name="webBindingInitializer">
+			<bean class="com.infosmart.portal.util.DefaultBinding" />
+		</property>
+		<!-- 配置一下对json数据的转换 -->
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- jsp视图解析器 -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<!-- jsp存放目录 -->
+		<property name="prefix" value="/jsp/" />
+		<!-- 前台页面后缀名 -->
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!-- 只负责输出异常日志，不处理异常 -->
+	<bean id="exceptionInterceptor"
+		class="com.infosmart.portal.interceptor.ExceptionInterceptor" />
+	<!-- 拦截异常，不处理异常，只负责输出错误日志 -->
+	<bean id="exceptionAdvice"
+		class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+		<!-- 这行一定要加上，动态方法调用 -->
+		<property name="proxyTargetClass" value="true" />
+		<property name="beanNames">
+			<list>
+				<!-- 拦截控制层所有异常 -->
+				<value>*Controller</value>
+			</list>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>exceptionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 错误跳转 -->
+	<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="/common/error" />
+		<property name="exceptionMappings">
+			<props>
+				<prop
+					key="org.springframework.dao.DataAccessException">
+					/common/error
+				</prop>
+				<prop
+					key="org.springframework.transaction.TransactionException">
+					/common/error
+				</prop>
+				<prop key="java.sql.SQLException">/common/error</prop>
+				<prop key="java.lang.RuntimeException">
+					/common/error
+				</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

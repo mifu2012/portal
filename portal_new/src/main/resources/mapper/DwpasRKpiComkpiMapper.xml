@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 通用指标与指标关联表 -->
+<mapper namespace="com.infosmart.mapper.DwpasRKpiComkpiMapper">
+	<!-- 新增通用指标与指标关联 -->
+	<insert id="insert" parameterType="java.util.HashMap">
+		INSERT INTO dwpas_r_kpi_comkpi
+		(com_kpi_code,kpi_code,gmt_create,gmt_modified) VALUES
+		(#{comKpiCode,jdbcType=VARCHAR},#{kpiCode,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyDate,jdbcType=TIMESTAMP});
+	</insert>
+	<!-- 删除通用指标与指标关联 -->
+	<delete id="delete" parameterType="java.util.HashMap">
+		DELETE FROM dwpas_r_kpi_comkpi WHERE
+		kpi_code=#{kpiCode,jdbcType=VARCHAR} and
+		comKpiCode=#{comKpiCode,jdbcType=VARCHAR}
+	</delete>
+</mapper>

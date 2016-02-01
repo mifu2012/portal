@@ -1,0 +1,75 @@
+BODY {
+	SCROLLBAR-FACE-COLOR: #828ea5; FONT-SIZE: 11px; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #5c6d89; SCROLLBAR-3DLIGHT-COLOR: #98b0d2; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #e0e0e0; FONT-FAMILY: "Tahoma", "Lucida Sans", "ËÎÌו"; SCROLLBAR-DARKSHADOW-COLOR: #000000
+}
+TD {
+	FONT-SIZE: 12px
+}
+A {
+	FONT-SIZE: 12px; COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	FONT-SIZE: 12px; COLOR: #0066cc; TEXT-DECORATION: underline
+}
+A.header {
+	FONT-SIZE: 12px; COLOR: #ffffff; TEXT-DECORATION: none
+}
+A.header:hover {
+	FONT-SIZE: 12px; COLOR: #003399
+}
+A.attach {
+	FONT-SIZE: 7pt; COLOR: #003399; TEXT-DECORATION: none
+}
+A.attach:hover {
+	FONT-SIZE: 7pt; COLOR: #000000
+}
+.myinput {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(../images/bbk.gif); BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid; HEIGHT: 20px; BACKGROUND-COLOR: #ffffff
+}
+.myinput3 {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid
+}
+.myinput2 {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid; HEIGHT: 20px; BACKGROUND-COLOR: #fefefe
+}
+.myselect {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid; BACKGROUND-COLOR: #efefef
+}
+.mytextarea {
+	BORDER-RIGHT: #9cb2d6 1px solid; BORDER-TOP: #9cb2d6 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #9cb2d6 1px solid; LINE-HEIGHT: 150%; BORDER-BOTTOM: #9cb2d6 1px solid; BACKGROUND-COLOR: #efefef
+}
+.myimg {
+	BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #000000 1px solid
+}
+.whitestyle {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: "Tahoma", "Lucida Sans", "ËÎÌו"; TEXT-DECORATION: none
+}
+.table1 {
+	FONT-SIZE: 12px; COLOR: #ffffff; BACKGROUND-COLOR: #416194
+}
+.table2 {
+	FONT-SIZE: 12px; COLOR: #ffffff; BACKGROUND-COLOR: #98b0d2
+}
+.english {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #416194; FONT-FAMILY: "Tahoma", "Lucida Sans"; TEXT-DECORATION: none
+}
+.name {
+	FONT-SIZE: 14px; COLOR: #ff6600
+}
+.standard {
+	FONT-SIZE: 9pt; COLOR: #333333; LINE-HEIGHT: 150%; TEXT-DECORATION: none
+}
+.buttonred {
+	BORDER-RIGHT: #666666 1px solid; BORDER-TOP: #666666 1px solid; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(../images/bbk_red.gif); BORDER-LEFT: #666666 1px solid; BORDER-BOTTOM: #666666 1px solid; HEIGHT: 22px; BACKGROUND-COLOR: #ffffff
+}
+.buttonmain {
+	BORDER-RIGHT: #585a67 1px solid; BORDER-TOP: #585a67 1px solid; FONT-SIZE: 12px; BACKGROUND-IMAGE: url(../images/bbk_main.gif); BORDER-LEFT: #585a67 1px solid; BORDER-BOTTOM: #585a67 1px solid; HEIGHT: 22px; BACKGROUND-COLOR: #ffffff
+}
+#searchform {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 10px 0px 0px; PADDING-TOP: 0px
+}
+#searchform .query {
+	BORDER-RIGHT: 0px; PADDING-RIGHT: 0px; BACKGROUND-POSITION: right 50%; BORDER-TOP: #4b7c9f 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 110%; PADDING-BOTTOM: 0px; MARGIN: 0px auto; VERTICAL-ALIGN: middle; BORDER-LEFT: #4b7c9f 1px solid; WIDTH: 160px; PADDING-TOP: 2px; BORDER-BOTTOM: #4b7c9f 1px solid; BACKGROUND-REPEAT: no-repeat; HEIGHT: 22px; BACKGROUND-COLOR: white
+}
+#searchform .go {
+	BORDER-RIGHT: #4b7c9f 1px solid; BORDER-TOP: #4b7c9f 1px solid; MARGIN: 0px auto; VERTICAL-ALIGN: middle; BORDER-LEFT: #4b7c9f 1px solid; WIDTH: 58px; BORDER-BOTTOM: #4b7c9f 1px solid; HEIGHT: 20px
+}

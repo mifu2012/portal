@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasCSysTypeMapper">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+	<!-- 通用指标信息记录集 -->
+	<resultMap id="DwpasCSysTypeResultMap" type="DwpasCSysType">
+		<result property="typeId" column="TYPE_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="groupId" column="GROUP_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="typeName" column="TYPE_NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="detail" column="DETAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+<!-- 		<result property="gmtModified" column="GMT_MODIFIED" jdbcType="TIMESTAMP"  javaType="java.util.Date" /> -->
+	</resultMap>
+	<!-- 数据为 0000-00-00 00:00:00 会报错，暂时去掉 -->
+
+
+	<!-- 查询父类指标 groupId=1000 -->
+	<select id="getParentKpi" resultMap="DwpasCSysTypeResultMap">
+		select
+		type_id,group_id,type_name,detail,gmt_create,gmt_modified
+		from
+		dwpas_c_sys_type
+		where group_id=#{groupId}
+	</select>
+	
+	<!-- 用户咨询风向标groupId=2000  -->
+	<select id="queryCSysTypeForIndex" resultMap="DwpasCSysTypeResultMap">
+        select  type_id, group_id, type_name, detail, gmt_create, gmt_modified from dwpas_c_sys_type
+            <trim prefix="WHERE" prefixOverrides="AND">
+			<if test="groupId!=null and groupId!=''">
+				 AND group_id=#{groupId}
+			</if>
+			<if test="typeName!=null and typeName!=''">
+				AND type_name=#{typeName}
+			</if>
+		</trim>
+            order by type_id asc
+    </select>
+</mapper>

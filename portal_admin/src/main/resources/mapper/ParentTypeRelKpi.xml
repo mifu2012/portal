@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.ParentTypeRelKpi">
+	<resultMap id="DwpasCSysTypeResultMap" type="MisTypeInfo">
+		<result property="typeId" column="TYPE_ID" />
+		<result property="groupId" column="GROUP_ID" />
+		<result property="typeName" column="TYPE_NAME"  />
+		<result property="detail" column="DETAIL" />
+		<result property="gmtCreate" column="GMT_CREATE"  />
+		<result property="gmtModified" column="GMT_MODIFIED"  />
+		<result property="isDelete" column="IS_DELETE"  />
+	</resultMap>
+
+	<resultMap id="DwpasCKpiInfoResultMap" type="DwpasCKpiInfo">
+		<result column="parent_code" property="parentCode" jdbcType="VARCHAR" />
+		<result column="kpi_code" property="kpiCode" jdbcType="VARCHAR" />
+		<result column="kpi_name" property="kpiName" jdbcType="VARCHAR" />
+		<result column="kpi_type" property="kpiType" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 查询所有大类指标 -->
+	<select id="getParentKpis" resultMap="DwpasCSysTypeResultMap">
+		select *
+		from
+		dwpas_c_sys_type
+		where group_id=#{groupId}
+	</select>
+
+	<!-- 根据大类指标typeId查询关联指标 -->
+	<select id="getRelativeKpi" resultMap="DwpasCKpiInfoResultMap">
+		SELECT
+		cki.kpi_code,cki.kpi_name,kpi_type
+		FROM
+		dwpas_c_kpi_info cki,
+		dwpas_c_sys_type cst
+		WHERE
+		cki.parent_code = cst.type_id
+		AND cst.type_id = #{typeId}
+	</select>
+
+	<!-- 查询与此大类指标不关联指标 -->
+	<select id="getUnRelativeKpi" resultMap="DwpasCKpiInfoResultMap">
+		SELECT dki.kpi_code,
+		dki.kpi_name,
+		dki.kpi_type
+		FROM
+		dwpas_c_kpi_info dki
+		WHERE
+		dki.is_show=1
+		and dki.is_overall=0
+		and dki.is_show=1
+		and dki.parent_code NOT IN(
+		SELECT cst.type_id
+		FROM dwpas_c_sys_type cst
+		WHERE
+		cst.type_id=#{typeId}
+		AND dki.parent_code =
+		cst.type_id )
+		
+		ORDER BY
+		dki.kpi_code
+	</select>
+
+	<!-- 更新与此大类指标关联的指标 -->
+	<update id="updateRelateKpiInfo" parameterType="java.util.List">
+		update dwpas_c_kpi_info set parent_code=#{typeId}
+		where kpi_code in
+		<foreach collection="kpiCodeList" item="kpiCodeList" open="("
+			separator="," close=")">
+			#{kpiCodeList}
+		</foreach>
+	</update>
+
+	<!-- 更新与此大类指标不关联的指标 -->
+	<update id="updateUnRelateKpiInfo" parameterType="java.util.List">
+		update dwpas_c_kpi_info set parent_code=null
+		where kpi_code in
+		<foreach collection="kpiCodeList" item="kpiCodeList" open="("
+			separator="," close=")">
+			#{kpiCodeList}
+		</foreach>
+		and parent_code=#{typeId}
+	</update>
+	
+	<!--根据groupId得到最大的typeId -->
+	<select id="getTypeIdByGroupId" parameterType="MisTypeInfo" resultType="int" >
+	SELECT MAX(type_id) FROM dwpas_c_sys_type WHERE group_id=#{groupId}
+	</select>
+
+	<!-- 新增大类指标信息 -->
+	<insert id="insertParentKPI">
+		insert into dwpas_c_sys_type
+		(TYPE_ID,GROUP_ID,TYPE_NAME,DETAIL,GMT_CREATE,IS_DELETE)
+		values(#{typeId},#{groupId},#{typeName},#{detail},now(),1)
+	</insert>
+
+	<!-- 根据typeId查询大类指标信息 -->
+	<select id="getParentKpiByid" resultMap="DwpasCSysTypeResultMap">
+		select * from
+		dwpas_c_sys_type where type_id=#{typeId}
+	</select>
+
+	<!-- 修改大类指标信息 -->
+	<update id="updateParentKpi" parameterType="MisTypeInfo">
+		update dwpas_c_sys_type
+		set 
+		type_name=#{typeName},
+		detail=#{detail},
+		gmt_modified=now()
+		where type_id=#{typeId}
+	</update>
+
+	<!-- 删除大类指标 -->
+	<delete id="deleteParentKpi">
+		delete from dwpas_c_sys_type where type_id=#{typeId}
+	</delete>
+
+	<!-- 根据codeList查询指标信息 -->
+	<select id="getUnRelativeKpiBycodes" parameterType="java.util.List"
+		resultMap="DwpasCKpiInfoResultMap">
+		select kpi_code,kpi_name,kpi_type from dwpas_c_kpi_info where kpi_code in
+		<foreach collection="list" item="codeList" open="("
+			separator="," close=")">
+			#{codeList}
+		</foreach>
+	</select>
+	<!-- 点击搜索查询未关联指标 -->
+	<select id="getUnRelKpiBySerach" parameterType="java.util.Map"
+		resultMap="DwpasCKpiInfoResultMap">
+		SELECT dki.kpi_code,
+		dki.kpi_name,
+		dki.kpi_type
+		FROM
+		dwpas_c_kpi_info dki
+		WHERE
+		dki.is_show=1
+		and dki.is_overall=0
+		and dki.is_show=1
+		<if test="kpiCodeList!=null and kpiCodeList!=''">
+		and dki.kpi_code NOT IN
+		<foreach collection="kpiCodeList" item="kpiCodes" separator=","
+			open="(" close=")">
+			#{kpiCodes}
+		</foreach>
+		</if>
+		<if test="keyCode!=null and keyCode!=''">
+			AND (dki.kpi_code LIKE UPPER(CONCAT(CONCAT(
+			#{keyCode,jdbcType=VARCHAR}), '%')) OR
+			dki.kpi_name LIKE
+			UPPER(CONCAT(CONCAT('%', #{keyCode,jdbcType=VARCHAR}), '%')))
+		</if>
+		ORDER BY
+		dki.kpi_code
+		
+	</select>
+</mapper>

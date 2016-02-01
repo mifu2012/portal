@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PrdDimInfoMapper">
+    <!-- result maps for database table DWPAS_C_PRD_DIM -->
+    <resultMap id="PrdDimInfoMap" type="PrdDimInfo">
+        <result property="productId" column="PRODUCT_ID" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim1Code" column="DIM1_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim1InValue" column="DIM1_IN_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim1OutValue" column="DIM1_OUT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim2Code" column="DIM2_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim2InValue" column="DIM2_IN_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim2OutValue" column="DIM2_OUT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim3Code" column="DIM3_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim3InValue" column="DIM3_IN_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim3OutValue" column="DIM3_OUT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim4Code" column="DIM4_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim4InValue" column="DIM4_IN_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim4OutValue" column="DIM4_OUT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim5Code" column="DIM5_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim5InValue" column="DIM5_IN_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim5OutValue" column="DIM5_OUT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim6Code" column="DIM6_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim6InValue" column="DIM6_IN_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="dim6OutValue" column="DIM6_OUT_VALUE" javaType="java.math.BigDecimal" jdbcType="INTEGER"/>
+        <result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="DATE"/>
+        <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" jdbcType="DATE"/>
+        <result property="dim1Name" column="DIM1_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim2Name" column="DIM2_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim3Name" column="DIM3_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim4Name" column="DIM4_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim5Name" column="DIM5_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim6Name" column="DIM6_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="productName" column="PRODUCT_NAME" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim1Url" column="DIM1_URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim2Url" column="DIM2_URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim3Url" column="DIM3_URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim4Url" column="DIM4_URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim5Url" column="DIM5_URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="dim6Url" column="DIM6_URL" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        
+    </resultMap>
+
+
+    <!-- ============================================= -->
+    <!-- mapped statements for IbatisDwpasCPrdDimDAO -->
+    <!-- ============================================= -->
+    <!-- mapped statement for IbatisDwpasCPrdDimDAO.qryOneByPrdId -->
+    <select id="PrdDimInfoQueryByPrdId" resultMap="PrdDimInfoMap" >
+    <![CDATA[
+        select  cpd.product_id, cpd.dim1_code, cpd.dim1_in_value, cpd.dim1_out_value, cpd.dim2_code, cpd.dim2_in_value, cpd.dim2_out_value, cpd.dim3_code, cpd.dim3_in_value, cpd.dim3_out_value, cpd.dim4_code, cpd.dim4_in_value, cpd.dim4_out_value, cpd.dim5_code, cpd.dim5_in_value, cpd.dim5_out_value, cpd.dim6_code, cpd.dim6_in_value, cpd.dim6_out_value,cpd.dim1_url,cpd.dim2_url,cpd.dim3_url,cpd.dim4_url,cpd.dim5_url,cpd.dim6_url, cpd.gmt_create, cpd.gmt_modified, 
+    cki_1.kpi_name AS dim1_name,
+	cki_2.kpi_name AS dim2_name,
+	cki_3.kpi_name AS dim3_name,
+	cki_4.kpi_name AS dim4_name,
+	cki_5.kpi_name AS dim5_name,
+	cki_6.kpi_name AS dim6_name,
+	cpi.product_name AS product_name
+	from dwpas_c_prd_dim cpd
+	LEFT JOIN dwpas_c_kpi_info cki_1 ON cpd.dim1_code = cki_1.kpi_code
+    LEFT JOIN dwpas_c_kpi_info cki_2 ON cpd.dim2_code = cki_2.kpi_code
+    LEFT JOIN dwpas_c_kpi_info cki_3 ON cpd.dim3_code = cki_3.kpi_code
+    LEFT JOIN dwpas_c_kpi_info cki_4 ON cpd.dim4_code = cki_4.kpi_code
+    LEFT JOIN dwpas_c_kpi_info cki_5 ON cpd.dim5_code = cki_5.kpi_code
+    LEFT JOIN dwpas_c_kpi_info cki_6 ON cpd.dim6_code = cki_6.kpi_code
+    LEFT JOIN dwpas_c_prd_info cpi ON cpd.product_id = cpi.product_id
+	 where cpd.product_id = #{productId}
+    ]]>
+    </select>
+
+    <!-- mapped statement for IbatisDwpasCPrdDimDAO.insert -->
+    <insert id="PrdDimInfoInsert">
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-C-PRD-DIM-INSERT*/ into dwpas_c_prd_dim(product_id,dim1_code,dim1_in_value,dim1_out_value,dim2_code,dim2_in_value,dim2_out_value,dim3_code,dim3_in_value,dim3_out_value,dim4_code,dim4_in_value,dim4_out_value,dim5_code,dim5_in_value,dim5_out_value,dim6_code,dim6_in_value,dim6_out_value,gmt_create,gmt_modified,dim1_url,dim2_url,dim3_url,dim4_url,dim5_url,dim6_url) values (#{productId}, #{dim1Code}, #{dim1InValue}, #{dim1OutValue}, #{dim2Code}, #{dim2InValue}, #{dim2OutValue}, #{dim3Code}, #{dim3InValue}, #{dim3OutValue}, #{dim4Code}, #{dim4InValue}, #{dim4OutValue}, #{dim5Code}, #{dim5InValue}, #{dim5OutValue}, #{dim6Code}, #{dim6InValue}, #{dim6OutValue}, now(),now(),#{dim1Url},#{dim2Url},#{dim3Url},#{dim4Url},#{dim5Url},#{dim6Url})
+    ]]>
+    </insert>
+	<update id="updatePrddiminfo" >
+		update dwpas_c_prd_dim set 
+		DIM1_CODE=#{dim1Code},
+		DIM1_IN_VALUE=#{dim1InValue},
+		DIM1_OUT_VALUE=#{dim1OutValue},
+		DIM2_CODE=#{dim2Code},
+		DIM2_IN_VALUE=#{dim2InValue},
+		DIM2_OUT_VALUE=#{dim2OutValue},
+		DIM3_CODE=#{dim3Code},
+		DIM3_IN_VALUE=#{dim3InValue},
+		DIM3_OUT_VALUE=#{dim3OutValue},
+		DIM4_CODE=#{dim4Code},
+		DIM4_IN_VALUE=#{dim4InValue},
+		DIM4_OUT_VALUE=#{dim4OutValue},
+		DIM5_CODE=#{dim5Code},
+		DIM5_IN_VALUE=#{dim5InValue},
+		DIM5_OUT_VALUE=#{dim5OutValue},
+		DIM6_CODE=#{dim6Code},
+		DIM6_IN_VALUE=#{dim6InValue},
+		DIM6_OUT_VALUE=#{dim6OutValue},
+		DIM1_URL=#{dim1Url},
+		DIM2_URL=#{dim2Url},
+		DIM3_URL=#{dim3Url},
+		DIM4_URL=#{dim4Url},
+		DIM5_URL=#{dim5Url},
+		DIM6_URL=#{dim6Url},
+		GMT_CREATE=#{gmtCreate},
+		GMT_MODIFIED=#{gmtModified}
+		where PRODUCT_ID =#{productId} 
+	</update>
+    <!-- mapped statement for IbatisDwpasCPrdDimDAO.delete -->
+    <delete id="PrdDimInfoDelete">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-C-PRD-DIM-DELETE*/ from dwpas_c_prd_dim where (product_id = #{productId})
+    ]]>
+    </delete>
+
+</mapper>

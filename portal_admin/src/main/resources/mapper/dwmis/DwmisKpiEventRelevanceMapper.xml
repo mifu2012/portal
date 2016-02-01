@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.dwmis.KpiEventRelevanceMapper">
+	<!-- 指标信息记录集 -->
+	<resultMap id="dwmisKpiInfoMap" type="DwmisKpiInfo">
+		<result column="kpi_code" property="kpiCode" jdbcType="VARCHAR" />
+		<result column="kpi_name" property="kpiName" jdbcType="VARCHAR" />
+		<result column="goal_type" property="goalType" jdbcType="INTEGER" />
+		<result column="goal_type_desc" property="goalTypeDesc"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 获取此事记关联的指标 -->
+	<select id="getRelativeEventKPI" resultMap="dwmisKpiInfoMap">
+		SELECT
+		a.kpi_code,
+		a.kpi_name,
+		a.goal_type,
+		goal_type.type_name goal_type_desc
+		FROM
+		dwmis_kpi_info a
+		INNER JOIN dwmis_mis_kpi_event_r b ON a.kpi_code =
+		b.kpi_code
+		LEFT JOIN(
+		SELECT
+		*
+		FROM
+		DWMIS_MIS_TYPE mt
+		WHERE
+		mt.group_id =
+		3000
+		)goal_type ON goal_type.type_id = a.goal_type
+		WHERE
+		b.event_id
+		=#{eventId}
+		ORDER BY
+		a.goal_type;
+	</select>
+
+	<!-- 获取此事记不关联的指标 -->
+	<select id="getUnRelativeEventKPI" resultMap="dwmisKpiInfoMap">         
+         <![CDATA[
+          select ki.kpi_code,ki.kpi_name,ki.goal_type,
+			goal_type.type_name goal_type_desc
+          from dwmis_kpi_info ki		LEFT JOIN(
+			SELECT
+				*
+			FROM
+				DWMIS_MIS_TYPE mt
+			WHERE
+				mt.group_id = 3000
+		)goal_type ON goal_type.type_id = ki.goal_type
+          where not exists 
+                          (
+                           select EVENT_ID
+                           from dwmis_mis_kpi_event_r ker
+                           where ker.kpi_code = ki.KPI_CODE
+                           and ker.EVENT_ID = #{eventId}
+                          )
+         group by ki.kpi_code,ki.kpi_name
+         order by ki.KPI_CODE;
+         ]]>
+	</select>
+	<!-- 插入此事记关联的指标 -->
+	<insert id="insertRelativeEventKPI">
+		insert into dwmis_mis_kpi_event_r (event_id,kpi_code)
+		values(#{eventIdAndkpiCode.eventId},#{eventIdAndkpiCode.kpiCode})
+	</insert>
+
+	<!-- 删除此事记关联的指标 -->
+	<delete id="deleteRelativeEventKPI">
+		delete from dwmis_mis_kpi_event_r where event_id =
+		#{eventId}
+	</delete>
+	<!-- 获取此大事件不关联的指标 -->
+	<select id="getUnRelativeEventKPIByKpiCodeOrKpiName" resultMap="dwmisKpiInfoMap">
+		<choose>
+			<when test="keyCode !=null and keyCode != '' ">
+				select * from(select
+				dki.kpi_code,dki.kpi_name,dki.goal_type,goal_type.type_name goal_type_desc
+				from
+				dwmis_kpi_info dki LEFT JOIN(
+				SELECT
+				*
+				FROM
+				DWMIS_MIS_TYPE mt
+				WHERE
+				mt.group_id = 3000 )goal_type ON goal_type.type_id = dki.goal_type
+				where
+				dki.kpi_code not in
+				(select dr.kpi_code from
+				dwmis_mis_kpi_event_r dr
+				where
+				dr.event_id=#{eventId})) c where
+				c.kpi_code like
+				UPPER(CONCAT(CONCAT(#{keyCode,jdbcType=VARCHAR}),'%'))
+				or c.kpi_name
+				like CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%')
+				order by
+				c.kpi_code
+			</when>
+			<otherwise>
+				select dki.kpi_code,dki.kpi_name,dki.goal_type,goal_type.type_name
+				goal_type_desc
+				from
+				dwmis_kpi_info dki LEFT JOIN(
+				SELECT
+				*
+				FROM
+				DWMIS_MIS_TYPE mt
+				WHERE
+				mt.group_id = 3000
+				)goal_type ON
+				goal_type.type_id = dki.goal_type
+				where
+				dki.kpi_code not in
+				(select
+				dr.kpi_code from
+				dwmis_mis_kpi_event_r dr
+				where
+				dr.event_id=#{eventId})
+				order by
+				dki.kpi_code
+			</otherwise>
+		</choose>
+	</select>
+</mapper>

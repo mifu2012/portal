@@ -1,0 +1,1383 @@
+[INFO ]_2012-03-26 10:04:56 :Root WebApplicationContext: initialization started
+[INFO ]_2012-03-26 10:04:56 :Refreshing Root WebApplicationContext: startup date [Mon Mar 26 10:04:56 CST 2012]; root of context hierarchy
+[INFO ]_2012-03-26 10:04:56 :Loading XML bean definitions from URL [file:/C:/Users/wyf/Desktop/portal_admin/target/classes/service-context.xml]
+[INFO ]_2012-03-26 10:04:57 :Loading properties file from class path resource [mysql-jdbc.properties]
+[INFO ]_2012-03-26 10:04:57 :Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@1355a47: defining beans [myBatisDao,dmnsnServiceImpl,dwmisMisDptmntServiceImp,dwmisMisTypeServiceImp,dwmisSystemParamTypeServiceImpl,kpiDmnsnRServiceImpl,kpiGoalServiceImpl,KPIInfoService,KPIInfoServiceImpl,misEventServiceImpl,exampleService,baseServiceImpl,bigEventServiceImpl,comKpiInfoServiceImpl,dwpasCColumnInfoServiceImpl,dwpasCKpiInfoServiceImpl,dwpasCModuleInfoServiceImpl,dwpasCSystemMenuServiceImpl,dwpasCTemplateInfoServiceImpl,dwpasRColumnComKpiServiceImpl,dwpasTemplatePopedomServiceImpl,kpiInfoServiceImpl,prdDimInfoServiceImpl,prdMngInfoServiceImpl,sysLogServiceImpl,misTypeInfoService,sysParamService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,dataSource,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,servicesPointcut,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,txAdvice,sqlSessionFactory,sqlSession,org.mybatis.spring.mapper.MapperScannerConfigurer#0,userService,roleService,menuService,reportService,reportOrgService,reportConfigService,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0,menuMapper,reportConfigMapper,reportMapper,reportOrgMapper,roleMapper,userMapper]; root of factory hierarchy
+[INFO ]_2012-03-26 10:41:08 :Root WebApplicationContext: initialization started
+[INFO ]_2012-03-26 10:41:08 :Refreshing Root WebApplicationContext: startup date [Mon Mar 26 10:41:08 CST 2012]; root of context hierarchy
+[INFO ]_2012-03-26 10:41:08 :Loading XML bean definitions from URL [file:/C:/Users/wyf/Desktop/portal_admin/target/classes/service-context.xml]
+[INFO ]_2012-03-26 10:41:08 :Loading properties file from class path resource [mysql-jdbc.properties]
+[INFO ]_2012-03-26 10:41:09 :Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@130661d: defining beans [myBatisDao,dmnsnServiceImpl,dwmisMisDptmntServiceImp,dwmisMisTypeServiceImp,dwmisSystemParamTypeServiceImpl,kpiDmnsnRServiceImpl,kpiGoalServiceImpl,KPIInfoService,KPIInfoServiceImpl,misEventServiceImpl,exampleService,baseServiceImpl,bigEventServiceImpl,comKpiInfoServiceImpl,dwpasCColumnInfoServiceImpl,dwpasCKpiInfoServiceImpl,dwpasCModuleInfoServiceImpl,dwpasCSystemMenuServiceImpl,dwpasCTemplateInfoServiceImpl,dwpasRColumnComKpiServiceImpl,dwpasTemplatePopedomServiceImpl,kpiInfoServiceImpl,prdDimInfoServiceImpl,prdMngInfoServiceImpl,sysLogServiceImpl,misTypeInfoService,sysParamService,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.context.support.PropertySourcesPlaceholderConfigurer#0,dataSource,transactionManager,org.springframework.aop.config.internalAutoProxyCreator,servicesPointcut,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,txAdvice,sqlSessionFactory,sqlSession,org.mybatis.spring.mapper.MapperScannerConfigurer#0,userService,roleService,menuService,reportService,reportOrgService,reportConfigService,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0,menuMapper,reportConfigMapper,reportMapper,reportOrgMapper,roleMapper,userMapper]; root of factory hierarchy
+[INFO ]_2012-03-26 10:41:10 :Root WebApplicationContext: initialization completed in 2466 ms
+[INFO ]_2012-03-26 10:41:10 :FrameworkServlet 'ssm3': initialization started
+[INFO ]_2012-03-26 10:41:10 :Refreshing WebApplicationContext for namespace 'ssm3-servlet': startup date [Mon Mar 26 10:41:10 CST 2012]; parent: Root WebApplicationContext
+[INFO ]_2012-03-26 10:41:10 :Loading XML bean definitions from URL [file:/C:/Users/wyf/Desktop/portal_admin/target/classes/servlet-context.xml]
+[INFO ]_2012-03-26 10:41:11 :Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@af84e: defining beans [bigEventController,bigEventRelKpiController,comKpiInfoController,comKpiRelKpiController,dmnsnController,dptmentRelKpiController,dwmisMisDptmntController,kpiDmnsnRController,kpiGoalController,kpiManageController,kpiRelateManageController,misEventController,misEventRelKpiController,systemTypeController,dwpasCColumnInfoController,dwpasCSystemMenuController,dwpasCTemplateInfoController,exampleController,kpiInfoController,loginController,menuController,misTypeController,prdDimInfoController,prdMngInfoController,prdRelkpiController,reportConfigController,reportController,reportOrgController,roleController,secCodeController,sysLogController,sysParamController,userController,myBatisDao,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#0,org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping,org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter,org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#1,org.springframework.web.servlet.resource.ResourceHttpRequestHandler#2,org.springframework.web.servlet.handler.SimpleUrlHandlerMapping#2,org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping#0,org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter#0,jspViewResolver,messageSource,exceptionInterceptor,exceptionAdvice,exceptionResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@130661d
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/images/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#0'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/js/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#1'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/css/**] onto handler 'org.springframework.web.servlet.resource.ResourceHttpRequestHandler#2'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/addEvent] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/addEvent.*] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/addEvent/] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/delete] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/delete.*] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/delete/] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/delete{id}] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/delete{id}.*] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/delete{id}/] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/editEvent{id}] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/editEvent{id}.*] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/editEvent{id}/] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/saveEvent] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/saveEvent.*] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/saveEvent/] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent.*] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEvent/] onto handler 'bigEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEventRelKpi/showEventRelKpi{eventId}] onto handler 'bigEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEventRelKpi/showEventRelKpi{eventId}.*] onto handler 'bigEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEventRelKpi/showEventRelKpi{eventId}/] onto handler 'bigEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEventRelKpi/updateKPIRelativeByKPICode] onto handler 'bigEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEventRelKpi/updateKPIRelativeByKPICode.*] onto handler 'bigEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/BigEventRelKpi/updateKPIRelativeByKPICode/] onto handler 'bigEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/add] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/add.*] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/add/] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/delete{comKpiCode}] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/delete{comKpiCode}.*] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/delete{comKpiCode}/] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/edit{comKpiCode}] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/edit{comKpiCode}.*] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/edit{comKpiCode}/] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/save] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/save.*] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/save/] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo.*] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/comkpiinfo/] onto handler 'comKpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/ComkpiRelKpi/updateKPIRelativeByKPICode] onto handler 'comKpiRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/ComkpiRelKpi/updateKPIRelativeByKPICode.*] onto handler 'comKpiRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/ComkpiRelKpi/updateKPIRelativeByKPICode/] onto handler 'comKpiRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/ComkpiRelKpi/showRelKpi{comKpiCode}] onto handler 'comKpiRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/ComkpiRelKpi/showRelKpi{comKpiCode}.*] onto handler 'comKpiRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/ComkpiRelKpi/showRelKpi{comKpiCode}/] onto handler 'comKpiRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/add] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/add.*] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/add/] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/delete{dmnsnId}] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/delete{dmnsnId}.*] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/delete{dmnsnId}/] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/edit{dmnsnId}] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/edit{dmnsnId}.*] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/edit{dmnsnId}/] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/save] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/save.*] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/save/] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn.*] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dmnsn/] onto handler 'dmnsnController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dptmentRelKpi/updateKPIRelativeByKPICode] onto handler 'dptmentRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dptmentRelKpi/updateKPIRelativeByKPICode.*] onto handler 'dptmentRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dptmentRelKpi/updateKPIRelativeByKPICode/] onto handler 'dptmentRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dptmentRelKpi/showDptmentRelKpi{depId}] onto handler 'dptmentRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dptmentRelKpi/showDptmentRelKpi{depId}.*] onto handler 'dptmentRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dptmentRelKpi/showDptmentRelKpi{depId}/] onto handler 'dptmentRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/insert] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/insert.*] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/insert/] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/delete{depId}] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/delete{depId}.*] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/delete{depId}/] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/edit{depId}] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/edit{depId}.*] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/edit{depId}/] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/search] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/search.*] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/search/] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/save] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/save.*] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/save/] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/delete] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/delete.*] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwmisMisDptmnt/delete/] onto handler 'dwmisMisDptmntController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiDmnsnr/kpiInfo] onto handler 'kpiDmnsnRController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiDmnsnr/kpiInfo.*] onto handler 'kpiDmnsnRController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiDmnsnr/kpiInfo/] onto handler 'kpiDmnsnRController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiDmnsnr/showKpiDmnsn{kpiCode}] onto handler 'kpiDmnsnRController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiDmnsnr/showKpiDmnsn{kpiCode}.*] onto handler 'kpiDmnsnRController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiDmnsnr/showKpiDmnsn{kpiCode}/] onto handler 'kpiDmnsnRController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal/add{kpiCode}] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal/add{kpiCode}.*] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal/add{kpiCode}/] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal/save] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal/save.*] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal/save/] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal.*] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiGoal/] onto handler 'kpiGoalController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/add] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/add.*] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/add/] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/update] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/update.*] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/update/] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/del] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/del.*] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/del/] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/getAllKpi] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/getAllKpi.*] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/getAllKpi/] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/select] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/select.*] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiManage/select/] onto handler 'kpiManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/getAllRelateKpi] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/getAllRelateKpi.*] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/getAllRelateKpi/] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/update] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/update.*] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/update/] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/search] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/search.*] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiRelateManage/search/] onto handler 'kpiRelateManageController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/addEvent] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/addEvent.*] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/addEvent/] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/delete] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/delete.*] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/delete/] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/delete{id}] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/delete{id}.*] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/delete{id}/] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/editEvent{id}] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/editEvent{id}.*] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/editEvent{id}/] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/saveEvent] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/saveEvent.*] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/saveEvent/] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent.*] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEvent/] onto handler 'misEventController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEventRelKpi/showEventRelKpi{eventId}] onto handler 'misEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEventRelKpi/showEventRelKpi{eventId}.*] onto handler 'misEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEventRelKpi/showEventRelKpi{eventId}/] onto handler 'misEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEventRelKpi/updateKPIRelativeByKPICode] onto handler 'misEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEventRelKpi/updateKPIRelativeByKPICode.*] onto handler 'misEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/MisEventRelKpi/updateKPIRelativeByKPICode/] onto handler 'misEventRelKpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/delete{typeId}] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/delete{typeId}.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/delete{typeId}/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/edit{typeId}] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/edit{typeId}.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/edit{typeId}/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/add] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/add.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/add/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/editGroup{typeId}] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/editGroup{typeId}.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/editGroup{typeId}/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/addGroup] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/addGroup.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/addGroup/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/save] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/save.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/save/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/saveType] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/saveType.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/saveType/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/saveUpadateGroup] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/saveUpadateGroup.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/saveUpadateGroup/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/deleteGroup{groupId}] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/deleteGroup{groupId}.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/deleteGroup{groupId}/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType.*] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/systemType/] onto handler 'systemTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listPageDwpasCColumnInfo] onto handler 'dwpasCColumnInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listPageDwpasCColumnInfo.*] onto handler 'dwpasCColumnInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listPageDwpasCColumnInfo/] onto handler 'dwpasCColumnInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/copyColumnInfo] onto handler 'dwpasCColumnInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/copyColumnInfo.*] onto handler 'dwpasCColumnInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/copyColumnInfo/] onto handler 'dwpasCColumnInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/delSystemMenu{menuId}] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/delSystemMenu{menuId}.*] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/delSystemMenu{menuId}/] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listAllParentMenu{templateId}] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listAllParentMenu{templateId}.*] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listAllParentMenu{templateId}/] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/childMenus{menuId}] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/childMenus{menuId}.*] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/childMenus{menuId}/] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/updateMoBan] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/updateMoBan.*] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/updateMoBan/] onto handler 'dwpasCSystemMenuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listPageTemplateInfo] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listPageTemplateInfo.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/listPageTemplateInfo/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/getTemplateInfoByID{templateId}] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/getTemplateInfoByID{templateId}.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/getTemplateInfoByID{templateId}/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/copyTemplate] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/copyTemplate.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/copyTemplate/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/deleteTemplate{templateId}] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/deleteTemplate{templateId}.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/deleteTemplate{templateId}/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/accessControl{templateId}] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/accessControl{templateId}.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/accessControl{templateId}/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/managePopedom] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/managePopedom.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/managePopedom/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/getAllComKpiInfo{sign}] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/getAllComKpiInfo{sign}.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/getAllComKpiInfo{sign}/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/editMudole{menuId}] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/editMudole{menuId}.*] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/dwpas/editMudole{menuId}/] onto handler 'dwpasCTemplateInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/add] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/add.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/add/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/delete{id}] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/delete{id}.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/delete{id}/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/{id}] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/{id}.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/{id}/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/edit{id}] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/edit{id}.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/edit{id}/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/save] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/save.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/save/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/helloWorld] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/helloWorld.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/helloWorld/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/delete] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/delete.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/delete/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example.*] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/example/] onto handler 'exampleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/add] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/add.*] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/add/] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/delete{kpiCode}] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/delete{kpiCode}.*] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/delete{kpiCode}/] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/edit{kpiCode}] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/edit{kpiCode}.*] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/edit{kpiCode}/] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/save] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/save.*] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/save/] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo.*] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/kpiinfo/] onto handler 'kpiInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/index] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/index.*] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/index/] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/login] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/login.*] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/login/] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/default] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/default.*] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/default/] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/logout] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/logout.*] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/logout/] onto handler 'loginController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/save] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/save.*] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/save/] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/del{menuId}] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/del{menuId}.*] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/del{menuId}/] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/add] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/add.*] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/add/] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/edit{menuId}] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/edit{menuId}.*] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/edit{menuId}/] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/sub{menuId}] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/sub{menuId}.*] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/sub{menuId}/] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu.*] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/menu/] onto handler 'menuController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/add] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/add.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/add/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/delete{id}] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/delete{id}.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/delete{id}/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/{id}] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/{id}.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/{id}/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/edit{id}] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/edit{id}.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/edit{id}/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/save] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/save.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/save/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/deleteGroup{id}] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/deleteGroup{id}.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/deleteGroup{id}/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/helloWorld] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/helloWorld.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/helloWorld/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/addgroup] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/addgroup.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/addgroup/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/savegroup] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/savegroup.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/savegroup/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/editgroup{id}] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/editgroup{id}.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/editgroup{id}/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/saveeditgroup] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/saveeditgroup.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/saveeditgroup/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype.*] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/mistype/] onto handler 'misTypeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/qryPrdDimByProductId] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/qryPrdDimByProductId.*] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/qryPrdDimByProductId/] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/editPrd{productId}] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/editPrd{productId}.*] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/editPrd{productId}/] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/savePrddim1] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/savePrddim1.*] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/savePrddim1/] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/kpilist{sign}] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/kpilist{sign}.*] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/kpilist{sign}/] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim.*] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prddim/] onto handler 'prdDimInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/add] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/add.*] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/add/] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/delete{productId}] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/delete{productId}.*] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/delete{productId}/] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/edit{id}] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/edit{id}.*] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/edit{id}/] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/saveOnlyPrdInfo] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/saveOnlyPrdInfo.*] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/saveOnlyPrdInfo/] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/save] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/save.*] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/save/] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo.*] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/prdinfo/] onto handler 'prdMngInfoController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/PrdRelKpi/updateKPIRelativeByKPICode] onto handler 'prdRelkpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/PrdRelKpi/updateKPIRelativeByKPICode.*] onto handler 'prdRelkpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/PrdRelKpi/updateKPIRelativeByKPICode/] onto handler 'prdRelkpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/PrdRelKpi/showRelKpi{productId}] onto handler 'prdRelkpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/PrdRelKpi/showRelKpi{productId}.*] onto handler 'prdRelkpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/PrdRelKpi/showRelKpi{productId}/] onto handler 'prdRelkpiController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/save] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/save.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/save/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/del{configId}] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/del{configId}.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/del{configId}/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/saveReportTime] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/saveReportTime.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/saveReportTime/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/testSql{sql}] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/testSql{sql}.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/testSql{sql}/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/collocate{reportId}] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/collocate{reportId}.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/collocate{reportId}/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/addInput{reportId}] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/addInput{reportId}.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/addInput{reportId}/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/addSelect{reportId}] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/addSelect{reportId}.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/addSelect{reportId}/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/editSelect{configId}] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/editSelect{configId}.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/editSelect{configId}/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/editInput{configId}] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/editInput{configId}.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/editInput{configId}/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/testReport] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/testReport.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/testReport/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig.*] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportConfig/] onto handler 'reportConfigController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/save] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/save.*] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/save/] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/del{reportId}] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/del{reportId}.*] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/del{reportId}/] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/add] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/add.*] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/add/] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/edit{reportId}] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/edit{reportId}.*] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/edit{reportId}/] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/sub{reportId}] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/sub{reportId}.*] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/sub{reportId}/] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report.*] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/report/] onto handler 'reportController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/save] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/save.*] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/save/] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/del{reportId}] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/del{reportId}.*] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/del{reportId}/] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/add] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/add.*] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/add/] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/edit{reportId}] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/edit{reportId}.*] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/edit{reportId}/] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/sub{reportId}] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/sub{reportId}.*] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/sub{reportId}/] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg.*] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/reportOrg/] onto handler 'reportOrgController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/save] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/save.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/save/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/auth{roleId}] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/auth{roleId}.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/auth{roleId}/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/delete{roleId}] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/delete{roleId}.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/delete{roleId}/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authsave] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authsave.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authsave/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authDwpas{roleId}] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authDwpas{roleId}.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authDwpas{roleId}/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/saveAuthDwpas] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/saveAuthDwpas.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/saveAuthDwpas/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authReport{roleId}] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authReport{roleId}.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authReport{roleId}/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authsaveReport] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authsaveReport.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/authsaveReport/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role.*] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/role/] onto handler 'roleController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/code] onto handler 'secCodeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/code.*] onto handler 'secCodeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/code/] onto handler 'secCodeController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysLog] onto handler 'sysLogController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysLog.*] onto handler 'sysLogController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysLog/] onto handler 'sysLogController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/add] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/add.*] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/add/] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/delete{paramId}] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/delete{paramId}.*] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/delete{paramId}/] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/{paramId}] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/{paramId}.*] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/{paramId}/] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/edit{paramId}] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/edit{paramId}.*] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/edit{paramId}/] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/save] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/save.*] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/save/] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/helloWorld] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/helloWorld.*] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/helloWorld/] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam.*] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/sysparam/] onto handler 'sysParamController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/auth{userId}] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/auth{userId}.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/auth{userId}/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/delete{userId}] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/delete{userId}.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/delete{userId}/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/add] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/add.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/add/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/edit{userId}] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/edit{userId}.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/edit{userId}/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/auth/save] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/auth/save.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/auth/save/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authDwpas{userId}] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authDwpas{userId}.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authDwpas{userId}/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/saveAuthDwpas] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/saveAuthDwpas.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/saveAuthDwpas/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authReport{userId}] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authReport{userId}.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authReport{userId}/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authsaveReport] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authsaveReport.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/authsaveReport/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/save] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/save.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/save/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/excel] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/excel.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/excel/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user.*] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:11 :Mapped URL path [/user/] onto handler 'userController'
+[INFO ]_2012-03-26 10:41:12 :FrameworkServlet 'ssm3': initialization completed in 1472 ms
+[DEBUG]_2012-03-26 10:42:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_user where 1=1 and loginname = ? and password=? 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_user where 1=1 and loginname = ? and password=? 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: admin(String), 670B14728AD9902AECBA32E22FA4F6BD(String)
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: admin(String), 670B14728AD9902AECBA32E22FA4F6BD(String)
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: user_id, loginname, password, username, rights, status, role_id, dwmis_rights, dwpas_rights, report_rights, last_login
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 1, admin, 670B14728AD9902AECBA32E22FA4F6BD, 管理员, 8975856665821188, 0, 1, null, 1, 131167339147196416, 2012-03-25 22:18:08.0
+[DEBUG]_2012-03-26 10:42:25 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:25 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:25 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:25 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select u.user_id,u.username,u.rights as user_rights,u.loginname,u.password,r.role_id,r.role_name,r.rights as role_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 and u.user_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select u.user_id,u.username,u.rights as user_rights,u.loginname,u.password,r.role_id,r.role_name,r.rights as role_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 and u.user_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 1(Integer)
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 1(Integer)
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: user_id, username, rights, loginname, password, role_id, role_name, rights
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 1, 管理员, 8975856665821188, admin, 670B14728AD9902AECBA32E22FA4F6BD, 1, 系统管理员, 46270775271817216
+[DEBUG]_2012-03-26 10:42:25 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 16, 系统管理, , null
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 23, 报表管理, , null
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 29, 经纬仪后台管理, null, null
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 40, 瞭望塔管理, , null
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 16(Integer)
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 16(Integer)
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 23(Integer)
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 23(Integer)
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 29(Integer)
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 29(Integer)
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:25 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:25 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:25 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:25 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:25 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:26 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:26 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:26 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id is null 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id is null 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:26 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 11, 报表大类1, null, null, 名称, 显示名称, null, , , , , , , 1, 1, sart_time, endtime, 备注, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 39, 报表大类2, null, null, null, null, null, , null, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 46, wwwww, null, null, 123123, 123213, , , null, , , , , , , , , , , , , 
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 52, Jane大类, null, null, null, null, null, , 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 11(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 11(Integer)
+[DEBUG]_2012-03-26 10:42:26 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 12, 华东报表, user.html, 11, COLUMN_CODE,COLUMN_NAME,IS_SHOW,REMARK,GMT_CREATE, 指标CODE,指标名称,是否显示,备注,时间, select * from  dwpas_c_column_info, birt.jsp, 1, 2012-03, 2012-03-14, 2012-04, 2012-03-14, 2, 3, month, date, 测试报表ID为12的数据, 1, 1, 1, 20
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 13, 华南报表, role.html, 11, 名称, 显示名称1, , birt.jsp, 1, , , , , , , , , 备注, , , , 
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 14, 华北报表, menu.html, 11, 名称, 显示名称, null, birt.jsp, 1, , , , , 1, 1, sart_time, endtime, 备注, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 49, Janetest外部, null, 11, null, null, null, user.html, 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 12(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 12(Integer)
+[DEBUG]_2012-03-26 10:42:26 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 56, sub-HD, null, 12, menu_id,menu_name,menu_url, 序号，名称，地址, select * from tb_menu, dd, 2, , , , , , , , , , , , , 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 13(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 13(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 14(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 14(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 49(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 49(Integer)
+[DEBUG]_2012-03-26 10:42:26 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 54, jane小小类, null, 49, null, null, null, user.html, 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 55, jane小小类, null, 49, null, null, null, url, 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 39(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 39(Integer)
+[DEBUG]_2012-03-26 10:42:26 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 44, qqqqqq, null, 39, null, null, null, , 1, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 45, ceshi, null, 39, null, null, null, , , null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 44(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 44(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 45(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 45(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 46(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 46(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 52(Integer)
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 52(Integer)
+[DEBUG]_2012-03-26 10:42:26 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:26 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:26 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:26 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:26 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:30 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:30 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:30 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:30 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:30 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:30 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:30 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:30 :==>  Executing: select * from report_config where report_id=? 
+[DEBUG]_2012-03-26 10:42:30 :==>  Executing: select * from report_config where report_id=? 
+[DEBUG]_2012-03-26 10:42:30 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:30 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:30 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:30 :==>  Executing: select * from report where report_id=? 
+[DEBUG]_2012-03-26 10:42:30 :==>  Executing: select * from report where report_id=? 
+[DEBUG]_2012-03-26 10:42:30 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:30 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:30 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:30 :<==        Row: 56, sub-HD, null, 12, menu_id,menu_name,menu_url, 序号，名称，地址, select * from tb_menu, dd, 2, , , , , , , , , , , , , 
+[WARN ]_2012-03-26 10:42:30 :No mapping found for HTTP request with URI [/portal//reportConfig/js/datePicker/skin/default/img.gif] in DispatcherServlet with name 'ssm3'
+[DEBUG]_2012-03-26 10:42:35 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:35 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select u.user_id,u.username,u.rights as user_rights,u.loginname,u.password,r.role_id,r.role_name,r.rights as role_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 and u.user_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select u.user_id,u.username,u.rights as user_rights,u.loginname,u.password,r.role_id,r.role_name,r.rights as role_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 and u.user_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 1(Integer)
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 1(Integer)
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: user_id, username, rights, loginname, password, role_id, role_name, rights
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 1, 管理员, 8975856665821188, admin, 670B14728AD9902AECBA32E22FA4F6BD, 1, 系统管理员, 46270775271817216
+[DEBUG]_2012-03-26 10:42:35 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 16, 系统管理, , null
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 23, 报表管理, , null
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 29, 经纬仪后台管理, null, null
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 40, 瞭望塔管理, , null
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 16(Integer)
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 16(Integer)
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 23(Integer)
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 23(Integer)
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 29(Integer)
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 29(Integer)
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:35 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:35 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:35 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:35 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:35 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:37 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:37 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:37 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id is null 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id is null 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:37 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 11, 报表大类1, null, null, 名称, 显示名称, null, , , , , , , 1, 1, sart_time, endtime, 备注, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 39, 报表大类2, null, null, null, null, null, , null, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 46, wwwww, null, null, 123123, 123213, , , null, , , , , , , , , , , , , 
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 52, Jane大类, null, null, null, null, null, , 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 11(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 11(Integer)
+[DEBUG]_2012-03-26 10:42:37 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 12, 华东报表, user.html, 11, COLUMN_CODE,COLUMN_NAME,IS_SHOW,REMARK,GMT_CREATE, 指标CODE,指标名称,是否显示,备注,时间, select * from  dwpas_c_column_info, birt.jsp, 1, 2012-03, 2012-03-14, 2012-04, 2012-03-14, 2, 3, month, date, 测试报表ID为12的数据, 1, 1, 1, 20
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 13, 华南报表, role.html, 11, 名称, 显示名称1, , birt.jsp, 1, , , , , , , , , 备注, , , , 
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 14, 华北报表, menu.html, 11, 名称, 显示名称, null, birt.jsp, 1, , , , , 1, 1, sart_time, endtime, 备注, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 49, Janetest外部, null, 11, null, null, null, user.html, 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 12(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 12(Integer)
+[DEBUG]_2012-03-26 10:42:37 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 56, sub-HD, null, 12, menu_id,menu_name,menu_url, 序号，名称，地址, select * from tb_menu, dd, 2, , , , , , , , , , , , , 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 13(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 13(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 14(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 14(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 49(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 49(Integer)
+[DEBUG]_2012-03-26 10:42:37 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 54, jane小小类, null, 49, null, null, null, user.html, 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 55, jane小小类, null, 49, null, null, null, url, 2, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 39(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 39(Integer)
+[DEBUG]_2012-03-26 10:42:37 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 44, qqqqqq, null, 39, null, null, null, , 1, null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 45, ceshi, null, 39, null, null, null, , , null, null, null, null, null, null, null, null, null, null, null, null, null
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 44(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 44(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 45(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 45(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 46(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 46(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from report where parent_id=? 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 52(Integer)
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 52(Integer)
+[DEBUG]_2012-03-26 10:42:37 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:37 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:37 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:37 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:37 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:39 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:40 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:40 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:40 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:40 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:40 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:40 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:40 :==>  Executing: select * from report_config where report_id=? 
+[DEBUG]_2012-03-26 10:42:40 :==>  Executing: select * from report_config where report_id=? 
+[DEBUG]_2012-03-26 10:42:40 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:40 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:40 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:40 :==>  Executing: select * from report where report_id=? 
+[DEBUG]_2012-03-26 10:42:40 :==>  Executing: select * from report where report_id=? 
+[DEBUG]_2012-03-26 10:42:40 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:40 :==> Parameters: 56(Integer)
+[DEBUG]_2012-03-26 10:42:40 :<==    Columns: report_id, report_name, report_url, parent_id, columns_name, columns_showName, sql_name, URL, report_type, start_time, end_time, default_start_time, default_end_time, start_date_type, end_date_type, start_time_column, end_time_column, remark, has_start_time, has_end_time, is_page, page_number
+[DEBUG]_2012-03-26 10:42:40 :<==        Row: 56, sub-HD, null, 12, menu_id,menu_name,menu_url, 序号，名称，地址, select * from tb_menu, dd, 2, , , , , , , , , , , , , 
+[WARN ]_2012-03-26 10:42:40 :No mapping found for HTTP request with URI [/portal//reportConfig/js/datePicker/skin/default/img.gif] in DispatcherServlet with name 'ssm3'
+[DEBUG]_2012-03-26 10:42:57 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:42:57 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:57 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:42:57 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:57 :==> Parameters: 
+[DEBUG]_2012-03-26 10:42:57 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:42:57 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:42:57 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:16 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:16 :==>  Executing: select * from tb_user where 1=1 and loginname = ? and password=? 
+[DEBUG]_2012-03-26 10:48:16 :==>  Executing: select * from tb_user where 1=1 and loginname = ? and password=? 
+[DEBUG]_2012-03-26 10:48:16 :==> Parameters: admin(String), 4A7D1ED414474E4033AC29CCB8653D9B(String)
+[DEBUG]_2012-03-26 10:48:16 :==> Parameters: admin(String), 4A7D1ED414474E4033AC29CCB8653D9B(String)
+[DEBUG]_2012-03-26 10:48:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_user where 1=1 and loginname = ? and password=? 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_user where 1=1 and loginname = ? and password=? 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: admin(String), 670B14728AD9902AECBA32E22FA4F6BD(String)
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: admin(String), 670B14728AD9902AECBA32E22FA4F6BD(String)
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: user_id, loginname, password, username, rights, status, role_id, dwmis_rights, dwpas_rights, report_rights, last_login
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 1, admin, 670B14728AD9902AECBA32E22FA4F6BD, 管理员, 8975856665821188, 0, 1, null, 1, 131167339147196416, 2012-03-26 10:42:25.0
+[DEBUG]_2012-03-26 10:48:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:48:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select u.user_id,u.username,u.rights as user_rights,u.loginname,u.password,r.role_id,r.role_name,r.rights as role_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 and u.user_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select u.user_id,u.username,u.rights as user_rights,u.loginname,u.password,r.role_id,r.role_name,r.rights as role_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 and u.user_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 1(Integer)
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 1(Integer)
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: user_id, username, rights, loginname, password, role_id, role_name, rights
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 1, 管理员, 8975856665821188, admin, 670B14728AD9902AECBA32E22FA4F6BD, 1, 系统管理员, 46270775271817216
+[DEBUG]_2012-03-26 10:48:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 16, 系统管理, , null
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 23, 报表管理, , null
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 29, 经纬仪后台管理, null, null
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 40, 瞭望塔管理, , null
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 16(Integer)
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 16(Integer)
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 23(Integer)
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 23(Integer)
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 29(Integer)
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 29(Integer)
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 10:48:24 :ooo Connection Opened
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:48:24 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 
+[DEBUG]_2012-03-26 10:48:24 :==> Parameters: 
+[DEBUG]_2012-03-26 10:48:24 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 10:48:24 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 11:00:05 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:05 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 11:00:05 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 11:00:05 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:05 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:05 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 11:00:05 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:05 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 11:00:05 :==>  Executing: select * from tb_menu where parent_id is null 
+[DEBUG]_2012-03-26 11:00:05 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:05 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:05 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 16, 系统管理, , null
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 23, 报表管理, , null
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 29, 经纬仪后台管理, null, null
+[DEBUG]_2012-03-26 11:00:05 :<==        Row: 40, 瞭望塔管理, , null
+[DEBUG]_2012-03-26 11:00:05 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:11 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:11 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 11:00:11 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 11:00:11 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:11 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:11 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 11:00:11 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:11 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 11:00:11 :==>  Executing: select * from tb_menu where parent_id=? 
+[DEBUG]_2012-03-26 11:00:11 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 11:00:11 :==> Parameters: 40(Integer)
+[DEBUG]_2012-03-26 11:00:11 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 11:00:11 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 11:00:19 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select * from tb_menu where parent_id is not null 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :<==    Columns: menu_id, menu_name, menu_url, parent_id
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 17, 用户管理, user.html, 16
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 18, 角色管理, role.html, 16
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 19, 菜单管理, menu.html, 16
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 24, 报表结构管理, report.html, 23
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 25, 报表数据配置, reportConfig.html, 23
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 30, 系统参数管理, sysparam.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 31, ffffff, null, 18
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 32, ffffffff, null, 18
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 33, 日志管理, sysLog.html, 16
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 34, 系统类型管理, mistype.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 35, 指标管理, kpiinfo.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 36, 通用指标管理, comkpiinfo.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 37, 产品信息管理, prdinfo.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 38, 产品健康度管理, prddim.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 41, KPI指标管理, kpiManage/getAllKpi, 40
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 45, KPI指标关联管理, kpiRelateManage/getAllRelateKpi.html, 40
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 46, 部门信息管理, dwmisMisDptmnt/search, 40
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 50, 系统类型设置, systemType, 40
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 52, 绩效管理, kpiGoal.html, 40
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 53, 大事记管理, BigEvent.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 54, 经纬仪指标模板, dwpas/listPageTemplateInfo.html, 29
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 55, 大事记管理, MisEvent.html, 40
+[DEBUG]_2012-03-26 11:00:19 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select count(0) from (select u.user_id,u.username,u.loginname,u.password,r.role_id,r.role_name ,u.last_login,u.report_rights,u.dwpas_rights,u.dwmis_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0) as tmp_count 
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select count(0) from (select u.user_id,u.username,u.loginname,u.password,r.role_id,r.role_name ,u.last_login,u.report_rights,u.dwpas_rights,u.dwmis_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0) as tmp_count 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :<==    Columns: count(0)
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 2
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select u.user_id,u.username,u.loginname,u.password,r.role_id,r.role_name ,u.last_login,u.report_rights,u.dwpas_rights,u.dwmis_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 limit 0,10 
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select u.user_id,u.username,u.loginname,u.password,r.role_id,r.role_name ,u.last_login,u.report_rights,u.dwpas_rights,u.dwmis_rights from tb_user u left join tb_role r on u.role_id=r.role_id where u.status=0 limit 0,10 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :<==    Columns: user_id, username, loginname, password, role_id, role_name, last_login, report_rights, dwpas_rights, dwmis_rights
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 1, 管理员, admin, 670B14728AD9902AECBA32E22FA4F6BD, 1, 系统管理员, 2012-03-26 10:48:24.0, 131167339147196416, 1, null
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 3, fgfgf, dfd, 000000, 2, 普通用户, 2012-03-12 15:16:23.0, null, 0, null
+[DEBUG]_2012-03-26 11:00:19 :ooo Connection Opened
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select * from tb_role 
+[DEBUG]_2012-03-26 11:00:19 :==>  Executing: select * from tb_role 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :==> Parameters: 
+[DEBUG]_2012-03-26 11:00:19 :<==    Columns: role_id, role_name, rights, dwmis_rights, dwpas_rights, report_rights
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 1, 系统管理员, 46270775271817216, null, 1, 30720
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 2, 普通用户, 2038792, null, 1, null
+[DEBUG]_2012-03-26 11:00:19 :<==        Row: 3, 系统用户, 230374, null, 1, null
+[DEBUG]_2012-03-26 11:00:19 :ooo Connection Opened

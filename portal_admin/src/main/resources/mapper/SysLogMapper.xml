@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.SysLogMapper">
+	<sql id="common_sql">
+		id,user_id,user_code,user_name,operator_content,
+		operator_time,user_ip,op_time
+	</sql>
+
+	<resultMap id="SYSLOG" type="com.infosmart.po.SysLog">
+		<result column="USER_ID" property="user_id" />
+		<result column="USER_CODE" property="user_code" />
+		<result column="USER_NAME" property="user_name" />
+		<result column="OPERATOR_CONTENT" property="operator_content" />
+		<result column="OPERATOR_TIME" property="operator_time" />
+		<result column="USER_IP" property="user_ip" />
+	</resultMap>
+
+
+	<!-- 增加日志 -->
+	<insert id="INSERT_SYSLOG" parameterType="SYSLOG">
+		insert into
+		tb_sys_log(user_id,user_code,user_name,operator_content,
+		operator_time,user_ip)
+		value(#{user_id},#{user_code},#{user_name},#{operator_content},
+		now(),#{user_ip})
+	</insert>
+
+	<select id="listAllSysLog" resultMap="SYSLOG">
+		select
+		user_id,user_code,user_name,operator_content,
+		operator_time,user_ip
+		from tb_sys_log
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="user_id!=null and user_id!=''">
+				user_id = #{user_id}
+		</if>
+			<if test="user_code!=null and user_code!=''">
+				and user_code = #{user_code}
+		</if>
+			<if test="user_name!=null and user_name!=''">
+				AND user_name LIKE CONCAT(CONCAT('%',
+				#{user_name}),'%')
+			</if>
+			<if test="operator_content!=null and operator_content!=''">
+				AND operator_content LIKE CONCAT(CONCAT('%',
+				#{operator_content}),'%')
+			</if>
+			<if test="operator_time!=null and operator_time!=''">
+				and operator_time like CONCAT(CONCAT('%',
+				#{op_time}),'%')
+		</if>
+			<if test="user_ip!=null and user_ip!=''">
+				and user_ip = #{user_ip}
+		</if>
+		</trim>
+		order by operator_time desc
+	</select>
+
+	<select id="listPageSysLog" resultMap="SYSLOG"
+		parameterType="SYSLOG">
+		select
+		user_id,user_code,user_name,operator_content,
+		operator_time,user_ip
+		from tb_sys_log
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="user_id!=null and user_id!=''">
+				user_id = #{user_id}
+			</if>
+			<if test="user_code!=null and user_code!=''">
+				AND user_code LIKE CONCAT(CONCAT('%',#{user_code}),'%')
+			</if>
+			<if test="user_name!=null and user_name!=''">
+				AND user_name LIKE CONCAT(CONCAT('%',
+				#{user_name}),'%')
+			</if>
+			<if test="operator_content!=null and operator_content!=''">
+				AND operator_content LIKE CONCAT(CONCAT('%',
+				#{operator_content}),'%')
+			</if>
+			<if test="operator_time!=null and operator_time!=''">
+				and operator_time like CONCAT(CONCAT('%',
+				#{op_time}),'%')
+		</if>
+			<if test="user_ip!=null and user_ip!=''">
+				and user_ip = #{user_ip}
+		</if>
+		</trim>
+		order by operator_time desc
+	</select>
+	<!-- 删除几个月前的日志信息数据 -->
+	<delete id="deleteSysDataByMonthNum" parameterType="String">
+	 <![CDATA[
+	DELETE FROM tb_sys_log WHERE OPERATOR_TIME < (CURDATE() - INTERVAL #{monthNum} MONTH)
+	]]>
+	</delete>
+
+</mapper>

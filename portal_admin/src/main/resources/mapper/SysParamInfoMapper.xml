@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SysParamInfoMapper">
+	
+	<resultMap id="SysParamMap" type="SysParamInfo">
+	
+		<result property="paramId" column="PARAM_ID"  />
+		<result property="paramName" column="PARAM_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="paramValue" column="PARAM_VALUE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="DATE" />
+			
+	</resultMap>
+	 
+	<sql id="base_column">PARAM_ID,PARAM_NAME,PARAM_VALUE,GMT_CREATE,GMT_MODIFIED</sql>
+	<select id="listAllSysParam" parameterType="SysParamInfo"
+		resultMap="SysParamMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_param
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="paramId !=null and paramId !=''">
+				param_Id  =#{paramId,jdbcType=INTEGER}   
+       		</if>
+			<if test="paramName !=null and paramName != '' ">
+				AND param_Name LIKE CONCAT(CONCAT('%',
+				#{paramName,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="paramValue !=null and paramValue != '' ">
+				AND param_Value LIKE CONCAT(CONCAT('%',
+				#{paramValue,jdbcType=VARCHAR}),'%')  
+       		</if>
+			<if test="gmtCreate !=null and gmtCreate != '' ">
+				AND gmt_Create LIKE CONCAT(CONCAT(
+				#{gmtCreate,jdbcType=DATE}),'%')   
+       		</if>
+			<if test="gmtModified !=null ">
+				AND gmt_Modified =#{gmtModified,jdbcType=DATE}   
+       		</if>
+		</trim>
+	</select>
+	<select id="listPageSysParam" parameterType="SysParamInfo"
+		resultMap="SysParamMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_param
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="paramId !=null and paramId !=''">
+				param_Id  =#{paramId,jdbcType=INTEGER}   
+       		</if>
+			<if test="paramName !=null and paramName != '' ">
+				AND param_Name LIKE CONCAT(CONCAT('%',
+				#{paramName,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="paramValue !=null and paramValue != '' ">
+				AND param_Value =
+				#{paramValue,jdbcType=VARCHAR}   
+       		</if>
+			<if test="gmtCreate !=null and gmtCreate != '' ">
+				AND gmt_Create LIKE CONCAT(CONCAT(
+				#{gmtCreate,jdbcType=DATE}),'%')   
+       		</if>
+			<if test="gmtModified !=null ">
+				AND gmt_Modified =#{gmtModified,jdbcType=DATE}   
+       		</if>
+		</trim>
+	</select>
+	<select id="getSysParamById" parameterType="int" resultMap="SysParamMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_param where param_id= #{paramId,jdbcType=INTEGER}
+	</select>
+	<select id="getSysParamByParamName" parameterType="java.lang.String" resultMap="SysParamMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_param where param_name= #{paramName,jdbcType=VARCHAR}
+	</select>
+	<update id="updateSysParam" parameterType="SysParamInfo">
+		update dwpas_c_sys_param
+		<set>
+			<if test="paramName!=null">
+				param_Name=#{paramName,jdbcType=VARCHAR},
+			</if>
+			<if test="paramValue!=null">
+				param_Value=#{paramValue,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreate !=null ">
+				 gmt_Create =#{gmtCreate,jdbcType=DATE},   
+       		</if>
+			<if test="gmtModified !=null ">
+				 gmt_Modified =#{gmtModified,jdbcType=DATE} ,  
+       		</if>
+		</set>
+		where param_Id = #{paramId,jdbcType=INTEGER}
+	</update>
+	<insert id="insertSysParam" parameterType="SysParamInfo" >
+		insert into
+		dwpas_c_sys_param
+		(param_name,param_value,gmt_Create,gmt_Modified)
+		values
+		(#{paramName,jdbcType=VARCHAR},#{paramValue,jdbcType=VARCHAR},now(),now())
+	</insert>
+	<delete id="deleteSysParam" parameterType="int">
+		delete from
+		dwpas_c_sys_param where param_Id
+		=#{paramId,jdbcType=INTEGER}
+	</delete>
+</mapper>

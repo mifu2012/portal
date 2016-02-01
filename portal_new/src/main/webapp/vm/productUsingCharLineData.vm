@@ -1,0 +1,21 @@
+##用户特征分布图
+#set( $layout = "home/layout/null.vm" )
+<chart>
+    ##X坐标描述
+    <series>
+        #foreach($sermap in $chart.seriesMap.entrySet())
+            <value xid='$sermap.key'>$sermap.value</value>
+        #end
+    </series>
+    ##X坐标数据
+    <graphs>
+        #foreach($graph in $chart.graphs.entrySet())
+            <graph gid='$graph.key' data_labels="{value}">
+                #foreach($graphData in $graph.value)
+                    ##GraphDataElement
+                    <value xid='$graphData.valueDate'>$graphData.value</value>
+                #end
+            </graph>
+        #end
+    </graphs>
+</chart>

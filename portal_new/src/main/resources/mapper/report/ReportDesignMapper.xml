@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.ReportDesignMapper">
+
+	<resultMap type="ReportDesign" id="ReportDesignRsMap">
+		<id column="report_id" property="reportId" />
+		<result column="report_name" property="reportName" />
+		<result column="report_sql" property="reportSql" />
+		<result column="report_define" property="reportDefine" />
+		<result column="remark" property="remark" />
+		<result column="data_source_id" property="dataSourceId" />
+	</resultMap>
+	<!-- 报表数据源  -->
+	<resultMap type="ReportDataSource" id="ReportDataSourceMap">
+		<id column="id" property="id" />
+		<!-- <id column="report_id" property="reportId" /> -->
+		<result column="driver_name" property="driverName" />
+		<result column="data_driver" property="dataDriver" />
+		<result column="url" property="url" />
+		<result column="username" property="userName" />
+		<result column="password" property="password" />
+		<!-- <result column="query_sql" property="querySql" /> -->
+	</resultMap>
+	<!-- 查询报表数据源 -->
+	<select id="getDataSourceById" parameterType="int" resultMap="ReportDataSourceMap">
+		select * from tb_rpt_report_datasource  where id =#{id}
+	</select>
+	
+	<!-- 查询报表定义 -->
+	<select id="getReportDesignById" parameterType="int"
+		resultMap="ReportDesignRsMap">
+		select * from tb_rpt_design where report_id=#{reportId}
+	</select>
+	<!-- 更新报表定义 -->
+	<!-- <update id="updateReportDesign" parameterType="com.infosmart.po.ReportDesign">
+		UPDATE tb_rpt_design
+		SET
+		report_name =#{reportName,jdbcType=VARCHAR},
+		report_sql=#{reportSql,jdbcType=VARCHAR},
+		report_define=#{reportDefine,jdbcType=VARCHAR},
+		data_source_id
+		=#{dataSourceId,jdbcType=VARCHAR}, remark
+		=#{remark,jdbcType=VARCHAR}
+		WHERE
+		report_id =#{reportId}
+	</update> -->
+	
+	<!-- 更新报表SQL语句 -->
+	<!-- <update id="updateReportSql" parameterType="com.infosmart.po.ReportDesign">
+		UPDATE tb_rpt_design SET report_sql=#{reportSql},data_source_id=#{dataSourceId}
+		WHERE report_id =#{reportId}
+	</update> -->
+
+</mapper>

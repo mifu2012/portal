@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.infosmart.DwmisSubjectInfoMapper">
+
+	<resultMap id="DwmisSubjectInfoMap" type="DwmisSubjectInfo">
+		<result column="SUBJECT_ID" property="subjectId" jdbcType="VARCHAR" />
+		<result column="TEMPLATE_ID" property="templateId" jdbcType="VARCHAR" />
+		<result column="SUBJECT_CODE" property="subjectCode" jdbcType="VARCHAR" />
+		<result column="SUBJECT_NAME" property="subjectName" jdbcType="VARCHAR" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="date_type" property="dateType" jdbcType="INTEGER" />
+		<result column="IS_SHOW" property="isShow" jdbcType="INTEGER" />
+		<result column="subject_sort" property="subjectSort" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="getSubjectInfoById" resultMap="DwmisSubjectInfoMap"
+		parameterType="java.lang.String">
+		select
+		SUBJECT_ID,TEMPLATE_ID,SUBJECT_CODE,SUBJECT_NAME,IS_SHOW,REMARK,date_type,subject_sort
+		from dwmis_subject_info
+		where SUBJECT_ID=#{subjectId,jdbcType=VARCHAR}
+	</select>
+	<!-- 更新主题信息 -->
+	<update id="updateSubjectInfo" parameterType="DwmisSubjectInfo">
+		update
+		dwmis_subject_info set
+		SUBJECT_NAME=#{subjectName,jdbcType=VARCHAR},IS_SHOW=#{isShow,jdbcType=INTEGER},date_type=#{dateType,jdbcType=INTEGER},remark=#{remark},subject_sort=#{subjectSort}
+		where SUBJECT_ID=#{subjectId,jdbcType=VARCHAR}
+	</update>
+	<select id="getSubjectInfoByTemplateId" resultMap="DwmisSubjectInfoMap"
+		parameterType="java.lang.String">
+		SELECT
+		SUBJECT_ID,
+		TEMPLATE_ID,
+		SUBJECT_CODE,
+		SUBJECT_NAME,
+		REMARK,
+		date_type,
+		IS_SHOW,subject_sort
+		FROM
+		DWMIS_SUBJECT_INFO
+		WHERE
+		TEMPLATE_ID =
+		#{templateId}
+		and is_show=1
+		order by subject_sort asc
+	</select>
+	<select id="getSubjectInfoByTemplateIdNoIsShow" resultMap="DwmisSubjectInfoMap"
+		parameterType="java.lang.String">
+		SELECT
+		SUBJECT_ID,
+		TEMPLATE_ID,
+		SUBJECT_CODE,
+		SUBJECT_NAME,
+		REMARK,
+		date_type,
+		IS_SHOW,subject_sort
+		FROM
+		DWMIS_SUBJECT_INFO
+		WHERE
+		TEMPLATE_ID =
+		#{templateId}
+		order by subject_sort asc
+	</select>
+	<!-- 复制主题信息 -->
+	<insert id="copySubjectInfo" parameterType="java.util.HashMap">
+		INSERT into
+		dwmis_subject_info
+		(SUBJECT_ID,TEMPLATE_ID,SUBJECT_CODE,SUBJECT_NAME,IS_SHOW,REMARK,date_type,subject_sort)
+		select
+		CONCAT(#{newTid}, '_', di.SUBJECT_CODE) as SUBJECT_ID,
+		#{newTid}
+		as TEMPLATE_ID,
+		di.SUBJECT_CODE,
+		di.SUBJECT_NAME,
+		di.IS_SHOW,
+		di.REMARK,
+		di.date_type,subject_sort
+		from dwmis_subject_info di
+		where
+		di.TEMPLATE_ID=#{oldTid}
+	</insert>
+	<!-- 根据模板ID删除主题信息 -->
+	<delete id="delSubjectInfoByTemplateId" parameterType="java.lang.String">
+		delete
+		from dwmis_subject_info where template_id=#{templateId}
+	</delete>
+	<!-- 根据主题ID删除主题信息 -->
+	<delete id="delSubjectInfoById" parameterType="java.lang.String">
+		delete
+		from
+		dwmis_subject_info where SUBJECT_ID=#{subjectId}
+	</delete>
+	<insert id="addSubjectInfo" parameterType="DwmisSubjectInfo">
+		insert into
+		dwmis_subject_info(SUBJECT_ID,TEMPLATE_ID,SUBJECT_CODE,SUBJECT_NAME,REMARK,date_type,IS_SHOW,subject_sort)
+		values(#{subjectId},#{templateId},#{subjectCode},#{subjectName},#{remark},#{dateType},#{isShow},#{,subjectSort})
+	</insert>
+</mapper>

@@ -1,0 +1,12 @@
+alter table dwpas_st_platform_data  change  taobao_rate   wap_rate  decimal(30,4) DEFAULT NULL;
+alter table dwpas_st_platform_data  change  taobao_rate_trend   wap_rate_trend  decimal(30,4) DEFAULT NULL;
+alter table DWPAS_C_CROSS_USER_KPI change taobao_code  wap_code  varchar(50) comment 'wap指标code';
+alter table DWPAS_C_CROSS_USER_KPI change alipay_code  master_code  varchar(50) comment '主站指标code';
+alter table DWPAS_C_CROSS_USER_KPI change out_code  coorperate_code  varchar(50) comment '合作平台指标code';
+alter table DWPAS_C_CROSS_USER_KPI change taobao_only_code  wap_only_code   varchar(50) comment '仅使用wap指标code';
+alter table DWPAS_C_CROSS_USER_KPI change alipay_only_code   master_only_code     varchar(50) comment '仅使用主站指标code';
+alter table DWPAS_C_CROSS_USER_KPI change out_only_code   coorperate_only_code varchar(50) comment '仅使用合作平台指标code';
+alter table DWPAS_C_CROSS_USER_KPI change taobao_alipay_code    wap_master_code      varchar(50) comment '仅使用wap和主站指标code';
+alter table DWPAS_C_CROSS_USER_KPI change alipay_out_code    master_coorperate_code varchar(50) comment '仅使用主站和合作平台指标code';
+alter table DWPAS_C_CROSS_USER_KPI change taobao_out_code    wap_coorperate_code  varchar(50) comment '仅使用wap和合作平台指标code';
+alter table DWPAS_C_CROSS_USER_KPI change all_code   all_code    varchar(50) comment '主站、wap和合作平台都使用指标code';

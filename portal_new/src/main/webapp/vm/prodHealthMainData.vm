@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <!--<message><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+	<axes>
+		<axis xid="0">#if($data1.dimName1) $!data1.dimName1 #else $!data2.dimName1 #end</axis>
+		<axis xid="1">#if($data1.dimName2) $!data1.dimName2 #else $!data2.dimName2 #end</axis>
+		<axis xid="2">#if($data1.dimName3) $!data1.dimName3 #else $!data2.dimName3 #end</axis>
+		<axis xid="3">#if($data1.dimName4) $!data1.dimName4 #else $!data2.dimName4 #end</axis>	
+		<axis xid="4">#if($data1.dimName5) $!data1.dimName5 #else $!data2.dimName5 #end</axis>
+		<axis xid="5">#if($data1.dimName6) $!data1.dimName6 #else $!data2.dimName6 #end</axis>			
+	</axes>
+	<graphs>
+		<graph gid="1" title="$!month1" color="AB4E4A" bullet="round" bullet_size="14"> 
+			<value xid="0" description="$!data1.dimValue1$!data1.dimUnit1">$!data1.drowValue1</value>
+			<value xid="1" description="$!data1.dimValue2$!data1.dimUnit2">$!data1.drowValue2</value>
+			<value xid="2" description="$!data1.dimValue3$!data1.dimUnit3">$!data1.drowValue3</value>
+			<value xid="3" description="$!data1.dimValue4$!data1.dimUnit4">$!data1.drowValue4</value>
+			<value xid="4" description="$!data1.dimValue5$!data1.dimUnit5">$!data1.drowValue5</value>
+			<value xid="5" description="$!data1.dimValue6$!data1.dimUnit6">$!data1.drowValue6</value>
+		</graph>
+		<graph gid="2" title="$!month2" color="198942" bullet="round" bullet_size="14"> 
+			<value xid="0" description="$!data2.dimValue1$!data2.dimUnit1">$!data2.drowValue1</value>
+			<value xid="1" description="$!data2.dimValue2$!data2.dimUnit2">$!data2.drowValue2</value>
+			<value xid="2" description="$!data2.dimValue3$!data2.dimUnit3">$!data2.drowValue3</value>
+			<value xid="3" description="$!data2.dimValue4$!data2.dimUnit4">$!data2.drowValue4</value>
+			<value xid="4" description="$!data2.dimValue5$!data2.dimUnit5">$!data2.drowValue5</value>
+			<value xid="5" description="$!data2.dimValue6$!data2.dimUnit6">$!data2.drowValue6</value>
+		</graph>        
+  </graphs>
+</chart>

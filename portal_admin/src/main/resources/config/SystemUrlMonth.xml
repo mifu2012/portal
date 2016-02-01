@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="GB2312" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>系统月模块URL</comment>
+	<entry key="/dwpasStDeptKpiData/showKpiMonitor.html?kpiType=3">部门月指标监控</entry>
+</properties>

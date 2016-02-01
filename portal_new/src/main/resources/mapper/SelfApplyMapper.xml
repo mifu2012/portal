@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.portal.pojo.SelfApplyMapper">
+	<!-- 报表 -->
+	<resultMap type="com.infosmart.portal.pojo.report.SelfReport"
+		id="ReportAndSelfApplyMap">
+		<id column="REPORT_ID" property="reportId" />
+		<result column="report_name" property="reportName" />
+		<result column="parent_id" property="parentId" />
+		<result column="parent_Name" property="parentName"/>
+		<result column="is_report" property="isReport" />
+		<result column="remark" property="remark" />
+		<result column="query_sql" property="querySql" />
+		<result column="page_size" property="pageSize" />
+		<result column="gmt_creator" property="gmtCreator" />
+		<result column="500W_RPT_FLAG" property="rptFlag500w" />
+		<result column="500W_RPT_URL" property="rptUrl500w" />
+		<association property="selfApply" column="REPORT_ID"
+			javaType="SelfApply">
+			<id property="id" column="id" />
+			<result column="REPORT_ID" property="reportId" />
+			<result column="report_name" property="reportName" />
+			<result column="user_id" property="userId" />
+			<result column="user_name" property="userName" />
+			<result column="state" property="state" />
+			<result column="memo" property="memo" />
+			<result column="update_id" property="updateId" />
+			<result column="update_time" property="updateTime" />
+		</association>
+	</resultMap>
+
+	<!-- 自助服务 -->
+	<resultMap id="SelfApplyMap" type="SelfApply">
+		<result property="id" column="id" />
+		<result property="reportId" column="report_id" />
+		<result property="reportName" column="report_name" />
+		<result property="userId" column="user_id" />
+		<result property="userName" column="user_name" />
+		<result property="state" column="state" />
+		<result property="memo" column="memo" />
+		<result property="updateId" column="update_id" />
+		<result property="updateTime" column="update_time" />
+	</resultMap>
+
+	<!-- add by yangwg -->
+	<!-- 报表配置 -->
+	<resultMap id="ReportDesignMap" type="ReportDesign">
+		<id column="REPORT_ID" property="reportId" />
+		<result column="report_name" property="reportName" />
+		<result column="parent_id" property="parentId" />
+		<result column="is_report" property="isReport" />
+		<result column="remark" property="remark" />
+		<result column="query_sql" property="querySql" />
+		<result column="page_size" property="pageSize" />
+		<result column="gmt_creator" property="gmtCreator" />
+		<result column="gmt_create" property="gmtCreate" />
+		<!-- 报表列配置 -->
+		<collection property="columnConfigList" resultMap="SelfReportColumnConfigMap"
+			javaType="java.util.ArrayList" column="REPORT_ID" />
+	</resultMap>
+	<!-- 报表列配置 -->
+	<resultMap id="SelfReportColumnConfigMap" type="com.infosmart.portal.pojo.report.ReportConfig">
+		<result column="REPORT_ID" property="reportId" jdbcType="VARCHAR" />
+		<result column="COLUMN_CODE" property="columnCode" jdbcType="VARCHAR" />
+		<result column="COLUMN_LABEL" property="columnLabel" jdbcType="VARCHAR" />
+		<result column="COLUMN_TYPE" property="columnType" jdbcType="INTEGER" />
+		<result column="COLUMN_TYPE_NAME" property="columnTypeName"
+			jdbcType="VARCHAR" />
+		<result column="COLUMN_CLASS_NAME" property="columnClassName"
+			jdbcType="VARCHAR" />
+		<result column="IS_DATA_COLUMN" property="isDataColumn"
+			jdbcType="INTEGER" /><!-- 表单显示 -->
+		<result column="IS_QUERY_COLUMN" property="isQueryColumn"
+			jdbcType="INTEGER" /><!-- 查询条件列 -->
+		<result column="COLUMN_SORT" property="columnSort" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 报表从表控件 -->
+	<resultMap id="ReportConfigResultMap" type="com.infosmart.portal.pojo.report.ReportConfig">
+		<id column="id" property="configId" />
+		<result column="REPORT_ID" property="reportId" jdbcType="VARCHAR" />
+		<result column="COLUMN_CODE" property="columnCode" jdbcType="VARCHAR" />
+		<result column="COLUMN_LABEL" property="columnLabel" jdbcType="VARCHAR" />
+		<result column="COLUMN_TYPE" property="columnType" jdbcType="INTEGER" />
+		<result column="COLUMN_TYPE_NAME" property="columnTypeName"
+			jdbcType="VARCHAR" />
+		<result column="control_type" property="controlType" jdbcType="INTEGER" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="default_value" property="defaultValue"
+			jdbcType="VARCHAR" />
+		<result column="DATE_FORMAT" property="dateFormat" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 报表从表维度从表 -->
+	<resultMap id="DimensionDetailMap"
+		type="com.infosmart.portal.pojo.report.DimensionDetail">
+		<result property="primaryKeyId" column="ID" />
+		<result property="dimensionId" column="DIMENSION_ID" />
+		<result property="key" column="KEY_OF_VALUE" />
+		<result property="value" column="VALUE_OF_KEY" />
+	</resultMap>
+	<!-- 二级维度 -->
+	<resultMap type="com.infosmart.portal.pojo.report.DimensionDetailSec"
+		id="DimensionDetailSec">
+		<id column="report_id" property="reportId" />
+		<result column="primary_id" property="primary_id" />
+		<result column="parent_id" property="parent_id" />
+		<result column="dimensionSec_key" property="key" />
+		<result column="dimensionSec_value" property="value" />
+	</resultMap>
+	
+	<!-- 获取申请通过的报表 -->
+	<select id="getreportMenuList" parameterType="int"
+		resultMap="ReportAndSelfApplyMap">
+		select b.* from tb_rpt_self_apply a LEFT JOIN tb_rpt_design
+		b on
+		a.report_id= b.report_id
+		where a.user_id=#{userId} and a.state =3
+	</select>
+
+	<!-- 分页查询 -->
+	<select id="listPageReports" parameterType="ReportDesign"
+		resultMap="ReportAndSelfApplyMap">
+		SELECT
+		reportId,
+		reportName,
+		Id,
+		userId,
+		userName,
+		selfReportId,
+		selfReportName,
+		memo,
+		state
+		FROM
+		(SELECT
+		a.report_id AS reportId,
+		a.report_name AS reportName,
+		b.id AS Id,
+		b.user_id AS userId,
+		b.user_name AS userName,
+		b.report_id selfReportId,
+		b.report_name AS
+		selfReportName,
+		b.memo AS memo,
+		(CASE WHEN b.state IS NULL THEN 1 ELSE
+		b.state END )AS state
+		FROM
+		tb_rpt_design a
+		LEFT JOIN tb_rpt_self_apply b
+		ON a.report_id
+		= b.report_id
+		WHERE
+		a.report_id NOT IN(
+		SELECT
+		DISTINCT(parent_id)
+		FROM
+		tb_rpt_design
+		WHERE parent_id IS NOT NULL
+		)
+		)AS a
+	</select>
+	<!-- 非分页查询 -->
+	<select id="listReports" parameterType="java.util.HashMap"
+		resultMap="ReportAndSelfApplyMap">
+		SELECT
+	reportId,
+	reportName,
+	Id,
+	parent_id,
+	b.report_name AS parent_Name,
+	userId,
+	userName,
+	selfReportId,
+	selfReportName,
+	memo,
+	state
+FROM
+	(
+		SELECT
+			a.report_id AS reportId,
+			a.report_name AS reportName,
+			a.is_report,
+			a.parent_id,
+			b.id AS Id,
+			b.user_id AS userId,
+			b.user_name AS userName,
+			b.report_id selfReportId,
+			b.report_name AS selfReportName,
+			b.memo AS memo,
+			(
+				CASE
+				WHEN b.state IS NULL THEN
+					1
+				ELSE
+					b.state
+				END
+			)AS state
+		FROM
+			tb_rpt_design a
+		LEFT JOIN(
+			SELECT
+				*
+			FROM
+				tb_rpt_self_apply
+			WHERE
+				user_id = #{userId}
+		)AS b ON a.report_id = b.report_id
+		WHERE
+			a.is_report = 1
+	)AS a
+LEFT JOIN(
+	SELECT
+		rd.report_id,
+		rd.report_name
+	FROM
+		tb_rpt_design rd
+	WHERE
+		rd.is_report = 0
+)b ON a.parent_id = b.report_id
+<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="reportName !=null and reportName !=''">
+				a.reportName
+				LIKE CONCAT(CONCAT('%',
+				#{reportName,jdbcType=VARCHAR}), '%')
+			</if>
+			<if test="states!=null">
+				and a.state in
+				<foreach collection="states" close=")" separator="," open="("
+					item="state">
+					#{state,jdbcType=VARCHAR}
+				</foreach>
+			</if>
+		</trim>
+ORDER BY
+	parent_id,
+	reportId
+	</select>
+
+	<!-- 单一查询 -->
+	<select id="getSelfApplyById" parameterType="SelfApply"
+		resultMap="SelfApplyMap">
+		select id,report_id,report_name,user_id,user_name,state from
+		tb_rpt_self_apply
+		where user_id =#{userId} and report_id=#{reportId}
+	</select>
+
+	<!-- 申请 -->
+	<insert id="insertApplyReport" parameterType="SelfApply">
+		insert into
+		tb_rpt_self_apply(user_id,user_name,report_id,report_name,state)
+		values(#{userId},#{userName},#{reportId},#{reportName},#{state})
+	</insert>
+
+	<!-- yangwg新加的，列出所有报表（包括子报表） -->
+	<select id="listSubReportByParentId" parameterType="int"
+		resultMap="ReportAndSelfApplyMap">
+		select
+		f.report_id,f.report_name,f.parent_id,f.is_report,f.500W_RPT_FLAG, f.500W_RPT_URL,
+		s.report_id as s_report_id,
+		s.report_name as s_report_name,
+		s.parent_id as s_parent_id ,
+		s.is_report as s_is_report ,
+		s.500W_RPT_FLAG AS s_500W_RPT_FLAG,
+        s.500W_RPT_URL AS s_500W_RPT_URL
+		from tb_rpt_design f 
+		left JOIN
+		tb_rpt_design s
+		on f.report_id=s.parent_id
+
+		where
+		f.parent_id=#{parentId}
+	</select>
+	<!-- 查询报表信息 -->
+	<!-- <select id="queryReportConfigById" resultMap="ReportDesignMap"> SELECT 
+		crc.report_id, crc.report_name, crc.query_sql, crc.page_size, crc.remark, 
+		rcc.column_code, rcc.column_label, rcc.column_type, rcc.column_type_name, 
+		rcc.column_class_name, rcc.IS_DATA_COLUMN, rcc.IS_QUERY_COLUMN FROM tb_rpt_design 
+		crc LEFT JOIN( SELECT * FROM tb_rpt_report_field rcc WHERE rcc.IS_DATA_COLUMN 
+		= 1 )rcc ON crc.report_id = rcc.report_id WHERE crc.report_id = #{reportId,jdbcType=VARCHAR} 
+		ORDER BY rcc.column_sort </select> -->
+	<!-- 查询从表信息 -->
+	<select id="listQueryColumnConfigById" parameterType="int"
+		resultMap="ReportConfigResultMap">
+		select * from tb_rpt_report_config where
+		report_id=#{reportId}
+		ORDER BY IFNULL(COLUMN_SORT,0)
+	</select>
+	<!-- 获得二级维度 -->
+	<select id="getDimensionDetailSecList" parameterType="java.lang.String"
+		resultMap="DimensionDetailSec">
+		select * from tb_rpt_sec_dimension_detail where
+		parent_id=#{parent_id}
+	</select>
+	<!-- 查询维度组 -->
+	<select id="listDimensionDetail" parameterType="int"
+		resultMap="DimensionDetailMap">
+		SELECT a.* FROM tb_rpt_dimension_detail a where
+		a.dimension_id=#{dimensionId}
+	</select>
+	<!-- 收藏更新自服务报表权限 -->
+	<update id="updateSelfRights" parameterType="com.infosmart.portal.pojo.User">
+		update tb_user set
+		self_rights=#{selfRights} where user_id=#{userId}
+	</update>
+
+</mapper>

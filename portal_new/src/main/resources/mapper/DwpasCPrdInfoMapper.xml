@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasCPrdInfoMapper">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+	<!-- 产品信息 -->
+	<resultMap id="DwpasCPrdInfoResultMap" type="DwpasCPrdInfo">
+		<id property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENT_ID" jdbcType="VARCHAR" />
+		<result property="isFolder" column="IS_FOLDER" jdbcType="CHAR" />
+		<result property="productName" column="PRODUCT_NAME" jdbcType="VARCHAR" />
+		<result property="productMark" column="PRODUCT_MARK" jdbcType="CHAR" />
+		<result property="isIndexShow" column="IS_INDEX_SHOW" jdbcType="CHAR" />
+		<result property="indexShowOrder" column="INDEX_SHOW_ORDER"
+			jdbcType="DECIMAL" />
+		<result property="isUse" column="IS_USE" jdbcType="CHAR" />
+		<result property="iconUrl" column="ICON_URL" jdbcType="VARCHAR" />
+		<result property="funnelId" column="FUNNEL_ID" jdbcType="VARCHAR" />
+		<result property="funnelName" column="FUNNEL_NAME" jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 子指标信息 -->
+	<resultMap id="ChildPrdInfoResultMap" type="DwpasCPrdInfo">
+		<id property="productId" column="child_product_id" jdbcType="VARCHAR" />
+		<result property="parentId" column="child_parent_id" jdbcType="VARCHAR" />
+		<result property="isFolder" column="child_is_folder" jdbcType="CHAR" />
+		<result property="productName" column="child_product_name"
+			jdbcType="VARCHAR" />
+		<result property="productMark" column="child_product_mark"
+			jdbcType="CHAR" />
+		<result property="isIndexShow" column="child_is_index_show"
+			jdbcType="CHAR" />
+		<result property="indexShowOrder" column="child_index_show_order"
+			jdbcType="DECIMAL" />
+		<result property="isUse" column="child_is_use" jdbcType="CHAR" />
+		<result property="iconUrl" column="child_icon_url" jdbcType="VARCHAR" />
+		<result property="funnelId" column="child_funnel_id" jdbcType="VARCHAR" />
+		<result property="funnelName" column="dhild_funnel_name"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="child_gmt_create"
+			jdbcType="TIMESTAMP" />
+		<result property="gmtModified" column="child_gmt_modified"
+			javaType="java.util.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 产品与其子产品 -->
+	<resultMap id="prdInfoAndSubPrdInfoResultMap" type="DwpasCPrdInfo">
+		<id property="productId" column="PRODUCT_ID" jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENT_ID" jdbcType="VARCHAR" />
+		<result property="isFolder" column="IS_FOLDER" jdbcType="CHAR" />
+		<result property="productName" column="PRODUCT_NAME" jdbcType="VARCHAR" />
+		<result property="productMark" column="PRODUCT_MARK" jdbcType="CHAR" />
+		<result property="isIndexShow" column="IS_INDEX_SHOW" jdbcType="CHAR" />
+		<result property="indexShowOrder" column="INDEX_SHOW_ORDER"
+			jdbcType="DECIMAL" />
+		<result property="isUse" column="IS_USE" jdbcType="CHAR" />
+		<result property="iconUrl" column="ICON_URL" jdbcType="VARCHAR" />
+		<result property="funnelId" column="FUNNEL_ID" jdbcType="VARCHAR" />
+		<result property="funnelName" column="FUNNEL_NAME" jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" jdbcType="TIMESTAMP" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<!-- 关联子指标 -->
+		<collection property="childPrdInfoList" resultMap="ChildPrdInfoResultMap"
+			javaType="java.util.ArrayList" column="product_id" />
+	</resultMap>
+	<!-- 列出产品及其子产品信息 -->
+	<select id="listPrdAndChildPrdInfo" resultMap="prdInfoAndSubPrdInfoResultMap">
+	  <![CDATA[
+	  select a.*, b.*
+      from (select product_id,
+               parent_id,
+               is_folder,
+               product_name,
+               is_index_show,
+               index_show_order,
+               is_use,
+               icon_url,
+               funnel_id,
+               funnel_name,
+               gmt_create,
+               gmt_modified,
+               product_mark
+          from dwpas_c_prd_info
+         where ((length(IFNULL(parent_id,''))=0) AND (is_folder = '1') AND
+               (product_mark = '4002') AND (is_use = '1'))
+         order by index_show_order ASC) a
+       left join (select product_id       as child_product_id,
+                    parent_id        as child_parent_id,
+                    is_folder        as child_is_folder,
+                    product_name     as child_product_name,
+                    is_index_show    as child_is_index_show,
+                    index_show_order as child_index_show_order,
+                    is_use           as child_is_use,
+                    icon_url         as child_icon_url,
+                    funnel_id        as child_funnel_id,
+                    funnel_name      as dhild_funnel_name,
+                    gmt_create       as child_gmt_create,
+                    gmt_modified     as child_gmt_modified,
+                    product_mark     as child_product_mark
+               from dwpas_c_prd_info
+              where ((parent_id IS NOT NULL) AND (is_folder = '0') AND
+                    (product_mark = '4002') AND (is_use = '1'))) b
+        on a.product_id = b.child_parent_id
+	  ]]>
+	</select>
+	<!-- 得到首页某产品及子产品线 -->
+	<select id="getPrdAndChildPrdInfoByPrdId" resultMap="prdInfoAndSubPrdInfoResultMap">
+	  <![CDATA[
+       select a.*, b.*
+       from (select product_id,
+               parent_id,
+               is_folder,
+               product_name,
+               is_index_show,
+               index_show_order,
+               is_use,
+               icon_url,
+               funnel_id,
+               funnel_name,
+               gmt_create,
+               gmt_modified,
+               product_mark
+          from dwpas_c_prd_info
+         where ((parent_id IS NULL) AND (is_folder = '1') AND
+               (product_mark = '4002') AND (is_use = '1'))
+         order by index_show_order ASC) a
+         left join (select product_id       as child_product_id,
+                    parent_id        as child_parent_id,
+                    is_folder        as child_is_folder,
+                    product_name     as child_product_name,
+                    is_index_show    as child_is_index_show,
+                    index_show_order as child_index_show_order,
+                    is_use           as child_is_use,
+                    icon_url         as child_icon_url,
+                    funnel_id        as child_funnel_id,
+                    funnel_name      as dhild_funnel_name,
+                    gmt_create       as child_gmt_create,
+                    gmt_modified     as child_gmt_modified,
+                    product_mark     as child_product_mark
+               from dwpas_c_prd_info
+              where ((parent_id IS NOT NULL) AND (is_folder = '0') AND
+                    (product_mark = '4002') AND (is_use = '1'))) b
+        on a.product_id = b.child_parent_id
+        where a.product_id = #{productId,jdbcType=VARCHAR}
+	  ]]>
+	</select>
+	<!-- zy查询根据传入对象所有cprdinfo表数据 -->
+	<select id="queryDwpasCPrdInfoList" resultMap="DwpasCPrdInfoResultMap">
+		select product_id, parent_id, is_folder, product_name, is_index_show,
+		index_show_order, is_use, icon_url, funnel_id, funnel_name,
+		gmt_create, gmt_modified, product_mark from dwpas_c_prd_info
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="productMark!=null and productMark!=''">
+				AND product_mark=#{productMark}
+			</if>
+			<if test="isFolder!=null and isFolder!=''">
+				AND is_folder=#{isFolder}
+			</if>
+			<if test="productName!=null and productName!=''">
+				AND product_name=#{productName}
+			</if>
+			<if test="isIndexShow!=null and isIndexShow!=''">
+				AND is_index_show=#{isIndexShow}
+			</if>
+			<if test="isUse!=null and isUse!=''">
+				AND is_use=#{isUse}
+			</if>
+			<if test="productIdList!=null">
+				AND product_id IN
+				<foreach collection="productIdList" item="productId" close=")"
+					open="(" separator=",">
+					#{productId,jdbcType=VARCHAR}
+				</foreach>
+			</if>
+			<if test="templateId!=null and templateId!=''">
+				AND exists (select rpt.PRODUCT_ID from
+				dwpas_r_prd_template rpt where
+				rpt.product_id=dwpas_c_prd_info.product_id and
+				rpt.template_id=#{templateId})
+			</if>
+		</trim>
+	</select>
+
+	<!-- 新加500w功能 -->
+	<!-- 查询根据传入对象所有cprdinfo表数据 -->
+	<select id="queryUserActionList" resultMap="DwpasCPrdInfoResultMap">
+		select product_id, parent_id, is_folder, product_name, is_index_show,
+		index_show_order, is_use, icon_url, funnel_id, funnel_name,
+		gmt_create, gmt_modified, product_mark from dwpas_c_prd_info
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="productMark!=null and productMark!=''">
+				AND product_mark=#{productMark}
+			</if>
+			<if test="isFolder!=null and isFolder!=''">
+				AND is_folder=#{isFolder}
+			</if>
+			<if test="productName!=null and productName!=''">
+				AND product_name=#{productName}
+			</if>
+			<if test="isIndexShow!=null and isIndexShow!=''">
+				AND is_index_show=#{isIndexShow}
+			</if>
+			<if test="isUse!=null and isUse!=''">
+				AND is_use=#{isUse}
+			</if>
+		</trim>
+	</select>
+
+
+
+	<!-- 根据主键(产品ID)得到产品信息 -->
+	<select id="queryOneByProductId" resultMap="DwpasCPrdInfoResultMap"
+		parameterType="string">
+		SELECT cpi.FUNNEL_ID, cpi.FUNNEL_NAME, cpi.GMT_CREATE,
+		cpi.GMT_MODIFIED, cpi.icon_url, cpi.index_show_order,
+		cpi.is_folder,
+		cpi.is_index_show, cpi.is_use, cpi.parent_id,
+		cpi.product_id,
+		cpi.product_mark, cpi.product_name from
+		dwpas_c_prd_info cpi where
+		cpi.product_id=#{productId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="queryAllDwpasCPrdInfoAll" resultMap="DwpasCPrdInfoResultMap">
+    <![CDATA[
+        select  product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info
+    ]]>
+	</select>
+
+	<select id="getProdInfoById" resultMap="DwpasCPrdInfoResultMap">
+    <![CDATA[
+        select product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info where (product_id = #{productId,jdbcType=VARCHAR})
+    ]]>
+	</select>
+
+	<select id="qryAllPrdClasses" resultMap="DwpasCPrdInfoResultMap">
+    <![CDATA[
+        select  product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info where ((parent_id IS NULL) AND (is_folder = '1') AND (product_mark = '2') AND (is_use = '1')) order by index_show_order ASC
+    ]]>
+	</select>
+
+	<!-- 查询某产品所有子产品数 -->
+	<select id="queryChildCountByPrdId" parameterType="string"
+		resultType="int">
+		select count(product_id) as childPrdCount
+		from
+		dwpas_c_prd_info
+		where
+		is_folder = '0'
+		and is_use = '1'
+		and product_mark =
+		'4001'
+		and parent_id=#{parentId,jdbcType=VARCHAR}
+	</select>
+
+
+	<select id="qryAllByParentIds" resultMap="DwpasCPrdInfoResultMap">
+		select product_id, parent_id, is_folder, product_name, is_index_show,
+		index_show_order, is_use, icon_url, funnel_id, funnel_name,
+		gmt_create, gmt_modified, product_mark from dwpas_c_prd_info where
+		is_folder='0' and is_use='1' and product_mark='4001'
+		<if test="parentIds!=null and parentIds!=''">
+			AND parent_id in
+			<foreach collection="parentIds" separator="," close=")" open="("
+				item="parentId">
+				#{parentId}
+				</foreach>
+		</if>
+	</select>
+
+
+</mapper>

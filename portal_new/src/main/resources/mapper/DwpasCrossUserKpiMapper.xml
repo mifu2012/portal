@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasCrossUserKpiMapper">
+	<!-- 指标信息记录集 -->
+	<resultMap id="DwpasCrossUserKpiResultMap" type="DwpasCrossUserKpi">
+		 <result property="id" column="ID" />
+        <result property="kpiName" column="KPI_NAME" />
+        <result property="taobaoCode" column="wap_code" />
+        <result property="alipayCode" column="master_code" />
+        <result property="outCode" column="coorperate_code" />
+        <result property="taobaoOnlyCode" column="wap_only_code" />
+        <result property="alipayOnlyCode" column="master_only_code" />
+        <result property="outOnlyCode" column="coorperate_only_code" />
+        <result property="taobaoAlipayCode" column="wap_master_code" />
+        <result property="alipayOutCode" column="master_coorperate_code" />
+        <result property="taobaoOutCode" column="wap_coorperate_code" />
+        <result property="allCode" column="ALL_CODE" />
+        <result property="gmtCreate" column="GMT_CREATE" />
+        <result property="gmtModified" column="GMT_MODIFIED"/>
+	</resultMap>
+	  <select id="queryAllCrossUserKpi" resultMap="DwpasCrossUserKpiResultMap">
+        select id, kpi_name, wap_code, master_code, coorperate_code, wap_only_code, master_only_code, coorperate_only_code, wap_master_code, master_coorperate_code, wap_coorperate_code, all_code, gmt_create, gmt_modified from dwpas_c_cross_user_kpi
+    </select>
+</mapper>

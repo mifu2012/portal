@@ -1,0 +1,27 @@
+#divf {
+ margin:10px;
+ font-size:0.8em;
+ text-align:center;
+}
+#divc {
+ border:1px solid #333333;
+}
+.des {
+ width:500px;
+ background-color:lightyellow;
+ border:1px solid #333;
+ padding:0px;
+ margin-top:0px;
+}
+.mouseover {
+ color:#ffffff;
+ background-color:highlight;
+ width:100%;
+ cursor:default;
+}
+.mouseout {
+ color:#000000;
+ width:100%;
+ background-color:#ffffff;
+ cursor:default;
+}

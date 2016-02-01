@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.infosmart.DwmisModuleInfoMapper">
+	<resultMap id="DwmisModuleInfoMap" type="DwmisModuleInfo">
+		<result column="MODULE_ID" property="moduleId" jdbcType="VARCHAR" />
+		<result column="SUBJECT_ID" property="subjectId" jdbcType="VARCHAR" />
+		<result column="MODULE_NAME" property="moduleName" jdbcType="VARCHAR" />
+		<result column="module_type" property="moduleType" jdbcType="INTEGER" />
+		<result column="module_sort" property="moduleSort" jdbcType="INTEGER" />
+		<result column="IS_SHOW" property="isShow" jdbcType="INTEGER" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="width" property="width" jdbcType="INTEGER" />
+		<result column="height" property="height" jdbcType="INTEGER" />
+		<result column="position" property="position" jdbcType="INTEGER" />
+		<result column="position_x" property="positionX" jdbcType="FLOAT" />
+		<result column="position_y" property="positionY" jdbcType="FLOAT" />
+		<result column="tab_show" property="tabShow" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="DwmisLegendInfo" type="com.infosmart.po.dwmis.DwmisLegendInfo">
+		<result column="MODULE_ID" property="moduleId" jdbcType="VARCHAR" />
+		<result column="legend_id" property="legendId" />
+		<result column="legend_name" property="legendName" />
+		<result column="category_id" property="categoryId" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="chart_type" property="chartType" />
+		<result column="chart_type_desc" property="chartTypeDesc" />
+		<result column="chart_url" property="chartUrl" />
+		<result column="show_warn_line" property="showWarnLine" />
+		<result column="stat_code" property="statCode" />
+		<result column="remark" property="remark" />
+	</resultMap>
+
+	<!-- 根据主题Id查询模块信息 -->
+	<select id="getModluleInfoListBySubjectIdAndTemplateId"
+		resultMap="DwmisModuleInfoMap" parameterType="java.util.Map">
+		SELECT
+		dmi.MODULE_ID,
+		dmi.SUBJECT_ID,
+		dmi.MODULE_NAME,
+		dmi.IS_SHOW,
+		dmi.REMARK,
+		dmi.GMT_CREATE,
+		dmi.width,
+		dmi.height,
+		(
+		CASE
+		WHEN dmi.module_sort = 0 THEN
+		99
+		ELSE
+		dmi.module_sort
+		END
+		)module_sort,
+		dmi.module_type,
+		dmi.position,
+		dmi.position_x,
+		dmi.position_y,
+		dmi.tab_show
+		FROM
+		dwmis_template_info dti,
+		dwmis_subject_info dsi,
+		dwmis_module_info dmi
+		WHERE
+		dti.TEMPLATE_ID =
+		dsi.TEMPLATE_ID
+		AND dsi.SUBJECT_ID = dmi.SUBJECT_ID
+		AND dti.TEMPLATE_ID
+		= #{templateId}
+		AND dsi.SUBJECT_ID = #{subjectId}
+		ORDER BY
+		module_sort
+	</select>
+
+	<!-- 根据主题Id查询模块信息 -->
+	<select id="getModluleInfoListBySubjectId" resultMap="DwmisModuleInfoMap"
+		parameterType="java.lang.String">
+		SELECT
+		dmi.MODULE_ID,
+		dmi.SUBJECT_ID,
+		dmi.MODULE_NAME,
+		dmi.IS_SHOW,
+		dmi.REMARK,
+		dmi.GMT_CREATE,
+		dmi.width,
+		dmi.height,
+		(
+		CASE
+		WHEN dmi.module_sort = 0 THEN
+		99
+		ELSE
+		dmi.module_sort
+		END
+		)module_sort,
+		dmi.module_type,
+		dmi.position,
+		dmi.position_x,
+		dmi.position_y,
+		dmi.tab_show
+		FROM
+		dwmis_subject_info dsi,
+		dwmis_module_info dmi
+		WHERE
+		dsi.SUBJECT_ID = dmi.SUBJECT_ID
+		AND
+		dsi.SUBJECT_ID = #{subjectId}
+		order by MODULE_SORT
+	</select>
+
+	<!-- 新增一个模块信息 -->
+	<insert id="saveModuleInfo" parameterType="DwmisModuleInfo">
+		insert into
+		dwmis_module_info
+		(MODULE_ID,SUBJECT_ID,MODULE_NAME,IS_SHOW,REMARK,GMT_CREATE,width,height,module_sort,module_type,position,position_x,position_y,tab_show)
+		values
+		(#{moduleId,,jdbcType=VARCHAR},#{subjectId,jdbcType=VARCHAR},#{moduleName,jdbcType=VARCHAR},#{isShow,jdbcType=INTEGER},#{remark,jdbcType=VARCHAR},now(),#{width,jdbcType=INTEGER},
+		#{height,jdbcType=INTEGER},#{moduleSort,jdbcType=INTEGER},#{moduleType,jdbcType=INTEGER},#{position,jdbcType=INTEGER},#{positionX,,jdbcType=INTEGER},
+		#{positionY,jdbcType=INTEGER},#{tabShow,jdbcType=INTEGER} )
+	</insert>
+
+	<!-- 根据模块ID查询模块信息 -->
+	<select id="getModuleInfoByModuleId" resultMap="DwmisModuleInfoMap"
+		parameterType="java.lang.String">
+		select dmi.MODULE_ID,
+		dmi.SUBJECT_ID,
+		dmi.MODULE_NAME,
+		dmi.IS_SHOW,
+		dmi.REMARK,
+		dmi.GMT_CREATE,
+		dmi.width,
+		dmi.height,
+		dmi.module_sort,
+		dmi.module_type,
+		dmi.position,
+		dmi.position_x,
+		dmi.position_y,
+		dmi.tab_show
+		from dwmis_module_info dmi
+		where
+		dmi.MODULE_ID=#{moduleId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 更新模块信息 -->
+	<update id="updateModuleInfo" parameterType="DwmisModuleInfo">
+		update
+		dwmis_module_info set
+		MODULE_NAME=#{moduleName,jdbcType=VARCHAR},IS_SHOW=#{isShow,jdbcType=INTEGER},REMARK=#{remark,jdbcType=VARCHAR},height=#{height,jdbcType=INTEGER},module_sort=#{moduleSort,jdbcType=INTEGER},width=#{width,jdbcType=INTEGER},tab_show=#{tabShow,jdbcType=INTEGER},
+		position=#{position,jdbcType=INTEGER},position_x=#{positionX,,jdbcType=INTEGER},position_y=#{positionY,jdbcType=INTEGER}
+		where
+		MODULE_ID=#{moduleId,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 删除模块信息 -->
+	<delete id="deleteModuleInfo" parameterType="java.lang.String">
+		delete from
+		dwmis_module_info where MODULE_ID=#{moduleId,jdbcType=VARCHAR}
+	</delete>
+
+	<!-- 删除图例模块中间表中的信息 -->
+	<delete id="deleteLegendModule" parameterType="java.lang.String">
+		delete from
+		dwmis_legend_module_r where MODULE_ID=#{moduleId,jdbcType=VARCHAR}
+	</delete>
+
+	<!-- 查询与该模块关联的图例信息 -->
+	<select id="getRelLegendInfoByModuleId" resultMap="DwmisLegendInfo"
+		parameterType="java.lang.String">
+		SELECT
+		dli.LEGEND_ID,
+		dli.LEGEND_NAME,
+		dli.CATEGORY_ID,
+		dli.GMT_CREATE,
+		dli.CHART_TYPE,
+		dli.CHART_TYPE_DESC,
+		dli.CHART_URL,
+		dli.SHOW_WARN_LINE,
+		dli.STAT_CODE,
+		dli.REMARK,
+		dmi.MODULE_NAME
+		FROM
+		DWMIS_LEGEND_INFO dli,
+		dwmis_module_info dmi,
+		dwmis_legend_module_r lmr
+		WHERE
+		dli.LEGEND_ID =
+		lmr.LEGEND_ID
+		AND lmr.MODULE_ID = dmi.MODULE_ID
+		AND
+		dmi.MODULE_ID = #{moduleId,jdbcType=VARCHAR}
+		ORDER BY lmr.sort;
+	</select>
+
+	<!-- 查询与该模块不关联的图例信息 -->
+	<select id="getUnRelLegendInfoByModuleId" resultMap="DwmisLegendInfo"
+		parameterType="java.lang.String">
+		SELECT
+		c.LEGEND_ID,
+		c.LEGEND_NAME,
+		c.CATEGORY_ID,
+		c.GMT_CREATE,
+		c.CHART_TYPE,
+		c.CHART_TYPE_DESC,
+		c.CHART_URL,
+		c.SHOW_WARN_LINE,
+		c.STAT_CODE,
+		c.REMARK
+		FROM
+		(
+		SELECT
+		dli.LEGEND_ID,
+		dli.LEGEND_NAME,
+		dli.CATEGORY_ID,
+		dli.GMT_CREATE,
+		dli.CHART_TYPE,
+		dli.CHART_TYPE_DESC,
+		dli.CHART_URL,
+		dli.SHOW_WARN_LINE,
+		dli.STAT_CODE,
+		dli.REMARK
+		FROM
+		DWMIS_LEGEND_INFO dli
+		WHERE
+		dli.LEGEND_ID NOT IN(
+		SELECT
+		lmr.LEGEND_ID from dwmis_legend_module_r lmr
+		WHERE
+		lmr.module_id =
+		#{moduleId,jdbcType=VARCHAR}
+		AND lmr.LEGEND_ID = dli.LEGEND_ID
+		)
+		)c
+	</select>
+
+	<!-- 删除模块与图例不关联信息 -->
+	<delete id="deleteUnRelLegendInfo">
+		delete from dwmis_legend_module_r where MODULE_ID =
+		#{moduleId,jdbcType=VARCHAR}
+	</delete>
+
+	<!-- 批量插入模块信息 -->
+	<insert id="insertRelLegendInfoList">
+		insert into dwmis_legend_module_r (LEGEND_ID,MODULE_ID,SORT) values
+		<foreach collection="list" item="legendModule" index="index"
+			separator=",">
+			(#{legendModule.legendId},#{legendModule.moduleId},#{legendModule.sort,jdbcType=INTEGER})
+		</foreach>
+	</insert>
+
+	<insert id="copyModule" parameterType="java.util.HashMap">
+		insert into
+		dwmis_module_info
+		(MODULE_ID,SUBJECT_ID,MODULE_NAME,IS_SHOW,REMARK,GMT_CREATE,width,height,
+		module_sort,module_type,position,position_x,position_y,tab_show)
+		select
+		CONCAT(#{newTid}, '_', dsi.SUBJECT_CODE, '_', dmi.POSITION_X,
+		'_', dmi.POSITION_Y)
+		as MODULE_ID,
+		CONCAT(#{newTid}, '_',
+		dsi.SUBJECT_CODE) as SUBJECT_ID,
+		dmi.MODULE_NAME,
+		dmi.IS_SHOW,
+		dmi.REMARK,
+		now() as GMT_CREATE,
+		dmi.WIDTH,
+		dmi.HEIGHT,
+		dmi.module_sort,
+		dmi.MODULE_TYPE,
+		dmi.POSITION,
+		dmi.POSITION_X,
+		dmi.POSITION_Y,
+		dmi.TAB_SHOW
+		from dwmis_module_info
+		dmi,
+		DWMIS_SUBJECT_INFO dsi
+		where
+		dsi.template_id =
+		#{oldTid}
+		and
+		dmi.SUBJECT_ID = dsi.SUBJECT_ID;
+	</insert>
+
+	<insert id="copyModuleAndLegend" parameterType="java.util.HashMap">
+		insert into
+		dwmis_legend_module_r
+		(LEGEND_ID,
+		MODULE_ID)
+		select dlm.LEGEND_ID,
+		CONCAT(#{newTid}, '_', dsi.SUBJECT_CODE, '_', dmi.POSITION_X, '_',
+		dmi.POSITION_Y) as
+		MODULE_ID
+		from dwmis_legend_module_r dlm,
+		DWMIS_MODULE_INFO dmi,
+		DWMIS_SUBJECT_INFO
+		dsi
+		where dlm.MODULE_ID =
+		dmi.MODULE_ID
+		and
+		dmi.SUBJECT_ID = dsi.SUBJECT_ID
+		and dsi.TEMPLATE_ID =
+		#{oldTid}
+	</insert>
+	<delete id="delModuleAndLegendByModuleId" parameterType="java.util.List">
+	 <![CDATA[	
+	 delete from dwmis_legend_module_r where module_id in
+	 ]]>
+		<foreach collection="list" item="moduleids" open="("
+			separator="," close=")">
+			#{moduleids}
+		</foreach>
+	</delete>
+	<!-- 根据主题ID删除模块信息 -->
+	<delete id="delModuleInfoBySubjectId" parameterType="java.lang.String">
+		delete from
+		DWMIS_MODULE_INFO where SUBJECT_ID = #{subjectId}
+	</delete>
+	<!-- 根据主题IDs查询模块信息 -->
+	<select id="getModuleInfoBySubjectIds" parameterType="java.util.List"
+		resultMap="DwmisModuleInfoMap">
+	<![CDATA[
+            select * from DWMIS_MODULE_INFO where SUBJECT_ID in
+        ]]>
+		<foreach collection="list" item="subjects" open="(" separator=","
+			close=")">
+			#{subjects}
+		</foreach>
+	</select>
+	<!-- 根据主题IDs删除模块信息 -->
+	<delete id="delModuleInfoBySubjectIds" parameterType="java.util.List">
+	<![CDATA[
+            delete from DWMIS_MODULE_INFO where SUBJECT_ID in
+        ]]>
+		<foreach collection="list" item="subjects" open="(" separator=","
+			close=")">
+			#{subjects}
+		</foreach>
+	</delete>
+	<!-- 根据模块IDs删除模块信息 -->
+	<delete id="delModuleInfoByModuleIds" parameterType="java.util.List">
+	<![CDATA[
+            delete from DWMIS_MODULE_INFO where MODULE_ID in
+        ]]>
+		<foreach collection="list" item="moduleIds" open="("
+			separator="," close=")">
+			#{moduleIds}
+		</foreach>
+	</delete>
+	<!-- 根据多个模块Id查询图例信息 -->
+	<select id="getLegendInfoListByModuleIds" resultMap="DwmisLegendInfo"
+		parameterType="java.util.List">
+		SELECT
+		dmi.MODULE_ID,
+		dli.LEGEND_ID,
+		dli.LEGEND_NAME,
+		dli.CATEGORY_ID,
+		dli.GMT_CREATE,
+		dli.CHART_TYPE,
+		dli.CHART_TYPE_DESC,
+		dli.CHART_URL,
+		dli.SHOW_WARN_LINE,
+		dli.STAT_CODE,
+		dli.REMARK
+		FROM
+		dwmis_module_info dmi,
+		dwmis_legend_module_r dlm,
+		dwmis_legend_info dli
+		WHERE
+		dmi.MODULE_ID =
+		dlm.MODULE_ID
+		AND dlm.LEGEND_ID = dli.LEGEND_ID
+		AND dlm.MODULE_ID IN
+		<foreach collection="list" item="moduleIdList" open="("
+			separator="," close=")">
+			#{moduleIdList,jdbcType=VARCHAR}
+		</foreach>
+		ORDER BY dmi.MODULE_ID,dlm.sort
+	</select>
+</mapper>

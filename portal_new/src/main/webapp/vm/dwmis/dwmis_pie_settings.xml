@@ -1,0 +1,95 @@
+<settings>
+  <data_type>csv</data_type>
+  <thousands_separator>,</thousands_separator>
+  <decimals_separator>.</decimals_separator>
+  <background>
+    <color>#FFFFFF</color>
+    <alpha>100</alpha>
+    <border_color>EFF0F2</border_color>
+    <border_alpha>100</border_alpha>
+  </background>
+   <export_as_image>                                           <!-- export_as_image feature works only on a web server -->
+        <file></file>
+        <!-- [] (filename) if you set filename here, context menu (then user right clicks on flash movie) "Export as image" will appear. This will allow user to export chart as an image. Collected image data will be posted to this file name (use amline/export.php or amline/export.aspx) -->
+        <target></target>
+        <!-- [] (_blank, _top ...) target of a window in which export file must be called -->
+        <x></x>
+        <!-- [0] (Number / Number% / !Number) x position of "Collecting data" text -->
+        <y></y>
+        <!-- [] (Number / Number% / !Number) y position of "Collecting data" text. If not set, will be aligned to the bottom of flash movie -->
+        <color></color>
+        <!-- [#BBBB00] (hex color code) background color of "Collecting data" text -->
+        <alpha></alpha>
+        <!-- [0] (0 - 100) background alpha -->
+        <text_color></text_color>
+        <!-- [text_color] (hex color code) -->
+        <text_size></text_size>
+        <!-- [text_size] (Number) -->
+    </export_as_image>
+    <error_messages>                                            <!-- "error_messages" settings will be applied for all error messages except the one which is showed if settings file wasn't found -->
+        <enabled>false</enabled>
+        <!-- [true] (true / false) -->
+        <x></x>
+        <!-- [] (Number / Number% / !Number) x position of error message. If not set, will be aligned to the center -->
+        <y></y>
+        <!-- [] (Number / Number% / !Number) y position of error message. If not set, will be aligned to the center -->
+        <color></color>
+        <!-- [#BBBB00] (hex color code) background color of error message. Separate color codes with comas for gradient -->
+        <alpha></alpha>
+        <!-- [100] (0 - 100) background alpha -->
+        <text_color></text_color>
+        <!-- [#FFFFFF] (hex color code) -->
+        <text_size></text_size>
+        <!-- [text_size] (Number) -->
+    </error_messages>
+    <strings>
+        <no_data>数据正在准备中，请稍后再试。</no_data>
+        <!-- [No data for selected period] (text) if data for selected period is missing, this message will be displayed -->
+        <export_as_image>数据正在准备中，请稍后再试。</export_as_image>
+        <!-- [Export as image] (text) text for right click menu -->
+        <error_in_data_file>数据正在准备中，请稍后再试。</error_in_data_file>
+        <!-- [Error in data file] (text) this text is displayed if there is an error in data file or there is no data in file. "There is no data" means that there should actually be at least one space in data file. If data file will be completly empty, it will display "error loading file" text -->
+        <collecting_data>数据正在准备中，请稍后再试。</collecting_data>
+        <!-- [Collecting data] (text) this text is displayed while exporting chart to an image -->
+        <wrong_zoom_value>数据正在准备中，请稍后再试。</wrong_zoom_value>
+        <!-- [Incorrect values] (text) this text is displayed if you set zoom through JavaScript and entered from or to value was not find between series -->
+        <!-- the strings below are only important if you format your axis values as durations -->
+        <ss></ss>
+        <!-- [] unit of seconds -->
+        <mm></mm>
+        <!-- [:] unit of minutes -->
+        <hh></hh>
+        <!-- [:] unit of hours -->
+        <DD></DD>
+        <!-- [d. ] unit of days -->        
+    </strings> 
+  <balloon>
+    <show><![CDATA[{title}({percents}%)]]></show>
+  </balloon>
+  <legend>
+    <x>3%</x>
+    <y>35%</y>
+	<width>50%</width>
+	<spacing>1</spacing>
+	<margins>2</margins> 
+    <values>                                                  
+       <enabled>false</enabled>                                 <!-- [false]默认不显示值，设置为true时会在图例后显示对应的值。 -->
+       <width></width>                                       <!-- [80] 用于显示值的文本区的宽度 -->
+       <align>left</align>                                     <!-- [right] (right/left) -->
+       <text></text>                     <!-- [{value}] -->
+      </values>
+  </legend>
+  <pie>
+	<x>73%</x>
+    <y>50%</y>
+    <inner_radius>0</inner_radius>
+    <height>8</height>
+    <angle>20</angle>
+    <base_color>B0DE09</base_color>
+    <brightness_step>-10</brightness_step>
+  </pie>
+  <animation>
+    <start_time>2</start_time>
+    <pull_out_time>1</pull_out_time>
+  </animation>
+</settings>

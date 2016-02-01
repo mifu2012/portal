@@ -1,0 +1,28 @@
+  	<chart cid='0'>
+  <series>
+	#foreach($prodVo in $prodTransCountVOs)
+    <value xid='$velocityCount'>$prodVo.prodName</value>
+	#end
+  </series>
+  <graphs>
+   
+    <graph gid='0'>
+      #foreach($prodVo in $prodTransCountVOs)
+      <value xid='$velocityCount' description='当日值：'>$prodVo.nowValue</value>
+	  #end
+    </graph>
+    <graph gid='111'>
+       #foreach($prodVo in $prodTransCountVOs)
+        <value xid='$velocityCount' description='峰值：'>$prodVo.topValue</value>
+	   #end
+    </graph>
+	 <graph gid='1'>
+	#foreach($prodVo in $prodTransCountVOs)
+    <value xid='$velocityCount'  description='均值：'>$prodVo.avgValue</value>
+	#end
+    </graph>
+  </graphs>
+ </chart>
+
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.dwmis.DwmisMisDptmntMapper">
+	<!-- 部门信息 -->
+	<resultMap id="DwmisMisDptmntMap" type="DwmisMisDptmnt">
+		<result property="depId" column="dep_id" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="depName" column="dep_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="depOrder" column="dep_order" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="depGroupId" column="dep_group_id" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 部门及其关联的指标信息 -->
+	<resultMap id="DwmisMisDeptAndKpiInfoMap" type="DwmisMisDptmnt">
+		<result property="depId" column="dep_id" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="depName" column="dep_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="depOrder" column="dep_order" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="depGroupId" column="dep_group_id" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<!-- 关联的指标信息 -->
+		<collection property="kpiInfoList" column="kpi_code"
+			resultMap="com.infosmart.dwmis.dwmisKpiInfoMapper.dwmisKpiInfoMap"></collection>
+	</resultMap>
+	<!-- 得到部门信息 -->
+	<select id="getDeptInfoById" resultMap="DwmisMisDptmntMap">
+		select
+		md.dep_group_id,md.dep_id,md.dep_order from DWMIS_MIS_DPTMNT md where
+		md.dep_id=#{depId,jdbcType=VARCHAR}
+	</select>
+	<!-- 列出所有的部门 -->
+	<select id="listAllDeptByGroupId" resultMap="DwmisMisDptmntMap"
+		parameterType="int">
+		select md.DEP_ID, md.DEP_NAME, md.DEP_ORDER,
+		md.DEP_GROUP_ID
+		from DWMIS_MIS_DPTMNT md
+		where md.dep_group_id
+		=#{depGroupId}
+		and exists (SELECT r.dep_id
+		from DWMIS_MIS_KPI_DEP_R r
+		where r.dep_id = md.dep_id)
+		ORDER BY md.dep_order
+	</select>
+	<!-- 列出所有的部门及关联的指标信息 -->
+	<select id="listAllMonitorDeptAndKpiByGroupId" resultMap="DwmisMisDeptAndKpiInfoMap"
+		parameterType="int">
+		select d.DEP_ID,
+		d.DEP_NAME,
+		d.DEP_ORDER,
+		d.DEP_GROUP_ID,
+		k.KPI_CODE,
+		TYPE_ID,
+		UNIT_ID,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		RELATE_TABLE,
+		RELATE_TABLE_DES,
+		IS_SHOW,
+		CREATE_USER,
+		CREATE_DATE,
+		GOAL_TYPE,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		IS_SHOW_DESC,
+		PERIOD,
+		BUSINESS_TYPE,
+		KPI_NAME_SHOW,
+		SIZE_ID,
+		DAY_OFFSET,
+		SHOW_ORDER,
+		KPI_NAME_KPI,
+		ISDATARANGEFIX,
+		DATARANGEBOTTOM,
+		DATARANGETOP
+		from
+		DWMIS_MIS_DPTMNT d, DWMIS_MIS_KPI_DEP_R r, DWMIS_KPI_INFO k
+		where
+		d.dep_id = r.dep_id
+		and r.kpi_code = k.kpi_code
+		and k.is_show = 1
+		and
+		d.dep_name not like '_TEST%'
+		and d.dep_group_id = #{depGroupId}
+		order by
+		d.dep_order
+	</select>
+</mapper>

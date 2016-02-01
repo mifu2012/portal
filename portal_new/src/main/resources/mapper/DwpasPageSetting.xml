@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasPageSettingSql">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+	<!-- 模板信息集合 -->
+	<resultMap type="DwpasCModuleInfo" id="DwpasCModuleInfoMap">
+		<result column="MODULE_ID" property="moduleId" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="MENU_ID" property="menuId" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result property="moduleCode" column="MODULE_CODE" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="MODULE_NAME" property="moduleName" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="DATE_TYPE" property="dateType" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="IS_SHOW" property="isShow" jdbcType="INTEGER"
+			javaType="int" />
+		<result property="tabShow" column="TAB_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="menu_name" property="menuName" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<!-- 位置与高度 -->
+		<result column="position" property="position" jdbcType="INTEGER"
+			javaType="int" />
+		<result column="height" property="height" jdbcType="INTEGER"
+			javaType="int" />
+		<result column="width" property="width" jdbcType="INTEGER"
+			javaType="int" />
+		<result property="moduleType" column="MODULE_TYPE" javaType="int"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 栏目信息集合 -->
+	<resultMap id="DwpasCColumnInfoMap" type="DwpasCColumnInfo">
+		<result property="columnId" column="COLUMN_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="moduleId" column="MODULE_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnCode" column="COLUMN_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnName" column="COLUMN_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnDisplayName" column="COUMN_DISPLAY_NAME"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="columnKind" column="COLUMN_KIND" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 模板信息集合以及关联的栏目信息 -->
+	<resultMap type="DwpasCModuleInfo" id="DwpasCModuleColumnInfoMap">
+		<result column="MODULE_ID" property="moduleId" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="MENU_ID" property="menuId" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result property="moduleCode" column="MODULE_CODE" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="MODULE_NAME" property="moduleName" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="DATE_TYPE" property="dateType" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="IS_SHOW" property="isShow" jdbcType="INTEGER"
+			javaType="int" />
+		<result property="tabShow" column="TAB_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<result column="menu_name" property="menuName" jdbcType="VARCHAR"
+			javaType="java.lang.String" />
+		<!-- <collection property="columnlist" column="MODULE_ID" javaType="ArrayList" 
+			jdbcType="VARCHAR" ofType="DwpasCColumnInfo" select="com.infosmart.mapper.DwpasPageSettingSql.getDwpasCColumnInfoByModuleId"> 
+			</collection> -->
+		<collection property="columnlist" column="MODULE_ID"
+			resultMap="com.infosmart.mapper.DwpasCColumnInfoSqlMap.DwpasCColumnInfoResultMap"
+			javaType="java.util.ArrayList" />
+	</resultMap>
+	<!-- 栏目关联的通用指标集合 -->
+	<resultMap id="DwpasRColumnComKpiMap" type="DwpasRColumnComKpi">
+		<result property="columnId" column="COLUMN_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnCode" column="COLUMN_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="comKpiCode" column="com_kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 由子菜单ID找到对应的父菜单信息 -->
+	<resultMap id="DwpasCSystemMenuByChildMenuIdMap" type="DwpasCSystemMenu">
+		<result property="menuId" column="MENU_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuName" column="MENU_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 由菜单id查询对应的模块信息集合 日,月类型 无栏目信息的 -->
+	<!-- 排序位置不要变 -->
+	<select id="getModuleInfoMapByMenuIdAndDateType" resultMap="DwpasCModuleInfoMap"
+		parameterType="java.util.HashMap">
+		select
+		a.MODULE_ID,a.MENU_ID,a.MODULE_CODE,a.MODULE_NAME,a.DATE_TYPE,a.IS_SHOW,a.REMARK
+		,b.menu_name,a.width,a.height,a.position,MODULE_TYPE,a.TAB_SHOW
+		from
+		dwpas_c_Module_info a,dwpas_c_system_menu b
+		where
+		a.menu_id = b.menu_id
+		and b.menu_id=#{menuId,jdbcType=VARCHAR} and
+		a.date_Type
+		=#{dateType,jdbcType=VARCHAR} and a.IS_SHOW=1 ORDER BY
+		position_y,position_x
+	</select>
+	<!-- 由菜单id查询对应的模块信息集合 日,月类型 有栏目信息的 -->
+	<select id="getModuleColumnInfoByMenuIdAndDateType" resultMap="DwpasCModuleColumnInfoMap"
+		parameterType="java.util.HashMap">
+		select distinct a.MODULE_ID,
+		a.MENU_ID,
+		a.MODULE_CODE,
+		a.MODULE_NAME,
+		a.DATE_TYPE,
+		a.IS_SHOW,
+		a.REMARK,
+		a.TAB_SHOW,
+		b.menu_name,
+		c.COLUMN_CODE,
+		c.COLUMN_ID,
+		c.COLUMN_KIND,
+		c.COLUMN_NAME,
+		c.COUMN_DISPLAY_NAME
+		from dwpas_c_Module_info a inner join
+		dwpas_c_system_menu b
+		on a.menu_id = b.menu_id
+		left join
+		dwpas_c_column_info c
+		on a.MODULE_ID = c.MODULE_ID
+		where
+		b.menu_id=#{menuId,jdbcType=VARCHAR}
+		and a.date_Type
+		=#{dateType,jdbcType=VARCHAR}
+	</select>
+	<!-- 模块关联栏目信息 -->
+	<select id="getDwpasCColumnInfoByModuleId" resultMap="DwpasCColumnInfoMap"
+		parameterType="string">
+		select
+		COLUMN_ID,MODULE_ID,COLUMN_CODE,COLUMN_NAME,IFNULL(COUMN_DISPLAY_NAME,COLUMN_NAME)
+		as COUMN_DISPLAY_NAME,COLUMN_KIND,IS_SHOW,REMARK,GMT_CREATE
+		from
+		dwpas_c_column_info where MODULE_ID=#{moduleId,jdbcType=VARCHAR}
+	</select>
+	<!-- 查询菜单ID对应的所有通用指标集合 -->
+	<select id="queryCommonCodeBymenuId" parameterType="string"
+		resultMap="DwpasRColumnComKpiMap">
+
+		SELECT
+		ci.COLUMN_ID,
+		ci.COLUMN_CODE,
+		group_concat(
+		cck.com_kpi_code SEPARATOR ','
+		) as com_kpi_code
+		FROM
+		dwpas_r_column_com_kpi cck,
+		dwpas_c_column_info ci,
+		dwpas_c_module_info
+		cmi,
+		dwpas_c_system_menu cym
+		WHERE
+		cck.COLUMN_ID = ci.COLUMN_ID
+		AND
+		ci.MODULE_ID = cmi.MODULE_ID
+		AND cmi.MENU_ID = cym.MENU_ID
+		AND
+		cym.menu_id = #{menuId,jdbcType=VARCHAR}
+		GROUP BY
+		ci.COLUMN_ID,
+		ci.COLUMN_CODE
+	</select>
+	<select id="DwpasCSystemMenuByChildMenuId" resultMap="DwpasCSystemMenuByChildMenuIdMap"
+		parameterType="string">
+		select menu_id,menu_name from dwpas_c_system_menu
+		where
+		menu_id in(select menu_pid from dwpas_c_system_menu where
+		menu_id=#{menuId,jdbcType=VARCHAR})
+
+	</select>
+
+	<select id="getMenuIdByTemplateIdAndMenuCode" parameterType="java.util.HashMap"
+		resultType="String">
+		SELECT MENU_ID FROM dwpas_c_system_menu WHERE
+		MENU_CODE=#{menuCode} AND
+		TEMPLATE_ID=#{templateId}
+	</select>
+
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.Dimension">
+
+	<!-- 参数表数据 -->
+	<resultMap id="DIMENSION" type="Dimension">
+		<result property="id" column="ID" />
+		<result property="dimensionCode" column="CODE" />
+		<result property="dimensionName" column="NAME" />
+	</resultMap>
+
+	<resultMap id="DIMENSIONDETAIL" type="DimensionDetail">
+		<result property="primaryKeyId" column="ID" />
+		<result property="dimensionId" column="DIMENSION_ID" />
+		<result property="key" column="KEY_OF_VALUE" />
+		<result property="value" column="VALUE_OF_KEY" />
+	</resultMap>
+
+
+	<!-- 获取所有维度信息 -->
+	<select id="getALLDimension" resultMap="DIMENSION">
+		select id,code,name from
+		tb_rpt_dimension order by id desc
+	</select>
+
+	<!-- 根据主键id获取所有维度信息 -->
+	<select id="getALLDimensionById" resultMap="DIMENSION">
+		select id,code,name
+		from tb_rpt_dimension where id = #{id}
+	</select>
+
+	<!-- 获取某一维度从表信息 -->
+	<select id="getSomeOneDimensionDetail" resultMap="DIMENSIONDETAIL">
+		select id,KEY_OF_VALUE,VALUE_OF_KEY from tb_rpt_dimension_detail where
+		dimension_id=#{dimensionId}
+		<!-- select a.id,a.dimension_id,a.key_of_value,a.value_of_key from tb_rpt_dimension_detail 
+			a inner join tb_rpt_dimension b on a.dimension_id = b.id where a.dimension_id 
+			= #{dimensionId} -->
+	</select>
+
+	<!-- 根据主键id获取某一维度从表信息 -->
+	<select id="getDimensionDetailById" resultMap="DIMENSIONDETAIL">
+		select
+		a.id,a.dimension_id,a.key_of_value,a.value_of_key
+		from
+		tb_rpt_dimension_detail a
+		inner join tb_rpt_dimension b
+		on
+		a.dimension_id = b.id
+		where a.id = #{primaryKeyId}
+	</select>
+	<!-- 添加维度主表信息 -->
+	<insert id="insertDimension" parameterType="DIMENSION">
+		insert into
+		tb_rpt_dimension(code,name)
+		values(#{dimensionCode},#{dimensionName})
+	</insert>
+
+	<!-- 修改维度主表信息 -->
+	<update id="updateDimensionById" parameterType="DIMENSION">
+		update
+		tb_rpt_dimension
+		set code=#{dimensionCode}
+		,name=#{dimensionName}
+		where
+		id=#{id}
+	</update>
+
+	<!--删除相关维度主表信息 -->
+	<delete id="deleteDimensionById" parameterType="int">
+		delete from
+		tb_rpt_dimension where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<!--删除维度主时删除其从表信息 -->
+	<delete id="deleteDimensionDetailByDimensionId">
+		delete from
+		tb_rpt_dimension_detail where dimension_id
+		=
+		#{id,jdbcType=INTEGER}
+	</delete>
+
+	<!-- 添加维度从表信息 -->
+	<insert id="insertDimensionDetail" parameterType="DIMENSIONDETAIL">
+		insert into
+		tb_rpt_dimension_detail(dimension_id,key_of_value,value_of_key)
+		values(#{dimensionId},#{key},#{value})
+	</insert>
+	<!-- 批量添加维度从表信息 一级维度 zy -->
+	<insert id="insertDimensionDetailBySQL" parameterType="java.util.List">
+		insert into
+		tb_rpt_dimension_detail(dimension_id,key_of_value,value_of_key)
+		values
+		<foreach collection="list" item="dimensionDetailList" index="index"
+			separator=",">
+			(#{dimensionDetailList.dimensionId},#{dimensionDetailList.key},#{dimensionDetailList.value})
+		</foreach>
+	</insert>
+
+	<!-- 修改维度从表信息 -->
+	<update id="updateDimensionDetailById" parameterType="DIMENSIONDETAIL">
+		update
+		tb_rpt_dimension_detail
+		set key_of_value=#{key}
+		,value_of_key=#{value}
+		where
+		id=#{primaryKeyId}
+	</update>
+
+	<!--删除相关维度从表信息 -->
+	<delete id="deleteDimensionDetailById" parameterType="int">
+		delete from
+		tb_rpt_dimension_detail where id = #{primaryKeyId,jdbcType=INTEGER}
+	</delete>
+
+	<!--根据code模糊查询维度主表信息 -->
+	<select id="getDimensionByCodeOrName" resultMap="DIMENSION">
+		select id,code,name from tb_rpt_dimension
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test=" keyCode !=null and keyCode != '' ">
+				code like
+				UPPER(CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%'))
+				or name
+				like CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%')
+		</if>
+		</trim>
+	</select>
+
+	<!--根据dimensionId、key模糊查询维度从表信息 -->
+	<select id="getDimensionDetaiByIdAndKeyCode" resultMap="DIMENSIONDETAIL">
+		select id,dimension_id,key_of_value,value_of_key
+		from
+		tb_rpt_dimension_detail
+		where dimension_id = #{dimensionId}
+		<if test=" keyCode !=null and keyCode != '' ">
+			and key_of_value like
+			UPPER(CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%'))
+			or
+			value_of_key like CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%')
+		</if>
+	</select>
+
+</mapper>

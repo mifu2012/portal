@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasStCrossAnalyseData">
+	<sql id="common_sql">
+		product_id,report_date,report_date,rel_product_id,cross_user_cnt,cross_user_rate,
+		gmt_create,gmt_modified
+	</sql>
+	<!-- 产品交叉分析数据 -->
+	<resultMap id="DwpasStCrossAnalyseDataResultMap" type="DwpasStCrossAnalyseData">
+		<result property="productId" column="PRODUCT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="reportDate" column="REPORT_DATE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="relProductId" column="REL_PRODUCT_ID"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="crossUserCnt" column="CROSS_USER_CNT"
+			javaType="long" jdbcType="NUMERIC" />
+		<result property="crossUserRate" column="CROSS_USER_RATE"
+			javaType="java.math.BigDecimal" jdbcType="NUMERIC" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 查询产品的交叉分析数据 -->
+	<select id="MS-DWPAS-ST-CROSS-ANALYSE-DATA-QRY-ALL-BY-END-DATE"
+		resultMap="DwpasStCrossAnalyseDataResultMap" parameterType="java.util.HashMap">
+		select /*MS-DWPAS-DWPAS-ST-CROSS-ANALYSE-DATA-QRY-ALL-BY-END-DATE*/
+		product_id, report_date, rel_product_id, cross_user_cnt,
+		cross_user_rate, gmt_create, gmt_modified from
+		dwpas_st_cross_analyse_data
+		where product_id=#{productId}
+		and rel_product_id=#{relProductId}
+		<if test="reportDate!=null and reportDate!=''">
+			and report_date >=#{reportDate}
+		</if>
+		order by report_date asc
+	</select>
+
+	<select id="getDwpasStCrossAnalyseData"
+		resultMap="DwpasStCrossAnalyseDataResultMap">
+    <![CDATA[
+        select product_id, report_date, rel_product_id, cross_user_cnt, cross_user_rate, gmt_create, gmt_modified from dwpas_st_cross_analyse_data 
+        where ((product_id = #{productId}) AND (report_date = #{reportDate}) AND (rel_product_id = #{relProductId})) order by cross_user_cnt DESC
+    ]]>
+	</select>
+</mapper>

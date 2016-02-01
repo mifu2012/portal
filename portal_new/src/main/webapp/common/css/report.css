@@ -1,0 +1,81 @@
+/* CSS Document */
+.report_home{
+width:100%;
+height:100%;
+border:1px solid #ccc;
+font-size:12px;
+
+}
+
+.report_home A:link{color:#000; text-decoration:none}
+.report_home A:visited{color:#000; text-decoration:none}
+.report_home A:hover{color:#333; text-decoration:none; font-size:12px}
+.report_home A:active{text-decoration:underline}
+
+
+.repoet_left A:link{color:#000; text-decoration:none}
+.repoet_left A:visited{color:#000; text-decoration:none}
+.repoet_left A:hover{color:#333; text-decoration:none; font-size:12px}
+.repoet_left A:active{text-decoration:underline}
+
+.repoet_left{
+font-size:12px;
+}
+
+.report_input{
+width:100px;
+}
+
+.page_and_btn {width:100%;height:auto;overflow:hidden;padding:10px 0px 0px 0px;}
+.page_and_btn ul { margin:0px;list-style:none;float:right;width:auto;height:100%;overflow:hidden;padding:0px;}
+.page_and_btn ul li { float:left; border:1px solid #CCCCCC; height:20px; line-height:20px; margin:0px 2px;}
+.page_and_btn ul li a{color:#333; text-decoration:none;}
+.page_and_btn ul li a, .pageinfo { display:block; padding:0px 6px; background:#FAFBFD;}
+.page_and_btn  { color:#555;}
+.page_and_btn div{float:left;}
+
+/* report */
+.zyfw_dwzh{ width:184px; height:30px; line-height:30px; position: absolute; right:0px}
+.zyfw_dwzh span{ margin-right:60px}
+.zyfw_dwzh a{ text-decoration:none; color:#666666}
+.zyfw_main2_left{ width:176px; height:496px; float: left; margin:12px 0px 12px 6px}
+.wenben{width:174px; height:496px;}
+.zyfw_main2_right{ width:788px; height:496px; float: left; margin-top:12px; margin-left:12px}
+.zyfw_main22{height:528px;width:1001px; position: relative; border:1px solid #eaeaea; background:#FFFFFF}
+.tt{ border:1px solid #ebeaea; width:776px;border-collapse:collapse; border-bottom:0px; float:left; color:#7d7d7d}
+.tt td{ border:1px dashed #eae9e7}
+.tt1{ height:33px; line-height:33px; border-bottom:1px dashed #c7e7f6}
+.tt2{ height:39px; line-height:39px; background:#c6e6f6; color:#0b5c88; text-align:center}
+.tt td{ text-align:center;}
+.tt tr{height:27px; line-height:27px;}
+.tt3{ background:#f5f5f4}
+.tt4{ height:37px; line-height:37px;}
+.dwzh4{ width:768px; float: left; height: auto; height:35px;}
+.dwzh4_mm{ width:777px; height:35px; line-height:35px;margin-left:12px;_margin-left:0px; float:left;}
+.dwzh4_mm2{ width:678px; padding-left:10px; text-align:left; float:left}
+.p_text42{ width:50px; height:20px; margin-top:12px; margin-left:30px; line-height:20px}
+.p_text42 a{ color:#666666; text-decoration:none}
+.p_pic2_tt2{ background: url(../images/02.jpg) no-repeat 0 8px; width:88px; height:35px; float:left;}
+.p_text201{ width:37px; float: left; text-align:center}
+.p_text211{ width:47px; float: left;text-align:center}
+.p_text221{ width:94px; float: left;text-align:center}
+.p_text231{ width:127px; float: left;text-align:center}
+.p_text241{ width:86px; float: left;text-align:center}
+.p_text251{ width:99px; float: left; text-align:center}
+.p_text261{ width:87px; float: left;text-align:center}
+.p_text271{ width:82px; float: left;text-align:center}
+.p_text281{ width:105px; float: left;text-align:center}
+.dwzh4 h3{ height:30px; line-height:30px;background:url(../images/11_03.jpg) repeat-x; color:#0b5c88; font-size:12px; font-weight:normal; border:1px solid #c1e8fb; border-bottom:0;margin-left:12px;_margin-left:0px; width:774px;float:left;}
+.dwzh4_nn{width:774px; float: left;border:1px solid #ebeae8; border-top:0px;}
+.admin_kpi_1{width:776px; height:31px; background-image:url(../images/admin_kpi_1.gif);}
+.clear{clear:both}
+.p_text10{color:#666}
+.button5:hover{ width:59px; height:26px;line-height:26px; color:#666666; background: url(../images/14_03.jpg) no-repeat;border:0;}
+.button5{ width:59px; height:26px;line-height:26px; color:#666666; background:url(../images/03_03.jpg) no-repeat;border:0; cursor:pointer}
+.text2{ background: #FFFFFF; width:87px; line-height:22px;height:22px; border:1px solid #9dc1d3; background:url(../images/01_03.jpg) no-repeat; border:0; margin-top:6px; margin-right:10px;_margin-right:0px; overflow:hidden}
+
+.apply_03{width:100%; background:url(../images/admin_error_01.gif); height:16px}
+.apply_05{width:121px; background:url(../images/admin_error_02.gif); height:111px}
+
+
+

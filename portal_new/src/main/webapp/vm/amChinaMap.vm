@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map map_file="maps/china.swf" tl_long="73.559248" tl_lat="53.560308" br_long="134.775703" br_lat="18.158606" zoom="95%" zoom_x="3.63%" zoom_y="2.68%">
+    <areas>
+		<!--new-->
+        #foreach($userFeatureData in $userFeatureDataList)
+            <area mc_name="$!userFeatureData.featureCode" color="$!userFeatureData.areaMapColor"  title="$!userFeatureData.featureName">
+                <description>
+                    <![CDATA[会员数:$!userFeatureData.userCnt<br>占比(全国):$!userFeatureData.ufPercent<br>排名(全国):$!userFeatureData.ranking<br>销量(全国):$!userFeatureData.salesVolume]]>
+                </description>
+            </area>
+        #end
+        <area title="borders" mc_name="borders_outside" color="#3D3D3D" balloon="false" alpha="60"></area>
+        <area title="borders" mc_name="borders_inside" color="#3D3D3D" balloon="false" alpha="60"></area>
+    </areas>
+    <movies>
+        <movie title="北京市" file="target" color="#FF60AF" width="15" height="15" long="116.387909" lat="39.90601" fixed_size="true"></movie>
+        <movie title="香港" file="circle" color="#FF60AF" width="5" height="5" long="114.153542" lat="22.411249" fixed_size="true"></movie>
+        <movie title="澳门" file="circle" color="#FF60AF" width="5" height="5" long="113.5502" lat="22.1636915147872" fixed_size="true"></movie>
+        <movie title="台北" file="target" color="#FF60AF" width="10" height="10" long="121.564194" lat="25.080441" fixed_size="true"></movie>
+    </movies>
+</map>

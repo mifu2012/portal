@@ -1,0 +1,475 @@
+body{ font:12px/1.5  '寰蒋闆呴粦'; color:#666;}
+a{text-decoration:none; color:#666; outline:none;}
+a:hover{outline:none; }
+a:active{outline:none;}
+.wrap{ width:1200px; margin:auto;}
+input,select{ vertical-align:middle;}
+
+/*header*/
+.header{height:39px;}
+.header .logo{ width:252px; height:39px; display:inline-block; background:url('/portal/dwpas2/images/prodana/logo1.png'); text-indent:-9999px; float:left;}
+.header .nav{ }
+.header .nav .nav-ul{ height:39px; width:948px; background: url('/portal/dwpas2/images/prodana/headbg1.png') repeat-x; float:right; padding:0px; }
+.header .nav .f-li{ height:33px; float:left; margin-top:6px; margin-left:21px;}
+.to-gxt{float:right;}
+.to-gxt a{ display:inline-block;  background:url('/portal/dwpas2/images/prodana/togxt.png') no-repeat; margin:7px 10px 0 0; width:100px; height:31px;}
+.header-index{ width:94px; height:33px; display:inline-block; }
+.header-anl{ width:183px; height:33px;display:inline-block; }
+.f-li.active .header-index{background:url('/portal/dwpas2/images/prodana/head-index.png') no-repeat;}
+.f-li.active .header-anl{background:url('/portal/dwpas2/images/prodana/head-anl.png') no-repeat;}
+.f-li.hover .header-index{background:url('/portal/dwpas2/images/prodana/head-index.png') no-repeat;}
+.f-li.hover .header-anl{background:url('/portal/dwpas2/images/prodana/head-anl.png') no-repeat;}
+
+
+
+
+/*浜岀骇瀵艰埅*/
+.f-nav{ height:20px; margin-left:260px; }
+.s-ul{display:block;}
+.s-li{ float:left; text-align:center; font-size:14px; font-weight:bold; line-height:20px; width:122px; height:20px;}
+.s-li a{text-decoration:none;}
+.s-ul .s-li a.sliactive{  background:url('/portal/dwpas2/images/prodana/nav2-bg.png') no-repeat; width:122px; height:20px; display:inline-block;}
+.s-ul .s-li a:hover{  background:url('/portal/dwpas2/images/prodana/nav2-bg.png') no-repeat; width:122px; height:20px; display:inline-block;}
+.s-ul .s-li a:-webkit-any-link {display:block;}
+
+.s-li-item{ z-index:99; width:122px; position:absolute; left:122px; top:20px;}
+.s-li-item .li-item-ul{ width:120px; height:132px; border:none; overflow:hidden; border-right:1px solid #999; background:#fff; border-left:1px solid #999;}
+.s-li-item .li-item-ul span a{ display:inline-block; height:22px; border:none; float:left; line-height:22px; font-size:12px; width:120px; text-align:center;}
+.s-li-item .li-item-ul span a:hover{ background:#aaa; color:#fff;}
+/*鍒嗛殧鏍�/
+.divide{ background:url('/portal/dwpas2/images/prodana/divide.png') no-repeat; width:1200px; height:8px; margin-top:0px;}
+
+/*闈㈠寘灞�/
+.bread-head{ margin:0px 0 4px 0; height:26px; line-height:26px;}
+.bread-head .channel{ font-size:12px;  float:left; padding-left:20px;}
+.bread-head .show-type{ float:right; }
+/*.bread-head .change-product{background:url('/portal/dwpas2/images/prodana/changeproduct.png') no-repeat; display:inline-block; height:22px; width:110px; margin-right:60px;}*/
+.bread-head .change-date{ background:url('/portal/dwpas2/images/prodana/date-change.png') no-repeat; vertical-align:middle; font-weight:bold; line-height:22px; color:#000; text-align:center; display:inline-block; margin-left:2px; width:84px; height:22px;}
+.bread-head .change-date.date-active{ background-position:0 -22px; color:#fff; }
+.datesel-btn,.monthsel-btn{  width:110px; height:22px; border:none; line-height:22px; display:inline-block; background:url('/portal/dwpas2/images/prodana/date-btn.png') no-repeat; }
+
+.changepro{ color:#1E4980; vertical-align:middle; text-indent:-999px; background:url('/portal/dwpas2/images/prodana/change-prod.png') no-repeat; width:83px; height:20px; display:inline-block; }
+
+.date-pre{ vertical-align:middle; margin:0 2px; width:12px; height:12px; display:inline-block; background:url('/portal/dwpas2/images/prodana/date-pre-next.png') no-repeat;}
+.date-next{ vertical-align:middle; margin:0 2px;  width:12px; height:12px; display:inline-block; background:url('/portal/dwpas2/images/prodana/date-pre-next.png') -15px 0 no-repeat;}
+.date-pre:hover{background-position:-40px 0;}
+.date-next:hover{background-position:-29px 0;}
+.date-pre.date-preno{background-position:-55px 0; cursor:default;}
+.date-next.date-nextno{background-position:-70px 0; cursor:default;}
+
+/*閫氱敤box鏍峰紡锛岄粯璁ゅ1200px锛屽彲浠ヨ鐩�box-conent*/
+.box-top{ position:relative; z-index:2;}
+.box-top,.box-top .box-top-rt{/* background: url('/portal/dwpas2/images/prodana/cor.png') no-repeat scroll left 0px transparent; */padding-left: 4px;}
+.box-top .box-top-rt{background-position: right -31px;padding: 0 4px 0 0;}
+.box-top .box-top-ct{background: url('/portal/dwpas2/images/prodana/box-top-bg.png') repeat-x 0 0 #ECEDEF;height: 31px;}
+.box-top-ct h3{ font-size:14px; float:left; line-height:31px; color:#ff8000; font-weight:bold; padding-left:10px;}
+.box-top-ct .box-top-right{ font-size:14px; float:right; width:22px; height:25px; display:inline-block; cursor:pointer; font-weight:bold; padding-right:10px;}
+.box-top-ct .box-top-right .tip{font-size:12px; cursor:default;}
+.box-conent{ background:#EFF0F2; width:1200px;}
+
+.box-bottom,.box-bottom .box-bottom-rt{/* background: url('/portal/dwpas2/images/prodana/cor.png') no-repeat scroll left -62px transparent;  */font-size:1px; padding-left: 4px;}
+.box-bottom .box-bottom-rt{background-position: right -66px;padding: 0 4px 0 0;}
+.box-bottom .box-bottom-ct{background: #EFF0F2/*  url('/portal/dwpas2/images/prodana/boxbg.png') repeat  */;height: 4px;}
+
+/*搴曢儴*/
+.footer{
+	margin-top:25px;
+	padding:4px 0 18px;
+	border-top:1px solid #D0D0D0;
+	color:#989898;
+	text-align:center;
+	clear:both;
+}
+
+/*宸︿晶鏍�/
+.left-content{width:130px; float:left;}
+.left-content .health-left-ul{background:url('/portal/dwpas2/images/prodana/left-list-no.png'); width:126px; height:248px;}
+.left-content .health-left-ul .fli{float:left; width:126px; height:36px; }
+.health-left-ul .fli a{width:126px; height:36px; display:inline-block; }
+.health-left-ul .fli a:hover,.health-left-ul .fli a.act{background:url(/portal/dwpas2/images/prodana/left-list-sel.png) no-repeat;}
+.left-content .health-left-ul .nli{float:left; width:126px; height:35px; }
+.health-left-ul .nli a{width:126px; height:35px; display:inline-block; }
+.health-left-ul .nli a:hover,.health-left-ul .nli a.act{background:url(/portal/dwpas2/images/prodana/left-list-sel.png) no-repeat;}
+.health-left-ul .prod-heal-biz a:hover,.health-left-ul .prod-heal-biz a.act{ background-position:0 -36px;}
+.health-left-ul .prod-heal-keep a:hover,.health-left-ul .prod-heal-keep a.act{ background-position:0 -71px;}
+.health-left-ul .prod-heal-voice a:hover,.health-left-ul .prod-heal-voice a.act{ background-position:0 -106px;}
+.health-left-ul .prod-heal-ued a:hover,.health-left-ul .prod-heal-ued a.act{ background-position:0 -141px;}
+.health-left-ul .prod-heal-cross a:hover,.health-left-ul .prod-heal-cross a.act{ background-position:0 -176px;}
+.health-left-ul .prod-heal-view a:hover,.health-left-ul .prod-heal-view a.act{ background-position:0 -211px;}
+
+
+
+/*棣栭〉*/
+ .content .content-left{ width:875px; float:left;}
+ .content .content-right{ width:320px; float:right;}
+ /*鐢ㄦ埛姹傚姪*/
+ .box-userhelp{ width:875px; height:266px;}
+ .userhelp-top{ height:110px;}
+ .userhelp-top .userhelp-top-yi{ width:175px; height:110px; float:left;}
+ .userhelp-middle{ } 
+ .userhelp-middle-bg{ background:url('/portal/dwpas2/images/prodana/userhelp-change2.png') no-repeat; width:875px; height:19px;}
+ .userhelp-middle-no{ width:32px; height:19px; display:inline-block; background:url('/portal/dwpas2/images/prodana/userhelp-change-act.png') 0 -19px no-repeat;}
+ .userhelp-middle-act{ width:32px; height:19px; display:inline-block; background:url('/portal/dwpas2/images/prodana/userhelp-change-act.png') no-repeat;}
+ 
+ /*浜у搧涓氬姟绗旀暟鐩戞帶*/
+ .box-usercontrol{ width:875px;}
+ .box-usercontrol .box-usercontrol-count{ height:20px;clear:both;}
+ .box-usercontrol-count-left{float:left; font-size:14px; font-weight:bold; width:100px; text-align:right;}
+ .box-usercontrol-count-right{float:right; padding-right:10px; width:755px;}
+ .box-usercontrol-count-right .usercontrol-count-table{width:750px; float:right; text-align:center; table-layout:fixed;}
+ .fjd-png{ clear:both; float:left; width:65px; height:120px;}
+ 
+ .fjd-png .fjd-top{ display:inline-block; cursor:pointer; border:none; width:53px; height:24px; background:url('../images/fjd-btn.png') no-repeat 0 -57px; margin:47px 0 0 7px;}
+ .fjd-png .fjd-avg{ display:inline-block; cursor:pointer; border:none; width:53px; height:24px; background:url('../images/fjd-btn.png') no-repeat 0 -30px; margin:4px 0 0 7px;}
+ .fjd-png .fjd-now{ display:inline-block; cursor:pointer; border:none; width:53px; height:24px; background:url('../images/fjd-btn.png') no-repeat 0 -3px; margin:4px 0 0 7px;}
+ 
+ .fjd-png .fjd-top.active{ background-position:0 -85px;}
+ .fjd-png .fjd-avg.active{ background-position:0 -112px;}
+ .fjd-png .fjd-now.active{ background-position:0 -138px;}
+ 
+ .usercontrol-chart{ width:810px; height:270px; float:right;}
+ /*鏀粯瀹濈敤鎴风粺璁�/
+ .box-usercount{ width:875px;}
+ .box-usercount .box-usercount-ul{ height:110px;}
+ .box-usercount .box-usercount-li{ background:url('/portal/dwpas2/images/prodana/user-count-divide.png') right no-repeat; width:207px; height:100px; padding:10px 4px 0 6px; float:left;}
+ .box-usercount-lileft{ float:left; width:90px; height:90px;}
+ .box-usercount-lileft dt{font-size:14px; padding-top:4px;}
+ .box-usercount-lileft dd{font-size:20px; color:#000; padding-top:14px;}
+ .box-usercount-liright{ float:right; width:110px; text-align:right;}
+ .box-usercount-liright li{ height:22px; line-height:22px; background:url('/portal/dwpas2/images/prodana/ssmall-divide.png') bottom no-repeat;}
+ .box-usercount-liright li span{ float:left;}
+ /*椋庡悜鏍�/
+ .box-cloud{ width:320px; height:266px;  background:#eff0f2 ; overflow:hidden;}
+ #Div1 {position:relative; font:12px/1.5 瀹嬩綋; width:280px; height:226px; margin:20px 10px 20px 30px; }
+ #Div1 a {position:absolute; top:0px; left:0px;  color:#333; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+ #Div1 a:hover { background:#444; color:#fff;  }
+ 
+ #Div1 .cloudcol1{color:#333;}
+ #Div1 .cloudcol2 {color:#333;}
+ #Div1 .cloudcol3 {color:#333;}
+ #Div1 .cloudcol4 {color:#333;}
+
+ /*浜у搧鍏ㄥ浘*/
+ .box-proall{ width:320px; height:290px; }
+ .box-proall .box-proall-top{ padding:10px 0 0 30px;}
+ .proall-top-left{ width:85px; float:left; padding-top:0px;}
+ .proall-top-left dd{ background:url('/portal/dwpas2/images/prodana/sprite.png') no-repeat; padding-top:4px; border-bottom:1px solid #fff; height:44px; vertical-align:middle; font-size:18px; line-height:1.1em; }
+ .proall-top-left dd.proall-top-left-up{ background-position:right -14px;}
+ .proall-top-left dd.proall-top-left-down{ background-position:right -62px;}
+ .proall-top-left dd.proall-top-left-equal{ background:none;}
+ .proall-top-chart{ float:right; width:188px;}
+ .box-proall .box-proall-bottom{ clear:both;}
+ .box-proall-bottom ul{ float:left; width:154px; padding:6px 1px 0px 4px;}
+ .box-proall-bottom ul li{ line-height:20px; display:inline-block; width:154px; float:left;   height:24px; font-size:12px; background:url('/portal/dwpas2/images/prodana/allpic-bottombg.png') bottom no-repeat;)}
+ .box-proall-bottom ul li .itemleft{display:inline-block; width:42px; text-align:right; float:left;}
+ .box-proall-bottom ul li .itemright{display:inline-block; width:20px; text-align:right; float:right;}
+ /*浜у搧鑱氱劍*/
+ .box-profocus{width:320px;}
+ .box-profocus ul{ font-size:12px;}
+ .box-profocus li{ height:22px; line-height:22px;}
+ .box-profocus li a{color:#000;}
+ 
+
+ 
+/*浜у搧榫欒檸姒滈〉闈�/
+/*涓夊ぇ骞冲彴浜ゅ弶鍒嗘瀽*/
+.box-three{ width:1200px; height:300px;}
+.three-image{ position:relative; cursor:pointer; width:410px; height:280px; top:10px; left:5px; float:left;}
+.three-image .three-image-tb{ position:absolute; width:300px; height:225px; left:0; top:0; background:url('/portal/dwpas2/images/prodana/lfb-tb.png'); cursor:pointer;
+                              filter:alpha(opacity=70);-moz-opacity:0.7;opacity: 0.7;}
+.three-image .three-image-sh{ position:absolute; width:170px; height:120px; left:235px; top:125px; background:url('/portal/dwpas2/images/prodana/lfb-wb.png'); cursor:pointer;
+                              filter:alpha(opacity=70);-moz-opacity:0.7;opacity: 0.7;}
+.three-image .three-image-zn{ position:absolute; width:125px; height:110px; left:160px; top:170px; background:url('/portal/dwpas2/images/prodana/lfb-zn.png'); cursor:pointer;
+                              filter:alpha(opacity=70);-moz-opacity:0.7;opacity: 0.7;} 
+.three-image .noopacity{ filter:alpha(opacity=100);-moz-opacity:1;opacity: 1; z-index:1;}
+
+.three-table{ width:770px; float:right; margin:8px 2px; }
+.three-table{ border-collapse:collapse; border:none; table-layout:fixed; }
+.three-table .whitebg{ background:#fff;}
+
+.three-table thead th{ width:148px; font-weight:bold; }
+.three-table thead th,.three-table tbody td{ border-left:1px solid #fff; height:26px; text-align:center;}
+.three-table tbody td{ text-align:right; padding-right:10px;padding-left:10px;}
+.three-table .noborder{ border:none; padding-left:10px; text-align:left; width:155px; }
+.three-table .danhuabg td{ color:#eee;}
+.three-table .activebg td{ color:#000; font-weight:bold; }
+
+
+/*绔欏唴浜у搧鍒嗙被鎺掕*/
+.sort-box{ width:1200px;}
+.sort-table {  width:1200px; border-collapse:collapse; border:none; table-layout:fixed; }
+.sort-table thead th{ font-weight:bold; text-align:center;}
+
+.sort-table thead th,.sort-table tbody td{ border-left:1px solid #fff; border-bottom:1px solid #fff;  height:26px; }
+
+.sort-table tbody .noborder{  padding-left:10px;}
+.sort-table tbody td{ text-align:left;}
+.sort-table tbody td .data-div{  position:relative; height:26px; width:100%; border:none;}
+.sort-table tbody td .data-num{ background:#BEBEBE; position:absolute; display:block; height:26px;}
+.sort-table tbody td .data-value{ position:absolute; right:5px; line-height:26px;}
+.sort-table th{/*  background:url('/portal/dwpas2/images/prodana/lfb-drop.png') 135px no-repeat;  */cursor:pointer;}
+.sort-table th.desc{ background:#D0D0D0;/*  background:url('/portal/dwpas2/images/prodana/lfb-desc.png') 135px no-repeat; */ }
+.sort-table th.asc{ background:#D0D0D0;/*  background:url('/portal/dwpas2/images/prodana/lfb-asc.png') 135px no-repeat;  */}
+.sort-table .noborder{ border-left:none; background:none;}
+.sort-table .active td{ font-weight:bold; background:#fff; cursor:pointer; color:#222;}
+
+
+/*浜у搧鎸囨爣浜ゅ弶鍒嗘瀽*/
+ /*浜у搧鎸囨爣浜ゅ弶鍒嗘瀽*/
+ .box-zbcross{ width:1200px; padding-top:15px; }
+ .zbcross-left{ width:390px; float:left;}
+ .zbcross-box{ margin:0 8px;}
+
+ .zbcross-box-top{ position:relative;}
+ .zbcross-box-top, .zbcross-box-top .zbcross-top-rt{background: url('/portal/dwpas2/images/prodana/crossbg.png') no-repeat scroll left 0px transparent;padding-left: 6px;}
+ .zbcross-box-top .zbcross-top-rt{background-position: right -28px;padding: 0 4px 0 0;}
+ .zbcross-box-top .zbcross-top-ct{background: url('/portal/dwpas2/images/prodana/crossbg-top.png') repeat-x 0 0 #ECEDEF;height: 22px;}
+ .zbcross-box-top h3{ position:absolute; background:#EFF0F2/*  url('/portal/dwpas2/images/prodana/boxbg.png') repeat */; padding:0 5px;  display:block; vertical-align:middle; left:25px; line-height:20px; font-size:14px; font-weight:bold; color:#ff8000;}
+ 
+ .zbcross-box-middle{border-left:2px solid #bbb;border-right:2px solid #bbb;}
+ .zbcross-box-middle ul{ padding-left:8px; }
+ .zbcross-box-middle ul li{ width:170px; height:30px; display:inline-block; line-height:30px; float:left; }
+ .zbcross-box-middle ul li input{ vertical-align:middle;}
+ 
+ .zbcross-box-bottom,.zbcross-box-bottom .zbcross-bottom-rt{background: url('/portal/dwpas2/images/prodana/crossbg.png') no-repeat scroll left -22px transparent; font-size:1px; padding-left: 6px;}
+ .zbcross-box-bottom .zbcross-bottom-rt{background-position: right -50px;padding: 0 6px 0 0;}
+ .zbcross-box-bottom .zbcross-bottom-ct{background: #EFF0F2/*  url('/portal/dwpas2/images/prodana/boxbg.png') repeat  */;height: 4px; border-bottom:2px solid #bbb;}
+ 
+ .zbcross-right{ width:800px; float:right;}
+ .zbcross-right-top{ height:50px; }
+ .zbcross-right-top input { margin-left:15px;}
+ 
+ .zbcross-table-top-down{ display:inline-block; height:21px; width:77px; float:left; background:url('/portal/dwpas2/images/prodana/cross-downbtn.png') no-repeat;}
+ .zbcross-table-top-date{ float:right; padding-right:10px; font-size:14px;}
+ .zbcross-table-con{border-collapse:collapse; border:none; table-layout:fixed; width:790px; }
+ .zbcross-table-con thead th,.zbcross-table-con tbody td{ border:1px solid #fff; border-bottom:1px solid #fff;  height:26px; }
+ .zbcross-table-con thead th{ background:#727272;  text-align:center; color:#fff;}
+ .zbcross-table-con tbody td{ text-align:center;}
+ .zbcross-table-bottom{ height:30px;}
+ .zbcross-table-bottom-more{ margin-right:10px; background:url('/portal/dwpas2/images/prodana/cross-tablemore.png') no-repeat; width:90px; height:25px; float:right; display:inline-block;}
+
+
+
+/*浜у搧鍋ュ悍搴︿氦鍙夊垎鏋愰〉闈�/
+ /*浜у搧鍏崇郴鍥�/
+.box-relate{ width:775px; cursor:pointer; }
+
+ /*鍏宠仈浜у搧浜ゅ弶鐢ㄦ埛鏁版尝鍔ㄦ儏鍐�/
+.box-relateprouser{ width:280px; padding:7px 5px 0 5px;}
+.box-relateprouser-table{ border-collapse:collapse; border:none; color:#808080; }
+.box-relateprouser-table thead th,.box-relateprouser-table tbody td{ border:1px solid #fff; height:37px; text-align:center; font-size:12px; font-weight:bold;}
+.box-relateprouser-table tbody td{padding-right:15px;  text-align:right;}
+.box-relateprouser-table tr.whitebg{ background:#fff;}
+.cross-table-trsel td{color:#333;}
+ 
+/*浜у搧鍋ュ悍搴﹂〉闈�/
+ /*浜у搧鍋ュ悍搴﹀垎鏋恇ox*/
+
+
+.box-healthanl{ width:1070px; height:380px;}
+.healthanl-left{ width:550px; height:380px; float:left;}
+.new-table{border-collapse:collapse; border:none; table-layout:fixed; width:470px; margin:45px 0 0 60px;}
+.new-table thead td{ border:2px solid #fff;  height:26px; text-align:center; }
+.new-table tbody td{ border:2px solid #fff;  height:26px; text-align:right; padding-right:20px; }
+.new-table tbody td.ftd{ text-align:left; padding-left:10px;}
+.datesel-start{ background:url('/portal/dwpas2/images/prodana/sprite.png') no-repeat 0 -116px; width:20px; height:20px; display:inline-block;}
+.datesel-end{ background:url('/portal/dwpas2/images/prodana/sprite.png') no-repeat 0 -138px;  width:20px; height:20px; display:inline-block;}
+.health-divide{ font-size:1px; border-bottom:2px solid #ccc; width:480px; margin:30px 0 0 60px;}
+.healthanl-commond{ margin:20px 0 0 60px; width:450px;}
+.healthanl-right{ float:right; width:520px; height:380px; position:relative; }
+
+.box-healthtread{ width:1070px; height:335px;}
+.healthtread-radio{ height:30px;line-height:30px; padding-left:150px; margin:0px 10px 0; border-bottom:2px solid #333; }
+.healthtread-radio input{ margin-left:30px; vertical-align:middle; }
+.healthtread-more{ background:url('/portal/dwpas2/images/prodana/morezb.png') 0 -5px; vertical-align:middle; width:124px; height:24px; display:inline-block;}
+
+
+
+/*涓氬姟閲忛〉闈�/
+.box-biz{ width:1070px; height:300px;}
+.biz-left{ width:300px; float:left; height:295px; background:url('/portal/dwpas2/images/prodana/biz-bg.png');}
+.biz-left-top{margin-top:15px;}
+.biz-left-bottom{margin-top:155px;}
+.biz-cleft{float:left; text-align:right; width:95px; margin:3px 0 0 10px;}
+.biz-cmiddle{float:left; line-height:30px;  margin-left:15px; text-align:left; width:65px;}
+.biz-cright{float:left; line-height:30px;  text-align:left; width:100px;}
+.biz-right{ width:766px; float:right; padding-right:4px;}
+
+/*鐢ㄦ埛澹伴煶椤甸潰*/
+/*姹傚姪鐜嘼ox*/
+.box-health-help{ width:1070px;}
+/*top10 box*/
+.box-health-top10{ width:1070px; height:330px;}
+.top10-left{ width:500px; float:left;}
+.top10-right{ width:570px; float:right;}
+.top10-right ul{ margin:15px 0;}
+.top10-right ul li{ line-height:30px; height:30px; font-size:12px;}
+.top10-right h3{margin:10px 0 4px; font-size:14px; font-weight:bold;}
+.top10-table{ width:530px; }
+.top10-table{ border-collapse:collapse; border:none; table-layout:fixed; }
+.top10-table .whitebg{ background:#fff;}
+
+.top10-table thead th{ font-weight:bold; }
+.top10-table thead th,.top10-table tbody td{ border:1px solid #fff; height:24px; text-align:center;}
+.top10-table tbody td{ text-align:left; padding-right:10px;padding-left:10px;}
+
+
+
+/*鐢ㄦ埛鐣欏瓨椤甸潰*/
+.box-leave{ width:533px; height:390px;}
+.box-leave-crossbg{background:#eff0f2/*  url('/portal/dwpas2/images/prodana/keep-top-leftbg.png') no-repeat ; */}
+.box-leave-bg{ width:533px; height:360px; background:url('/portal/dwpas2/images/prodana/user-leavebg.png') no-repeat;}
+.leave-chartbox{float:left; padding:0 5px 0 18px; width:240px; height:190px;}
+.leave-chartbox h3{ font-size:14px; padding:20px 0 0 0;}
+.leave-title{float:left; margin-top:55px; display:inline-block; font-size:12px; font-weight:bold;}
+.box-leave-tread{ width:1070px;}
+.box-leave-tread-top{ height:30px; line-height:30px; padding-left:250px; border-bottom:3px solid #999; margin:0 10px;}
+.box-leave-tread-top input{ vertical-align:middle; margin-left:30px;}
+
+/*鐢ㄦ埛瑙嗗浘*/
+.box-view-change{ width:1070px; padding:10px 0; height:300px;}
+.view-change-left{ width:1060px; float:left; padding:0px 5px;}
+
+
+.box-view-prop{ width:1070px; height:500px; padding:6px 0 4px 0;}
+.view-prop-left{ float:left; width:750px;/*  background:url(/portal/dwpas2/images/prodana/line2h-s.png) right repeat-y; */}
+.view-prop-right{ float:left; width:320px; position:relative;}
+.box-view-prop h3{ height:30px; line-height:30px; font-size:14px; font-weight:bold;}
+
+.view-prop-newbox{ width:1070px; height:340px; padding:0px 0px;}
+.view-prop-newbox h3{ height:30px; line-height:30px; font-weight:bold; }
+.newbox-left{ width:580px; height:310px; float:left;}
+.newbox-left h4{ float:left; font-size:18px; margin:80px 0 0 20px; width:90px; background:url('/portal/dwpas2/images/prodana/divide-boxview.png') bottom no-repeat; }
+.newbox-right{ width:580px; height:310px; float:left;}
+.newbox-right h4{ float:left; font-size:18px; margin:80px 0 0 20px; width:90px;  background:url('/portal/dwpas2/images/prodana/divide-boxview.png') bottom no-repeat; }
+.newbox-divide{ border:none; border-bottom:2px solid #999; width:1160px; margin:0 20px;}
+.box-view-userprop{ width:1200px; height:480px;padding:5px 0; background:#F6F7F9 url('/portal/dwpas2/images/prodana/box-bg1.png') repeat;}
+.view-userprop-left{ float:left; border-right:2px solid #999; padding:0 0 0 15px; width:585px;}
+.view-userprop-right{float:left; padding:0 0 0 10px; width:585px;}
+.view-userprop-title{ height:30px; padding-left:140px; }
+.view-userprop-title .title-dapan{ width:220px; text-align:center; line-height:30px; float:left;}
+.view-userprop-title .title-prod{ width:220px; text-align:center; line-height:30px; float:left;}
+
+
+.view-userprop-box{ height:145px; }
+.view-userprop-box .title-item{ float:left; width:135px; margin-top:55px; background:url('/portal/dwpas2/images/prodana/title-itembg.png') no-repeat;
+                             height:37px; line-height:37px; font-size:14px; padding-left:5px;}
+.view-userprop-box .view-chart-left{ float:left; width:220px; height:130px; padding:5px 0;} 
+.view-userprop-box .view-chart-right{ float:left; width:220px; height:130px; padding:5px 0;} 
+
+.box-view-people{ width:1070px; height:500px;}
+.box-view-area{ width:1070px; height:500px;}
+
+/*鐢ㄦ埛浣撻獙*/
+.box-nav{height:23px; border-bottom:1px solid #D7DADE; position:relative; margin:10px 0; }
+.box-nav-ul{ position:absolute; height:24px; z-index:2;  }
+.box-nav-ul .box-nav-li{ float:left; margin-left:1px; height:24px; cursor:pointer; line-height:24px; width:120px; text-align:center; background:url('/portal/dwpas2/images/prodana/box-navbg.png') -120px 0 no-repeat;}
+.box-nav-ul .box-li-act{ background:url('/portal/dwpas2/images/prodana/box-navbg.png') 0 0 no-repeat; color:#CB6C00;}
+
+.box-ued-change{ width:997px; height:400px;}
+.ued-divide{ width:997px; height:4px; background:url('/portal/dwpas2/images/prodana/ued-divide.png') repeat-x;}
+.ued-change-top h3{ width:140px; padding-top:80px; padding-left:10px; float:left; font-size:16px; background:url('/portal/dwpas2/images/prodana/small-divide.png') 10px bottom no-repeat;}
+
+.box-ued-table{ width:987px;   padding:5px; overflow:hidden;}
+.ued-table {  width:987px;  border-collapse:collapse; table-layout:fixed; }
+.ued-table thead th{ font-weight:bold; text-align:center;}
+.ued-table thead th,.ued-table tbody td{ border:1px solid #fff;  height:26px; text-align:center; }
+
+
+.box-ued-loudou{ width:1070px; height:820px;}
+.ued-loudou-top{ height:30px; line-height:30px; margin-left:100px;}
+
+
+/*閫夋嫨浜у搧寮瑰嚭灞傛牱寮�/
+.selprod-box{width:800px;}
+.selprod-box h3{padding:0 30px;  font-size:16px; background:url(/portal/dwpas2/images/prodana/box-top-bg.png) repeat-x; line-height:34px; height:31px; font-weight:bold; color:#ff5500;}
+.selprod-box .selprod-ul{ padding:15px;}
+.selprod-box .selprod-ul li{width:60px; height:100px; margin:10px 25px; float:left; display:inline-block;}
+
+/*棣栭〉涓氬姟璇︾粏*/
+.more-box{width:690px;}
+.more-box h3{padding:0 30px;  font-size:16px; background:url(/portal/dwpas2/images/prodana/box-top-bg.png) repeat-x; line-height:34px; height:31px; font-weight:bold; color:#ff5500;}
+.more-box .morebox-table{margin:10px;}
+.more-box .morebox-table{  width:670px;  border-collapse:collapse; table-layout:fixed; }
+.more-box .morebox-table th{ font-weight:bold; text-align:center;}
+.more-box .morebox-table td,.more-box .morebox-table th{ border:1px solid #ccc;  height:26px; text-align:center; }
+.more-box .morebox-table td{text-align:right; padding: 0 5px 0 0;}
+.more-box .morebox-table td.toleft{text-align:left; padding: 0 0 0 5px;}
+
+.s1,.s2,.s3,.s4,.s5,.s6,.s7,.s8{height:1px; font-size:1px; overflow:hidden; display:block;}
+.s1,.s8{margin:0 5px; background:#999;}
+.s2,.s7{margin:0 3px;border-right:2px solid #999; background:#fff; border-left:2px solid #999;}
+.s3,.s6{margin:0 2px;border-right:1px solid #999; background:#fff; border-left:1px solid #999;}
+.s4,.s5{margin:0 1px;border-right:1px solid #999; background:#fff; border-left:1px solid #999; height:2px;}
+
+/*鍏堟嫨鏈堜唤*/
+.sel-month{ width:110px; z-index:99; position:absolute;}
+.m1,.m2,.m3,.m4,.m5,.m6,.m7,.m8{height:1px; font-size:1px; overflow:hidden; display:block;}
+.m1,.m8{margin:0 5px; background:#999;}
+.m2,.m7{margin:0 3px;border-right:2px solid #999; background:#fff; border-left:2px solid #999;}
+.m3,.m6{margin:0 2px;border-right:1px solid #999; background:#fff; border-left:1px solid #999;}
+.m4,.m5{margin:0 1px;border-right:1px solid #999; background:#fff; border-left:1px solid #999; height:2px;}
+.year-sel{ text-align:center; width:108px; border-right:1px solid #999; border-bottom:2px solid #999; background:#fff; height:20px; line-height:20px; border-left:1px solid #999; }
+.year-sel .left-btn{ height:14px; width:8px; cursor:pointer; line-height:20px; margin-right:10px; background:url(/portal/dwpas2/images/prodana/month-lrbtn.png) no-repeat; display:inline-block;}
+.year-sel .right-btn{ height:14px; width:8px; cursor:pointer; line-height:20px;  margin-left:10px; background:url(/portal/dwpas2/images/prodana/month-lrbtn.png) -8px 0 no-repeat; display:inline-block;}
+.sel-month .month-li{ width:108px; height:240px; border:none; overflow:hidden; border-right:1px solid #999; background:#fff; border-left:1px solid #999;}
+.sel-month .month-li span a{ display:inline-block; height:20px; color:#333; border:none; line-height:20px; font-size:12px; width:108px; text-align:center;}
+.sel-month .month-li span a.nosel{color:#aaa; }
+.sel-month .month-li span a:hover{ background:#aaa; color:#fff;}
+
+/*鍦ㄤ晶瀵艰埅*/
+.fixed-left /* 宸︿晶鍥哄畾 */{position:fixed;right:auto;left:0px; top:220px; z-index:200;}
+* html,* html body /* 淇IE6鎸姩bug */{background-image:url(about:blank);background-attachment:fixed;}
+* html .fixed-left /* IE6 宸︿晶鍥哄畾 */{position:absolute;top:20px; right:auto;left:0px; top:expression(eval(document.documentElement.scrollTop+220-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));} 
+.fixed-left-a{color:#fff; background:#6cbbcd; margin:20px 0;  padding-bottom:2px; padding-right:2px; float:left; width:24px; font-size:14px; display:inline-block; text-align:center;}
+.fixed-left-ul{border:1px solid #999; padding:10px 0; background:#fff; width:95px; height:120px; float:left;}
+.fixed-left-ul li{ padding:0px; float:left;}
+.fixed-left-ul li a{height:20px; text-align:center; width:95px; float:left; font-size:12px; border:none;}
+.fixed-left-ul li a:hover{ background:#aaa; color:#fff;}
+
+.mt15{ margin-top:4px;}
+.mt18{ margin-top:18px;}
+.lh{ line-height:1.2em;}
+.fcolor{ color:#DC3C28;}
+.zcolor{ color:#28be00;}
+.fchencolor{color:#E79CE2;}
+.fqincolor{color:#91A935;}
+.chencolor{color:#ff8000;}
+.qincolor{color:#BFC60A;}
+.lancolor{ color:#18B0DB;}
+.lucolor{ color:#0d8fc1;}
+.heicolor{ color:#000000;}
+.zicolor{ color:#806594;}
+.size28{ font-size:18px;}
+.lh12{ line-height:1.4em;}
+.uedgcol{ color:#80aa35;}
+.uedrcol{ color:#D53E28;}
+.huicolor{ color:#bbb;}
+/*鍝庤皟鏁�/
+.fchencolor{color:#D77200;}
+.fqincolor{color:#80a937;}
+.fzicolor{color:#8c314c}
+
+
+/*鍗囩骇鍖呮柊鍔�/
+
+
+.tip {
+    background-color: #FFFFE2;
+    border: 1px solid #FFC674;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 100;
+}
+.box-askicon{
+	display:inline-block;
+	width:22px; height:25px;
+	background:url(/portal/dwpas2/images/prodana/askicon2.png);
+	margin-top:4px;
+}
+
+
+.hidden{ display:none;}
+
+
+

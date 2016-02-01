@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="KpiCodeInfoMapper">
+    <!-- ============================================= -->
+    <!-- RESULT MAPS                                   -->
+    <!-- ============================================= -->
+
+    <!-- result maps for database table DWPAS_C_KPI_CODE -->
+    <resultMap id="KpiCodeInfoMap" type="KpiCodeInfo">
+        <result property="kpiCode" column="KPI_CODE" javaType="java.lang.String" jdbcType="VARCHAR"/>
+        <result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="DATE"/>
+        <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" jdbcType="DATE"/>
+    </resultMap>
+
+
+    <!-- ============================================= -->
+    <!-- mapped statements for IbatisDwpasCKpiCodeDAO -->
+    <!-- ============================================= -->
+    <!-- mapped statement for IbatisDwpasCKpiCodeDAO.qryAllKpiCode -->
+    <select id="KpiCodeInfoQueryAllKpiCode"  resultType="java.lang.String">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-KPI-CODE-QRY-ALL-KPI-CODE*/ kpi_code from dwpas_c_kpi_code
+    ]]>
+    </select>
+
+</mapper>

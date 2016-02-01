@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>amcolumn chart</title>
+</head>
+<body>
+<!-- saved from url=(0013)about:internet -->
+<!-- amcolumn script-->
+  <script type="text/javascript" src="/portal/dwpas/amchart/column/amcolumn/swfobject.js"></script>
+	<div id="flashcontent">
+		<strong>You need to upgrade your Flash Player</strong>
+	</div>
+
+	<script type="text/javascript">
+		// <![CDATA[		
+		var so = new SWFObject("/portal/dwpas/amchart/column/amcolumn/amcolumn.swf", "amcolumn", "800", "500", "8", "#FFFFFF");
+		so.addVariable("path", "/portal/dwpas/amchart/column/amcolumn/"        );
+		so.addVariable("settings_file", encodeURIComponent("/portal/dwpas/amchart/column/amcolumn/amcolumn_settings.xml"));
+		so.addVariable("data_file",encodeURIComponent("/portal/dwpas/amchart/column/amcolumn/data.csv"));
+		so.addVariable("preloader_color", "#999999");
+//  so.addVariable("chart_settings", "");
+//  so.addVariable("additional_chart_settings", "");
+//  so.addVariable("loading_settings", "Loading settings");
+//  so.addVariable("error_loading_file", "ERROR LOADING FILE: ");
+		
+		so.write("flashcontent");
+		// ]]>
+	</script>
+<!-- end of amcolumn script -->
+</body>
+</html>

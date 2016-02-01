@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+    <tlibversion>1.1</tlibversion>
+    <jspversion>1.2</jspversion>
+    <shortname>displayTag</shortname>
+    <uri>displayTag</uri>
+    <info>A tag library for processing Model-2 command results</info>
+
+    <tag>
+        <name>table</name>
+        <tagclass>com.infosmart.portal.taglib.DisplayTableTag</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <info>
+            Executes an Action from within the context of a taglib.
+            The body of the tag is used to display the results of
+            the action invocation.
+        </info>
+        <attribute>
+            <name>attributeName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>formAction</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tableId</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tableName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tableStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tableWidth</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tableHeight</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>entityClazz</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>tableRowCount</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>serviceFactory</name>
+        	 <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <name>row</name>
+        <tagclass>com.infosmart.portal.taglib.DisplayRowTag</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <info>
+            Executes an Action from within the context of a taglib.
+            The body of the tag is used to display the results of
+            the action invocation.
+        </info>
+        <attribute>
+            <name>headStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>bodyStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>onClick</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>onDblClick</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>onMouseOver</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>onMouseOut</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+        <tag>
+        <name>column</name>
+        <tagclass>com.infosmart.portal.taglib.DisplayColumnTag</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <info>
+            Executes an Action from within the context of a taglib.
+            The body of the tag is used to display the results of
+            the action invocation.
+        </info>
+        <attribute>
+            <name>property</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>title</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>align</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <!-- 模式:如出现复选框，单选框，下拉框，链接，图片等 -->
+        <attribute>
+            <name>pattern</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <!-- 格式化，目前只支持日期[yyyy-MM-dd]，和金额格式化[#,###.00] -->
+        <attribute>
+            <name>format</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <!-- 表达式:如数据为0，则为男，1则为女，即[{0}==1?'男':'女'] -->
+        <attribute>
+            <name>expression</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>                
+        <attribute>
+            <name>width</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>columnStyleClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>canOrder</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+        	<name>orderProperty</name>
+        	<required>false</required>
+        	<rtexprvalue>true</rtexprvalue>
+        </attribute>
+        
+    </tag>
+   
+</taglib>

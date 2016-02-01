@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.DwmisTemplateInfoMapper">
+	<!-- 模板信息记录集 -->
+	<resultMap id="DwmisTemplateInfo" type="com.infosmart.po.dwmis.DwmisTemplateInfo">
+		<result column="template_id" property="templateId" jdbcType="VARCHAR" />
+		<result column="template_name" property="templateName"
+			jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="gmt_date" property="gmtDate" jdbcType="DATE" />
+		<result column="gmt_user" property="gmtUser" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 获取图例分类信息 -->
+	<select id="listPageDwmisTemplateInfo" resultMap="DwmisTemplateInfo">
+		select
+		template_id,template_name,remark,gmt_date,gmt_user
+		from
+		DWMIS_TEMPLATE_INFO where 1=1
+		<if test="templateName !=null and templateName != ''">
+			and template_name like "%"#{templateName}"%"
+		</if>
+		order by gmt_date asc
+	</select>
+
+	<insert id="addDwmisTemplateInfo" parameterType="DwmisTemplateInfo">
+		insert into
+		DWMIS_TEMPLATE_INFO(template_id,template_name,remark,gmt_date,gmt_user)
+		values(#{templateId},#{templateName},#{remark},now(),gmtUser)
+	</insert>
+
+	<update id="updateDwmisTemplateInfo" parameterType="DwmisTemplateInfo">
+		update
+		DWMIS_TEMPLATE_INFO set
+		template_name=#{templateName},remark=#{remark},gmt_user=#{gmtUser}
+		where template_id=#{templateId}
+	</update>
+
+	<delete id="delDwmisTemplateInfo" parameterType="String">
+		delete from
+		DWMIS_TEMPLATE_INFO where template_id=#{templateId}
+	</delete>
+
+	<select id="getDwmisTemplateInfoById" parameterType="String"
+		resultMap="DwmisTemplateInfo">
+		select
+		template_id,template_name,remark,gmt_date,gmt_user
+		from
+		DWMIS_TEMPLATE_INFO
+		where template_id=#{templateId}
+	</select>
+
+	<!-- 列出所有瞭望塔模板 -->
+	<select id="listAllDwmisTemplateInfo" resultMap="DwmisTemplateInfo">
+		select
+		TEMPLATE_ID,TEMPLATE_NAME,REMARK,GMT_DATE from DWMIS_TEMPLATE_INFO
+		ORDER BY GMT_DATE
+	</select>
+
+
+	<!-- 复制瞭望塔模板 -->
+	<insert id="copyTemplate" parameterType="java.util.HashMap">
+		INSERT into
+		DWMIS_TEMPLATE_INFO
+		(template_id,template_name,
+		remark,gmt_date,gmt_user)
+		select
+		#{newTid},#{dwmisTemplate.templateName},
+		'复制的模块',
+		now(),#{dwmisTemplate.gmtUser}
+		from DWMIS_TEMPLATE_INFO dti
+		where
+		dti.TEMPLATE_ID =
+		#{dwmisTemplate.templateId}
+	</insert>
+
+</mapper>

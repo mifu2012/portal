@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasLongHuBangMapper">
+	<!-- 查询某些产品的指标数据 -->
+	<select id="queryKpiDataByProdIds" resultType="java.util.HashMap"
+		parameterType="java.util.HashMap">
+		SELECT skd.REPORT_DATE,
+		rpk.product_id,
+		case cki.convert_type
+		when 2 then
+		IFNULL(skd.BASE_VALUE, 0) / POW(10, cki.convert_num)
+		when 1 then
+		IFNULL(skd.BASE_VALUE, 0) * POW(10, cki.convert_num)
+		else
+		IFNULL(skd.BASE_VALUE, 0)
+		end as BASE_VALUE
+		FROM dwpas_r_kpi_comkpi rkc,
+		dwpas_r_prd_kpi rpk,
+		dwpas_st_kpi_data skd,
+		dwpas_c_kpi_info cki
+		WHERE
+		rkc.KPI_CODE = rpk.KPI_CODE
+		AND rpk.KPI_CODE = skd.KPI_CODE
+		AND
+		skd.KPI_CODE = cki.KPI_CODE
+		AND
+		rpk.product_id in
+		<foreach collection="productIds" close=")" open="(" separator=","
+			item="productId">
+			#{productId,jdbcType=VARCHAR}
+		</foreach>
+		AND skd.DATE_TYPE = #{dateType,jdbcType=VARCHAR}
+		AND
+		skd.REPORT_DATE
+		&lt;=#{reportDate,jdbcType=VARCHAR}
+		AND
+		rkc.com_kpi_code =
+		#{commKpiCode,jdbcType=VARCHAR}
+		order by
+		skd.REPORT_DATE,
+		instr(#{allProductId,jdbcType=VARCHAR}, concat(', ', product_id, ''))
+	</select>
+
+	<select id="querylongHuBangByCommonKpiAndKpiTypeIdAndProductIds"
+		parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<!-- 龙虎榜产品排行 一个通用指标对应着多个指标,一个指标只属于一个通用指标;#一个产品对应着多个指标 -->
+		<!-- SELECT distinct a.*, pd.product_name FROM (SELECT a.*, skd.base_value, 
+			skd.max_value FROM (SELECT pk.product_id, ki.kpi_type, ki.is_percent, ki.unit, 
+			ki.convert_num, ki.convert_type, ki.decimal_num, ki.is_cal_kpi, ki.role_formula, 
+			kc.com_kpi_code, ck.com_kpi_name, ck.rank_show_order, ki.kpi_code FROM dwpas_c_kpi_info 
+			ki, dwpas_c_com_kpi_info ck, dwpas_r_kpi_comkpi kc, dwpas_r_prd_kpi pk WHERE 
+			kc.com_kpi_code = ck.com_kpi_code AND ki.kpi_code = kc.kpi_code AND ki.kpi_code 
+			= pk.kpi_code AND ki.kpi_type =#{kpiType} AND ki.is_use = '1' AND ck.is_show_rank 
+			= 1 ) a LEFT JOIN dwpas_st_kpi_data skd ON a.kpi_code = skd.kpi_code AND 
+			skd.report_date =#{reportDate}) a, dwpas_c_prd_info pd, dwpas_r_prd_template 
+			rpt WHERE a.product_id = pd.product_id AND pd.product_id = rpt.PRODUCT_ID 
+			and rpt.TEMPLATE_ID =#{templateId} AND pd.is_folder = '0' AND pd.is_use = 
+			'1' AND pd.product_mark = '4001' ORDER BY a.rank_show_order,a.com_kpi_code -->
+
+		SELECT DISTINCT
+		a.*, pd.product_name
+		FROM
+		(
+		SELECT
+		a.*, skd.base_value,
+		skd.max_value
+		FROM
+		(
+		SELECT
+		pk.product_id,
+		ki.kpi_type,
+		ki.is_percent,
+		ki.unit,
+		ki.convert_num,
+		ki.convert_type,
+		ki.decimal_num,
+		ki.is_cal_kpi,
+		ki.role_formula,
+		kc.com_kpi_code,
+		ck.com_kpi_name,
+		ck.rank_show_order,
+		ki.kpi_code
+		FROM
+		dwpas_c_kpi_info ki,
+		dwpas_c_com_kpi_info ck,
+		dwpas_r_kpi_comkpi kc,
+		dwpas_r_prd_kpi pk
+		WHERE
+		kc.com_kpi_code = ck.com_kpi_code
+		AND ki.kpi_code = kc.kpi_code
+		AND ki.kpi_code = pk.kpi_code
+		AND ki.kpi_type = #{kpiType}
+		AND ki.is_use = '1'
+		<if test="commKpiCodeList!=null">
+		  AND ck.com_kpi_code IN 
+		  <foreach collection="commKpiCodeList" item="comKpiCode" index="index" separator="," close=")" open="(">
+		     #{comKpiCode,jdbcType=VARCHAR}
+          </foreach>
+		</if>
+		<!--  
+		AND ck.is_show_rank = 1
+		-->
+		)a
+		LEFT JOIN (select * from dwpas_st_kpi_data skd where skd.report_date =
+		#{reportDate} ) skd ON a.kpi_code = skd.kpi_code
+		)a,
+		dwpas_c_prd_info pd,
+		dwpas_r_prd_template rpt
+		WHERE
+		a.product_id = pd.product_id
+		AND pd.product_id = rpt.PRODUCT_ID
+		AND rpt.TEMPLATE_ID = #{templateId}
+		AND pd.is_folder = '0'
+		AND pd.is_use = '1'
+		ORDER BY
+		product_id
+		<if test="orderField!=null">,instr(#{orderField},concat(',', com_kpi_code, ''))</if>
+	</select>
+</mapper>

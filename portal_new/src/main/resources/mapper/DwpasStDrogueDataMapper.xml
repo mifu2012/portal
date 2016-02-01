@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasStDrogueData">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+	<!-- 风向标数据 -->
+	<resultMap id="DwpasStDrogueDataMap" type="DwpasStDrogueData">
+		<result property="reportDate" column="REPORT_DATE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="catId" column="CAT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="ggrandTitle" column="GGRAND_TITLE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="grandTitle" column="GRAND_TITLE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="fatherTitle" column="FATHER_TITLE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="catTitle" column="CAT_TITLE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="allTitle" column="ALL_TITLE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="cnt" column="CNT" />
+		<result property="gmtCreate" column="GMT_CREATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<select id="queryAllStDrogueDatas" resultMap="DwpasStDrogueDataMap">
+		select report_date,
+		cat_id, ggrand_title, grand_title, father_title,
+		cat_title, all_title,
+		cnt, gmt_create, gmt_modified from
+		dwpas_st_drogue_data where
+		(report_date = #{reportDate}) order by cnt
+		DESC
+	</select>
+
+	<!-- 查询未屏蔽的咨询关键字 -->
+	<select id="listAllShowStDrogueDatas" resultMap="DwpasStDrogueDataMap"
+		parameterType="java.util.HashMap">
+		<![CDATA[
+		select report_date,
+       cat_id,
+       ggrand_title,
+       grand_title,
+       father_title,
+       cat_title
+       from dwpas_st_drogue_data
+       where report_date =#{reportDate,jdbcType=VARCHAR}
+       and not exists
+       (select type_name
+          from dwpas_c_sys_type
+         WHERE group_id = #{groupId,jdbcType=VARCHAR}
+           and INSTR(dwpas_st_drogue_data.all_title, type_name) != 0)
+       order by cnt DESC 
+		]]>
+		<if test="num != 0">
+			limit #{num}
+	   </if>
+	</select>
+</mapper>

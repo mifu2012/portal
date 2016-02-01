@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart cid="25">
+    <series>
+        <value xid="0">0</value>
+        <value xid="1">谷值</value>
+        <value xid="2">目标值</value>
+        <value xid="3"></value>
+    </series>
+    
+	<graphs>
+		<graph gid="1">
+			<value xid="0"></value>
+			<value xid="1">0</value>
+			<value xid="2">0</value>
+			<value xid="3"></value>
+		</graph>
+	</graphs>
+</chart>

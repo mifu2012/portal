@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.KpiEventRelevanceMapper">
+	<!-- 指标信息记录集 -->
+	<resultMap id="DwpasCKpiInfoResultMap" type="DwpasCKpiInfo">
+		<result column="kpi_code" property="kpiCode" jdbcType="VARCHAR" />
+		<result column="kpi_name" property="kpiName" jdbcType="VARCHAR" />
+		<result column="kpi_type" property="kpiType" jdbcType="VARCHAR" />
+		<result column="is_overall" property="isOverall" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 获取此事记关联的指标 -->
+	<select id="getRelativeEventKPI" resultMap="DwpasCKpiInfoResultMap">
+		select
+		a.kpi_code,a.kpi_name,a.kpi_type,a.is_overall
+		from dwpas_c_kpi_info a
+		inner join mis_kpi_event_r
+		b
+		on a.kpi_code = b.kpi_code
+		where b.event_id = #{eventId}
+	</select>
+
+	<!-- 获取此事记不关联的指标 -->
+	<select id="getUnRelativeEventKPI" resultMap="DwpasCKpiInfoResultMap">
+         <![CDATA[
+          select ki.kpi_code,ki.kpi_name,ki.kpi_type,ki.is_overall
+          from dwpas_c_kpi_info ki
+          where not exists 
+                          (
+                           select EVENT_ID
+                           from mis_kpi_event_r ker
+                           where ker.kpi_code = ki.KPI_CODE
+                           and ker.EVENT_ID = #{eventId}
+                          )
+         group by ki.kpi_code,ki.kpi_name
+         order by ki.KPI_CODE;
+         ]]>
+	</select>
+	<!-- 列出所有的指标 -->
+	<select id="listAllKpiInfo" resultMap="DwpasCKpiInfoResultMap">
+		SELECT
+		ki.kpi_code,
+		ki.kpi_name
+		FROM
+		dwpas_c_kpi_info ki
+		ORDER BY
+		ki.KPI_CODE;
+	</select>
+	
+	<!-- 按照时间类型获得指标指标 -->
+	<select id="listAllKpiInfoByKpiType" resultMap="DwpasCKpiInfoResultMap" parameterType="java.lang.String" >
+	SELECT
+	kpi_code,
+	kpi_name,
+	kpi_type,
+	is_overall
+	FROM
+	dwpas_c_kpi_info
+	WHERE
+	is_show = '1'
+	AND is_use = '1'
+	ORDER BY
+	KPI_CODE;
+	</select>
+	
+	<!-- 插入此事记关联的指标 -->
+	<insert id="insertRelativeEventKPI">
+		insert into mis_kpi_event_r (event_id,kpi_code)
+		values(#{eventIdAndkpiCode.eventId},#{eventIdAndkpiCode.kpiCode})
+	</insert>
+
+	<!-- 删除此事记关联的指标 -->
+	<delete id="deleteRelativeEventKPI">
+		delete from mis_kpi_event_r where event_id =
+		#{eventId}
+	</delete>
+	<!-- 获取此大事件不关联的指标 -->
+	<select id="getUnRelativeEventKPIByKpiCodeOrKpiName" resultMap="DwpasCKpiInfoResultMap">
+	<choose>
+	<when test=" keyCode !=null and keyCode != '' ">
+	  select dki.kpi_code,dki.kpi_name,dki.kpi_type,dki.is_overall
+		from dwpas_c_kpi_info dki
+		where 1=1
+		<if test="kpiCodesList!=null and kpiCodesList!=''"> 
+		and 	
+		dki.kpi_code not in
+		<foreach collection="kpiCodesList" item="kpiCodes" separator="," open="(" close=")">
+		 #{kpiCodes}
+		</foreach>
+		</if>
+		and (dki.kpi_code like
+			UPPER(CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%'))
+			or
+			dki.kpi_name like CONCAT(CONCAT('%',#{keyCode,jdbcType=VARCHAR}),'%'))
+		and dki.is_use='1'
+		and dki.is_show='1'
+			order by dki.kpi_code
+	</when>
+	<otherwise>
+	select dki.kpi_code,dki.kpi_name,dki.kpi_type,dki.is_overall
+		from dwpas_c_kpi_info dki
+		where 1=1
+		<if test="kpiCodesList!=null and kpiCodesList!=''"> 
+		and
+		dki.kpi_code not in
+		<foreach collection="kpiCodesList" item="kpiCodes" separator="," open="(" close=")">
+		 #{kpiCodes}
+		</foreach>
+		</if>
+		and dki.is_use='1'
+		and dki.is_show='1'
+		order by dki.kpi_code
+	</otherwise>
+	</choose>
+	</select>
+	<!-- 获取大事件未关联的指标 -->
+	<select id="getUnRelKpiInfoList" resultMap="DwpasCKpiInfoResultMap">
+	SELECT
+	cki.kpi_code,cki.kpi_name,cki.kpi_type,cki.is_overall
+FROM
+	dwpas_c_kpi_info cki
+WHERE
+	NOT EXISTS (
+		SELECT
+			ker.event_id
+		FROM
+			mis_kpi_event_r ker
+		WHERE
+			cki.kpi_code = ker.kpi_code
+		AND event_id = #{eventId}
+	)
+	AND cki.is_use = '1'
+    AND cki.is_show = '1'
+	</select>
+</mapper>

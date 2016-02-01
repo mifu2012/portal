@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.BigEventPo">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+	<sql id="mysql_column">event_id,event_start_date,event_ent_date,event_type,title,content,attach,is_public,create_user,create_date
+	</sql>
+	<!-- 参数表数据 -->
+	<resultMap id="MISEVENT" type="BigEventPo">
+		<result property="eventId" column="EVENT_ID" />
+		<result property="eventStartDate" column="EVENT_START_DATE" />
+		<result property="eventEndDate" column="EVENT_ENT_DATE" />
+		<result property="eventType" column="EVENT_TYPE" />
+		<result property="title" column="TITLE" />
+		<result property="eventTypeName" column="TYPE_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="attach" column="ATTACH" />
+		<result property="isPublic" column="IS_PUBLIC" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" />
+	</resultMap>
+
+	<!-- 事件及关联的指标 -->
+	<resultMap id="MISEVENT_AND_KPICODE" type="BigEventPo">
+		<result property="eventId" column="EVENT_ID" />
+		<result property="eventStartDate" column="EVENT_START_DATE" />
+		<result property="eventEndDate" column="EVENT_ENT_DATE" />
+		<result property="eventType" column="EVENT_TYPE" />
+		<result property="title" column="TITLE" />
+		<result property="eventTypeName" column="TYPE_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="attach" column="ATTACH" />
+		<result property="isPublic" column="IS_PUBLIC" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 关联的指标CODE -->
+		<result property="kpiCode" column="KPI_CODE" />
+	</resultMap>
+
+	<!-- 事件及关联的指标列表 -->
+	<resultMap id="MISEVENT_AND_KPIINFO_LIST" type="BigEventPo">
+		<result property="eventId" column="EVENT_ID" />
+		<result property="eventStartDate" column="EVENT_START_DATE" />
+		<result property="eventEndDate" column="EVENT_ENT_DATE" />
+		<result property="eventType" column="EVENT_TYPE" />
+		<result property="title" column="TITLE" />
+		<result property="eventTypeName" column="TYPE_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="attach" column="ATTACH" />
+		<result property="isPublic" column="IS_PUBLIC" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" />
+		<!-- 关联的指标列表 -->
+		<collection property="kpiInfoList" column="kpi_code"
+			resultMap="com.infosmart.mapper.DwpasCKpiInfoMapper.DwpasCKpiInfoResultMap"></collection>
+	</resultMap>
+
+	<resultMap id="DWPASCSYSPARAM" type="DwpasCSysParam">
+		<result property="paramId" column="PARAM_ID" />
+		<result property="paramName" column="PARAM_NAME" />
+		<result property="paramValue" column="PARAM_VALUE" />
+		<result property="gmtCreate" column="GMT_CREATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" />
+	</resultMap>
+
+	<resultMap id="DWPASMISKPIEVENTR" type="DwpasMisKpiEventRel">
+		<result property="eventId" column="EVENT_ID" />
+		<result property="kpiCode" column="KPI_CODE" />
+	</resultMap>
+
+	<!-- 列出最近的大事件及其关联指标信息 -->
+	<select id="listLatelyBigEventAndRelateKpiInfo" resultMap="MISEVENT_AND_KPIINFO_LIST" parameterType="java.util.HashMap">
+		select a.*, cki.*
+		from (select a.EVENT_ID,
+		a.EVENT_START_DATE,
+		a.EVENT_ENT_DATE,
+		b.TYPE_NAME,
+		a.EVENT_TYPE,
+		a.TITLE,
+		a.CONTENT,
+		a.ATTACH,
+		a.IS_PUBLIC,
+		a.CREATE_USER,
+		a.CREATE_DATE
+		from MIS_EVENT a
+		inner join
+		DWPAS_C_SYS_TYPE b
+		on a.EVENT_TYPE = b.TYPE_ID 
+		and a.IS_PUBLIC='1'
+		<if test="queryDate!=null and queryDate!=''">
+				AND a.EVENT_START_DATE &lt;=#{queryDate}
+			</if>
+		order by
+		a.EVENT_START_DATE DESC
+		<if test="num>0"> limit ${num} </if>
+		) a
+		left join MIS_KPI_EVENT_R ker
+		on
+		a.EVENT_ID = ker.event_id
+		left join
+		dwpas_c_kpi_info cki
+		on ker.kpi_code
+		= cki.kpi_code
+
+	</select>
+	
+	
+	<!-- 根据大事件ID得到大事件及其关联指标信息 -->
+	<select id="listLatelyBigEventAndRelateKpiInfoById" resultMap="MISEVENT_AND_KPIINFO_LIST">
+		select a.*, cki.*
+		from (select a.EVENT_ID,
+		a.EVENT_START_DATE,
+		a.EVENT_ENT_DATE,
+		b.TYPE_NAME,
+		a.EVENT_TYPE,
+		a.TITLE,
+		a.CONTENT,
+		a.ATTACH,
+		a.IS_PUBLIC,
+		a.CREATE_USER,
+		a.CREATE_DATE
+		from MIS_EVENT a
+		inner join
+		DWPAS_C_SYS_TYPE b
+		on a.EVENT_TYPE = b.TYPE_ID 
+		and a.IS_PUBLIC='1'
+		where a.EVENT_ID = #{eventId}
+		order by a.EVENT_START_DATE DESC		
+		) a
+		left join MIS_KPI_EVENT_R ker
+		on
+		a.EVENT_ID = ker.event_id
+		left join
+		dwpas_c_kpi_info cki
+		on ker.kpi_code
+		= cki.kpi_code
+
+	</select>
+
+	<!-- 列出多指标关联的大事件 -->
+	<select id="listEventByKpiCodes" parameterType="java.util.HashMap"
+		resultMap="MISEVENT_AND_KPICODE">
+	<choose>
+	<when test="kpiCodes!=null">
+	SELECT DISTINCT
+	me.EVENT_ID,
+	me.EVENT_START_DATE,
+	me.EVENT_ENT_DATE,
+	me.EVENT_TYPE,
+	me.TITLE,
+	me.CONTENT,
+	me.IS_PUBLIC,
+	me.CREATE_USER,
+	me.CREATE_DATE,
+	mke.kpi_code,
+	st.type_name 
+FROM
+	MIS_EVENT me,
+	MIS_KPI_EVENT_R mke,
+	DWPAS_C_SYS_TYPE st
+WHERE
+	mke.event_id = me.event_id
+AND me.IS_PUBLIC = '1'
+AND me.EVENT_TYPE = st.type_id
+AND mke.kpi_code IN
+<foreach collection="kpiCodes" close=")" separator="," open="("
+				item="kpiCode">
+				#{kpiCode,jdbcType=VARCHAR}
+	</foreach>
+ORDER BY
+	mke.kpi_code,
+	me.EVENT_START_DATE DESC
+	</when>
+	<otherwise>
+	SELECT DISTINCT
+	me.EVENT_ID,
+	me.EVENT_START_DATE,
+	me.EVENT_ENT_DATE,
+	me.EVENT_TYPE,
+	st.type_name ,
+	me.TITLE,
+	me.CONTENT,
+	me.IS_PUBLIC,
+	me.CREATE_USER,
+	me.CREATE_DATE
+FROM
+	MIS_EVENT me
+LEFT JOIN DWPAS_C_SYS_TYPE st ON me.EVENT_TYPE = st.type_id
+WHERE
+	me.IS_PUBLIC = '1'
+ORDER BY
+	me.EVENT_START_DATE DESC
+	</otherwise>
+	</choose>
+	</select>
+
+	<!-- 获取所有的大事记 -->
+	<select id="getALLMisEventlistPage" resultMap="MISEVENT">
+		select
+		<include refid="mysql_column" />
+		from mis_event
+	</select>
+
+	<!-- 添加一条大事记记录 -->
+	<insert id="insertMisEvent">
+		insert into
+		MIS_EVENT(event_id,EVENT_START_DATE,EVENT_ENT_DATE,TITLE,CONTENT,IS_PUBLIC)
+		values(#{eventId},#{eventStartDate},#{eventEndDate},#{title},#{content},#{isPublic})
+	</insert>
+
+	<!-- 修改相关大事记记录 -->
+	<update id="upMisEventByEnentId" parameterType="BigEventPo">
+		update MIS_EVENT
+		set EVENT_START_DATE=#{eventStartDate}
+		,EVENT_ENT_DATE=#{eventEndDate}
+		,TITLE=#{title}
+		,CONTENT=#{content}
+		,IS_PUBLIC=#{isPublic}
+		where
+		EVENT_ID=#{eventId}
+	</update>
+
+	<!--批量删除相关大事记记录 -->
+	<delete id="deleteMisEventByEnentIds" parameterType="list">
+        <![CDATA[
+            delete from MIS_EVENT where EVENT_ID in
+        ]]>
+		<foreach collection="list" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+	</delete>
+	<!--删除相关大事记记录 -->
+	<delete id="deleteMisEventByEnentId" parameterType="int">
+		delete from
+		MIS_EVENT where EVENT_ID = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<!-- 根据ID获取对应的大事记记录 -->
+	<select id="getMisEventById" resultMap="MISEVENT">
+		select
+		a.EVENT_ID,a.EVENT_START_DATE,a.EVENT_ENT_DATE,a.EVENT_TYPE,a.TITLE,a.CONTENT,a.ATTACH,a.IS_PUBLIC,a.CREATE_USER,a.CREATE_DATE,b.TYPE_NAME
+		from MIS_EVENT a
+		left join DWPAS_C_SYS_TYPE b
+		on
+		a.EVENT_TYPE =b.TYPE_ID
+		where EVENT_ID = #{eventId}
+	</select>
+	<!-- 根据指标CODE获得最近最新N条大事记列表 -->
+	<select id="queryNewEventsByKpiCode" resultMap="MISEVENT">
+		select
+		EVENT_ID,EVENT_START_DATE,EVENT_ENT_DATE,EVENT_TYPE,TITLE,CONTENT,ATTACH,IS_PUBLIC,CREATE_USER,CREATE_DATE
+		from
+		(
+		select *
+		from MIS_EVENT
+		where EVENT_ID in(
+		select EVENT_ID from
+		MIS_KPI_EVENT_R
+		where KPI_CODE = #{kpiCode}
+		)
+		order by EVENT_START_DATE
+		DESC
+		)a
+		where 1 = 1
+
+	</select>
+
+	<!-- 获得最近最新N条大事记列表 -->
+	<select id="queryNewEventsByNum" resultMap="MISEVENT">
+		select a.EVENT_ID
+		,a.EVENT_START_DATE
+		,a.EVENT_ENT_DATE
+		,b.TYPE_NAME
+		,a.EVENT_TYPE
+		,a.TITLE
+		,a.CONTENT
+		,a.ATTACH
+		,a.IS_PUBLIC
+		,a.CREATE_USER
+		,a.CREATE_DATE
+		from MIS_EVENT a
+		left join DWPAS_C_SYS_TYPE b
+		on
+		a.EVENT_TYPE =
+		b.TYPE_ID
+		order by a.EVENT_START_DATE DESC
+		<if test="num != 0">
+			limit #{num}
+		</if>
+
+	</select>
+
+	<!-- 获得最近最新N条大事记对应的KpiCode -->
+	<select id="queryEventRelKpiCodeByNum" resultMap="DWPASMISKPIEVENTR">
+		select a.event_id
+		,a.kpi_code
+		from MIS_KPI_EVENT_R a
+		inner join
+		(
+		select
+		a.event_id
+		from MIS_EVENT a
+		left join DWPAS_C_SYS_TYPE b
+		on a.EVENT_TYPE
+		= b.TYPE_ID
+		order by a.EVENT_START_DATE DESC
+		<if test="num != 0">
+			limit #{num}
+		            </if>
+		) b
+		on a.event_id = b.event_id
+	</select>
+
+
+	<select id="querySysTypeById" resultMap="DWPASCSYSPARAM">
+    <![CDATA[
+        select param_value from dwpas_c_sys_param where param_id = #{parmaId}
+    ]]>
+	</select>
+
+	<!-- 获取eventId -->
+	<select id="getEventId" resultMap="MISEVENT">
+		select EVENT_ID as eventId
+		from MIS_EVENT
+	</select>
+
+</mapper>

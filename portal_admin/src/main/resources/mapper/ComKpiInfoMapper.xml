@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ComKpiInfoMapper">
+	<!-- ============================================= -->
+	<!-- RESULT MAPS -->
+	<!-- ============================================= -->
+
+	<!-- result maps for database table DWPAS_C_COM_KPI_INFO -->
+	<resultMap id="ComKpiInfoMap" type="ComKpiInfo">
+		<result property="comKpiCode" column="COM_KPI_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="comKpiName" column="COM_KPI_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShowRank" column="IS_SHOW_RANK" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="rankShowOrder" column="RANK_SHOW_ORDER"
+			javaType="int" jdbcType="INTEGER" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="DATE" />
+	</resultMap>
+	<sql id="common_sql">
+		com_kpi_code,com_kpi_name,is_show_rank,rank_show_order,gmt_create,gmt_modified
+	</sql>
+	<select id="listPageComKpiInfo" parameterType="ComKpiInfo"
+		resultMap="ComKpiInfoMap">
+		select
+		<include refid="common_sql" />
+		from dwpas_c_com_kpi_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="comKpiCode !=null and comKpiCode != ''">
+				com_kpi_code LIKE CONCAT(CONCAT('%',
+				#{comKpiCode}),'%')
+			</if>
+			<if test="comKpiName !=null and comKpiName != '' ">
+				AND com_kpi_name LIKE CONCAT(CONCAT('%',
+				#{comKpiName}),'%')
+			</if>
+		</trim>
+	</select>
+	<select id="ComKpiInfoQueryAll" resultMap="ComKpiInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-COM-KPI-INFO-QRY-ALL*/ com_kpi_code, com_kpi_name, is_show_rank, rank_show_order, gmt_create, gmt_modified from dwpas_c_com_kpi_info order by rank_show_order ASC
+    ]]>
+	</select>
+	<!-- 查询是否在龙榜榜中显示的通用指标zy -->
+	<select id="tigerIsShowComKpiInfo" parameterType="java.lang.String"
+		resultMap="ComKpiInfoMap">
+		select com_kpi_code, com_kpi_name, is_show_rank,
+		rank_show_order,
+		gmt_create, gmt_modified from dwpas_c_com_kpi_info a
+		where
+		a.is_show_rank=#{index} order by RANK_SHOW_ORDER
+
+	</select>
+	<!-- 批量修改是否在龙虎榜中显示 -->
+	<update id="updateShowTigerComKpiCodes" parameterType="java.util.List">
+		update
+		dwpas_c_com_kpi_info
+		set
+		IS_SHOW_RANK='1',
+		RANK_SHOW_ORDER =
+		#{rankShowOrder},
+		gmt_modified=#{gmtModified}
+		where
+		com_kpi_code
+		=#{comKpiCode}
+	</update>
+	<update id="updateNotShowTigerComKpiCodes" parameterType="java.util.List">
+		update dwpas_c_com_kpi_info a set a.is_show_rank='0' where
+		a.com_kpi_code in
+		<foreach collection="list" item="NotShowKpiCodeList"
+			separator="," open="(" close=")">
+			#{NotShowKpiCodeList}
+		</foreach>
+	</update>
+	<!-- 搜索未在龙虎榜中显示的通用指标 -->
+	<select id="searchTigerNotShow" parameterType="java.util.Map"
+		resultMap="ComKpiInfoMap">
+		select com_kpi_code, com_kpi_name, is_show_rank, rank_show_order,
+		gmt_create, gmt_modified from dwpas_c_com_kpi_info a
+		where
+		a.com_kpi_code not in
+		<foreach collection="kpiCodeList" item="kpiCodes" separator=","
+			open="(" close=")">
+			#{kpiCodes}
+		</foreach>
+		<if test="comKpiCode !=null and comKpiCode != ''">
+			and a.com_kpi_code LIKE
+			upper(CONCAT(CONCAT('%',
+			#{comKpiCode}),'%'))
+			or a.com_kpi_name LIKE
+			CONCAT(CONCAT('%',
+			#{comKpiCode}),'%')
+		</if>
+	</select>
+	<!-- mapped statement for IbatisDwpasCComKpiInfoDAO.insert -->
+	<insert id="ComKpiInfoInsert">
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-C-COM-KPI-INFO-INSERT*/ into dwpas_c_com_kpi_info(com_kpi_code,com_kpi_name,is_show_rank,rank_show_order,gmt_create,gmt_modified) values (#{comKpiCode}, #{comKpiName}, #{isShowRank}, #{rankShowOrder}, now(), now())
+    ]]>
+	</insert>
+
+	<!-- mapped statement for IbatisDwpasCComKpiInfoDAO.delete -->
+	<delete id="ComKpiInfoDelete">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-C-COM-KPI-INFO-DELETE*/ from dwpas_c_com_kpi_info where com_kpi_code = #{comKpiCode}
+    ]]>
+	</delete>
+	<delete id="deleteComkpiinfos" parameterType="list">
+        <![CDATA[
+            delete from dwpas_c_com_kpi_info where id in
+        ]]>
+		<foreach collection="list" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+	</delete>
+	<update id="updateComKpiinfo" parameterType="ComKpiInfo">
+		update
+		dwpas_c_com_kpi_info
+		set com_kpi_code=#{comKpiCode},
+		com_kpi_name =
+		#{comKpiName},
+		IS_SHOW_RANK
+		= #{isShowRank},
+		RANK_SHOW_ORDER =
+		#{rankShowOrder},
+		GMT_CREATE =
+		#{gmtCreate},
+		gmt_modified=#{gmtModified}
+		where com_kpi_code =
+		#{comKpiCode}
+	</update>
+	<!-- mapped statement for IbatisDwpasCComKpiInfoDAO.qryOneByCode -->
+	<select id="ComKpiInfoQueryByCode" resultMap="ComKpiInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-COM-KPI-INFO-QRY-ONE-BY-CODE*/ com_kpi_code, com_kpi_name, is_show_rank, rank_show_order, gmt_create, gmt_modified from dwpas_c_com_kpi_info where com_kpi_code = #{comKpiCode}
+    ]]>
+	</select>
+	<!-- 根据指标模块查询通用指标数据 zy -->
+	<select id="selKpiInfoByComKpiCode" resultMap="ComKpiInfoMap"
+		parameterType="ComKpiInfo">
+		select com_kpi_code, com_kpi_name, is_show_rank, rank_show_order,
+		gmt_create, gmt_modified from dwpas_c_com_kpi_info
+		<if test="comKpiCode !=null and comKpiCode != '' ">
+			where com_kpi_code LIKE
+			CONCAT(CONCAT('%',upper(#{comKpiCode})),'%')
+			or com_kpi_name Like
+			CONCAT(CONCAT('%',
+			#{comKpiCode}),'%')
+		</if>
+		order by rank_show_order ASC
+	</select>
+
+	<!-- mapped statement for IbatisDwpasCComKpiInfoDAO.qryAllByDO -->
+	<select id="ComKpiInfoQueryByDo" resultMap="ComKpiInfoMap">
+		select /*MS-DWPAS-DWPAS-C-COM-KPI-INFO-QRY-ALL-BY-DO*/ com_kpi_code,
+		com_kpi_name, is_show_rank, rank_show_order, gmt_create, gmt_modified
+		from dwpas_c_com_kpi_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="comKpiCode !=null and comKpiCode != '' ">
+				com_kpi_code LIKE CONCAT(CONCAT('%',
+				#{comKpiCode}),'%')
+			</if>
+			<if test="comKpiName !=null and comKpiName != '' ">
+				AND com_kpi_name LIKE CONCAT(CONCAT('%',
+				#{comKpiName}),'%')
+			</if>
+			<if test="isShowRank!=null and isShowRank != '' ">
+				AND is_show_rank LIKE CONCAT(CONCAT('%',
+				#{isShowRank}),'%')
+			</if>
+		</trim>
+		order by rank_show_order asc
+	</select>
+
+	<!-- 删除栏目关联指标 -->
+	<delete id="deleteComKpi_r_columnByModuleId" parameterType="string">
+		DELETE
+		FROM
+		dwpas_r_column_com_kpi
+		WHERE
+		EXISTS(
+		SELECT
+		COLUMN_ID
+		FROM
+		dwpas_c_column_info cci
+		WHERE
+		cci.column_id =
+		dwpas_r_column_com_kpi.column_id
+		AND cci.module_id =#{moduleId}
+		)
+	</delete>
+
+	<!-- 删除关联栏目 -->
+	<delete id="deleteColumnInfoByModuleId" parameterType="string">
+		DELETE
+		FROM
+		dwpas_c_column_info
+		WHERE
+		module_id =#{moduleId}
+	</delete>
+
+	<!-- 插入关联栏目信息 -->
+	<insert id="insertLhbColumnInfo" parameterType="com.infosmart.po.DwpasCColumnInfo">
+		INSERT INTO
+		dwpas_c_column_info(
+		COLUMN_ID,
+		MODULE_ID,
+		COLUMN_CODE,
+		COLUMN_NAME,
+		COUMN_DISPLAY_NAME
+		)
+		VALUES
+		(
+		#{columnId},
+		#{moduleId},
+		#{columnCode},
+		#{columnName},
+		#{columnName}
+		);
+	</insert>
+	<!-- 插入栏目关联指标信息 -->
+	<insert id="insertComKpi_r_column" parameterType="java.util.ArrayList">
+		insert into dwpas_r_column_com_kpi
+		(com_kpi_code,GMT_CREATE,COLUMN_ID,order_num)
+		values
+		<foreach collection="list" item="dwpasRColumnComKpi" index="index"
+			separator=",">
+			(#{dwpasRColumnComKpi.comKpiCode},now(),#{dwpasRColumnComKpi.columnId},#{dwpasRColumnComKpi.orderNum})
+		</foreach>
+	</insert>
+	<!-- 根据模块ID列出关联的指标 -->
+	<select id="getDwpasRColumnComKpiByModuleId" resultMap="ComKpiInfoMap"
+		parameterType="java.lang.String">
+		SELECT
+		ccki.com_kpi_code,
+		ccki.com_kpi_name,
+		1 as is_show_rank,
+		rck.order_num as rank_show_order,
+		ccki.gmt_create,
+		ccki.gmt_modified
+		FROM
+		dwpas_r_column_com_kpi rck,
+		dwpas_c_com_kpi_info ccki
+		WHERE
+		rck.com_kpi_code = ccki.com_kpi_code
+		AND rck.com_kpi_code IS NOT NULL
+		AND EXISTS(
+		SELECT
+		COLUMN_ID
+		FROM
+		dwpas_c_column_info cci
+		WHERE
+		cci.column_id = rck.column_id
+		AND cci.module_id = #{moduleId,jdbcType=VARCHAR}
+		)
+		ORDER BY
+		order_num
+	</select>
+</mapper>

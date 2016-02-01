@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dmisKpiGoalMapper">
+	<resultMap id="dmisKpiGoalMap" type="DwmisKpiGoal">
+		<result property="kpiCode" column="kpi_code" />
+		<result property="goalDate" column="goal_date" />
+		<result property="score35" column="score_35" />
+		<result property="score5" column="score_5" />
+		<result property="lastYearKPI" column="last_year_kpi" />
+	</resultMap>
+
+	<!--根据kpicode获取指标绩效记录(年记录) -->
+	<select id="getkpiGoal" parameterType="java.lang.String"
+		resultMap="dmisKpiGoalMap">
+	<![CDATA[
+	     select kpi_code,goal_date,score_35,score_5,last_year_kpi 
+	     from dwmis_mis_kpi_goal where kpi_code=#{kpiCode}
+	 ]]>
+	</select>
+	<!-- 根据kpiCode获取相关的指标绩效记录(十二个月记录) -->
+	<select id="getKpiGoals" parameterType="DwmisKpiGoal" resultMap="dmisKpiGoalMap">
+		select kpi_code,goal_date,score_35,score_5,last_year_kpi from
+		dwmis_mis_kpi_goal
+		where kpi_code=#{kpiCode} 
+<!-- 		and goal_date in -->
+<!-- 		<foreach collection="goalDateList" item="goalDateList" open="(" -->
+<!-- 			separator="," close=")"> -->
+<!-- 			#{goalDateList} -->
+<!-- 		</foreach> -->
+		order by goal_date asc
+	</select>
+
+	<!--插入指标绩效记录 -->
+	<insert id="insertKpiGoal" parameterType="DwmisKpiGoal">
+		insert into
+		dwmis_mis_kpi_goal(kpi_code,goal_date,score_35,score_5,last_year_kpi)
+		values(#{kpiCode},#{goalDate},#{score35},#{score5},#{lastYearKPI})
+	</insert>
+
+	<!--更新指标绩效记录 -->
+	<update id="updateKpiGoal" parameterType="DwmisKpiGoal">
+		update
+		dwmis_mis_kpi_goal set
+		score_35=#{score35},score_5=#{score5},last_year_kpi=#{lastYearKPI}
+		where kpi_code=#{kpiCode} and goal_date=#{goalDate}
+	</update>
+
+	<delete id="deleteKpiGoal" parameterType="DwmisKpiGoal">
+		delete from dwmis_mis_kpi_goal where kpi_code=#{kpiCode} and
+		goal_date=#{goalDate}
+	</delete>
+</mapper>

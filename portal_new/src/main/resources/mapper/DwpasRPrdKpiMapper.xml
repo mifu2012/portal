@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 产品与指标关联表 -->
+<mapper namespace="com.infosmart.mapper.DwpasRPrdKpiMapper">
+	<!-- 新增产品与指标关系表 -->
+	<insert id="insert" parameterType="java.util.HashMap">
+		INSERT INTO dwpas_r_prd_kpi
+		(product_id,kpi_code,gmt_create,gmt_modified) VALUES
+		(#{productId,jdbcType=VARCHAR},#{kpiCode,jdbcType=VARCHAR},#{createDate,jdbcType=TIMESTAMP},#{modifyDate,jdbcType=TIMESTAMP});
+	</insert>
+	<!-- 删除产品与指标关联 -->
+	<delete id="delete" parameterType="java.util.HashMap">
+		DELETE FROM dwpas_r_prd_kpi WHERE
+		kpi_code=#{kpiCode,jdbcType=VARCHAR} and
+		product_id=#{productId,jdbcType=VARCHAR}
+	</delete>
+	<!-- 根据产品ID列出所有的指标 -->
+	<select id="listKpiInfoByPrdId" parameterType="string"
+		resultMap="com.infosmart.mapper.DwpasCKpiInfoMapper.DwpasCKpiInfoResultMap">
+		SELECT cki.* FROM dwpas_c_kpi_info cki,dwpas_r_prd_kpi rpk where
+		cki.KPI_CODE=rpk.KPI_CODE and
+		rpk.product_id=#{productId,jdbcType=VARCHAR}
+	</select>
+</mapper>

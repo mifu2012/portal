@@ -1,0 +1,23 @@
+body{margin:0;padding:0 0 12px 0;font-size:12px;font-family:"宋体","Arial Narrow",HELVETICA;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}img{border:0;}ul,li{list-style-type:none;}
+/* 新增/编辑--谈框 */
+.jwy_layer{padding:20px 30px; margin:0 auto; border:1px solid #e1e5e6;}
+.jwy_layer_tt { margin-top:10px}
+.jwy_layer_nn{ line-height:10px}
+.jwy_layer_tt{ line-height:30px; height:30px}
+.jwy_layer_input{border:1px solid #e1e5e6; height:18px; line-height:18px; cursor:pointer}
+.jwy_layer_input:hover{border:1px solid #93d3e3;}
+.jwy_layer_button{ background:url(../images/layer_button.gif) no-repeat; border:0px; width:100px; height:22px; color:#00080a; text-align:center; cursor:pointer}
+.jwy_layer_button:hover{ background:url(../images/layer_button_hover.gif) no-repeat}
+.jwy_layer_mm td{ border-bottom:1px solid #13212a}
+/* 权限弹框 */
+.qx_layer{padding:20px 30px; margin:0 auto; border:1px solid #e1e5e6;}
+.jwy_layer_mm2 td{ border-bottom:1px solid #13212a}
+.qx_layer_checkbox{ margin-top:5px; height:15px; width:15px; float:left; margin-right:5px}
+.qx_layer_text{text-align:left; float:left}
+
+.juese_jsk{
+width:145px;
+height:30px;
+float:left;
+}

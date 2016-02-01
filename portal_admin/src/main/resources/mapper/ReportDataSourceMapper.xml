@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.ReportDataSourceMapper">
+
+	<resultMap type="ReportDataSource" id="ReportDataSourceMap">
+		<id column="id" property="id" />
+		<!-- <id column="report_id" property="reportId" /> -->
+		<result column="driver_name" property="driverName" />
+		<result column="data_driver" property="dataDriver" />
+		<result column="url" property="url" />
+		<result column="username" property="userName" />
+		<result column="password" property="password" />
+		<!-- <result column="query_sql" property="querySql" /> -->
+	</resultMap>
+	<!-- 删除数据源 -->
+	<delete id="deleteDataSourceById" parameterType="int">
+		delete from tb_rpt_report_datasource where id=#{id}
+	</delete>
+	<!-- 校验驱动名 -->
+	<select id="checkDriverName" parameterType="ReportDataSource" resultMap="ReportDataSourceMap">
+		select * from tb_rpt_report_datasource where driver_name =#{driverName}
+	</select>
+	
+	<!-- 查询报表数据源 -->
+	<select id="getDataSourceById" parameterType="int" resultMap="ReportDataSourceMap">
+		select * from tb_rpt_report_datasource  where id =#{id}
+	</select>
+	
+	<!-- 查询所有数据源 -->
+	<select id="listDataSource" resultMap="ReportDataSourceMap">
+		select * from tb_rpt_report_datasource 
+	</select>
+	<!-- 新增数据源 -->
+	<insert id="saveDataSource" parameterType="ReportDataSource">
+		insert into tb_rpt_report_datasource
+		(driver_name,data_driver,url,username,password)
+		values
+		(#{driverName},#{dataDriver},#{url},#{userName},#{password})
+		<selectKey resultType="int" keyProperty="id" > 
+			SELECT LAST_INSERT_ID() as id 
+		</selectKey>
+	</insert>
+	<!-- 更新数据源 -->
+	<update id="updateDataSource" parameterType="ReportDataSource">
+		update
+		tb_rpt_report_datasource set
+		driver_name=#{driverName},
+		data_driver=#{dataDriver},
+		url=#{url},
+		username=#{userName},
+		password=#{password}
+		where
+		id=#{id} <!-- and report_id=#{reportId}  query_sql=#{querySql}--> 
+	</update>
+</mapper>

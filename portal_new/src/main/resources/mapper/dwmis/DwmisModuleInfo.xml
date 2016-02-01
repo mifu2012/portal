@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.infosmart.DwmisModuleInfoMapper">
+	<resultMap id="DwmisModuleInfoMap" type="DwmisModuleInfo">
+		<result column="MODULE_ID" property="moduleId" jdbcType="VARCHAR" />
+		<result column="SUBJECT_ID" property="subjectId" jdbcType="VARCHAR" />
+		<result column="MODULE_NAME" property="moduleName" jdbcType="VARCHAR" />
+		<result column="module_type" property="moduleType" jdbcType="INTEGER" />
+		<result column="module_sort" property="moduleSort" jdbcType="INTEGER" />
+		<result column="IS_SHOW" property="isShow" jdbcType="INTEGER" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="GMT_CREATE" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="width" property="width" jdbcType="INTEGER" />
+		<result column="height" property="height" jdbcType="INTEGER" />
+		<result column="position" property="position" jdbcType="INTEGER" />
+		<result column="position_x" property="positionX" jdbcType="FLOAT" />
+		<result column="position_y" property="positionY" jdbcType="FLOAT" />
+		<result column="tab_show" property="tabShow" jdbcType="INTEGER" />
+	</resultMap>
+
+	<resultMap id="DwmisLegendInfo" type="DwmisLegendInfo">
+		<result column="legend_id" property="legendId" />
+		<result column="legend_name" property="legendName" />
+		<result column="category_id" property="categoryId" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="chart_type" property="chartType" />
+		<result column="chart_type_desc" property="chartTypeDesc" />
+		<result column="chart_url" property="chartUrl" />
+		<result column="show_warn_line" property="showWarnLine" />
+		<result column="stat_code" property="statCode" />
+		<result column="remark" property="remark" />
+		<result column="MODULE_ID" property="moduleId" />
+	</resultMap>
+
+	<resultMap id="DwmisLegendInfoAndKpiInfo" type="DwmisLegendInfo">
+		<result column="legend_id" property="legendId" />
+		<result column="legend_name" property="legendName" />
+		<result column="category_id" property="categoryId" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="chart_type" property="chartType" />
+		<result column="chart_type_desc" property="chartTypeDesc" />
+		<result column="chart_url" property="chartUrl" />
+		<result column="show_warn_line" property="showWarnLine" />
+		<result column="stat_code" property="statCode" />
+		<result column="remark" property="remark" />
+		<result column="MODULE_ID" property="moduleId" />
+
+		<collection property="kpiInfoList" column="legend_id"
+			resultMap="com.infosmart.dwmis.dwmisKpiInfoMapper.dwmisKpiInfoMap"
+			javaType="java.util.ArrayList" />
+	</resultMap>
+
+	<resultMap id="DwmisSubjectInfoMap" type="DwmisSubjectInfo">
+		<result column="SUBJECT_ID" property="subjectId" jdbcType="VARCHAR" />
+		<result column="TEMPLATE_ID" property="templateId" jdbcType="VARCHAR" />
+		<result column="SUBJECT_CODE" property="subjectCode" jdbcType="VARCHAR" />
+		<result column="SUBJECT_NAME" property="subjectName" jdbcType="VARCHAR" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="date_type" property="dateType" jdbcType="INTEGER" />
+		<result column="IS_SHOW" property="isShow" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 根据主题Id查询模块信息 -->
+	<select id="getModluleInfoListBySubjectId" resultMap="DwmisModuleInfoMap"
+		parameterType="java.lang.String">
+		SELECT
+		dmi.MODULE_ID,
+		dmi.SUBJECT_ID,
+		dmi.MODULE_NAME,
+		dmi.IS_SHOW,
+		dmi.REMARK,
+		dmi.GMT_CREATE,
+		dmi.width,
+		dmi.height,
+		dmi.module_sort,
+		dmi.module_type,
+		dmi.position,
+		dmi.position_x,
+		dmi.position_y,
+		dmi.tab_show
+		FROM
+		dwmis_subject_info dsi,
+		dwmis_module_info dmi
+		WHERE
+		dsi.SUBJECT_ID = dmi.SUBJECT_ID
+		AND
+		dsi.SUBJECT_ID = #{subjectId,jdbcType=INTEGER}
+		order by
+		dmi.position_y,dmi.position_x
+	</select>
+
+	<!-- 根据模块ID查询模块信息 -->
+	<select id="getModuleInfoByModuleId" resultMap="DwmisModuleInfoMap"
+		parameterType="java.lang.String">
+		select dmi.MODULE_ID,
+		dmi.SUBJECT_ID,
+		dmi.MODULE_NAME,
+		dmi.IS_SHOW,
+		dmi.REMARK,
+		dmi.GMT_CREATE,
+		dmi.width,
+		dmi.height,
+		dmi.module_sort,
+		dmi.module_type,
+		dmi.position,
+		dmi.position_x,
+		dmi.position_y,
+		dmi.tab_show
+		from dwmis_module_info dmi
+		where
+		dmi.IS_SHOW=1
+		AND
+		dmi.MODULE_ID=#{moduleId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- 根据多个模块Id查询图例信息 -->
+	<select id="getLegendInfoListByModuleIds" resultMap="DwmisLegendInfoAndKpiInfo"
+		parameterType="java.util.List">
+		SELECT
+		dmi.MODULE_ID,
+		dli.LEGEND_ID,
+		dli.LEGEND_NAME,
+		dli.CATEGORY_ID,
+		dli.GMT_CREATE,
+		dli.CHART_TYPE,
+		dli.CHART_TYPE_DESC,
+		dli.CHART_URL,
+		dli.SHOW_WARN_LINE,
+		dli.STAT_CODE,
+		dli.REMARK,
+		dlk.KPI_CODE,
+		dki.kpi_name,
+		dki.detail,
+		dki.is_show
+		FROM
+		dwmis_module_info dmi,
+		dwmis_legend_module_r dlm,
+		dwmis_legend_info dli,
+		dwmis_legend_kpi_r
+		dlk,
+		dwmis_kpi_info dki
+		WHERE
+		dmi.MODULE_ID = dlm.MODULE_ID
+		AND
+		dlm.LEGEND_ID = dli.LEGEND_ID
+		AND dlm.LEGEND_ID = dlk.LEGEND_ID
+		AND
+		dlk.KPI_CODE = dki.kpi_code
+		AND dlm.MODULE_ID IN
+		<foreach collection="list" item="moduleIdList" open="("
+			separator="," close=")">
+			#{moduleIdList,jdbcType=VARCHAR}
+		</foreach>
+		ORDER BY dmi.MODULE_ID,dlm.sort
+	</select>
+
+	<!-- 根据模板Id查询所有主题信息 -->
+	<select id="getAllSubjectByTempId" resultMap="DwmisSubjectInfoMap"
+		parameterType="java.lang.String">
+		SELECT
+		SUBJECT_ID,
+		TEMPLATE_ID,
+		SUBJECT_CODE,
+		SUBJECT_NAME,
+		REMARK,
+		date_type,
+		IS_SHOW,
+		SUBJECT_SORT
+		FROM
+		DWMIS_SUBJECT_INFO
+		WHERE
+		TEMPLATE_ID =
+		#{templateId}
+		and is_show=1
+		order by SUBJECT_SORT asc
+	</select>
+
+	<!-- 根据主题Id查询主题信息 -->
+	<select id="getSubjectInfoBySubjectId" resultMap="DwmisSubjectInfoMap"
+		parameterType="java.lang.String">
+		SELECT
+		SUBJECT_ID,
+		TEMPLATE_ID,
+		SUBJECT_CODE,
+		SUBJECT_NAME,
+		REMARK,
+		date_type,
+		IS_SHOW
+		FROM
+		DWMIS_SUBJECT_INFO
+		WHERE
+		SUBJECT_ID =
+		#{subjectId}
+		and is_show=1
+		order by SUBJECT_CODE asc
+	</select>
+</mapper>

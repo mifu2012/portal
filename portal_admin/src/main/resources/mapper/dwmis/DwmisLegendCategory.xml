@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.DwmisLegendCategoryMapper">
+	<!-- 指标信息记录集 -->
+	<resultMap id="DwmisLegendCategory" type="com.infosmart.po.dwmis.DwmisLegendCategory">
+		<result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+		<result column="category_pid" property="categoryPid" jdbcType="VARCHAR" />
+		<result column="category_name" property="categoryName"
+			jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="gmt_date" property="gmtDate" jdbcType="DATE" />
+	</resultMap>
+
+
+	<resultMap id="DwmisLegendCategoryAndLegend" type="com.infosmart.po.dwmis.DwmisLegendCategory">
+		<result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+		<result column="category_pid" property="categoryPid" jdbcType="VARCHAR" />
+		<result column="category_name" property="categoryName"
+			jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="gmt_date" property="gmtDate" jdbcType="DATE" />
+		
+		<collection property="legendInfoList" column="legend_id"
+			resultMap="com.infosmart.DwmisLegendInfoMapper.DwmisLegendInfo"
+			javaType="java.util.ArrayList" />
+	</resultMap>
+	<!-- 获取图例分类信息 -->
+	<select id="listPageLegendCategory" resultMap="DwmisLegendCategory">
+		select
+		category_id,category_pid,category_name,remark,gmt_date
+		from
+		dwmis_legend_category where 1=1
+		<if test="categoryPid !=null and categoryPid != ''">
+			and category_pid=#{categoryPid}
+		</if>
+		<if test="categoryName !=null and categoryName != ''">
+			and category_name like "%"#{categoryName}"%"
+		</if>
+		order by gmt_date asc
+	</select>
+
+	<insert id="addLegendCategory" parameterType="DwmisLegendCategory">
+		insert into
+		dwmis_legend_category(category_id,category_pid,category_name,remark,gmt_date)
+		values(#{categoryId},#{categoryPid},#{categoryName},#{remark},now())
+	</insert>
+
+	<update id="updateLegendCategory" parameterType="DwmisLegendCategory">
+		update
+		dwmis_legend_category set
+		category_pid=#{categoryPid},category_name=#{categoryName},remark=#{remark}
+		where category_id=#{categoryId}
+	</update>
+
+	<delete id="delLegendCategory" parameterType="String">
+		delete from
+		dwmis_legend_category where category_id=#{categoryId}
+	</delete>
+
+	<select id="getLegendCategoryById" parameterType="String"
+		resultMap="DwmisLegendCategory">
+		select
+		category_id,category_pid,category_name,remark,gmt_date from
+		dwmis_legend_category
+		where category_id=#{categoryId}
+	</select>
+	
+	
+	<!--  查询所有图例分类 -->
+	<select id="getAllCategory" resultMap="DwmisLegendCategoryAndLegend">
+		select category_id,category_pid,category_name,remark,gmt_date from
+		dwmis_legend_category
+	</select>
+</mapper>

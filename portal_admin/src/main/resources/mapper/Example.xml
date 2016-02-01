@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 得的结果或结构集，与我们定义的POJO对象属性进行映射，规则是，属性首字母小写， 使用驼峰式命名方式，而字段则是单词与单词间，用下划线连接。 
+	比如：数据库有个USER_NAME字段，那么与它对应的属性就应该是userName。 如果字段命名没有使用下划线，那么属性可以直接定义成该单词。 
+	比如，NAME字段，它的属性就是name。 -->
+<mapper namespace="exampleMapper">
+	<sql id="base_column">id,name,birthday</sql>
+	<select id="listAllExample" parameterType="example" resultType="example">
+		select
+		<include refid="base_column" />
+		from example
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id !=null ">
+				id =#{id,jdbcType=INTEGER}   
+       		</if>
+			<if test="name !=null and name != '' ">
+				AND name LIKE CONCAT(CONCAT('%',
+				#{name,jdbcType=VARCHAR}),'%')   
+       		</if>
+			<if test="birthday !=null ">
+				AND birthday =#{birthday,jdbcType=DATE}   
+       		</if>
+		</trim>
+	</select>
+	<select id="listPageExample" parameterType="example"
+		resultType="example">
+		select
+		<include refid="base_column" />
+		from example
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="id !=null ">
+				id =#{id,jdbcType=INTEGER}   
+       		</if>
+			<if test="name !=null and name != '' ">
+				AND name LIKE CONCAT(CONCAT('%',
+				#{name,jdbcType=VARCHAR}),'%')   
+       		</if>
+			<if test="birthday !=null ">
+				AND birthday =#{birthday,jdbcType=DATE}   
+       		</if>
+		</trim>
+	</select>
+	<select id="getExampleById" parameterType="int" resultType="example">
+		select
+		<include refid="base_column" />
+		from example where id= #{id,jdbcType=INTEGER}
+	</select>
+	<update id="updateExample" parameterType="example">
+		update example
+		<set>
+			<if test="name!=null">
+				name=#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday!=null">
+				birthday=#{birthday,jdbcType=DATE},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<insert id="insertExample" parameterType="example">
+		insert into example
+		(name,birthday)
+		values
+		(#{name,jdbcType=VARCHAR},#{birthday,jdbcType=DATE})
+	</insert>
+	<delete id="deleteExample" parameterType="int">
+		delete from example where id
+		=#{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteExamples" parameterType="list">
+        <![CDATA[
+            delete from example where id in
+        ]]>
+		<foreach collection="list" item="ids" open="(" separator=","
+			close=")">
+			#{ids} 
+         </foreach>
+	</delete>
+</mapper>

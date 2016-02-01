@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.dwmis.dwmisKpiInfoMapper">
+	<!-- 指标信息 -->
+	<resultMap id="dwmisKpiInfoMap" type="DwmisKpiInfo">
+		<result property="kpiCode" column="kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="typeId" column="type_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="chartId" column="chart_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="unitId" column="unit_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="kpiName" column="kpi_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="detail" column="detail" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiRestrict" column="kpi_restrict" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="restrictTime" column="restrict_time"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="relateTable" column="relate_table" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="relateTableDes" column="relate_table_des"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="isShow" column="is_show" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="goalType" column="goal_type" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="levelType1" column="level_type_1" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="levelType2" column="level_type_2" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="isShowDesc" column="is_show_desc" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="sizeId" column="size_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="showOrder" column="show_order" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="dayOffSet" column="day_offset" javaType="Integer"
+			jdbcType="INTEGER" />
+		<result property="isDataRangeFix" column="isdatarangefix"
+			javaType="int" jdbcType="INTEGER" />
+		<result property="dataRangeTop" column="datarangetop" javaType="double"
+			jdbcType="DECIMAL" />
+		<result property="dataRangeBottom" column="datarangebottom"
+			javaType="double" jdbcType="DECIMAL" />
+		<result property="createUser" column="create_user" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="period" column="period" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiNameShow" column="kpi_name_show" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiNameKpi" column="kpi_name_kpi" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="businessType" column="business_type"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" />
+		<result property="unitStrPost" column="type_name" />
+		<result property="unitName" column="unit_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="sizName" column="size_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="decimalNum" column="decimal_num" javaType="int"
+			jdbcType="INTEGER" />			
+	</resultMap>
+	<!-- 指标完整信息（如单位ID，可取到单位名称） -->
+	<resultMap id="dwmisKpiFullInfoMap" type="DwmisKpiInfo">
+		<result property="kpiCode" column="kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="typeId" column="type_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 指标类型：不持久化在数据库中 -->
+		<result property="typeIdDesc" column="type_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 单位：不持久化在数据库中 -->
+		<result property="unitIdDesc" column="unit_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiName" column="kpi_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="detail" column="detail" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="goalType" column="goal_type" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 绩效类型：不持久化在数据库中 -->
+		<result property="goalTypeDesc" column="goal_type_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="levelType1" column="level_type_1" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 一级指标类别：不持久化在数据库中 -->
+		<result property="levelType1Desc" column="level_type_1_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="levelType2" column="level_type_2" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 二级指标类别：不持久化在数据库中 -->
+		<result property="levelType2Desc" column="level_type_2_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="sizeId" column="size_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 数据量级别：不持久化在数据库中 -->
+		<result property="sizeIdDesc" column="size_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dayOffSet" column="day_offset" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="period" column="period" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiNameShow" column="kpi_name_show" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="showOrder" column="show_order" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="kpiNameKpi" column="kpi_name_kpi" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="businessType" column="business_type"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="dataRangeTop" column="datarangetop" javaType="double"
+			jdbcType="DECIMAL" />
+		<result property="dataRangeBottom" column="datarangebottom"
+			javaType="double" jdbcType="DECIMAL" />
+		<result property="decimalNum" column="decimal_num" javaType="int"
+			jdbcType="INTEGER" />				
+	</resultMap>
+	<!-- 指标及关联的子指标 -->
+	<resultMap id="kpiAndSubKpiInfoMap" type="DwmisKpiInfo">
+		<result property="kpiCode" column="kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="typeId" column="type_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 指标类型：不持久化在数据库中 -->
+		<result property="typeIdDesc" column="type_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="unitId" column="unit_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 单位：不持久化在数据库中 -->
+		<result property="unitIdDesc" column="unit_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiName" column="kpi_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="detail" column="detail" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="goalType" column="goal_type" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 绩效类型：不持久化在数据库中 -->
+		<result property="goalTypeDesc" column="goal_type_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="levelType1" column="level_type_1" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 一级指标类别：不持久化在数据库中 -->
+		<result property="levelType1Desc" column="level_type_1_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="levelType2" column="level_type_2" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 二级指标类别：不持久化在数据库中 -->
+		<result property="levelType2Desc" column="level_type_2_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="sizeId" column="size_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 数据量级别：不持久化在数据库中 -->
+		<result property="sizeIdDesc" column="size_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dayOffSet" column="day_offset" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="period" column="period" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiNameShow" column="kpi_name_show" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="showOrder" column="show_order" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="kpiNameKpi" column="kpi_name_kpi" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="businessType" column="business_type"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="dataRangeTop" column="datarangetop" javaType="double"
+			jdbcType="DECIMAL" />
+		<result property="dataRangeBottom" column="datarangebottom"
+			javaType="double" jdbcType="DECIMAL" />
+		<result property="decimalNum" column="decimal_num" javaType="int"
+			jdbcType="INTEGER" />				
+		<!-- 关联子指标 -->
+		<collection property="subKpiInfoList" resultMap="subKpiInfoMap"
+			javaType="java.util.ArrayList" column="kpi_code">
+		</collection>
+	</resultMap>
+	<!-- 子指标信息 -->
+	<resultMap id="subKpiInfoMap" type="DwmisKpiInfo">
+		<result property="kpiCode" column="sub_kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="typeId" column="sub_type_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="unitId" column="sub_unit_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 单位：不持久化在数据库中 -->
+		<result property="unitIdDesc" column="sub_unit_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiName" column="sub_kpi_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="detail" column="sub_DETAIL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="goalType" column="sub_GOAL_TYPE" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 绩效类型：不持久化在数据库中 -->
+		<result property="goalTypeDesc" column="sub_goal_type_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="levelType1" column="sub_LEVEL_TYPE_1"
+			javaType="int" jdbcType="INTEGER" />
+		<!-- 一级指标类别：不持久化在数据库中 -->
+		<result property="levelType1Desc" column="sub_level_type_1_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="levelType2" column="sub_LEVEL_TYPE_2"
+			javaType="int" jdbcType="INTEGER" />
+		<!-- 二级指标类别：不持久化在数据库中 -->
+		<result property="levelType2Desc" column="sub_level_type_2_name"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="sizeId" column="sub_size_id" javaType="int"
+			jdbcType="INTEGER" />
+		<!-- 数据量级别：不持久化在数据库中 -->
+		<result property="sizeIdDesc" column="sub_size_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dayOffSet" column="sub_day_offset" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="period" column="sub_PERIOD" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="showOrder" column="sub_show_order" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="kpiNameShow" column="sub_kpi_name_show"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="kpiNameKpi" column="sub_kpi_name_kpi"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="businessType" column="sub_BUSINESS_TYPE"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="dataRangeTop" column="sub_DATARANGETOP"
+			javaType="double" jdbcType="DECIMAL" />
+		<result property="dataRangeBottom" column="sub_DATARANGEBOTTOM"
+			javaType="double" jdbcType="DECIMAL" />
+		<result property="decimalNum" column="decimal_num" javaType="int"
+			jdbcType="INTEGER" />				
+	</resultMap>
+	<!-- 根据指标编码得到指标信息 -->
+	<select id="queryKpiInfoByKpiCode" parameterType="string"
+		resultMap="dwmisKpiInfoMap">
+		SELECT
+		KPI_CODE,
+		TYPE_ID,
+		type_name,
+		UNIT_ID,
+		unit_name,
+		SIZE_ID,
+		size_name,
+		GOAL_TYPE,
+		goal_type_name,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		IS_SHOW,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		DAY_OFFSET,
+		kpi_name_show,
+		SHOW_ORDER,
+		DECIMAL_NUM
+		FROM
+		dwmis_kpi_info ki
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_unit_id,
+		mt.type_name AS unit_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 5000
+		)ut ON ki.unit_id =
+		ut.parent_unit_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS size_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 6000
+		)st ON ki.size_id = st.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS
+		parent_size_id,
+		mt.type_name AS type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 4000
+		)type ON ki.type_id = type.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS goal_type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON ki.GOAL_TYPE =
+		goal_type.parent_size_id
+		where ki.kpi_code =
+		#{kpiCode,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据kpiCodes查询指标列表 -->
+	<select id="getDwmisKpiInfoListByCodes" resultMap="dwmisKpiInfoMap"
+		parameterType="java.util.List">
+		SELECT
+		KPI_CODE,
+		TYPE_ID,
+		type_name,
+		UNIT_ID,
+		unit_name,
+		SIZE_ID,
+		size_name,
+		GOAL_TYPE,
+		goal_type_name,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		IS_SHOW,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		DAY_OFFSET,
+		kpi_name_show,
+		SHOW_ORDER,
+		decimal_num
+		FROM
+		dwmis_kpi_info ki
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_unit_id,
+		mt.type_name AS unit_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 5000
+		)ut ON ki.unit_id =
+		ut.parent_unit_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS size_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 6000
+		)st ON ki.size_id = st.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS
+		parent_size_id,
+		mt.type_name AS type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 4000
+		)type ON ki.type_id = type.parent_size_id
+		LEFT JOIN(
+		SELECT
+		mt.type_id AS parent_size_id,
+		mt.type_name AS goal_type_name
+		FROM
+		dwmis_mis_type mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON ki.GOAL_TYPE =
+		goal_type.parent_size_id
+		where ki.kpi_code in
+		<foreach collection="list" item="kpiCodes" open="(" separator=","
+			close=")">
+			#{kpiCodes,jdbcType=VARCHAR}
+		</foreach>
+	</select>
+	<!-- 查询指标及关联的子指标信息 -->
+	<select id="listLinkKpiByCode" resultMap="kpiAndSubKpiInfoMap"
+		parameterType="string">
+		select ki.KPI_CODE,
+		TYPE_ID,
+		UNIT_ID,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		RELATE_TABLE,
+		RELATE_TABLE_DES,
+		IS_SHOW,
+		CREATE_USER,
+		CREATE_DATE,
+		GOAL_TYPE,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		IS_SHOW_DESC,
+		PERIOD,
+		BUSINESS_TYPE,
+		KPI_NAME_SHOW,
+		SIZE_ID,
+		DAY_OFFSET,
+		SHOW_ORDER,
+		KPI_NAME_KPI,
+		ISDATARANGEFIX,
+		DATARANGEBOTTOM,
+		DATARANGETOP,
+		decimal_num
+		from
+		dwmis_kpi_info ki, dwmis_mis_kpi_link_r klr
+		where ki.kpi_code =
+		klr.linked_kpi_code
+		and klr.kpi_code = #{kpiCode,jdbcType=VARCHAR}
+		order by ki.show_order
+	</select>
+	<!-- 查询某部门的指标及子指标信息 -->
+	<select id="listKpiAndSubKpiInfo" parameterType="int"
+		resultMap="kpiAndSubKpiInfoMap">
+		select KPI_CODE,
+		TYPE_ID,
+		UNIT_ID,
+		unit_name,
+		KPI_NAME,
+		KPI_NAME_SHOW,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		RELATE_TABLE,
+		RELATE_TABLE_DES,
+		IS_SHOW,
+		CREATE_USER,
+		CREATE_DATE,
+		GOAL_TYPE,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		PERIOD,
+		BUSINESS_TYPE,
+		SIZE_ID,
+		size_name,
+		DAY_OFFSET,
+		SHOW_ORDER,
+		kl.*
+		from
+		dwmis_kpi_info ki
+		inner join (select
+		mt.type_id as parent_unit_id,
+		mt.type_name as unit_name
+		from
+		dwmis_mis_type mt
+		where mt.group_id =
+		5000) ut
+		on ki.unit_id =
+		ut.parent_unit_id
+		left join (select mt.type_id
+		as parent_size_id,
+		mt.type_name as size_name
+		from dwmis_mis_type mt
+		where mt.group_id =
+		6000) st
+		on ki.size_id = st.parent_size_id
+		left join
+		(select kl.kpi_name
+		as sub_kpi_name,
+		kl.kpi_name_show as sub_kpi_name_show,
+		TYPE_ID as
+		sub_type_id,
+		UNIT_ID as
+		sub_unit_id,
+		unit_type.sub_unit_name,
+		DETAIL as
+		sub_DETAIL,
+		KPI_RESTRICT
+		as sub_KPI_RESTRICT,
+		RESTRICT_TIME as
+		sub_RESTRICT_TIME,
+		RELATE_TABLE as
+		sub_RELATE_TABLE,
+		RELATE_TABLE_DES as
+		sub_RELATE_TABLE_DES,
+		IS_SHOW as
+		sub_IS_SHOW,
+		CREATE_USER as
+		sub_CREATE_USER,
+		CREATE_DATE as
+		sub_CREATE_DATE,
+		GOAL_TYPE as
+		sub_GOAL_TYPE,
+		LEVEL_TYPE_1 as
+		sub_LEVEL_TYPE_1,
+		LEVEL_TYPE_2 as
+		sub_LEVEL_TYPE_2,
+		PERIOD as
+		sub_PERIOD,
+		BUSINESS_TYPE as
+		sub_BUSINESS_TYPE,
+		SIZE_ID as sub_SIZE_ID,
+		size_type.sub_size_name,
+		DAY_OFFSET as sub_DAY_OFFSET,
+		SHOW_ORDER as
+		sub_SHOW_ORDER,
+		klr.kpi_code
+		as parent_kpi_code,
+		klr.linked_kpi_code as
+		sub_kpi_code
+		from
+		dwmis_mis_kpi_link_r klr
+		inner join dwmis_kpi_info kl
+		on
+		klr.linked_kpi_code = kl.kpi_code
+		inner join (select mt.type_id as
+		sub_unit_id,
+		mt.type_name as sub_unit_name
+		from dwmis_mis_type mt
+		where
+		mt.group_id = 5000) unit_type
+		on kl.unit_id = unit_type.sub_unit_id
+		inner join (select mt.type_id as sub_size_id,
+		mt.type_name as
+		sub_size_name
+		from dwmis_mis_type mt
+		where mt.group_id = 6000) size_type
+		on kl.size_id = size_type.sub_size_id) kl
+		on ki.kpi_code =
+		kl.parent_kpi_code
+		where exists (select kdr.kpi_code
+		from
+		dwmis_MIS_KPI_DEP_R kdr
+		where kdr.dep_id = #{deptId}
+		and kdr.kpi_code =
+		ki.kpi_code)
+		and ki.is_show = 1
+		order by ki.show_order,
+		kl.sub_SHOW_ORDER;
+	</select>
+	<!-- 根据多个指标查询指标信息 -->
+	<select id="queryDwmisKpiInfoByKpiCode" resultMap="dwmisKpiInfoMap"
+		parameterType="java.util.HashMap">
+		SELECT KPI_CODE,
+		TYPE_ID,
+		UNIT_ID,
+		KPI_NAME,
+		DETAIL,
+		KPI_RESTRICT,
+		RESTRICT_TIME,
+		RELATE_TABLE,
+		RELATE_TABLE_DES,
+		IS_SHOW,
+		CREATE_USER,
+		CREATE_DATE,
+		GOAL_TYPE,
+		LEVEL_TYPE_1,
+		LEVEL_TYPE_2,
+		IS_SHOW_DESC,
+		PERIOD,
+		BUSINESS_TYPE,
+		KPI_NAME_SHOW,
+		SIZE_ID,
+		DAY_OFFSET,
+		SHOW_ORDER,
+		KPI_NAME_KPI,
+		ISDATARANGEFIX,
+		DATARANGEBOTTOM,
+		DATARANGETOP,
+		decimal_num
+		FROM
+		dwmis_kpi_info WHERE kpi_code IN
+		<foreach collection="kpiCodeList" item="kpiCode" open="("
+			close=")" separator=",">
+			#{kpiCode,jdbcType=VARCHAR}
+		</foreach>
+		GROUP BY kpi_code
+	</select>
+</mapper>

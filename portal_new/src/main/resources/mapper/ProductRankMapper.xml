@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.ProductRankMapper">
+
+	<!-- <resultMap id="RM-PRODUCT-FOLDER" class="com.infosmart.dwpas.vo.ProductFolderDO"> 
+		<result property="productId" column="PRODUCT_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="productDesc" column="PRODUCT_DESC" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="configId" column="CONFIG_ID" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="sortOrder" column="SORT_ORDER" javaType="int" 
+		jdbcType="NUMBER" nullValue="0" /> <result property="dispProdDesc" column="DISP_PROD_DESC" 
+		javaType="java.lang.String" jdbcType="VARCHAR2" /> </resultMap> -->
+
+	<!-- <resultMap id="RM-PRODUCT" class="com.infosmart.dwpas.vo.ProductDO"> 
+		<result property="productId" column="PRODUCT_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="productDesc" column="PRODUCT_DESC" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="configId" column="CONFIG_ID" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="sortOrder" column="SORT_ORDER" javaType="int" 
+		jdbcType="NUMBER" nullValue="0" /> <result property="dispProdDesc" column="DISP_PROD_DESC" 
+		javaType="java.lang.String" jdbcType="VARCHAR2" /> </resultMap> <resultMap 
+		id="RM-PRODUCT-TREE-NODE" class="com.infosmart.dwpas.vo.ProductTreeNodeDO"> 
+		<result property="productId" column="PRODUCT_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="dispProdDesc" column="DISP_PROD_DESC" 
+		javaType="java.lang.String" jdbcType="VARCHAR2" /> <result property="parentId" 
+		column="PARENT_ID" javaType="long" jdbcType="NUMBER" nullValue="0" /> <result 
+		property="configId" column="CONFIG_ID" javaType="java.lang.String" jdbcType="VARCHAR2" 
+		/> <result property="isFolder" column="IS_FOLDER" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="sortOrder" column="SORT_ORDER" javaType="int" 
+		jdbcType="NUMBER" nullValue="0" /> <result property="boUrl" column="BO_URL" 
+		javaType="java.lang.String" jdbcType="VARCHAR2" /> </resultMap> <resultMap 
+		id="RM-INDEX" class="com.infosmart.dwpas.vo.IndexDO"> <result property="indexId" 
+		column="INDEX_ID" javaType="long" jdbcType="NUMBER" nullValue="0" /> <result 
+		property="productId" column="PRODUCT_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="indexValue" column="INDEX_VALUE" javaType="double" 
+		jdbcType="NUMBER" nullValue="0" /> </resultMap> <resultMap id="RM-LIST" class="com.infosmart.dwpas.vo.ProductDO"> 
+		<result property="productId" column="PRODUCT_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="productDesc" column="PRODUCT_DESC" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> </resultMap> result maps for database table ST_GPRD_GROUP_PUV_DS 
+		<resultMap id="RM-GROUP-INFO" class="com.infosmart.dwpas.vo.GroupInfoDO"> 
+		<result property="groupId" column="GROUP_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="groupDesc" column="GROUP_DESC" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="groupOrder" column="GROUP_ORDER" 
+		javaType="long" jdbcType="NUMBER" nullValue="0" /> </resultMap> <resultMap 
+		id="RM-GROUP-PAGE-INFO" class="com.infosmart.dwpas.vo.GroupPageInfoDO"> <result 
+		property="groupDesc" column="GROUP_DESC" javaType="java.lang.String" jdbcType="VARCHAR2" 
+		/> <result property="url" column="URL" javaType="java.lang.String" jdbcType="VARCHAR2" 
+		/> </resultMap> <resultMap id="EX-RM-ST-GPRD-D1" class="com.infosmart.dwpas.vo.ExtraStGprdDDO"> 
+		<result property="indexId" column="INDEX_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="productId" column="PRODUCT_ID" javaType="long" 
+		jdbcType="NUMBER" nullValue="0" /> <result property="indexName" column="INDEX_NAME" 
+		javaType="java.lang.String" jdbcType="VARCHAR2" /> </resultMap> -->
+	<!-- <resultMap id="EX-RM-ST-GPRD-D2" class="com.infosmart.dwpas.vo.ExtraStGprdDDO"> 
+		<result property="indexId" column="INDEX_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="prdDimId" column="PRD_DIM_ID" javaType="long" 
+		jdbcType="NUMBER" nullValue="0" /> <result property="productId" column="PRODUCT_ID" 
+		javaType="long" jdbcType="NUMBER" nullValue="0" /> <result property="indexValue" 
+		column="INDEX_VALUE" javaType="double" jdbcType="NUMBER" nullValue="0" /> 
+		<result property="reportDate" column="REPORT_DATE" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="dimColDesc" column="DIM_COL_DESC" 
+		javaType="java.lang.String" jdbcType="VARCHAR2" /> <result property="prdDimDesc" 
+		column="PRD_DIM_DESC" javaType="java.lang.String" jdbcType="VARCHAR2" /> 
+		</resultMap> -->
+	<!-- <resultMap id="RM-DIM-GPRD-PRODUCT1" class="com.infosmart.dwpas.vo.DimGprdProductDO"> 
+		<result property="productId" column="PRODUCT_ID" javaType="long" jdbcType="NUMBER" 
+		nullValue="0" /> <result property="productEdesc" column="PRODUCT_EDESC" javaType="java.lang.String" 
+		jdbcType="VARCHAR2" /> <result property="productDesc" column="PRODUCT_DESC" 
+		javaType="java.lang.String" jdbcType="VARCHAR2" /> <result property="parentId" 
+		column="PARENT_ID" javaType="long" jdbcType="NUMBER" nullValue="0" /> <result 
+		property="useFlag" column="USE_FLAG" javaType="java.lang.String" jdbcType="CHAR" 
+		/> <result property="gmtOnline" column="GMT_ONLINE" javaType="java.util.Date" 
+		jdbcType="TIMESTAMP(6)" /> <result property="instDate" column="INST_DATE" 
+		javaType="java.util.Date" jdbcType="TIMESTAMP(6)" /> <result property="gmtCreate" 
+		column="GMT_CREATE" javaType="java.util.Date" jdbcType="TIMESTAMP(6)" /> 
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" 
+		jdbcType="TIMESTAMP(6)" /> </resultMap> -->
+	<!-- <select id="MS-PRODUCT-FOLDER-QUERY-ALL" resultMap="RM-PRODUCT-FOLDER"> 
+		<![CDATA[ select p.product_id, p.product_desc, c.config_id, c.sort_order, 
+		c.disp_prod_desc from dim_gprd_product p, product_show_config c where p.product_id=c.product_id 
+		and p.use_flag='Y' and c.is_folder='1' and c.gmt_delete is null order by 
+		c.sort_order desc ]]> </select> -->
+
+	<!-- <select id="MS-PRODUCT-QUERY-BY-FOLDER-PRODUCT-ID" resultMap="RM-PRODUCT"> 
+		<![CDATA[ select c.config_id, c.product_id, c.sort_order, p.product_desc, 
+		c.disp_prod_desc from dim_gprd_product p, product_show_config c where p.product_id=c.product_id 
+		and c.parent_id=#value# and c.is_folder='0' and c.gmt_delete is null and 
+		p.use_flag='Y' order by c.sort_order desc ]]> </select> -->
+	<!-- <select id="MS-PRODUCT-TREE-NODE-QUERY-PRODUCT-TREE" resultMap="RM-PRODUCT-TREE-NODE"> 
+		<![CDATA[ select c.product_id, c.disp_prod_desc, c.parent_id, c.config_id, 
+		c.is_folder, c.sort_order, c.bo_url from (select product_id, disp_prod_desc, 
+		parent_id, config_id, is_folder, sort_order, bo_url from product_show_config 
+		where gmt_delete is null) c start with c.product_id in (select product_id 
+		from product_show_config where is_folder = '1') connect by prior c.product_id 
+		= c.parent_id order siblings by c.sort_order desc ]]> </select> -->
+
+	<!-- 根据产品id获得某段时间内指标的峰值数据 -->
+	<!-- <select id="MS-MAX-INDEX-QUERY-MAX-INDEX-BY-DATE" resultMap="RM-INDEX"> 
+		select /*MS-DWPAS-ST-GPRD-D-QUERY-MAX-INDEX-BY-DATE*/ index_id, st.product_id, 
+		max(st.index_value) index_value from st_gprd_ds st, dim_gprd_public p where 
+		st.prd_dim_id=p.prd_dim_id and st.product_id=#productId# and p.prd_dim_code='ALL' 
+		and st.report_date &gt;= #beginDate# and st.report_date &lt;#endDate# group 
+		by st.index_id, st.product_id </select> -->
+
+	<!-- 根据产品id获得某段时间内指标的同期均值数据 -->
+	<!-- <select id="MS-MAX-INDEX-QUERY-AVERAGE-INDEX-BY-DATE" resultMap="RM-INDEX"> 
+		Select /*MS-MAX-INDEX-QUERY-AVERAGE-INDEX-BY-DATE*/ st.index_id, st.product_id, 
+		sum(index_value)/#averRound# index_value From st_gprd_ds st, dim_gprd_public 
+		p where st.prd_dim_id=p.prd_dim_id and st.product_id=#productId# and p.prd_dim_code='ALL' 
+		and st.Report_Date &lt; #reportDate# And st.Report_Date &gt;= To_Char(To_Date(#reportDate#, 
+		'yyyymmdd') - #averRound#*7, 'yyyymmdd') And to_char(to_date(st.Report_Date,'yyyymmdd'),'d') 
+		= to_char(to_date(#reportDate#,'yyyymmdd'),'d') group by st.index_id, st.product_id 
+		</select> -->
+
+	<!-- <select id="MS-PRODUCT-QUERY-BY-ISFOLDER" parameterClass="com.infosmart.dwpas.vo.ExtraProductShowConfigDO" 
+		resultMap="RM-LIST"> <![CDATA[ SELECT product_id,product_desc from DIM_GPRD_PRODUCT 
+		a where parent_id=0 and not exists(select 1 from PRODUCT_SHOW_CONFIG where 
+		product_id<>#productId# and GMT_DELETE is null and a.product_id=product_id) 
+		]]> </select> -->
+	<!-- mapped statement for IbatisGroupInfoDAO.queryByProductId -->
+	<!-- <select id="MS-GROUP-INFO-QUERY-BY-PRODUCT-ID" resultMap="RM-GROUP-INFO"> 
+		<![CDATA[ select /*MS-GROUP-INFO-QUERY-BY-PRODUCT-ID*/ p.group_id, g.group_desc, 
+		p.group_order from DIM_GPRD_PROD_GROUP p, DIM_GPRD_GROUP g where p.group_id=g.group_id 
+		and (p.product_id = #value#) order by p.group_order asc ]]> </select> -->
+	<!-- <select id="MS-GROUP-PAGE-INFO-QUERY-BY-PRODUCT-ID" resultMap="RM-GROUP-PAGE-INFO"> 
+		<![CDATA[ select /*MS-GROUP-PAGE-INFO-QUERY-BY-PRODUCT-ID*/ g.group_desc, 
+		gp.url from dim_gprd_prod_group pg, dim_gprd_group g, dim_gprd_group_pages 
+		gp where pg.group_id=g.group_id and g.group_id=gp.group_id and (pg.product_id 
+		= #value#) order by pg.group_order asc ]]> </select> -->
+	<!-- <select id="MS-PRODUCT-QUERY-INDEXNAME" parameterClass="com.infosmart.dwpas.vo.ExtraStGprdDDO" 
+		resultMap="EX-RM-ST-GPRD-D1"> <![CDATA[ select distinct st.index_id, st.product_id, 
+		p.index_name from st_gprd_ds st,DIM_GPRD_INDEX_CFG p where st.index_id=p.index_id 
+		and st.product_id=p.product_id and st.date_type='D' and st.product_id=#productId# 
+		]]> <isNotEmpty prepend="and" property="startReportDate"> report_date &gt;= 
+		#startReportDate# </isNotEmpty> <isNotEmpty prepend="and" property="endReportDate"> 
+		report_date &lt;= #endReportDate# </isNotEmpty> order by st.index_id </select> -->
+	<!-- <select id="MS-PRODUCT-QUERY-BY-ALL-INDEX-VALUE" parameterClass="com.infosmart.dwpas.vo.ExtraStGprdDDO" 
+		resultMap="EX-RM-ST-GPRD-D2"> <![CDATA[ select st.index_id,st.prd_dim_id, 
+		st.product_id, st.index_value,st.report_date,p.DIM_COL_DESC,p.PRD_DIM_DESC 
+		from st_gprd_ds st,dim_gprd_public p where st.prd_dim_id=p.prd_dim_id and 
+		st.product_id=p.product_id and st.date_type='D' and p.prd_dim_code='ALL' 
+		and st.product_id=#productId# ]]> <isNotEmpty prepend="and" property="startReportDate"> 
+		report_date &gt;= #startReportDate# </isNotEmpty> <isNotEmpty prepend="and" 
+		property="endReportDate"> report_date &lt;= #endReportDate# </isNotEmpty> 
+		order by st.report_date ,st.index_id </select> -->
+	<!-- <select id="MS-PRODUCT-QUERY-INDEX-VALUE" parameterClass="com.infosmart.dwpas.vo.ExtraStGprdDDO" 
+		resultMap="EX-RM-ST-GPRD-D2"> <![CDATA[ select st.index_id,st.prd_dim_id, 
+		st.product_id, st.index_value,st.report_date,p.DIM_COL_DESC,p.PRD_DIM_DESC 
+		from st_gprd_ds st,dim_gprd_public p where st.prd_dim_id=p.prd_dim_id and 
+		st.product_id=p.product_id and st.date_type='D' and p.prd_dim_code<>'ALL' 
+		and st.product_id=#productId# and st.report_date=#reportDate# order by st.report_date 
+		,st.prd_dim_id,st.index_id ]]> </select> -->
+	<!-- <select id="MS-PRODUCT-QUERY-INDEX-VALUE-BY-DATE-GPRD" parameterClass="com.infosmart.dwpas.vo.ExtraStGprdDDO" 
+		resultMap="EX-RM-ST-GPRD-D2"> <![CDATA[ select st.index_id,st.prd_dim_id, 
+		st.product_id, st.index_value,st.report_date,p.DIM_COL_DESC,p.PRD_DIM_DESC 
+		from st_gprd_ds st,dim_gprd_public p where st.prd_dim_id=p.prd_dim_id and 
+		st.product_id=p.product_id and st.date_type='D' and p.prd_dim_code<>'ALL' 
+		and st.product_id=#productId# ]]> <isNotEmpty prepend="and" property="startReportDate"> 
+		report_date &gt;= #startReportDate# </isNotEmpty> <isNotEmpty prepend="and" 
+		property="endReportDate"> report_date &lt;= #endReportDate# </isNotEmpty> 
+		order by st.report_date ,st.prd_dim_id,st.index_id </select> -->
+
+	<!-- mapped statement for IbatisDimGprdProductDAO.queryByProductIds -->
+	<!-- <select id="MS-DIM-GPRD-PRODUCT-QUERY-BY-PRODUCT-IDS" resultMap="RM-DIM-GPRD-PRODUCT1"> 
+		select /*MS-DWPAS-DIM-GPRD-PRODUCT-QUERY-BY-PRODUCT-IDS*/ product_id, product_edesc, 
+		product_desc, parent_id, use_flag, gmt_online, inst_date, gmt_create, gmt_modified 
+		from dim_gprd_product where product_id in <iterate property="productIds" 
+		open="(" close=")" conjunction=","> #productIds[]# </iterate> order by gmt_online 
+		desc </select> -->
+
+	<!-- <select id="MS-DWPAS-ST-USER-FEATURE-D-QRY-ALL-BY-PRD-ID-AND-FEATURE-TYPE" 
+		resultClass="java.util.HashMap"> select /*MS-DWPAS-DWPAS-ST-USER-FEATURE-D-QRY-ALL-BY-PRD-ID-AND-FEATURE-TYPE*/ 
+		ds.product_id, ds.report_date, ds.feature_id, ds.feature_type, uf.feature_name, 
+		ds.user_cnt, ds.user_rate, ds.gmt_create, ds.gmt_modified from dwpas_st_user_feature_ds 
+		ds, dwpas_c_user_feature uf where ds.product_id=#productId# and ds.feature_type=#featureType# 
+		and ds.report_date=#reportDate# and ds.product_id=uf.product_id and ds.feature_id=uf.feature_id 
+		and ds.feature_type=uf.feature_type </select> -->
+
+	<!-- <select id="EXTRA-MS-DWPAS-C-KPI-INFO-QRY-ALL-BY-COM-KPI-CODE-AND-PRD-IDS" 
+		resultClass="java.util.HashMap"> select /*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ALL-BY-COM-KPI-CODE-AND-PRD-IDS*/ 
+		ki.kpi_code, pk.product_id, ki.parent_code, ki.kpi_name, ki.disp_name, ki.kpi_type, 
+		ki.is_overall, ki.is_show, ki.show_order, ki.is_average, ki.is_max, ki.is_variation, 
+		ki.is_percent, ki.unit, ki.decimal_num, ki.convert_num, ki.convert_type, 
+		ki.is_cal_kpi, ki.role_formula, ki.is_use, ki.gmt_create, ki.gmt_modified 
+		from dwpas_c_kpi_info ki, dwpas_r_kpi_comkpi kc, dwpas_r_prd_kpi pk where 
+		kc.com_kpi_code=#comKpiCode# and ki.kpi_type=#kpiType# and ki.is_use='1' 
+		and pk.product_id in <iterate property="productIds" open="(" close=")" conjunction=","> 
+		#productIds[]# </iterate> and ki.kpi_code=kc.kpi_code and ki.kpi_code=pk.kpi_code 
+		order by ki.show_order asc </select> -->
+
+	<!-- 产品龙虎榜产品排行 hgt -->
+	<select id="QUERY_KPIINFO_BY_COMMONCODE" resultMap="java.util.HashMap">
+		select
+		/*MS-DWPAS-DWPAS-C-KPI-INFO-QRY-ALL-BY-PRD-ID-AND-COM-KPI-CODES*/
+		ki.kpi_code, kc.com_kpi_code, ki.parent_code, ki.kpi_name,
+		ki.disp_name, ki.kpi_type, ki.is_overall, ki.is_show, ki.show_order,
+		ki.is_average,
+		ki.is_max, ki.is_variation, ki.is_percent, ki.unit,
+		ki.decimal_num,
+		ki.convert_num, ki.convert_type,
+		ki.is_cal_kpi,
+		ki.role_formula, ki.is_use, ki.gmt_create, ki.gmt_modified
+		from
+		dwpas_c_kpi_info ki, dwpas_r_kpi_comkpi kc, dwpas_r_prd_kpi pk
+		where
+		pk.product_id=#productId#
+		and ki.kpi_type=#kpiType# and ki.is_use='1'
+		and kc.com_kpi_code in
+		<!-- <iterate property="comKpiCodes" open="(" close=")" conjunction=","> 
+			#comKpiCodes[]# </iterate> -->
+		<foreach collection="comKpiCodes" separator="," close=")"
+			open="(" item="parentId">
+			#{parentId}
+		</foreach>
+		and ki.kpi_code=kc.kpi_code
+		and ki.kpi_code=pk.kpi_code
+		order by
+		ki.show_order asc
+	</select>
+</mapper>

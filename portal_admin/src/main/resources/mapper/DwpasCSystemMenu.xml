@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DwpasCSystemMenuMapper">
+	<resultMap id="DwpasCSystemMenuMapperMap" type="DwpasCSystemMenu">
+		<result property="menuId" column="MENU_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuPid" column="MENU_PID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuCode" column="MENU_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="templateId" column="TEMPLATE_ID" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="menuName" column="MENU_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATE_TIME" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<result property="menuUrl" column="MENU_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuOrder" column="MENU_ORDER" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="dateType" column="date_type" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 菜单及关联模块 -->
+	<resultMap id="SystemMenuAndAllModule" type="DwpasCSystemMenu">
+		<result property="menuId" column="MENU_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuPid" column="MENU_PID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuCode" column="MENU_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="templateId" column="TEMPLATE_ID" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="menuName" column="MENU_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATE_TIME" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<result property="menuUrl" column="MENU_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuOrder" column="MENU_ORDER" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="counts" column="counts" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="dateType" column="date_type" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<!-- 关联的模块 -->
+		<!-- <collection property="moduleInfoList" column="MENU_ID" javaType="java.util.ArrayList" 
+			resultMap="DwpasCModuleInfoMapper.DwpasCModuleInfoMap" ofType="DwpasCmoduleInfo" 
+			> </collection> -->
+
+		<collection property="moduleInfoList" column="MENU_ID"
+			ofType="DwpasCmoduleInfo" select="guanLiandwpasCModuleInfoByMenuId">
+		</collection>
+
+	</resultMap>
+	<!-- 查询菜单信息及关联模块 -->
+	<select id="getMenuAndAllModuleByMenuId" resultMap="SystemMenuAndAllModule"
+		parameterType="java.util.HashMap">
+
+		SELECT
+		csm.MENU_ID,
+		csm.MENU_PID,
+		csm.TEMPLATE_ID,
+		csm.MENU_CODE,
+		csm.MENU_NAME,
+		csm.MENU_TYPE,
+		csm.MENU_ORDER,
+		csm.IS_SHOW
+		FROM
+		dwpas_c_system_menu csm
+		WHERE
+		csm.MENU_ID = #{menuId,jdbcType=VARCHAR}
+
+		<!-- SELECT csm.MENU_ID, csm.MENU_PID, csm.TEMPLATE_ID, csm.MENU_CODE, 
+			csm.MENU_NAME, csm.MENU_TYPE, csm.MENU_ORDER, csm.IS_SHOW, cmi.DATE_TYPE, 
+			cmi.HEIGHT, cmi.IS_SHOW AS IS_HIDDEN, cmi.MODULE_CODE, cmi.MODULE_ID, cmi.MODULE_NAME, 
+			cmi.POSITION, cmi.POSITION_X, cmi.POSITION_Y, cmi.REMARK, cmi.WIDTH, cmi.MODULE_TYPE, 
+			cmi.MODULE_SORT FROM dwpas_c_system_menu csm LEFT JOIN( SELECT * FROM dwpas_c_module_info 
+			CMI WHERE cmi.DATE_TYPE = 'D' )cmi ON csm.MENU_ID = cmi.MENU_ID WHERE csm.MENU_ID 
+			= '1_ld19f' ORDER BY cmi.POSITION_Y, cmi.POSITION_X -->
+	</select>
+	<select id="guanLiandwpasCModuleInfoByMenuId" resultMap="DwpasCModuleInfoMapper.DwpasCModuleInfoMap"
+		parameterType="string">
+		SELECT
+		cmi.DATE_TYPE,
+		cmi.HEIGHT,
+		cmi.IS_SHOW AS IS_HIDDEN,
+		cmi.MODULE_CODE,
+		cmi.MODULE_ID,
+		cmi.MODULE_NAME,
+		cmi.POSITION,
+		cmi.POSITION_X,
+		cmi.POSITION_Y,
+		cmi.REMARK,
+		cmi.WIDTH,
+		cmi.MODULE_TYPE,
+		cmi.MODULE_SORT,
+		cmi.TAB_SHOW
+		FROM
+		dwpas_c_module_info cmi
+		WHERE
+		cmi.MENU_ID =
+		#{menuId,jdbcType=VARCHAR}
+		ORDER BY
+		cmi.POSITION_Y,
+		cmi.POSITION_X
+	</select>
+	<!-- 获取父级菜单 -->
+	<select id="listALLParentSystemMemus" resultMap="DwpasCSystemMenuMapperMap"
+		parameterType="int">
+		SELECT
+		b.MENU_ID,
+		b.MENU_PID,
+		b.MENU_CODE,
+		b.TEMPLATE_ID,
+		b.MENU_NAME,
+		b.IS_SHOW,
+		b.REMARK,
+		b.CREATE_TIME,
+		b.date_type
+		FROM
+		dwpas_c_system_menu b
+		WHERE
+		(
+		b.menu_pid IS NULL
+		OR b.menu_pid = ''
+		)
+		AND
+		b.TEMPLATE_ID =
+		#{templateId,jdbcType=INTEGER}
+		AND b.menu_type = '2'
+		order by IFNULL(b.MENU_ORDER ,99)
+	</select>
+	<!-- 获取子级菜单 -->
+	<select id="listALLChildrenSystemMemus" resultMap="DwpasCSystemMenuMapperMap"
+		parameterType="DwpasCSystemMenu">
+		select
+		MENU_ID,MENU_PID,TEMPLATE_ID,MENU_CODE,MENU_NAME,IS_SHOW,REMARK,CREATE_TIME
+		from dwpas_c_system_menu where menu_pid=#{menuId,jdbcType=VARCHAR} and
+		menu_type='2'
+	</select>
+	<!-- 根据模板ID和父级菜单ID获取的经纬仪子级菜单 -->
+	<select id="listChildrenSystemMemus" resultMap="DwpasCSystemMenuMapperMap"
+		parameterType="DwpasCSystemMenu">
+		select
+		MENU_ID,MENU_PID,TEMPLATE_ID,MENU_CODE,MENU_NAME,IS_SHOW,REMARK,CREATE_TIME
+		from dwpas_c_system_menu 
+		where
+		TEMPLATE_ID = #{templateId,jdbcType=VARCHAR}
+		and menu_pid=#{menuPid,jdbcType=VARCHAR}
+		and menu_type='2' 
+		ORDER BY MENU_CODE
+	</select>
+	
+	<delete id="deleteSystemMenuByMenuId" parameterType="int">
+		delete from
+		dwpas_c_system_menu where TEMPLATE_ID = #{tid,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteSystemMenuBymid" parameterType="java.lang.String">
+		delete from
+		dwpas_c_system_menu where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</delete>
+	<delete id="batchdeleteSystemMenuBymid" parameterType="list">
+        <![CDATA[
+            delete from dwpas_c_system_menu where MENU_ID in
+        ]]>
+		<foreach collection="list" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+	</delete>
+	<select id="getSingalSYstenMenuBYMenuId" parameterType="int"
+		resultMap="DwpasCSystemMenuMapperMap">
+		select
+		MENU_ID,MENU_PID,MENU_CODE,TEMPLATE_ID,MENU_NAME,IS_SHOW,REMARK,CREATE_TIME,MENU_URL,MENU_ORDER
+		from dwpas_c_system_menu where
+		TEMPLATE_ID=#{templateId,jdbcType=INTEGER}
+	</select>
+	<select id="getBYMenuId" parameterType="java.lang.String"
+		resultMap="DwpasCSystemMenuMapperMap">
+		select
+		MENU_ID,MENU_PID,MENU_CODE,TEMPLATE_ID,MENU_NAME,IS_SHOW,REMARK,CREATE_TIME,MENU_URL,MENU_ORDER
+		from dwpas_c_system_menu where MENU_ID=#{menuId,jdbcType=VARCHAR}
+	</select>
+	<!-- 复杂插入系统菜单 -->
+	<insert id="insertDwpasCSystemMenu" parameterType="java.util.HashMap">
+		INSERT into
+		dwpas_c_system_menu
+		(menu_id,
+		MENU_PID,
+		TEMPLATE_ID,
+		MENU_CODE,
+		MENU_NAME,
+		MENU_URL,
+		MENU_ORDER,
+		IS_SHOW,
+		REMARK,
+		CREATE_TIME,
+		MENU_TYPE,date_type)
+		select
+		distinct CONCAT(#{newTid,jdbcType=INTEGER}, '_', sm.MENU_CODE) as
+		MENU_ID,
+		REPLACE(menu_pid,SUBSTRING_INDEX(menu_pid,'_',1),#{newTid,jdbcType=INTEGER})
+		as MENU_PID,
+		#{newTid,jdbcType=INTEGER} as TEMPLATE_ID,
+		sm.MENU_CODE,
+		sm.MENU_NAME,
+		sm.MENU_URL,
+		sm.menu_order,
+		IS_SHOW,
+		REMARK,
+		NOW() as
+		CREATE_TIME,
+		MENU_TYPE,
+		date_type
+		from dwpas_c_system_menu sm where
+		sm.TEMPLATE_ID=#{oldTid,jdbcType=INTEGER} and menu_type='2'
+	</insert>
+	<update id="updateDwpasCSystemMenu" parameterType="DwpasCSystemMenu">
+		update
+		dwpas_c_system_menu set
+		MENU_NAME=#{menuName,jdbcType=VARCHAR},IS_SHOW=#{isShow,jdbcType=INTEGER}
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</update>
+	<update id="updateDwpasCSystemMenuAndUrl" parameterType="DwpasCSystemMenu">
+		update
+		dwpas_c_system_menu set
+		MENU_NAME=#{menuName,jdbcType=VARCHAR},IS_SHOW=#{isShow,jdbcType=INTEGER},MENU_URL=#{menuUrl,jdbcType=VARCHAR}
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</update>
+	<!-- 产品关联保存  zy -->
+	<update id="updateMenuNameAndUrl" parameterType="DwpasCSystemMenu">
+	update
+		dwpas_c_system_menu set
+		MENU_NAME=#{menuName,jdbcType=VARCHAR},MENU_URL=#{menuUrl,jdbcType=VARCHAR} where MENU_ID = #{menuId,jdbcType=VARCHAR}
+	</update>
+	<!-- 获取经纬仪系统所有子菜单 -->
+	<select id="getdwpasChildrenMenusByTemplateId" resultMap="DwpasCSystemMenuMapperMap"
+		parameterType="int">
+		SELECT
+		b.MENU_ID,
+		b.MENU_PID,
+		b.MENU_CODE,
+		b.TEMPLATE_ID,
+		b.MENU_NAME,
+		b.IS_SHOW,
+		b.REMARK,
+		b.CREATE_TIME,
+		b.date_type
+		FROM
+		dwpas_c_system_menu b
+		WHERE
+		(b.menu_pid != '' or b.menu_pid != null)
+		and
+		b.TEMPLATE_ID =
+		#{templateId,jdbcType=INTEGER}
+		AND
+		b.menu_type = '2'
+		order by
+		IFNULL(b.MENU_ORDER ,99)
+	</select>
+	<select id="getdwpasChildrenMenusByTemplateIdAndDateType"
+		parameterType="int" resultMap="DwpasCSystemMenuMapperMap">
+		SELECT distinct
+		b.MENU_ID,
+		b.MENU_PID,
+		b.MENU_CODE,
+		b.TEMPLATE_ID,
+		b.MENU_NAME,
+		b.IS_SHOW,
+		b.REMARK,
+		b.CREATE_TIME,
+		c.date_type
+		FROM
+		dwpas_c_system_menu b inner join
+		dwpas_c_module_info c on b.menu_id
+		= c.menu_id
+		WHERE
+		(b.menu_pid != '' or
+		b.menu_pid != null)
+		and b.TEMPLATE_ID = #{templateId,jdbcType=INTEGER}
+		AND
+		b.menu_type = '2'
+		order by b.MENU_ORDER
+	</select>
+	<select id="getdwpasParentMenusByTemplateIdAndDateType"
+		parameterType="int" resultMap="DwpasCSystemMenuMapperMap">
+		SELECT distinct
+		b.MENU_ID,
+		b.MENU_PID,
+		b.MENU_CODE,
+		b.TEMPLATE_ID,
+		b.MENU_NAME,
+		b.IS_SHOW,
+		b.REMARK,
+		b.CREATE_TIME,
+		c.date_type
+		FROM
+		dwpas_c_system_menu b inner join
+		dwpas_c_module_info c
+		on b.menu_id = c.menu_id
+		WHERE
+		(
+		b.menu_pid IS NULL
+		OR b.menu_pid = ''
+		)
+		AND b.TEMPLATE_ID = #{templateId,jdbcType=INTEGER}
+		AND b.menu_type = '2'
+		order by b.MENU_ORDER
+	</select>
+	<insert id="saveDwpasCSystemMenuInfo" parameterType="DwpasCSystemMenu">
+		INSERT into
+		dwpas_c_system_menu
+		(menu_id,
+		MENU_PID,
+		TEMPLATE_ID,
+		MENU_CODE,
+		MENU_NAME,
+		MENU_URL,
+		MENU_ORDER,
+		IS_SHOW,
+		REMARK,
+		CREATE_TIME,
+		MENU_TYPE,date_type)
+		values(#{menuId,jdbcType=VARCHAR},#{menuPid,jdbcType=VARCHAR},#{templateId,jdbcType=INTEGER},#{menuCode,jdbcType=VARCHAR},#{menuName,jdbcType=VARCHAR},#{menuUrl,jdbcType=VARCHAR},#{menuOrder,jdbcType=INTEGER},1,#{remark,jdbcType=VARCHAR},now(),'2',#{dateType,jdbcType=VARCHAR})
+	</insert>
+</mapper>

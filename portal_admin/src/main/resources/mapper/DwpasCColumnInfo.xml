@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DwpasCColumnInfoMapper">
+	<resultMap id="DwpasCColumnInfoMap" type="DwpasCColumnInfo">
+		<result property="columnId" column="COLUMN_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="moduleId" column="MODULE_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnCode" column="COLUMN_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnName" column="COLUMN_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnDisplayName" column="COUMN_DISPLAY_NAME"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="columnKind" column="COLUMN_KIND" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnOrder" column="COLUMN_ORDER" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="comkpilist" column="comkpilist" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="userType" column="user_type" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<!-- 新增 -->
+		<!-- 图的类型 -->
+		<result property="chartType" column="CHART_TYPE" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="chartTypeDesc" column="CHART_TYPE_DESC"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<!-- 图的URL -->
+		<result property="columnUrl" column="CHART_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="daleiMap" type="DwpasCColumnInfo">
+		<result property="columnKind" column="COLUMN_KIND" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="DwpasComKpiInfoResultMap" type="DwpasCComKpiInfo">
+		<result property="comKpiCode" column="COM_KPI_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="comKpiName" column="COM_KPI_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShowRank" column="IS_SHOW_RANK" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="rankShowOrder" column="RANK_SHOW_ORDER"
+			javaType="int" jdbcType="NUMERIC" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 栏目及关联的通用指标 -->
+	<resultMap id="listColumnAndRelCommKpiInfo" type="DwpasCColumnInfo">
+		<result property="columnId" column="COLUMN_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="moduleId" column="MODULE_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnCode" column="COLUMN_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnName" column="COLUMN_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnDisplayName" column="COUMN_DISPLAY_NAME"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="columnKind" column="COLUMN_KIND" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnOrder" column="COLUMN_ORDER" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<!-- 图的类型 -->
+		<result property="chartType" column="CHART_TYPE" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="chartTypeDesc" column="CHART_TYPE_DESC"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<!-- 图的URL -->
+		<result property="columnUrl" column="CHART_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<!-- 关联指标类型 -->
+		<result property="relKpiKind" column="is_overProd" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<!-- 关联的通用指标 -->
+		<collection property="relCommKpiCodeList" column="com_kpi_code"
+			javaType="java.util.ArrayList" resultMap="RelComKpiInfoMap">
+		</collection>
+	</resultMap>
+
+
+	<!-- 通用指标 -->
+	<resultMap id="RelComKpiInfoMap" type="ComKpiInfo">
+		<result property="comKpiCode" column="COM_KPI_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="comKpiName" column="COM_KPI_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShowRank" column="IS_SHOW_RANK" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="rankShowOrder" column="RANK_SHOW_ORDER"
+			javaType="int" jdbcType="INTEGER" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="productId" column="VALUE_2" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="productName" column="PRODUCT_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 根据模块ID列出关联的栏目及栏目关联的通用指标/大盘指标 -->
+	<select id="listColumnAndRelCommKpiInfoByModuleId" resultMap="listColumnAndRelCommKpiInfo">
+		SELECT
+		*
+		FROM
+		(
+		SELECT
+		cci.COLUMN_ID,
+		cci.MODULE_ID,
+		cci.COLUMN_CODE,
+		cci.COLUMN_NAME,
+		cci.COUMN_DISPLAY_NAME,
+		cci.COLUMN_KIND,
+		cci.IS_SHOW,
+		cci.REMARK,
+		cci.CHART_TYPE,
+		cci.COLUMN_ORDER,
+		cci.CHART_TYPE_DESC,
+		cci.CHART_URL,
+		cci.IS_OVERPROD,
+		cck.com_kpi_code,
+		ccki.com_kpi_name,
+		cck.VALUE_2,
+		cpi.product_name,
+		cck.order_num
+		FROM
+		(
+		SELECT
+		*
+		FROM
+		dwpas_c_column_info cci
+		WHERE
+		IFNULL(cci.is_overProd, 0)= 0
+		)cci
+		LEFT JOIN dwpas_r_column_com_kpi cck ON
+		cci.COLUMN_ID = cck.COLUMN_ID
+		LEFT JOIN dwpas_c_com_kpi_info ccki ON
+		cck.com_kpi_code =
+		ccki.com_kpi_code
+		LEFT JOIN dwpas_c_prd_info cpi ON
+		cck.VALUE_2 =
+		cpi.product_id
+		WHERE
+		cci.MODULE_ID =
+		#{moduleId,jdbcType=VARCHAR}
+		UNION
+		SELECT
+		cci.COLUMN_ID,
+		cci.MODULE_ID,
+		cci.COLUMN_CODE,
+		cci.COLUMN_NAME,
+		cci.COUMN_DISPLAY_NAME,
+		cci.COLUMN_KIND,
+		cci.IS_SHOW,
+		cci.COLUMN_ORDER,
+		cci.REMARK,
+		cci.CHART_TYPE,
+		cci.CHART_TYPE_DESC,
+		cci.CHART_URL,
+		cci.IS_OVERPROD,
+		cki.kpi_code AS com_kpi_code,
+		cki.kpi_name AS com_kpi_name,
+		cck.VALUE_2
+		AS VALUE_2,
+		cpi.product_name,
+		cck.order_num
+		FROM
+		(
+		SELECT
+		*
+		FROM
+		dwpas_c_column_info cci
+		WHERE
+		cci.is_overProd = 1
+		)cci
+		LEFT JOIN dwpas_r_column_com_kpi cck ON
+		cci.COLUMN_ID = cck.COLUMN_ID
+		LEFT JOIN dwpas_c_kpi_info cki ON
+		cck.com_kpi_code = cki.kpi_code
+		LEFT JOIN dwpas_c_prd_info cpi ON
+		cck.VALUE_2 = cpi.product_id
+		AND cki.is_overall = 1
+		WHERE
+		cci.MODULE_ID =
+		#{moduleId,jdbcType=VARCHAR}
+		)a
+		ORDER BY
+		a.COLUMN_ORDER
+	</select>
+
+	<select id="listPageDwpasCColumnInfo" parameterType="DwpasCColumnInfo"
+		resultMap="DwpasCColumnInfoMap">
+		select COLUMN_CODE,COLUMN_NAME,IS_SHOW,REMARK,GMT_CREATE from
+		dwpas_c_column_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="columnName !=null and columnName != '' ">
+				COLUMN_NAME LIKE CONCAT(CONCAT('%',
+				#{columnName,jdbcType=VARCHAR}),'%')
+			</if>
+		</trim>
+	</select>
+	<!-- 复制栏目 -->
+	<insert id="copyDwpasCColumnInfo" parameterType="DwpasCColumnInfo">
+		INSERT into
+		dwpas_c_column_info
+		(COLUMN_ID,
+		MODULE_ID,
+		COLUMN_CODE,
+		COLUMN_NAME,
+		COUMN_DISPLAY_NAME,
+		COLUMN_KIND,
+		COLUMN_ORDER,
+		IS_SHOW,
+		REMARK,
+		GMT_CREATE,
+		CHART_TYPE,
+		CHART_TYPE_DESC,
+		CHART_URL,
+		is_overProd
+		)
+		select
+		CONCAT(#{newTid,jdbcType=INTEGER}, '_', cci.COLUMN_CODE) as
+		COLUMN_ID,
+		CONCAT(#{newTid,jdbcType=INTEGER}, '_', cmi.MODULE_CODE, '_',
+		cmi.DATE_TYPE) as MODULE_ID,
+		cci.COLUMN_CODE,
+		cci.COLUMN_NAME,
+		cci.COUMN_DISPLAY_NAME,
+		cci.COLUMN_KIND,
+		cci.COLUMN_ORDER,
+		cci.IS_SHOW,
+		cci.REMARK,
+		NOW() as
+		GMT_CREATE,
+		CHART_TYPE,
+		CHART_TYPE_DESC,
+		CHART_URL,
+		is_overProd
+		from
+		dwpas_c_column_info cci,
+		dwpas_c_module_info cmi,
+		dwpas_c_system_menu
+		csm
+		where cci.MODULE_ID = cmi.MODULE_ID
+		and
+		cmi.MENU_ID = csm.MENU_ID
+		and
+		csm.TEMPLATE_ID =
+		#{oldTid,jdbcType=INTEGER}
+	</insert>
+	<!-- 按栏目ID找到对应的栏目 -->
+	<select id="getDwpasCColumnInfoByColumnId" parameterType="java.lang.String"
+		resultMap="DwpasCColumnInfoMap">
+		select
+		COLUMN_ID,MODULE_ID,COLUMN_CODE,COLUMN_NAME,COUMN_DISPLAY_NAME,COLUMN_KIND,IS_SHOW,REMARK,GMT_CREATE
+		from dwpas_c_column_info
+		where MODULE_ID =#{moduleId,jdbcType=VARCHAR}
+	</select>
+	<select id="getDwpasCColumnInfoByColumnIds" parameterType="list"
+		resultMap="DwpasCColumnInfoMap">
+		select
+		COLUMN_ID,MODULE_ID,COLUMN_CODE,COLUMN_NAME,COUMN_DISPLAY_NAME,COLUMN_KIND,IS_SHOW,REMARK,GMT_CREATE
+		from dwpas_c_column_info
+		where MODULE_ID in
+		<foreach collection="list" item="moduleIds" open="("
+			separator="," close=")">
+			#{moduleIds}
+		</foreach>
+	</select>
+	<!-- 保存栏目信息 -->
+	<insert id="insertColumnInfo" parameterType="DwpasCColumnInfo">
+		INSERT INTO
+		dwpas_c_column_info(
+		COLUMN_ID,
+		MODULE_ID,
+		COLUMN_CODE,
+		COLUMN_NAME,
+		COUMN_DISPLAY_NAME,
+		COLUMN_KIND,
+		IS_SHOW,
+		CHART_TYPE,
+		CHART_TYPE_DESC,
+		CHART_URL,
+		IS_OVERPROD,
+		COLUMN_ORDER
+		)
+		VALUES
+		(
+		#{columnId},
+		#{moduleId},
+		#{columnCode},
+		#{columnName},
+		#{columnDisplayName},
+		#{columnKind},
+		#{isShow},
+		#{chartType},
+		#{chartTypeDesc},
+		#{columnUrl},
+		#{relKpiKind},
+		#{columnOrder}
+		)
+	</insert>
+	<insert id="insertDwpasCColumnInfo" parameterType="DwpasCColumnInfo">
+		insert into dwpas_c_column_info
+		(template_id,column_code,column_name,is_show,remark,user_type,gmt_create)
+		values(#{templateId,jdbcType=INTEGER},#{columnCode,jdbcType=VARCHAR},#{columnName,jdbcType=VARCHAR},1,#{remark,jdbcType=VARCHAR},#{userType,jdbcType=VARCHAR},now())
+		<selectKey keyProperty="columnId" resultType="java.lang.String">
+			SELECT
+			LAST_INSERT_ID() as columnId
+		</selectKey>
+	</insert>
+	<delete id="deleteDwpasCColumnInfo" parameterType="list">
+   <![CDATA[
+              delete from dwpas_c_column_info where MODULE_ID in
+        ]]>
+		<foreach collection="list" item="moduleId" open="(" separator=","
+			close=")">
+			#{moduleId}
+		</foreach>
+	</delete>
+	<select id="alldwpasccomkpiinfo" resultMap="DwpasComKpiInfoResultMap"
+		parameterType="DwpasCComKpiInfo">
+		select DISTINCT a.com_kpi_code, a.com_kpi_name, a.is_show_rank,
+		a.rank_show_order, a.GMT_CREATE from dwpas_c_com_kpi_info
+		a,dwpas_r_kpi_comkpi b,
+		dwpas_c_kpi_info c where a.com_kpi_code =
+		b.com_kpi_code and b.kpi_code = c.kpi_code and
+		c.kpi_type=#{kpiType,jdbcType=CHAR}
+		<if test="comKpiName !=null and comKpiName != '' ">
+			AND (a.com_kpi_name LIKE CONCAT(CONCAT('%',
+			#{comKpiName,jdbcType=VARCHAR}),'%')
+			or a.com_kpi_code LIKE
+			CONCAT(CONCAT('%',
+			#{comKpiName,jdbcType=VARCHAR}),'%'))
+		</if>
+	</select>
+	<select id="mobanlist" parameterType="int" resultMap="DwpasCColumnInfoMap">
+		select
+		template_id,column_code,column_name,is_show,remark,user_type,gmt_create
+		from dwpas_c_column_info where template_id=1
+	</select>
+	<update id="updateColumn" parameterType="DwpasCColumnInfo">
+	update
+	dwpas_c_column_info set
+	column_name=#{columnName,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR},COLUMN_KIND=#{columnKind,jdbcType=VARCHAR},COUMN_DISPLAY_NAME=#{columnDisplayName,jdbcType=VARCHAR},COLUMN_ORDER=#{columnOrder,jdbcType=INTEGER}
+	where COLUMN_ID=#{columnId,jdbcType=VARCHAR}
+	</update>
+	<!-- 按模块ID查询到对应的栏目 以及指标code(,隔开) -->
+	<select id="getCColumnInfoByModuleId" parameterType="java.lang.String"
+		resultMap="DwpasCColumnInfoMap">
+		SELECT
+		a.COLUMN_ID,
+		a.MODULE_ID,
+		a.column_code,
+		a.column_name,
+		a.is_show,
+		a.remark,
+		a.gmt_create,
+		a.COUMN_DISPLAY_NAME,
+		a.COLUMN_KIND,
+		group_concat(b.com_kpi_code SEPARATOR ',')AS comkpilist,
+		b.user_type
+		FROM
+		dwpas_c_column_info a
+		left join dwpas_r_column_com_kpi b on
+		a.COLUMN_ID = b.COLUMN_ID
+		where a.MODULE_ID
+		=#{moduleId,jdbcType=VARCHAR}
+		group by a.COLUMN_ID
+	</select>
+	<!-- 大类集合 -->
+	<select id="getColumnINfoKindByModuleId" parameterType="java.lang.String"
+		resultMap="daleiMap">
+		select distinct COLUMN_KIND from dwpas_c_column_info where
+		module_id=#{moduleId,jdbcType=VARCHAR} group by COLUMN_KIND
+	</select>
+	<!-- 按模块ID查询到对应的栏目包括指标list -->
+	<select id="getAllCColumnInfoListByModuleId" parameterType="java.lang.String"
+		resultMap="DwpasCColumnInfolistAndcomkpiListMap">
+		SELECT
+		a.COLUMN_ID,
+		a.MODULE_ID,
+		a.column_code,
+		a.column_name,
+		a.is_show,
+		a.remark,
+		a.gmt_create,
+		a.COUMN_DISPLAY_NAME,
+		a.COLUMN_KIND,
+		b.com_kpi_code,
+		b.value_1,
+		b.value_3
+		FROM
+		dwpas_c_column_info a
+		left join
+		dwpas_r_column_com_kpi b on
+		a.COLUMN_ID = b.COLUMN_ID
+		where a.MODULE_ID
+		=#{moduleId,jdbcType=VARCHAR}
+		ORDER BY a.COLUMN_ID,b.VALUE_1
+	</select>
+	<!-- 产品发展日指标 数据模板使用 -->
+	<resultMap id="DwpasCColumnInfolistAndcomkpiListMap" type="DwpasCColumnInfo">
+		<result property="columnId" column="COLUMN_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="moduleId" column="MODULE_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnCode" column="COLUMN_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnName" column="COLUMN_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="columnDisplayName" column="COUMN_DISPLAY_NAME"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="columnKind" column="COLUMN_KIND" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<collection property="kpiCodelist" column="COLUMN_ID"
+			resultMap="DwpasRColumnComKpiMapper.DwpasRColumnComKpiMap" javaType="java.util.ArrayList" />
+	</resultMap>
+</mapper>

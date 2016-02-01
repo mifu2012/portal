@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.portal.pojo.DwpasCPrdInfoMapper">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+	<!-- result maps for database table DWPAS_C_PRD_INFO -->
+	<resultMap id="DWPAS-C-PRD-INFO" type="DwpasCPrdInfo">
+		<result property="productId" column="PRODUCT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isFolder" column="IS_FOLDER" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="productName" column="PRODUCT_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isIndexShow" column="IS_INDEX_SHOW" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="indexShowOrder" column="INDEX_SHOW_ORDER"
+			javaType="int" jdbcType="DECIMAL" /><!-- nullValue="0" -->
+		<result property="isUse" column="IS_USE" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="iconUrl" column="ICON_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="funnelId" column="FUNNEL_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="funnelName" column="FUNNEL_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<!-- <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" 
+			jdbcType="TIMESTAMP"/> -->
+		<result property="productMark" column="PRODUCT_MARK" javaType="java.lang.String"
+			jdbcType="CHAR" />
+	</resultMap>
+
+	<!-- mapped statement for ProdInfoComponentImpl.getProdInfoById hgt -->
+	<select id="GET_PRODINFO_BY_ID" resultMap="DWPAS-C-PRD-INFO">
+    <![CDATA[
+        select  product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info where (product_id = #{productId,jdbcType=VARCHAR})
+    ]]>
+	</select>
+
+	<!--500w新增内容： 查询用户行为信息 -->
+	<select id="getUserActionInfoById" resultMap="DWPAS-C-PRD-INFO">
+    <![CDATA[
+        select  product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from 500w_c_prd_info where (product_id = #{productId,jdbcType=VARCHAR})
+    ]]>
+	</select>
+
+
+	<!-- 列出所有的产品（非文件夹） -->
+	<select id="GET_ALL_PRODUCTS" resultMap="DWPAS-C-PRD-INFO">
+		select product_id,
+		parent_id,
+		is_folder,
+		product_name,
+		is_index_show,
+		index_show_order,
+		is_use,
+		icon_url,
+		funnel_id,
+		funnel_name,
+		gmt_create,
+		gmt_modified,
+		product_mark
+		from dwpas_c_prd_info cpi
+		where ((is_folder = '0') AND
+		(is_use = '1'))
+		and exists
+		(select product_id
+		from dwpas_r_prd_template rpt
+		where rpt.template_id =
+		#{templateId,jdbcType=VARCHAR}
+		and rpt.product_id = cpi.product_id)
+		order by cpi.index_show_order  
+	</select>
+
+</mapper>

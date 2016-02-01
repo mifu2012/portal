@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MisTypeInfoMapper">
+    <resultMap id="MisTypeMap" type="MisTypeInfo">
+        <result property="typeId" column="TYPE_ID"  />
+        <result property="groupId" column="GROUP_ID"  />
+        <result property="typeName" column="TYPE_NAME" />
+        <result property="detail" column="DETAIL" />
+        <result property="gmtCreate" column="GMT_CREATE" />
+        <result property="gmtModified" column="GMT_MODIFIED" />
+        <result property="isDelete" column="IS_DELETE" />
+    </resultMap>
+    <sql id="base_column">TYPE_ID,GROUP_ID,TYPE_NAME,DETAIL,GMT_CREATE,GMT_MODIFIED,IS_DELETE</sql>
+	<select id="listAllMisType" parameterType="MisTypeInfo"
+		resultMap="MisTypeMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_type
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="typeId !=null and typeId !=''">
+				type_Id  =#{typeId,jdbcType=INTEGER}   
+       		</if>
+       		<if test="groupId !=null and groupId !=''">
+				AND group_Id  =#{groupId,jdbcType=INTEGER}   
+       		</if>
+			<if test="typeName !=null and typeName != '' ">
+				AND type_Name LIKE CONCAT(CONCAT('%',
+				#{typeName,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="detail !=null and detail != '' ">
+				AND detail LIKE CONCAT(CONCAT('%',
+				#{detail,jdbcType=VARCHAR}),'%')   
+       		</if>
+			<if test="gmtCreate !=null ">
+				AND gmt_Create =#{gmtCreate,jdbcType=DATE}   
+       		</if>
+			<if test="gmtModified !=null ">
+				AND gmt_Modified =#{gmtModified,jdbcType=DATE}   
+       		</if>
+		</trim>
+	</select>
+	<select id="listPageMisType" parameterType="MisTypeInfo"
+		resultMap="MisTypeMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_type
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="typeId !=null and typeId !=''">
+				type_Id  =#{typeId,jdbcType=INTEGER}   
+       		</if>
+			<if test="typeName !=null and typeName != '' ">
+				AND type_Name LIKE CONCAT(CONCAT('%',
+				#{typeName,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="detail !=null and detail != '' ">
+				AND detail LIKE CONCAT(CONCAT('%',
+				#{detail,jdbcType=VARCHAR}),'%')   
+       		</if>
+       		AND group_Id  != 0
+		</trim>
+	</select>
+	<select id="getMisTypeById" parameterType="int" resultMap="MisTypeMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_type where type_id= #{typeId,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 根据groupId 查询系统类型信息 -->
+	<select id="getMisTypeByGroupId" parameterType="int" resultMap="MisTypeMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_type where group_id= #{groupId,jdbcType=INTEGER} order by type_id desc 
+	</select>
+	
+	<!-- 根据typeName 查询系统类型信息 -->
+	<select id="getMisTypeByTypeName" parameterType="java.lang.String" resultMap="MisTypeMap">
+		select
+		<include refid="base_column" />
+		from dwpas_c_sys_type where  type_name=#{typeName,jdbcType=VARCHAR}
+	</select>
+	
+	
+	<update id="updateMisType" parameterType="MisTypeInfo">
+		update dwpas_c_sys_type
+		set group_id=#{groupId},
+		type_name=#{typeName},
+		detail=#{detail},
+		gmt_Create=#{gmtCreate},
+		gmt_modified=#{gmtModified}
+		where type_id=#{typeId}
+	</update>
+	<update id="updateMisGroup" parameterType="MisTypeInfo">
+		update dwpas_c_sys_type
+		set 
+		type_name=#{typeName},
+		detail=#{detail},
+		gmt_modified=now()
+		where group_id=#{groupId} and type_id=#{typeId}
+	</update>
+	<!-- 根据groupId获得最大的typeId -->
+	<select id="getMaxTypeBygroupId" parameterType="java.lang.String" resultType="int" >
+	SELECT MAX(type_id) FROM dwpas_c_sys_type WHERE group_id=#{groupId}
+	</select>
+	<insert id="insertMisType" parameterType="MisTypeInfo" >
+		insert into
+		dwpas_c_sys_type
+		(type_id,group_id,type_name,detail,gmt_Create,gmt_Modified,is_delete)
+		values
+		(#{typeId,jdbcType=INTEGER},#{groupId,jdbcType=INTEGER},#{typeName,jdbcType=VARCHAR},#{detail,jdbcType=VARCHAR},now(),now(),1)
+	</insert>
+	<insert id="insertMisGroup" parameterType="MisTypeInfo" >
+		insert into
+		dwpas_c_sys_type
+		(type_id,group_id,type_name,detail,gmt_Create,gmt_Modified,is_delete)
+		values
+		(#{typeId,jdbcType=INTEGER},"0",#{typeName,jdbcType=VARCHAR},#{detail,jdbcType=VARCHAR},now(),now(),1)
+	</insert>
+	<delete id="deleteMisType" parameterType="int">
+		delete from
+		dwpas_c_sys_type where type_Id
+		=#{typeId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteMisTypeByGroupId" parameterType="int">
+        delete from 
+        dwpas_c_sys_type where (group_id = #{groupId})
+    </delete>
+	<select id="MS-DWPAS-C-SYS-TYPE-QRY-ALL" resultMap="MisTypeMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-SYS-TYPE-QRY-ALL*/ type_id, group_id, type_name, detail, gmt_create, gmt_modified,is_delete from dwpas_c_sys_type order by type_id ASC
+    ]]>
+    </select>
+
+    <!-- mapped statement for IbatisDwpasCSysTypeDAO.qryOneByTypeId -->
+    <select id="MS-DWPAS-C-SYS-TYPE-QRY-ONE-BY-TYPE-ID" resultMap="MisTypeMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-SYS-TYPE-QRY-ONE-BY-TYPE-ID*/ type_id, group_id, type_name, detail, gmt_create, gmt_modified from dwpas_c_sys_type where (type_id = #value#)
+    ]]>
+    </select>
+
+    <!-- mapped statement for IbatisDwpasCSysTypeDAO.qryAllByGroupId -->
+    <select id="MS-DWPAS-C-SYS-TYPE-QRY-ALL-BY-GROUP-ID" resultMap="MisTypeMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-SYS-TYPE-QRY-ALL-BY-GROUP-ID*/ type_id, group_id, type_name, detail, gmt_create, gmt_modified from dwpas_c_sys_type where (group_id = 0)
+    ]]>
+    </select>
+
+    <!-- mapped statement for IbatisDwpasCSysTypeDAO.insert -->
+    <insert id="MS-DWPAS-C-SYS-TYPE-INSERT">
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-C-SYS-TYPE-INSERT*/ into dwpas_c_sys_type(type_id,group_id,type_name,detail,gmt_create,gmt_modified) values (#typeId#, #groupId#, #typeName#, #detail#, now(), now())
+    ]]>
+    </insert>
+	
+    <!-- mapped statement for IbatisDwpasCSysTypeDAO.delete -->
+    <delete id="MS-DWPAS-C-SYS-TYPE-DELETE">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-C-SYS-TYPE-DELETE*/ from dwpas_c_sys_type where (type_id = #value#)
+    ]]>
+    </delete>
+
+    <!-- mapped statement for IbatisDwpasCSysTypeDAO.deleteByGroupId -->
+    <delete id="MS-DWPAS-C-SYS-TYPE-DELETE-BY-GROUP-ID">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-C-SYS-TYPE-DELETE-BY-GROUP-ID*/ from dwpas_c_sys_type where (group_id = #value#)
+    ]]>
+    </delete>
+
+    <!-- mapped statement for IbatisDwpasCSysTypeDAO.update -->
+    <update id="MS-DWPAS-C-SYS-TYPE-UPDATE">
+    <![CDATA[
+        update /*MS-DWPAS-DWPAS-C-SYS-TYPE-UPDATE*/ dwpas_c_sys_type set group_id=#groupId#, type_name=#typeName#, detail=#detail#, gmt_modified=now() where (type_id = #typeId#)
+    ]]>
+    </update>
+
+    <!-- mapped statement for IbatisDwpasCSysTypeDAO.qryAllByDO -->
+    <select id="MisTypeInfoQueryByDo" resultMap="MisTypeMap">
+        select /*MS-DWPAS-DWPAS-C-SYS-TYPE-QRY-ALL-BY-DO*/ type_id, group_id, type_name, detail, gmt_create, gmt_modified from dwpas_c_sys_type
+            <trim prefix="WHERE" prefixOverrides="AND|OR">
+       		<if test="groupId !=null ">
+				 group_Id  =#{groupId,jdbcType=INTEGER}   
+       		</if>
+			<if test="typeName !=null and typeName != '' ">
+				AND type_Name LIKE CONCAT(CONCAT('%',
+				#{typeName,jdbcType=VARCHAR}),'%')
+			</if>
+		</trim>
+            
+            order by type_id asc
+    </select>
+    <!-- 查询产品标类型集合 -->
+    <select id="mis_prod_info_type" resultMap="MisTypeMap">
+    select TYPE_ID,GROUP_ID,TYPE_NAME,DETAIL,GMT_CREATE,GMT_MODIFIED  from dwpas_c_sys_type where  group_id=4000
+    </select>
+</mapper>

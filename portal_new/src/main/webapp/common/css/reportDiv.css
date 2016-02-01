@@ -1,0 +1,45 @@
+/* CSS Document */
+
+.notifyicon_content A:hover {
+	TEXT-DECORATION: none
+}
+
+.notifyicon_content {
+	BORDER-BOTTOM: #666 1px solid; BORDER-LEFT: #666 1px solid; PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; FONT: 12px/1.5 verdana; BACKGROUND: #ffffe1; BORDER-TOP: #666 1px solid; BORDER-RIGHT: #666 1px solid; PADDING-TOP: 10px; box-shadow: 2px 3px 4px #666; -moz-box-shadow: 2px 3px 4px #666; -webkit-box-shadow: 2px 3px 4px #666; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px
+}
+
+
+H5 {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+
+.notifyicon_arrow B {
+	POSITION: absolute; BORDER-BOTTOM-STYLE: dashed; BORDER-LEFT-STYLE: solid; WIDTH: 0px; DISPLAY: block; BORDER-TOP-STYLE: dashed; HEIGHT: 0px; BORDER-RIGHT-STYLE: dashed; OVERFLOW: hidden; TOP: 0px
+}
+.notifyicon_arrow I {
+	POSITION: absolute; BORDER-BOTTOM-STYLE: dashed; BORDER-LEFT-STYLE: solid; WIDTH: 0px; DISPLAY: block; BORDER-TOP-STYLE: dashed; HEIGHT: 0px; BORDER-RIGHT-STYLE: dashed; OVERFLOW: hidden; TOP: 0px
+}
+.notifyicon_arrow B {
+	BORDER-BOTTOM-COLOR: transparent; BORDER-RIGHT-WIDTH: 18px; BORDER-TOP-COLOR: transparent; BORDER-TOP-WIDTH: 18px; BORDER-BOTTOM-WIDTH: 18px; BORDER-RIGHT-COLOR: transparent; BORDER-LEFT-COLOR: #666; BORDER-LEFT-WIDTH: 18px; LEFT: 0px
+}
+.notifyicon_arrow I {
+	BORDER-BOTTOM-COLOR: transparent; BORDER-RIGHT-WIDTH: 16px; BORDER-TOP-COLOR: transparent; BORDER-TOP-WIDTH: 16px; BORDER-BOTTOM-WIDTH: 16px; BORDER-RIGHT-COLOR: transparent; BORDER-LEFT-COLOR: #ffffe1; BORDER-LEFT-WIDTH: 16px; TOP: 2px; LEFT: 1px
+}
+
+.notifyicon_arrow {
+	Z-INDEX: 9; POSITION: absolute; WIDTH: 18px; TOP: 1px; LEFT: 15px
+}
+
+.notifyicon_arrow {
+	HEIGHT: 18px; OVERFLOW: hidden
+}
+
+.notifyicon_content A {
+	COLOR: #4100fc
+}
+.notifyicon_content A:hover {
+	TEXT-DECORATION: none
+}

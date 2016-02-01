@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.ReportDesignSecMapper">
+
+	<resultMap type="DimensionDetailSec" id="DimensionDetailSec">
+		<id column="primary_id" property="primary_id" />
+		<result column="parent_id" property="parent_id" />
+		<result column="dimensionSec_key" property="key" />
+		<result column="dimensionSec_value" property="value" />
+	</resultMap>
+	<!-- 根据一级维度Id获得二级维度 -->
+	<select id="getDimensionDetailSecList" parameterType="java.lang.String"
+		resultMap="DimensionDetailSec">
+		select * from tb_rpt_sec_dimension_detail where
+		parent_id=#{parent_id}
+	</select>
+	<!-- 根据主键ID获得二级维度 -->
+	<select id="getDimensionDetailSecById" parameterType="java.lang.Integer"
+		resultMap="DimensionDetailSec">
+		select * from tb_rpt_sec_dimension_detail where
+		primary_id=#{id}
+	</select>
+	<update id=""></update>
+
+	<!-- 修改二级维度 -->
+	<update id="updateDimensionDetailSec" parameterType="DimensionDetailSec">
+		update
+		tb_rpt_sec_dimension_detail set
+		dimensionSec_key=#{key},dimensionSec_value=#{value}
+		where
+		primary_id=#{primary_id}
+	</update>
+	<!-- 添加二级维度 -->
+	<insert id="insertDimensionDetailSec" parameterType="DimensionDetailSec">
+		insert into
+		tb_rpt_sec_dimension_detail(parent_id,dimensionSec_key,dimensionSec_value)
+		values (#{parent_id},#{key},#{value}) </insert>
+	<!-- 删除二级维度 -->
+	<delete id="deleteDimensionDetaiSec" parameterType="java.lang.String">
+		delete from
+		tb_rpt_sec_dimension_detail where primary_id=#{primary_id}
+		</delete>
+	<!-- 根据Id获得主键Id删除从表二级维度删除 -->
+	<delete id="deleteDimensionDetailSec" parameterType="java.lang.Integer">
+		delete from
+		tb_rpt_sec_dimension_detail where parent_id in
+		(select id from
+		tb_rpt_dimension_detail where
+		dimension_id=#{id})
+	</delete>
+	<!-- 根据主键Id删除从表二级维度表 -->
+	<delete id="deleteDimensionDetailSecById" parameterType="java.lang.Integer">
+	delete from
+		tb_rpt_sec_dimension_detail where parent_id=#{primaryKeyId}
+	</delete>
+	<!-- 批量添加二级维度 -->
+	<insert id="insertDimensionDetailSecBySQL" parameterType="java.util.List">
+		insert into
+		tb_rpt_sec_dimension_detail(parent_id,dimensionSec_key,dimensionSec_value)
+		values
+		<foreach collection="list" item="dimensionDetailSecList"
+			index="index" separator=",">
+			(#{dimensionDetailSecList.parent_id},#{dimensionDetailSecList.key},#{dimensionDetailSecList.value})
+		</foreach>
+	</insert>
+</mapper>

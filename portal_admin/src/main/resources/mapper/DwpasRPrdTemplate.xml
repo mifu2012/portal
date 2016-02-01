@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasRPrdTemplateMapper">
+	<!-- 所有产品信息 -->
+	<resultMap id="DWPAS-C-PRD-INFO" type="DwpasCPrdInfo">
+		<result property="productId" column="PRODUCT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isFolder" column="IS_FOLDER" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="productName" column="PRODUCT_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isIndexShow" column="IS_INDEX_SHOW" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="indexShowOrder" column="INDEX_SHOW_ORDER"
+			javaType="int" jdbcType="DECIMAL" /><!-- nullValue="0" -->
+		<result property="isUse" column="IS_USE" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="iconUrl" column="ICON_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="funnelId" column="FUNNEL_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="funnelName" column="FUNNEL_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<!-- <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" 
+			jdbcType="TIMESTAMP"/> -->
+		<result property="productMark" column="PRODUCT_MARK" javaType="java.lang.String"
+			jdbcType="CHAR" />
+	</resultMap>
+	<!-- 关联的产品信息 -->
+	<resultMap id="DWPAS-C-PRD-INFO_TEMPLATE" type="DwpasCPrdInfo">
+		<result property="productId" column="PRODUCT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="productName" column="PRODUCT_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="productMark" column="PRODUCT_MARK" javaType="java.lang.String"
+			jdbcType="CHAR" />
+	</resultMap>
+	<select id="GET_ALL_PRODUCTS" resultMap="DWPAS-C-PRD-INFO"
+		parameterType="java.lang.String">
+	select product_id, parent_id, is_folder, product_name, is_index_show,
+	index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create,
+	gmt_modified, product_mark from dwpas_c_prd_info where ((is_folder =
+	'0') AND (is_use = '1')
+	AND (product_mark = #{productMark,jdbcType=VARCHAR})) 
+	</select>
+	<select id="GET_CONNECTED_PRODUCTS" resultMap="DWPAS-C-PRD-INFO_TEMPLATE"
+		parameterType="int">
+		select a.PRODUCT_ID,a.PRODUCT_NAME,a.PRODUCT_MARK from
+		dwpas_c_prd_info a,dwpas_r_prd_template b
+		where a.product_id = b.PRODUCT_ID
+		and b.TEMPLATE_ID = #{templateId,jdbcType=INTEGER}
+	</select>
+	<select id="GET_CONNECTED_PRODUCTS_All" resultMap="DWPAS-C-PRD-INFO_TEMPLATE"
+		parameterType="int">
+		select a.PRODUCT_ID,a.PRODUCT_NAME,a.PRODUCT_MARK from
+		dwpas_c_prd_info a,dwpas_r_prd_template b
+		where a.product_id = b.PRODUCT_ID
+	</select>
+	<delete id="DELETE_DWPAS_R_PRD_TEMPLATE_BY_TEMPLATEID"
+		parameterType="int">
+		delete from dwpas_r_prd_template where template_id =
+		#{templateId,jdbcType=INTEGER}
+	</delete>
+	<insert id="INSERT_DWPAS_R_PRD_TEMPLATE" parameterType="DwpasRPrdTemplate">
+		insert into
+		dwpas_r_prd_template(TEMPLATE_ID,PRODUCT_ID,GMT_CREATE,GMT_MODIFIED)
+		values(#{templateId,jdbcType=INTEGER},#{productId,jdbcType=VARCHAR},now(),now())
+	</insert>
+	<insert id="COPY_DWPAS_R_PRD_TEMPLATE" parameterType="java.util.HashMap">
+	insert into
+	dwpas_r_prd_template(TEMPLATE_ID,PRODUCT_ID,GMT_CREATE,GMT_MODIFIED)
+	select #{newTid,jdbcType=INTEGER} as TEMPLATE_ID,PRODUCT_ID,now() as
+	GMT_CREATE,now() as GMT_MODIFIED from
+	dwpas_r_prd_template where
+	template_id=#{oldTid,jdbcType=INTEGER}
+	</insert>
+</mapper>

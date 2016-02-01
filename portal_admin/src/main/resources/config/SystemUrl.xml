@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GB2312" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>系统模块URL</comment>
+	<entry key="/index/showAllPlatFormUser.html">产品全图统计</entry>
+	<entry key="/dwpasStDeptKpiData/showKpiMonitor.html">指标监控</entry>
+	<entry key="/index/userCountStatistics.html">用户数统计</entry>
+	<entry key="/index/showAskWindVane.html">咨询风向标</entry>
+	<!-- TYPE=1 为无线部咨询风向标 -->
+	<entry key="/index/showAskWindVane.html?type=1">咨询风向标--无线部</entry>
+	<entry key="/index/askBashBoardChart.html">用户咨询预警</entry>
+	<entry key="/index/prodTransMonitorChart.html">业务笔数监控</entry>
+	<entry key="/index/listLeastBigEvent.html">大事记</entry>
+<!-- 	<entry key="/dwpasStDeptKpiData/showKpiMonitor.html?kpiType=3">部门月指标监控</entry> -->
+</properties>

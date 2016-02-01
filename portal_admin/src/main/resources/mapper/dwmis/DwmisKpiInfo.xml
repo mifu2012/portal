@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dwmisKpiInfoMapper">
+	<resultMap id="dwmisKpiInfoMap" type="DwmisKpiInfo">
+		<result property="kpiCode" column="kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="typeId" column="type_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="chartId" column="chart_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="unitId" column="unit_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="kpiName" column="kpi_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="detail" column="detail" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiRestrict" column="kpi_restrict" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="restrictTime" column="restrict_time"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="relateTable" column="relate_table" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="relateTableDes" column="relate_table_des"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="isShow" column="is_show" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="goalType" column="goal_type" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="levelType1" column="level_type_1" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="levelType2" column="level_type_2" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="isShowDesc" column="is_show_desc" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="sizeId" column="size_id" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="showOrder" column="show_order" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="dayOffset" column="day_offset" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="isDataRangeFix" column="isdatarangefix"
+			javaType="int" jdbcType="INTEGER" />
+		<result property="dataRangeTop" column="datarangetop" javaType="int"
+			jdbcType="INTEGER" />
+		<result property="dataRangeBottom" column="datarangebottom"
+			javaType="int" jdbcType="INTEGER" />
+		<result property="createUser" column="create_user" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="period" column="period" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiNameShow" column="kpi_name_show" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiNameKpi" column="kpi_name_kpi" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="businessType" column="business_type"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+		<result property="createDate" column="create_date" />
+		<result property="goalTypeDesc" column="goal_type_desc"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+	</resultMap>
+
+
+	<select id="listKpiInfo" parameterType="DwmisKpiInfo" resultMap="dwmisKpiInfoMap">
+		select * from dwmis_kpi_info
+		<if test="kpiCode !=null and kpiCode != '' ">
+			where upper(kpi_code) like
+			CONCAT(CONCAT('%',upper(#{kpiCode})),'%')
+			or kpi_name like
+			CONCAT(CONCAT('%',upper(#{kpiCode})),'%')
+		</if>
+
+	</select>
+	<!-- 点击左边链接查询未关联指标 -->
+	<select id="searchNotRelateBySetValue" parameterType="java.lang.String"
+		resultMap="dwmisKpiInfoMap">
+		select
+		a.kpi_code,a.kpi_name,a.kpi_name_show,a.goal_type,goal_type.type_name
+		goal_type_desc
+		from
+		dwmis_kpi_info a
+		LEFT JOIN(
+		SELECT
+		*
+		FROM
+		DWMIS_MIS_TYPE
+		mt
+		WHERE
+		mt.group_id =
+		3000
+		) goal_type ON
+		goal_type.type_id = a.goal_type
+		where
+		a.kpi_code not in(select
+		linked_kpi_code
+		from
+		dwmis_mis_kpi_link_r
+		where
+		kpi_code=#{kpiCode})
+	</select>
+	<!-- 搜索未关联指标 -->
+	<select id="searchNotRelateKpiCodes" parameterType="java.util.Map"
+		resultMap="dwmisKpiInfoMap">
+		select a.kpi_code,a.kpi_name,a.kpi_name_show,a.goal_type
+		,goal_type.type_name goal_type_desc from
+		dwmis_kpi_info a
+		LEFT JOIN(
+		SELECT
+		*
+		FROM
+		DWMIS_MIS_TYPE mt
+		WHERE
+		mt.group_id =
+		3000
+		) goal_type ON
+		goal_type.type_id = a.goal_type
+		where a.kpi_code not in
+		<foreach collection="linkedKpiCodes" item="kpiCodes"
+			separator="," open="(" close=")">
+			#{kpiCodes}
+		</foreach>
+		and (a.kpi_code like CONCAT(CONCAT('%',upper(#{kpiCode})),'%')
+		or
+		a.kpi_name
+		like CONCAT(CONCAT('%',#{kpiCode}),'%'))
+		order by a.kpi_code
+	</select>
+	<select id="selectKpiInfo" parameterType="java.lang.String"
+		resultMap="dwmisKpiInfoMap">
+		select * from dwmis_kpi_info where kpi_code=#{kpiCode}
+	</select>
+	<!-- 根据kpiName查询记录 -->
+	<select id="selectKpiInfoByName" parameterType="java.lang.String"
+		resultMap="dwmisKpiInfoMap">
+		select * from dwmis_kpi_info where kpi_name=#{kpiName}
+	</select>
+
+	<!-- 分页查询 -->
+	<select id="listPageKpiInfo" parameterType="DwmisKpiInfo"
+		resultMap="dwmisKpiInfoMap">
+		select dki.*,dmt.type_name as goal_type_desc from dwmis_kpi_info dki LEFT JOIN dwmis_mis_type dmt on dmt.type_id=dki.goal_type
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="kpiCode !=null and kpiCode != '' ">
+				dki.kpi_code LIKE UPPER(CONCAT(CONCAT('%',
+				#{kpiCode}),'%'))
+			</if>
+			<if test="kpiName !=null and kpiName != '' ">
+				and dki.kpi_name LIKE UPPER(CONCAT(CONCAT('%',
+				#{kpiName}),'%'))
+			</if>
+		</trim>
+	</select>
+	<insert id="addKpiInfo" parameterType="DwmisKpiInfo">
+		insert into
+		dwmis_kpi_info(kpi_code,type_id,chart_id,unit_id,kpi_name,detail,kpi_restrict,restrict_time,relate_table,relate_table_des,
+		is_show,goal_type,level_type_1,level_type_2,is_show_desc,size_id,show_order,day_offset,isdatarangefix,datarangetop,
+		datarangebottom,create_user,period,kpi_name_show,kpi_name_kpi,business_type,create_date)
+		values
+		(#{kpiCode},#{typeId},#{chartId},#{unitId},#{kpiName},#{detail},#{kpiRestrict},#{restrictTime},#{relateTable},#{relateTableDes},
+		#{isShow},#{goalType},#{levelType1},#{levelType2},#{isShowDesc},#{sizeId},#{showOrder},#{dayOffset},#{isDataRangeFix},#{dataRangeTop},
+		#{dataRangeBottom},#{createUser},#{period},#{kpiNameShow},#{kpiNameKpi},#{businessType},now());
+	</insert>
+	<update id="updateKpiInfo" parameterType="DwmisKpiInfo">
+		update dwmis_kpi_info
+		set
+		type_id=#{typeId},chart_id=#{chartId},unit_id=#{unitId},kpi_name=#{kpiName},detail=#{detail},kpi_restrict=#{kpiRestrict},restrict_time=#{restrictTime},relate_table=#{relateTable},relate_table_des=#{relateTableDes},
+		is_show=#{isShow},goal_type=#{goalType},level_type_1=#{levelType1},level_type_2=#{levelType2},is_show_desc=#{isShowDesc},size_id=#{sizeId},show_order=#{showOrder},day_offset=#{dayOffset},isdatarangefix=#{isDataRangeFix},datarangetop=#{dataRangeTop},
+		datarangebottom=#{dataRangeBottom},create_user=#{createUser},period=#{period},kpi_name_show=#{kpiNameShow},kpi_name_kpi=#{kpiNameKpi},
+		business_type=#{businessType},create_date=#{createDate} where
+		kpi_code=#{kpiCode}
+	</update>
+	<!-- 删除指标数据 -->
+	<delete id="deleteKpiInfo" parameterType="java.lang.String">
+		delete from
+		dwmis_kpi_info where kpi_code=#{kpiCode}
+
+	</delete>
+	<!-- 根据指标查询其关联指标的数据 -->
+	<select id="listKpiInforByRelateKpiCode" parameterType="java.lang.String"
+		resultMap="dwmisKpiInfoMap">
+		SELECT
+		a.kpi_code,
+		a.kpi_name,
+		a.kpi_name_show,
+		a.goal_type,
+		goal_type.type_name goal_type_desc
+		FROM
+		dwmis_kpi_info a
+		LEFT JOIN(
+		SELECT
+		*
+		FROM
+		DWMIS_MIS_TYPE mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON
+		goal_type.type_id = a.goal_type
+		WHERE
+		kpi_code IN(
+		SELECT
+		linked_kpi_code
+		FROM
+		dwmis_mis_kpi_link_r a
+		WHERE
+		kpi_code = #{relateKpiCode}
+		)
+
+	</select>
+	<!-- 删除指标关联指标数据 删除后批量添加 -->
+	<delete id="deleteRelateKpiInfo" parameterType="java.lang.String">
+		delete from
+		dwmis_mis_kpi_link_r where kpi_code=#{kpiCode}
+	</delete>
+	<!-- 批量添加数据 -->
+	<insert id="insertRelateKpiInfos" parameterType="java.util.List">
+		insert into dwmis_mis_kpi_link_r(kpi_code,linked_kpi_code) values
+		<foreach collection="list" item="kpiInfoList" index="index"
+			separator=",">
+			(#{kpiInfoList.kpiCode}, #{kpiInfoList.linkedKpiCode})
+		</foreach>
+	</insert>
+
+	<!-- 查询所有指标，根据指标名称模糊搜索 -->
+	<select id="getKpiInfoByKpiNameOrKpiCode" resultMap="dwmisKpiInfoMap">
+		select *
+		from dwmis_kpi_info where 1=1
+		<if test="kpiName !=null and kpiName != '' ">
+			kpi_name LIKE CONCAT(CONCAT('%',
+			#{kpiName,jdbcType=VARCHAR}),'%') or kpi_code LIKE CONCAT(CONCAT('%',
+			#{kpiName,jdbcType=VARCHAR}),'%')
+		</if>
+	</select>
+
+	<select id="getKpiInfoByLegendId" parameterType="String"
+		resultMap="dwmisKpiInfoMap">
+		select di.kpi_code,di.kpi_name,di.kpi_name_show from
+		dwmis_legend_kpi_r dr,dwmis_kpi_info di where dr.kpi_code=di.kpi_code
+		and dr.legend_id=#{legendId}
+	</select>
+
+</mapper>

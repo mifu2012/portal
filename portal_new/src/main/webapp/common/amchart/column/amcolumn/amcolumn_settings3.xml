@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings>
+  <background>
+    <color>EFF0F2</color>
+    <alpha>100</alpha>
+    <border_color>EFF0F2</border_color>
+    <border_alpha>100</border_alpha>
+  </background>
+  <plot_area>
+    <margins>
+      <left>50</left>
+      <right>50</right>
+      <top>50</top>
+      <bottom>30</bottom>
+    </margins>
+  </plot_area>
+  <grid>
+    <category>
+      <color>000033</color>
+      <alpha>0</alpha>
+      <dash_length>10</dash_length>
+    </category>
+    <value>
+      <alpha>14</alpha>
+      <dash_length>1</dash_length>
+      <approx_count>5</approx_count>
+    </value>
+  </grid>
+  <axes>
+    <category>
+      <width>1</width>
+    </category>
+    <value>
+      <width>1</width>
+    </value>
+  </axes>
+  <values>
+    <category>
+      <frequency>1</frequency>
+    </category>
+    <value>
+      <min>0</min>
+    </value>
+  </values>
+  <legend>
+    <enabled>0</enabled>
+  </legend>
+  <column>
+    <width>35</width>
+    <spacing>0</spacing>
+    <balloon_text> {series}: {value} </balloon_text>
+    <grow_time>3</grow_time>
+    <sequenced_grow>1</sequenced_grow>
+  </column>
+
+  <graphs>
+    <graph gid="0">
+      <title>Anomaly</title>
+      <color>B92F2F</color>
+      <balloon_text>{series}: {value} </balloon_text>
+    </graph>
+  </graphs>
+  <labels>
+    <label lid="0">
+      <text></text>
+      <y>25</y>
+      <align>center</align>
+    </label>
+  </labels>
+  <strings>
+      <no_data>数据正在准备中，请稍后再试。</no_data>
+      <export_as_image>数据正在准备中，请稍后再试。</export_as_image>
+      <error_in_data_file>数据正在准备中，请稍后再试。</error_in_data_file>
+      <collecting_data>数据正在准备中，请稍后再试。</collecting_data>
+      <wrong_zoom_value>数据正在准备中，请稍后再试。</wrong_zoom_value>
+  </strings>
+</settings>

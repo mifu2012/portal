@@ -1,0 +1,1315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>唯品会瞭望塔分析系统</title>
+<link href="css/lwt.css" rel="stylesheet" type="text/css"  />
+<SCRIPT src="js/jquery-1.7.min.js" type=text/javascript></SCRIPT>
+<script type="text/javascript">
+        function switchTab(ProTag, ProBox) {
+            for (i = 1; i < 7; i++) {
+                if ("tab" + i == ProTag) {
+                    document.getElementById(ProTag).getElementsByTagName("a")[0].className = "on";
+                } else {
+                    document.getElementById("tab" + i).getElementsByTagName("a")[0].className = "";
+                }
+                if ("con" + i == ProBox) {
+                    document.getElementById(ProBox).style.display = "";
+                } else {
+                    document.getElementById("con" + i).style.display = "none";
+                }
+            }
+        }
+    </script>
+	<script type="text/javascript">
+  $(document).ready(function(){
+							 $('.son_ul').hide(); 
+							 $('.select_box span').hover(function(){ 
+																  $(this).parent().find('ul.son_ul').slideDown(); 
+																  $(this).parent().find('li').hover(function(){$(this).addClass('hb')},function(){$(this).removeClass('hover')}); 
+																  $(this).parent().hover(function(){},
+																						 function(){
+																							 $(this).parent().find("ul.son_ul").slideUp(); 
+																							 }
+																						 );
+																  },function(){}
+																  );
+							 $('ul.son_ul li').click(function(){
+															  $(this).parents('li').find('span').html($(this).html());
+															  $(this).parents('li').find('ul').slideUp();
+															  });
+							 }
+							 );
+</script>
+</head>
+<body class="indexbody">
+<div class="index_top">
+  <!--第一部分-->
+  <div class="ddy_one_home"></div>
+  <div class="index_title" style="padding-top:3px;">
+     <label >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;部门指标监控</label>
+  </div>
+  <div class="index_title_yy"></div>
+  <!--第一部分结束-->
+  <div style=" width:100%; height:20px; background-color:#f7f7f7"></div>
+  <!--第二部分-->
+  <!--tab切换开始-->
+  <div id="tabContainer">
+    <ul class="mouseover">
+      <li id="tab1"><a href="#" class="on" onclick="switchTab('tab1','con1');this.blur();return false;">
+        <div class="report_list_ftpd">运营部</div>
+        </a></li>
+      <li id="tab2"><a href="#" >
+        <div class="report_list_ftpd">产品部</div>
+        </a></li>
+      <li id="tab3"><a href="#" >
+        <div class="report_list_ftpd">财务部</div>
+        </a></li>
+      <li id="tab4"><a href="#" >
+        <div class="report_list_ftpd">市场部</div>
+        </a></li>
+     <li id="tab5"><a href="#">
+        <div class="report_list_ftpd">客服部</div>
+        </a></li>
+		<li id="tab6"><a href="#" >
+        <div class="report_list_ftpd">无线部</div>
+        </a></li>
+    </ul>
+	
+	
+	
+	
+    <div style="clear: both"> </div>
+    <div id="con1">
+      <!--tab1-->
+      <div class="index_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+          <tr>
+            <td width="23%" height="37"><div align="center">KPI指标</div></td>
+            <td width="30%"><div align="center">KPI指标完成率</div></td>
+            <td width="9%"><div align="center">预计完成值</div></td>
+            <td width="9%"><div align="center">当前完成值</div></td>
+            <td width="6%"><div align="center">单位</div></td>
+            <td width="15%"><div align="center"><a href="#">操作</a><a href="#"></a></div></td>
+          </tr>
+        </table>
+      </div>
+      <div class="index_report" style="border-bottom:1px solid #c0c4c0" >
+        <!--达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;销量</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 1,093,672 
+</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">2,098.00</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">万元</div></td>
+
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;老客户回流</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_14.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">12,235,456</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">3500.00</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">千人</div></td>
+
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;新增有效</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_141.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">89.8%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">68.97%</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日新客数</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">72.896</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">4500.00</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">千人</div></td>
+
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		
+        <!--未达标显示的是灰底-->
+      </div>
+      <div class="clear"></div>
+      <!--tab1结束-->
+    </div>
+    <div id="con2" style=" display:none">
+      <!--tab2-->
+      <div class="index_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+          <tr>
+            <td width="23%" height="37"><div align="center">KPI指标</div></td>
+            <td width="30%"><div align="center">KPI指标完成率</div></td>
+            <td width="9%"><div align="center">当前完成值</div></td>
+            <td width="6%"><div align="center">单位</div></td>
+            <td width="9%"><div align="center">3.5分值</div></td>
+            <td width="8%"><div align="center">5分值</div></td>
+            <td width="15%"><div align="center"><a href="#">操作</a><a href="#"></a></div></td>
+          </tr>
+        </table>
+      </div>
+      <div class="index_report" style="border-bottom:1px solid #c0c4c0" >
+        <!--达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均购物车转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">43.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">800.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">600.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日取消(删除)订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_135.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">18.81%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">15.51%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">17.78%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均结算订单转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">53.88%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">75.78%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">83.64%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均线上支付占比</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">33.91%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">25.57%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">28.75%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均注册转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_132.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">1.40%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">1.23%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均购物车转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">18.81%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">15.51%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">17.78%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周取消(删除)订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">53.88%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">75.78%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">83.64%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均结算订单转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">33.91%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">25.57%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">28.75%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均线上支付占比</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_133.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">1.40%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">1.23%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均注册转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_135.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">18.81%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">15.51%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">17.78%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均购物车转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">53.88%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">75.78%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">83.64%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月取消(删除)订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">33.91%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">25.57%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">28.75%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均结算订单转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_133.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">1.40%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">1.23%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均线上支付占比</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">33.91%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">25.57%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">28.75%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均注册转化率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_132.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">1.40%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">1.23%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+      </div>
+      <div class="clear"></div>
+      <!--tab2结束-->
+    </div>
+    <div id="con3" style="display:none" >
+      <div class="index_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+          <tr>
+            <td width="23%" height="37"><div align="center">KPI指标</div></td>
+            <td width="30%"><div align="center">KPI指标完成率</div></td>
+            <td width="9%"><div align="center">当前完成值</div></td>
+            <td width="6%"><div align="center">单位</div></td>
+            <td width="9%"><div align="center">3.5分值</div></td>
+            <td width="8%"><div align="center">5分值</div></td>
+            <td width="15%"><div align="center"><a href="#">操作</a><a href="#"></a></div></td>
+          </tr>
+        </table>
+      </div>
+      <div class="index_report" style="border-bottom:1px solid #c0c4c0" >
+        <!--达标显示的是灰底-->
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日销售额预算达成</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">57.13%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">80.23%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">86.87%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日销售与预算缺口</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_142.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 28,506,328 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">元</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日平均客单价</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_143.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">275
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">元</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">800.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">900.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日毛利率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">23.88%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">20.00%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">21.43%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日来货对账差异</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周销售额预算达成</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_134.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">87.13%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">80.23%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">86.87%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周销售与预算缺口</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_142.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 28,506,328 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">元</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周平均客单价</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_143.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">475
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">元</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">800.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">900.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周毛利率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">23.88%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">20.00%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">21.43%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周来货对账差异</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月销售额预算达成</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">57.13%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">80.23%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">86.87%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月销售与预算缺口</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_142.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 28,506,328 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">元</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月平均客单价</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_133.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">975
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">元</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">800.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">900.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月毛利率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">23.88%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">20.00%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">21.43%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月来货对账差异</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+      </div>
+    </div>
+    <div class="clear"></div>
+    <!--tab切换结束-->
+    <!--第二部分结束-->
+    <div id="con4" style="display:none"  >
+      <div class="index_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+          <tr>
+            <td width="23%" height="37"><div align="center">KPI指标</div></td>
+            <td width="30%"><div align="center">KPI指标完成率</div></td>
+            <td width="9%"><div align="center">当前完成值</div></td>
+            <td width="6%"><div align="center">单位</div></td>
+            <td width="9%"><div align="center">上周</div></td>
+            <td width="8%"><div align="center">环比增长率</div></td>
+            <td width="15%"><div align="center"><a href="#">操作</a><a href="#"></a></div></td>
+          </tr>
+        </table>
+      </div>
+      <div class="index_report"  style="border-bottom:1px solid #c0c4c0" >
+        <!--达标显示的是灰底-->
+       <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日个性化营销ROI（SMS）-活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">554 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">437 
+</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%"><div align="right"><img src="images/lwt_5.gif" width="13" height="17" /></div></td>
+    <td width="55%"><div align="left">9.1%</div></td>
+  </tr>
+</table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日个性化营销ROI（SMS）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_134.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">42 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">78</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="45%"><div align="right"><img src="images/lwt_6.gif" width="13" height="17" /></div></td>
+          <td width="55%"><div align="left">15.1%</div></td>
+        </tr>
+      </table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日个性化营销ROI（EDM）-活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日个性化营销ROI（EDM）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日个性化推荐占总订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_132.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.26%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.00%
+</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%"><div align="right"><img src="images/lwt_5.gif" width="13" height="17" /></div></td>
+    <td width="55%"><div align="left">26%</div></td>
+  </tr>
+</table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周个性化营销ROI（SMS）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">42 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">78</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="45%"><div align="right"><img src="images/lwt_6.gif" width="13" height="17" /></div></td>
+          <td width="55%"><div align="left">15.1%</div></td>
+        </tr>
+      </table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周个性化营销ROI（EDM）-活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">58</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">56</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%"><div align="right"><img src="images/lwt_5.gif" width="13" height="17" /></div></td>
+    <td width="55%"><div align="left">10%</div></td>
+  </tr>
+</table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周个性化营销ROI（EDM）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_133.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">98</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">78</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%"><div align="right"><img src="images/lwt_5.gif" width="13" height="17" /></div></td>
+    <td width="55%"><div align="left">20%</div></td>
+  </tr>
+</table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周个性化推荐占总订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_132.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.56%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.00%
+</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%"><div align="right"><img src="images/lwt_5.gif" width="13" height="17" /></div></td>
+    <td width="55%"><div align="left">56%</div></td>
+  </tr>
+</table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月个性化营销ROI（SMS）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">42 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">78</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="45%"><div align="right"><img src="images/lwt_6.gif" width="13" height="17" /></div></td>
+          <td width="55%"><div align="left">15.1%</div></td>
+        </tr>
+      </table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月个性化营销ROI（EDM）-活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月个性化营销ROI（EDM）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月个性化推荐占总订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_132.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.66%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.00%
+</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%"><div align="right"><img src="images/lwt_5.gif" width="13" height="17" /></div></td>
+    <td width="55%"><div align="left">66%</div></td>
+  </tr>
+</table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年个性化营销ROI（SMS）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_141.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">42 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">78</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="45%"><div align="right"><img src="images/lwt_6.gif" width="13" height="17" /></div></td>
+          <td width="55%"><div align="left">15.1%</div></td>
+        </tr>
+      </table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年个性化营销ROI（EDM）-活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年个性化营销ROI（EDM）-非活跃客户</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年个性化推荐占总订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_132.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.26%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.00%
+</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="45%"><div align="right"><img src="images/lwt_5.gif" width="13" height="17" /></div></td>
+    <td width="55%"><div align="left">26%</div></td>
+  </tr>
+</table></div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+	
+	<div id="con5" style="display:none" >
+      <div class="index_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+          <tr>
+            <td width="23%" height="37"><div align="center">KPI指标</div></td>
+            <td width="30%"><div align="center">KPI指标完成率</div></td>
+            <td width="9%"><div align="center">当前完成值</div></td>
+            <td width="6%"><div align="center">单位</div></td>
+            <td width="9%"><div align="center">3.5分值</div></td>
+            <td width="8%"><div align="center">5分值</div></td>
+            <td width="15%"><div align="center"><a href="#">操作</a><a href="#"></a></div></td>
+          </tr>
+        </table>
+      </div>
+      <div class="index_report"  style="border-bottom:1px solid #c0c4c0" >
+        <!--达标显示的是灰底-->
+       
+	   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均电话接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">万笔</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">99.92%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">99.95%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均在线接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">96.76%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">98.84%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均首问解决率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_141.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">82.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">95.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">97.65%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;日均在线满意度</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_14.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">55.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">89.98%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">90.43%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均电话接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_132.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">万笔</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">99.92%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">99.95%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均在线接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_133.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">96.76%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">98.84%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均首问解决率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_142.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">82.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">95.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">97.65%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;周均在线满意度</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_143.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">55.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">89.98%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">90.43%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均电话接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_134.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">万笔</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">99.92%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">99.95%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均在线接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">96.76%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">98.84%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均首问解决率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">82.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">95.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">97.65%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;月均在线满意度</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_145.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">55.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">89.98%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">90.43%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年均电话接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_135.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">万笔</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">99.92%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">99.95%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年均在线接通率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">100.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">96.76%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">98.84%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年均首问解决率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_14.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">82.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">95.56%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">97.65%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年均在线满意度</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_146.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">55.00%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">89.98%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">90.43%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+	  </div>
+	</div>
+	<div id="con6" style=" display:none" >
+      <div class="index_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px">
+          <tr>
+            <td width="23%" height="37"><div align="center">KPI指标</div></td>
+            <td width="30%"><div align="center">KPI指标完成率</div></td>
+            <td width="9%"><div align="center">当前完成值</div></td>
+            <td width="6%"><div align="center">单位</div></td>
+            <td width="9%"><div align="center">3.5分值</div></td>
+            <td width="8%"><div align="center">5分值</div></td>
+            <td width="15%"><div align="center"><a href="#">操作</a><a href="#"></a></div></td>
+          </tr>
+        </table>
+      </div>
+      <div class="index_report"  style="border-bottom:1px solid #c0c4c0" >
+        <!--达标显示的是灰底-->
+        <!--未达标显示的是灰底-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;每天各物流中心IQC产能（件数）</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" width="277" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 182,988 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">件</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">2800.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">1600.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;各物流中心每天支持出仓订单数量</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_134.png" width="280" height="28" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 39,692 
+
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">笔</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">900.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">1500.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <!--未达标显示的是灰底-->
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;客服反馈会员反馈退款慢数量</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">147</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">件</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;WMS系统新增VI库存数（商品件数）</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 6231
+
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">件</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">5320.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">5800.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;期末VI和SI的总量</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_14.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center"> 1,205,480 
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">万笔</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">200.00</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">300.00</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;IQC与上架复核差异比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;发货及时性</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_13.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">98.77%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">95.67%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">97.62%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;异常订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_142.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.70%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.15%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.25%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;仓库错漏包比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_143.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.36%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.23%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.25%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;延误配送比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_144.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.57%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.02%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.05%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;退货差异率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.027%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.012%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.022%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;退货差异金额</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年发货及时性</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_136.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">98.77%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">95.67%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">97.62%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年异常订单比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_143.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.70%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.15%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.25%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年仓库错漏包比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_146.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.36%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.23%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.25%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年延误配送比例</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_134.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.01%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.02%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.05%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f8fcf8; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年退货差异率</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center"><img src="images/lwt_131.png" /></div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.027%
+</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">%</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">0.012%</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">0.022%</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#f0f0f0; border-top:1px solid #c0c4c0; color:#787c78">
+          <tr>
+            <td width="23%" height="37" style="border-left:1px solid #c0c4c0;border-right:1px solid #c0c4c0;">&nbsp;&nbsp;年退货差异金额</td>
+            <td width="30%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="6%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="9%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="8%" style="border-right:1px solid #c0c4c0;"><div align="center">-</div></td>
+            <td width="15%" style="border-right:1px solid #c0c4c0;"><div align="center"><a href="#">指标走势</a>&nbsp;&nbsp;<a href="xxfx.html">详情分析</a></div></td>
+          </tr>
+        </table>
+	  </div>
+	</div>
+  </div>
+</div>
+<div>
+  <!--foot-->
+  <div class="index_foot">
+    <div align="center" style="padding:20px 0px 10px 0px">版权所有广州唯品会信息科技有限公司  ICP证：<a target="_blank" href="http://www.500wan.com/pages/info/about/yueicp.shtml" rel="nofollow">粤ICP备08114786号-1</a> |使用本网站即表示接受唯品会用户协议。</div>
+  </div>
+  <!--foot结束-->
+</div>
+</div>
+</body>
+</html>

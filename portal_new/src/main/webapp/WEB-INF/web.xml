@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<display-name>portal_new</display-name>
+	<!-- 应用路径 -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>webapp.portal_new</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath*:service-context.xml</param-value>
+	</context-param>
+	<!-- amchart的KEY -->
+	<context-param>
+		<description>amchart的KEY</description>
+		<param-name>amchartKey</param-name>
+		<param-value>110-037eaff57f02320aee1b8576e4f4062a</param-value>
+	</context-param>
+	<!-- 是否需要码 1为需要 0为不需要 -->
+	<context-param>
+		<description>是否需要码 </description>
+		<param-name>needVerification</param-name>
+		<param-value>0</param-value>
+	</context-param>
+	<!-- 是否演示版本 1为是 0为不是 -->
+	<context-param>
+		<description>是否演示版本 </description>
+		<param-name>isDemoVersion</param-name>
+		<param-value>0</param-value>
+	</context-param>
+	<!-- 默认的系统名称 -->
+	<context-param>
+		<description>默认的系统名称</description>
+		<param-name>systemName</param-name>
+		<param-value>易到用车经分系统</param-value>
+	</context-param>
+	<!-- 指标监控默认 显示4个累计指标 -->
+	<!-- 当年业务累计量 指标code -->
+	<context-param>
+		<description>当年业务累计量</description>
+		<param-name>AccumulatedVolumeOfBusinessByYear</param-name>
+		<param-value>APY10110407</param-value>
+	</context-param>
+	<!-- 当年累计业务笔数 指标code -->
+	<context-param>
+		<description>当年累计业务笔数</description>
+		<param-name>TotalNumberOfBusinessPenByYear</param-name>
+		<param-value>CUS00000001</param-value>
+	</context-param>
+	<!-- 上月活跃账户数 指标code -->
+	<context-param>
+		<description>上月活跃账户数</description>
+		<param-name>PreviousMonthActiveAccountNumber</param-name>
+		<param-value>CUS00000017</param-value>
+	</context-param>
+	<!-- 动态一年活跃商户数 指标code -->
+	<context-param>
+		<description>动态一年活跃商户数</description>
+		<param-name>ActiveMerchantsNumberByYear</param-name>
+		<param-value>CHG10000010</param-value>
+	</context-param>
+
+	<!-- 瞭望塔大事记趋势图 指标Code -->
+	<context-param>
+		<description>瞭望塔大事记趋势图 </description>
+		<param-name>MisKpiCodes</param-name>
+		<param-value>FIN20300015;CUS10110401;CUS10200015;FIN10020407</param-value>
+	</context-param>
+
+	<!-- 默认的产品ID -->
+	<context-param>
+		<description>默认的产品ID</description>
+		<param-name>productId</param-name>
+		<param-value>2001</param-value>
+	</context-param>
+	<!-- 颜色库 -->
+	<context-param>
+		<description>颜色库</description>
+		<param-name>chartColor</param-name>
+		<param-value>#0d8fc1;#ff0f00;#b0e10c;#fecd00;8BAA5C;89759A;4E7DA7;B85D5A;8B1A1A;FFD700;00B2EE;8AAC57;EE7600;RED;BLUE;GREE;CDB79E;5C5C5C;FF2D2D;46A3FF;E1E100;C6A300;28FF28;9393FF;000079;BF0060;5B00AE;F75000;A6A600;ACD6FF;4A4AFF;4DFFFF;FF8000;A6A600;AD5A5A;A3D1D1;8F4586;BB3D00;8600FF</param-value>
+	</context-param>
+
+	<!-- 默认的spring配置文件是在WEB-INF下的applicationContext.xml -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<description>系统初始化</description>
+		<listener-class>com.infosmart.portal.listener.WebAppContextListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<!-- 过滤器 -->
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value><!-- 强制进行转码 -->
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 默认所对应的配置文件是WEB-INF下的{servlet-name}-servlet.xml，这里便是：portal-servlet.xml -->
+	<servlet>
+		<servlet-name>SpringMvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath*:servlet-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SpringMvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>60</session-timeout>
+	</session-config>
+
+	<welcome-file-list>
+		<welcome-file>/jsp/UserLogin/login.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- JSP标签 -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>displayTag</taglib-uri>
+			<taglib-location>/WEB-INF/tld/DisplayTag.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/common/NoFound.jsp</location>
+	</error-page>
+</web-app>

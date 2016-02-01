@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+ <settings>
+  <margins>0</margins> 
+  <max_series>0</max_series> 
+  <font>微软雅黑</font> 
+  <text_size>12</text_size> 
+  <legend_position>top</legend_position> 
+  <legend_width>175</legend_width> 
+  <decimals_separator>.</decimals_separator> 
+  <thousands_separator>,</thousands_separator> 
+ <number_format>
+  <decimal_separator>.</decimal_separator> 
+  <thousand_separator>,</thousand_separator> 
+ <letters>
+  <letter number="1" /> 
+  <letter number="1000000">M</letter> 
+  <letter number="1000000000">B</letter> 
+  </letters>
+  </number_format>
+  <add_time_stamp>true</add_time_stamp> 
+ <data_sets>
+ <data_set did="0">
+ <csv>
+  <separator>,</separator> 
+  <date_format>YYYYMM</date_format> 
+  <decimal_separator>.</decimal_separator> 
+ <columns>
+  <column>date</column> 
+  <column>col</column> 
+  <column>open</column> 
+  </columns>
+  <data /> 
+  </csv>
+  <events /> 
+  </data_set>
+  </data_sets>
+ <charts>
+ <chart cid="0">
+  <border_color>#CCCCCC</border_color> 
+  <bg_alpha>0</bg_alpha> 
+  <border_alpha>100</border_alpha> 
+ <grid>
+ <x>
+  <enabled>0</enabled> 
+  <alpha>0</alpha> 
+  </x>
+ <y_left>
+  <fill_color>FFFF00</fill_color> 
+  <fill_alpha>5</fill_alpha> 
+  <enabled>0</enabled> 
+  <alpha>0</alpha> 
+  <approx_count>6</approx_count> 
+  </y_left>
+  </grid>
+ <values>
+ <x>
+  <bg_color>EEEEEE</bg_color> 
+  </x>
+ <y_left>
+   <file_name>data.csv</file_name>
+  <unit>%</unit> 
+  <unit_position>right</unit_position> 
+  <text_size>10</text_size> 
+  <strict_min_max>1</strict_min_max> 
+  <bg_color>000000</bg_color> 
+  <frequency>5</frequency> 
+ <digits_after_decimal>
+  <data>1</data> 
+  <percents>1</percents> 
+  </digits_after_decimal>
+  </y_left>
+  </values>
+ <legend>
+  <text_size>12</text_size> 
+  <graph_on_off>false</graph_on_off> 
+  <fade_others_to>10</fade_others_to> 
+  <show_date>false</show_date> 
+  </legend>
+ <events>
+  <show_balloon>1</show_balloon> 
+  <color>fac622</color> 
+  </events>
+ <comparing>
+  <recalculate_from_start>0</recalculate_from_start> 
+  </comparing>
+ <graphs>
+ <graph gid="APY2310000302M">
+  <title>活跃会员数(千人):</title> 
+  <axis>left</axis> 
+  <type>line</type> 
+  <color>#CC0000</color> 
+  <period_value>average</period_value> 
+  <fill_alpha>0</fill_alpha> 
+  <width>2</width> 
+  <bullet_size>7</bullet_size> 
+ <data_sources>
+  <close>close</close> 
+  <open>open</open> 
+  </data_sources>
+  <compare_source>close</compare_source> 
+<legend>
+  <date>{open}</date> 
+  <period>{open}</period> 
+  </legend>
+  </graph>
+  </graphs>
+  </chart>
+  </charts>
+ <date_formats>
+  <events>YYYY年MM月</events> 
+ <legend>
+  <days>YYYY年MM月</days> 
+  <weeks>YYYY年MM月</weeks> 
+  </legend>
+ <x_axis>
+  <days>YYYY年MM月</days> 
+  <months>YYYY年MM月</months> 
+  <years>YYYY年MM月</years> 
+  </x_axis>
+  </date_formats>
+<data_set_selector>
+  <enabled>false</enabled> 
+  <width>130</width> 
+  <max_comparing_count>10</max_comparing_count> 
+  <main_drop_down_title>Select:</main_drop_down_title> 
+  <compare_list_box_title>Compare to:</compare_list_box_title> 
+  </data_set_selector>
+<period_selector>
+  <enabled>true</enabled> 
+ <button>
+  <bg_color_hover>b81d1b</bg_color_hover> 
+  <bg_color_selected>b81d1b</bg_color_selected> 
+  <text_color_hover>ffffff</text_color_hover> 
+  <text_color_selected>ffffff</text_color_selected> 
+  </button>
+  <date_format>YYYY年MM月</date_format> 
+<periods>
+  ##月指标 
+  <period pid="5" type="MM" count="12" selected="true">1年</period> 
+  <period pid="8" type="MAX">最大范围</period> 
+  </periods>
+  <periods_title /> 
+  <custom_period_title>日期范围:</custom_period_title> 
+  </period_selector>
+ <header>
+  <enabled>false</enabled> 
+ <text>
+ <![CDATA[ <b>{title}</b> ({short}) {description}
+  ]]> 
+  </text>
+  <text_size>12</text_size> 
+  </header>
+ <plot_area>
+  <border_color>cccccc</border_color> 
+  </plot_area>
+ <scroller>
+ <values>
+  <text_color>999999</text_color> 
+  </values>
+  <enabled>true</enabled> 
+  <height>50</height> 
+  <graph_data_source>open1</graph_data_source> 
+  <bg_color>f5f5f5,ffffff</bg_color> 
+  <resize_button_style>dragger</resize_button_style> 
+  </scroller>
+<error_messages>
+  <enabled>1</enabled> 
+  <x /> 
+  <color>BBBB00</color> 
+  </error_messages>
+ <strings>
+  <no_data>11</no_data> 
+  <export_as_image>22</export_as_image> 
+  <error_in_data_file>33</error_in_data_file> 
+  <collecting_data>44</collecting_data> 
+  <wrong_zoom_value>55</wrong_zoom_value> 
+  </strings>
+  </settings>

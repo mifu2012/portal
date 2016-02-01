@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.dwmis.DwmisKpiGoalMapper">
+	<!-- KPI绩效分解表 -->
+	<resultMap id="DwmisKpiGoalMap" type="DwmisKpiGoal">
+		<result property="kpiCode" column="kpi_code" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="goalDate" column="goal_date" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="scroll35" column="score_35" javaType="java.math.BigDecimal"
+			jdbcType="DECIMAL" />
+		<result property="scroll50" column="score_5" javaType="java.math.BigDecimal"
+			jdbcType="DECIMAL" />
+		<result property="lastYearKpi" column="last_year_kpi" javaType="java.math.BigDecimal"
+			jdbcType="DECIMAL" />
+	</resultMap>
+	<!--根据kpicode获取指标绩效记录(十二月的记录) -->
+	<select id="GET_KPIGOALS" parameterType="com.infosmart.portal.pojo.dwmis.DwmisKpiGoal"
+		resultMap="DwmisKpiGoalMap">
+
+		select KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI
+		from
+		DWMIS_MIS_KPI_GOAL
+		where KPI_CODE=#{kpiCode,jdbcType=VARCHAR} and
+		GOAL_DATE in
+		<foreach collection="goalDateList" close=")" open="("
+			separator="," item="goalDate">
+			#{goalDate}
+		</foreach>
+		order by GOAL_DATE asc
+
+	</select>
+
+	<!--根据kpicode获取指标绩效记录(年记录) -->
+	<select id="GET_ONE_KPIGOAL" parameterType="java.lang.String"
+		resultMap="DwmisKpiGoalMap">
+	<![CDATA[
+	     select KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI 
+	     from DWMIS_MIS_KPI_GOAL 
+	     where KPI_CODE=#{kpiCode,jdbcType=VARCHAR} and GOAL_DATE 
+	     in (select  year(now()) from dual)
+	]]>
+	</select>
+
+	<!-- 获取指定KPI在系统时间当前月的目标值 -->
+	<select id="GET_CURRENT_MONTH_GOAL" resultMap="DwmisKpiGoalMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+        <![CDATA[
+			select KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI 
+			from DWMIS_MIS_KPI_GOAL t 
+			where t.kpi_code = #{kpiCode,jdbcType=VARCHAR}
+			and t.goal_date = DATE_FORMAT(#{mySysDate,jdbcType=DATE} ,'%Y%m')
+        ]]>
+	</select>
+
+	<!-- 得到当前年12月的指标绩效目标值 -->
+	<select id="QUERY_KPIGOAL_FOR_YEAR" resultMap="DwmisKpiGoalMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select *
+		from
+		(
+		select
+		KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI
+		from
+		DWMIS_MIS_KPI_GOAL
+		where SUBSTRING(goal_date,1,4) =
+		#{fixedYear,jdbcType=DECIMAL} and KPI_CODE =
+		#{kpiCode,jdbcType=VARCHAR}
+		order by goal_date desc
+		) a
+		LIMIT 1
+	</select>
+
+	<!-- 列出当前年12月的指标绩效目标值 -->
+	<select id="LIST_KPIGOAL_FOR_YEAR" resultMap="DwmisKpiGoalMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select KPI_CODE, GOAL_DATE, SCORE_35, SCORE_5, LAST_YEAR_KPI
+		from
+		DWMIS_MIS_KPI_GOAL
+		where SUBSTRING(goal_date, 1, 4) =
+		#{fixedYear,jdbcType=DECIMAL}
+		and kpi_code in
+		<foreach collection="kpiCodeList" close=")" open="("
+			separator="," item="kpiCode">
+			#{kpiCode}
+		</foreach>
+		order by kpi_code, goal_date desc
+	</select>
+
+	<!-- 得到当前年的指标绩效目标值 -->
+	<select id="QUERY_KPIGOAL_FOR_CURRENT_YEAR" resultMap="DwmisKpiGoalMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		<![CDATA[
+			select KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI 
+			from DWMIS_MIS_KPI_GOAL 
+ 			where goal_date = #{fixedYear,jdbcType=DECIMAL}
+ 			and KPI_CODE = #{kpiCode,jdbcType=VARCHAR}
+		]]>
+	</select>
+
+	<!-- 得到指标月的绩效目标值集 -->
+	<select id="QUERY_KPIGOAL_LIST_FOR_MONTH" resultMap="DwmisKpiGoalMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		<![CDATA[	
+			select KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI 
+			from DWMIS_MIS_KPI_GOAL 
+			where SUBSTRING(goal_date,1,4) = #{fixedYear,jdbcType=DECIMAL}
+			and KPI_CODE=#{kpiCode,jdbcType=VARCHAR}
+			order by GOAL_DATE
+		]]>
+	</select>
+
+	<!-- 根据指标编码和日期 查询指标信息 -->
+	<select id="getKpiGoalByKopiCodeAndDate" resultMap="DwmisKpiGoalMap"
+		parameterType="java.util.HashMap">
+		select
+		KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI
+		from
+		DWMIS_MIS_KPI_GOAL
+		where KPI_CODE=#{kpiCode,jdbcType=VARCHAR}
+		and
+		goal_date = #{date,jdbcType=VARCHAR}
+	</select>
+
+	<select id="SelectKpiGoalByKpiGodeAndDate" resultMap="DwmisKpiGoalMap"
+		parameterType="com.infosmart.portal.util.dwmis.KPICommonQueryParam">
+		select
+		KPI_CODE,GOAL_DATE,SCORE_35,SCORE_5,LAST_YEAR_KPI
+		from
+		DWMIS_MIS_KPI_GOAL
+		where kpi_code = #{kpiCode,jdbcType=VARCHAR}
+		<if test="goalDate !=null and goalDate !=''">
+			and goal_date = #{goalDate,jdbcType=VARCHAR}
+		</if>
+	</select>
+</mapper>

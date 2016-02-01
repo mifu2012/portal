@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasCKpiUserCntMapper">
+	<!-- 指标信息记录集 -->
+	<resultMap id="DwpasCKpiUserCntMap" type="DwpasCKpiUserCnt">
+        <result property="id" column="ID" />
+        <result property="kpiName" column="KPI_NAME" />
+        <result property="taobaoKpiCode" column="TAOBAO_KPI_CODE" />
+        <result property="alipayKpiCode" column="ALIPAY_KPI_CODE" />
+        <result property="outKpiCode" column="OUT_KPI_CODE" />
+        <result property="otherKpiCode" column="OTHER_KPI_CODE" />
+        <result property="gmtCreate" column="GMT_CREATE" />
+        <result property="gmtModified" column="GMT_MODIFIED"/>
+    </resultMap>
+    
+     <select id="queryDwpasCKpiUserCnt" resultMap="DwpasCKpiUserCntMap">
+        select id, kpi_name, taobao_kpi_code, alipay_kpi_code, out_kpi_code, other_kpi_code, gmt_create, gmt_modified from dwpas_c_kpi_user_cnt
+    </select>
+</mapper>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/portal_admin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/portal_new" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/portal_new/src/main/resources/doc/产品全图和平台交叉执行脚本.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/portal_new/src/main/resources/doc/更新日志.txt" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

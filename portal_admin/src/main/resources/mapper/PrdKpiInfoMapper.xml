@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PrdKpiInfoMapper">
+	<!-- ============================================= -->
+	<!-- RESULT MAPS -->
+	<!-- ============================================= -->
+
+	<!-- result maps for database table DWPAS_R_PRD_KPI -->
+	<resultMap id="PrdKpiInfoMap" type="PrdKpiInfo">
+		<result property="productId" column="PRODUCT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="kpiCode" column="KPI_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="DATE" />
+	</resultMap>
+	<resultMap id="DwpasCKpiInfoResultMap" type="DwpasCKpiInfo">
+	    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+		<result column="kpi_code" property="kpiCode" jdbcType="VARCHAR" />
+		<result column="kpi_name" property="kpiName" jdbcType="VARCHAR" />
+		<result column="kpi_type" property="kpiType" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 获取此产品关联的指标 -->
+	<select id="getRelativeKPI" resultMap="DwpasCKpiInfoResultMap">
+		select
+		a.kpi_code,a.kpi_name,a.kpi_type,b.product_id
+		from dwpas_c_kpi_info a
+		inner join dwpas_r_prd_kpi
+		b
+		on a.kpi_code = b.kpi_code
+		where b.product_id = #{productId}
+	</select>
+	<!-- 获取此产品不关联的指标 -->
+	<select id="getUnRelativeKPI" resultMap="DwpasCKpiInfoResultMap">
+	SELECT kpi_code, kpi_name,kpi_type,'' as product_id
+		FROM dwpas_c_kpi_info a
+		WHERE not EXISTS
+		(SELECT rpk.kpi_code
+		FROM dwpas_r_prd_kpi rpk
+		WHERE rpk.kpi_code =
+		a.kpi_code
+		AND rpk.product_id = #{productId})
+<!-- 		AND a.is_use = '1'
+		AND a.is_show = '1' -->
+		order by a.KPI_CODE
+	     limit 0,200
+		
+	</select>
+	<!-- 搜索未关联指标数据 -->
+	<select id="searchNotRelateKpiCodes" parameterType="java.util.Map" resultMap="DwpasCKpiInfoResultMap">
+	  <choose>
+	 <when test="kpiCode !=null and kpiCode != ''">
+	 SELECT kpi_code, kpi_name,kpi_type,'' as product_id
+		FROM dwpas_c_kpi_info a
+		WHERE a.kpi_code not in
+		<foreach collection="kpiCodesList" item="kpiCodes" separator="," open="(" close=")">
+		 #{kpiCodes}
+		</foreach>
+		AND (a.kpi_code LIKE UPPER(CONCAT(CONCAT('%',
+			#{kpiCode,jdbcType=VARCHAR}), '%')) OR
+			a.kpi_name LIKE
+			UPPER(CONCAT(CONCAT('%', #{kpiCode,jdbcType=VARCHAR}), '%')))
+<!-- 		AND a.is_use = '1'
+		AND a.is_show = '1' -->
+			order by a.KPI_CODE
+	 </when> 
+	 <otherwise>
+	SELECT kpi_code, kpi_name,kpi_type,'' as product_id
+		FROM dwpas_c_kpi_info a
+		WHERE a.kpi_code not in
+		<foreach collection="kpiCodesList" item="kpiCodes" separator="," open="(" close=")">
+		 #{kpiCodes}
+		</foreach>
+<!-- 		AND a.is_use = '1'
+		AND a.is_show = '1' -->
+		limit 0,200
+	 </otherwise>
+	  
+	  </choose>
+	
+	</select>
+	<!-- 插入此产品关联的指标 -->
+	<insert id="insertRelativeKPI">
+		insert into dwpas_r_prd_kpi
+		(product_id,Kpi_code,GMT_CREATE,GMT_MODIFIED)
+		values(#{prdAndkpiCode.productId},#{prdAndkpiCode.kpiCode},now(),now())
+	</insert>
+
+	<!-- 删除此产品关联的指标 -->
+	<delete id="deleteRelativeKPI">
+		delete from dwpas_r_prd_kpi where product_id =
+		#{productId}
+	</delete>
+	<!-- 修改的保存按钮 -->
+    <insert id="saveRelativeKPI" parameterType="java.util.List" >
+		insert into dwpas_r_prd_kpi(product_id,kpi_code,GMT_CREATE,GMT_MODIFIED) values
+		<foreach collection="list" item="kpiInfoList" index="index"  separator=",">  
+	       (#{kpiInfoList.productId}, #{kpiInfoList.kpiCode},now(),now())
+	    </foreach>
+	</insert>
+	<insert id="PrdKpiInfoInsert">
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-R-PRD-KPI-INSERT*/ into dwpas_r_prd_kpi(product_id,kpi_code,gmt_create,gmt_modified) values (#{productId}, #{kpiCode}, now(), now())
+    ]]>
+	</insert>
+
+	<!-- mapped statement for IbatisDwpasRPrdKpiDAO.deleteByPrdId -->
+	<delete id="PrdKpiInfoDeleteByPrdId">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-R-PRD-KPI-DELETE-BY-PRD-ID*/ from dwpas_r_prd_kpi where (product_id = #{productId})
+    ]]>
+	</delete>
+
+	<!-- mapped statement for IbatisDwpasRPrdKpiDAO.deleteByKpiCode -->
+	<delete id="PrdKpiInfoDeleteBykpiCode">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-R-PRD-KPI-DELETE-BY-KPI-CODE*/ from dwpas_r_prd_kpi where (kpi_code = #value#)
+    ]]>
+	</delete>
+
+	<!-- mapped statement for IbatisDwpasRPrdKpiDAO.qryAllByPrdId -->
+	<select id="PrdKpiInfoQueryAllByPrdId" resultMap="PrdKpiInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-R-PRD-KPI-QRY-ALL-BY-PRD-ID*/ product_id, kpi_code, gmt_create, gmt_modified from dwpas_r_prd_kpi where (product_id = #{productId})
+    ]]>
+	</select>
+
+</mapper>

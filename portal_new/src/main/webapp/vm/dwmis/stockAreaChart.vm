@@ -1,0 +1,288 @@
+##面积图
+#set( $layout = "home/layout/null.vm" )
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Only the settings with values not equal to defaults are in this file. If you want to see the
+full list of available settings, check the amstock_settings.xml file in the amstock folder. -->
+<settings>
+  <margins>0</margins>
+  <max_series>0</max_series>
+  <font>微软雅黑</font>                                                    
+  <text_size>12</text_size>
+  <!--位置-->
+  <legend_position>$chart.legendPosition</legend_position>
+  <legend_width>175</legend_width>
+  <decimals_separator>.</decimals_separator>  
+  <thousands_separator>,</thousands_separator>
+  <number_format>
+    <decimal_separator>.</decimal_separator>  
+    <thousand_separator>,</thousand_separator>
+    <letters>
+      <letter number="1"></letter>
+	  <!--
+	  <letter number="1000">K</letter>
+	  -->
+      <letter number="1000000">M</letter>
+      <letter number="1000000000">B</letter>
+    </letters>      
+  </number_format>
+  <add_time_stamp>true</add_time_stamp>
+  <data_sets> 
+    <data_set did="0">
+       <csv>
+         <separator>,</separator>
+    #if($type == '3')
+         <date_format>YYYYMM</date_format>
+    #else
+         <date_format>YYYYMMDD</date_format>
+    #end
+         <decimal_separator>.</decimal_separator>
+         <columns>
+           <column>date</column>
+		   #set($unitMark=false)
+		   #set($countLast=0)
+		   #foreach($graph in $chart.graphList)
+           <column>col$velocityCount</column>
+		   <column>open$velocityCount</column>
+			   #set($countLast=$velocityCount)
+				#if($graph.graphName.contains('%'))
+					#set($unitMark=true)
+				#end
+		   #end
+         </columns>
+		 <data>
+#foreach($dataMap in $chart.areaDataMap.entrySet())
+$dataMap.key,$dataMap.value
+#end
+</data>
+       </csv>
+	   #if($hasEvent)
+	    <events>
+		#foreach($graph in $chart.graphList)
+			#foreach($event in $graph.eventList)
+				#if($event.isPublic==1)
+			        <event eid="$event.eventId">
+					  <graph_id>$graph.graphId</graph_id>
+			          <date>$event.eventDate</date>
+			          <letter></letter>
+					  <bullet>sign</bullet>
+			          <color>f65d00</color>
+			          <size>12</size>          
+			          <description><![CDATA[<br/>$event.title]]></description>
+			        </event>
+				#end
+			#end
+		#end
+      </events>
+	  #end
+    </data_set>     
+  </data_sets>
+
+  <charts>
+  	<chart cid="0">
+  	
+      <border_color>#CCCCCC</border_color>
+      <bg_alpha>0</bg_alpha>
+      <border_alpha>100</border_alpha>     
+      <grid>
+        <x>
+		  <enabled>0</enabled>
+          <alpha>0</alpha>
+        </x>       
+        <y_left>
+	      <fill_color>FFFF00</fill_color>
+          <fill_alpha>5</fill_alpha>
+          <enabled>0</enabled>
+          <alpha>0</alpha>
+          <approx_count>6</approx_count>
+        </y_left>    
+      </grid>
+	  
+	  <values>
+        <x>
+          <bg_color>EEEEEE</bg_color>
+        </x>
+        <y_left>
+			#if($needPercent == "1")
+		   <min>0</min>
+          <max>120</max>
+          <enabled>0</enabled>
+		  #else
+			#if($unitMark)
+			  <unit>%</unit>
+    		  <unit_position>right</unit_position>
+			#end
+		  #end
+		  <text_size>10</text_size>
+          <strict_min_max>1</strict_min_max>
+          <bg_color>000000</bg_color>
+		  <frequency>5</frequency>
+          <digits_after_decimal>
+            <data>1</data>
+            <percents>1</percents>
+          </digits_after_decimal>
+        </y_left>
+      </values>
+
+	  <legend>
+        <text_size>12</text_size>
+        <graph_on_off>false</graph_on_off>
+        <fade_others_to>10</fade_others_to>
+		<show_date>true</show_date>
+      </legend>
+	  
+	   <events>
+		<show_balloon>1</show_balloon>
+        <color>fac622</color>
+      </events>
+
+      <comparing>
+        <recalculate_from_start>0</recalculate_from_start>
+      </comparing>
+
+  		<graphs>
+			##设置序号
+			#set ($index=0)
+			#set($tmpIndex = 0)
+			#foreach($graph in $chart.graphList)
+  			<graph gid="graph_$index">
+				<title>$graph.graphName:</title>
+				<axis>left</axis>
+				<type>line</type>
+				<color>$graph.graphColor</color>
+				<period_value>average</period_value>
+				<fill_alpha>60</fill_alpha>
+				<width>2</width>
+				<bullet_size>7</bullet_size>
+				#if($index>0)
+				  #set($tmpIndex = $index - 1)
+				  <stack_to>graph_$tmpIndex</stack_to>
+				#end
+  				<data_sources>
+					<close>col$velocityCount</close>
+					<open>open$velocityCount</open>
+				</data_sources>
+				<compare_source>close</compare_source>
+				<legend>
+				　　#if($needPercent == "1")
+					  ##归一化处理,显示原始值
+					　<date key="true" title="true">{open}</date>
+					　<period key="true" title="true">{open}</period>
+					#else
+					  ##显示非归一化的数据
+					  <date key="true" title="true">{close}</date>
+					  <period key="true" title="true">{close}</period>
+					#end
+               </legend>  
+    			<hidden>false</hidden>
+  			</graph>
+			##设置序号
+			#set($index=$index+1)
+			#end
+		</graphs>
+  	</chart>
+  </charts>
+  
+  <date_formats>
+    #if($type == '1004')
+      <events>YYYY年MM月</events>
+     #else
+      <events>YYYY年MM月DD日</events>
+	#end
+     <legend>
+        <days><![CDATA[<b>YYYY年MM月DD日</b>]]></days>
+       <weeks><![CDATA[<b>YYYY年MM月DD日</b>]]></weeks>
+       <months><![CDATA[<b>YYYY年MM月</b>]]></months>
+       <years><![CDATA[<b>YYYY年</b>]]></years>
+     </legend>	
+   <x_axis>
+     #if($type == '1004')
+      <days>YYYY年MM月</days>
+        <months>YYYY年MM月</months>     
+       <years>YYYY年MM月</years>
+      <weeks></weeks>
+     #else
+      <days>YYYY年MM月DD日</days>
+        <months>YYYY年MM月DD日</months>     
+       <years>YYYY年MM月DD日</years>
+      <weeks></weeks>
+     #end
+    </x_axis>
+  </date_formats>
+  
+  
+  <data_set_selector>
+	<enabled>false</enabled>
+    <width>130</width>
+    <max_comparing_count>10</max_comparing_count>
+ 	<main_drop_down_title>Select:</main_drop_down_title> 		
+ 	<compare_list_box_title>Compare to:</compare_list_box_title>
+  </data_set_selector>
+  
+  <period_selector>
+	<enabled>false</enabled>
+    <button>
+      <bg_color_hover>b81d1b</bg_color_hover>
+      <bg_color_selected>b81d1b</bg_color_selected>
+      <text_color_hover>ffffff</text_color_hover>
+      <text_color_selected>ffffff</text_color_selected>
+    </button>
+     #if($type == '1004')
+	<date_format>YYYY年MM月</date_format>
+     #else
+	<date_format>YYYY年MM月DD日</date_format>
+     #end
+  
+	<periods>		
+			#if($type == '1002')  ##日指标
+			<period pid="1" type="DD" count="7" >7天</period>
+			<period pid="2" type="DD" count="30" selected="true">30天</period>
+			<period pid="3" type="MM" count="3">3月</period>
+			<period pid="5" type="MM" count="12">1年</period>
+		#elseif($type == '1003')  ##周指标
+			<period pid="3" type="DD" count="84" selected="true">12周</period>
+			<period pid="5" type="MM" count="12">1年</period>
+   	   	#elseif($type == '1004')  ##月指标
+			<period pid="5" type="MM" count="12" selected="true">1年</period>
+		#end
+    	<period pid="8" type="MAX" >最大范围</period>
+	</periods>
+		
+	<periods_title></periods_title>
+	<custom_period_title>日期范围:</custom_period_title> 
+  </period_selector>
+
+  <header>
+    <enabled>false</enabled>
+    <text><![CDATA[<b>{title}</b> ({short}) {description}]]></text>
+    <text_size>12</text_size>
+  </header>
+
+  <plot_area>
+    <border_color>cccccc</border_color>
+  </plot_area>
+
+  <scroller>
+	<values>
+      <text_color>999999</text_color>
+    </values>
+    <enabled>true</enabled>
+    <height>50</height>    
+    <graph_data_source>open1</graph_data_source>
+    <bg_color>f5f5f5,ffffff</bg_color>
+    <resize_button_style>dragger</resize_button_style>
+  </scroller>
+  
+   <error_messages>
+    <enabled>1</enabled>  
+    <x></x>    
+    <color>BBBB00</color>                                             
+   </error_messages>
+
+  <strings>
+    <no_data>数据正在准备中，请稍后再试。</no_data>  
+    <export_as_image>数据正在准备中，请稍后再试。</export_as_image>             
+    <error_in_data_file>数据正在准备中，请稍后再试。</error_in_data_file> 
+    <collecting_data>数据正在准备中，请稍后再试。</collecting_data> 
+    <wrong_zoom_value>数据正在准备中，请稍后再试。</wrong_zoom_value> 
+</strings>
+</settings>

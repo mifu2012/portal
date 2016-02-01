@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.DwmisMisDptmntMapper">
+	<resultMap id="DwmisMisDptmntMap" type="DwmisMisDptmnt">
+		<result property="depId" column="dep_id" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="depName" column="dep_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="depOrder" column="dep_order" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="depGroupId" column="dep_group_id" javaType="java.lang.Integer"
+			jdbcType="INTEGER" />
+		<result property="typeName" column="type_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 获取所有部门 -->
+	<select id="getALLDwmisMisDptmntlistPage" resultMap="DwmisMisDptmntMap">
+		select
+		dmd.dep_id,dmd.dep_name,dmd.dep_order,dmd.dep_group_id,dmt.type_name
+		from
+		dwmis_mis_dptmnt dmd,dwmis_mis_type dmt
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="depName !=null and depName != '' ">
+				AND dmd.dep_name like
+				CONCAT(CONCAT('%',#{depName,jdbcType=VARCHAR}),'%')
+			</if>
+			<if test="typeName !=null and typeName!=''">
+				AND dmt.type_name =#{typeName,jdbcType=DATE}
+			</if>
+			AND dmt.type_id=dmd.dep_group_id
+		</trim>
+		order by dmd.dep_order
+	</select>
+
+	<!-- 根据部门Id查询部门信息 -->
+	<select id="queryDwmisMisDptmntBydepId" resultMap="DwmisMisDptmntMap">
+		select
+		dmd.dep_id,dmd.dep_name,dmd.dep_order,dmd.dep_group_id
+		from
+		dwmis_mis_dptmnt dmd
+		where
+		dmd.dep_id =#{depId}
+	</select>
+	
+	<!-- 插入部门信息 -->
+	<insert id="insertDwmisMisDptmnt" parameterType="DwmisMisDptmnt">
+		insert into
+		dwmis_mis_dptmnt
+		(dep_name,dep_order,dep_group_id)
+		values
+		(#{depName,jdbcType=VARCHAR},#{depOrder,jdbcType=INTEGER},#{depGroupId,jdbcType=INTEGER})
+	</insert>
+
+	<!-- 修改部门信息 -->
+	<update id="updateDwmisMisDptmnt" parameterType="DwmisMisDptmnt">
+		update
+		dwmis_mis_dptmnt
+		set
+		dep_name=#{depName},dep_order=#{depOrder},dep_group_id=#{depGroupId}
+		where dep_id=#{depId}
+	</update>
+
+	<!-- 删除部门信息 -->
+	<delete id="deleteDwmisMisDptmnt" parameterType="String">
+		delete
+		from
+		dwmis_mis_dptmnt
+		where dep_id=#{depId}
+	</delete>
+
+	<!-- 批量删除部门信息 -->
+	<delete id="deleteDwmisMisDptmntByIds" parameterType="list">
+		<![CDATA[
+            delete from dwmis_mis_dptmnt where dep_id in
+        ]]>
+		<foreach collection="list" item="depIds" open="(" separator=","
+			close=")">
+			#{depIds}
+		</foreach>
+	</delete>
+</mapper>

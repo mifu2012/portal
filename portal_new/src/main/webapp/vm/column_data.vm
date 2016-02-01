@@ -1,0 +1,25 @@
+##矩形图或折线图的数据文件
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+    <!-- <message bg_color="#BBBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message>
+    -->
+    <series>
+        #foreach($series in $chart.seriesMap.entrySet())
+            ##日期，日期描述
+            <value xid="$series.key">$series.value</value>
+        #end
+    </series>
+	
+    <graphs>
+        #foreach($graphData in $chart.graphList)
+			##KPI_CODE
+            <graph gid="$graphData.graphId">
+                #foreach($graph in $graphData.dataList)
+					##日期，日期数据
+					<value xid="$graph.valueDate">$graph.value</value>
+                #end	
+            </graph>
+        #end
+    </graphs>
+  
+</chart>

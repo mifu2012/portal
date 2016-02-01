@@ -1,0 +1,125 @@
+.query_list_table
+{
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: 宋体;
+    BACKGROUND-COLOR: white;
+	border-right:1px #646c94 solid;
+    border-bottom:0px #FFFFFF solid;
+    border-left:1px #646c94 solid;
+    border-top:1px #646c94 solid;
+}
+.query_list_meta_td
+{
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: white 1px solid;
+    PADDING-LEFT: 0px;
+    FONT-SIZE: 9pt;
+    PADDING-BOTTOM: 0px;
+
+    COLOR: #000000;
+    PADDING-TOP: 0px;
+
+    HEIGHT: 9px;
+    background-color:#C2CEEB;
+}
+.query_list_data_tr1
+{
+    HEIGHT: 16px;
+    BACKGROUND-COLOR: white
+}
+.query_list_data_tr2
+{
+    HEIGHT: 16px;
+    BACKGROUND-COLOR: white
+}
+.query_list_data_td1
+{
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: white 1px solid;
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: 宋体;
+    HEIGHT: 16px;
+    word-wrap:break-word;
+}
+.query_list_data_td2
+{
+    BORDER-RIGHT: gray 1px solid;
+    BORDER-TOP: white 1px solid;
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: white 1px solid;
+    FONT-SIZE: 9pt;
+    FONT-FAMILY: 宋体;
+    HEIGHT: 16px;
+    word-wrap:break-word;
+}
+.query_list_checkbox
+{
+  display:none
+}
+.query_list_data_trSelected
+{
+    COLOR: black;
+    HEIGHT: 16px;
+    BACKGROUND-COLOR: #CEFFFF;
+}
+.query_list_data_tdSelected
+{
+    BORDER-RIGHT: black 1px solid;
+    BACKGROUND: url(/images/arrow.gif) #C9E8F7 fixed no-repeat center center
+}
+.query_list_data_trOver
+{
+    COLOR: black;
+    FONT-FAMILY: 宋体;
+    BACKGROUND-COLOR: #DAE4E3
+}
+/*定义List.jsp页中查询结果Td的背景颜色*/
+.QueryResult
+{
+    FONT-SIZE: 9pt;
+    BACKGROUND-COLOR: #C9E8F7;
+}
+/*定义List.jsp页中查询部分Tabel的背景颜色*/
+.List_QueryBg
+{
+  background-color:#E0E9F9;
+}
+.ListUtil_input{
+  width:30px;
+  height:18px;
+  border:1px #859bb5 solid;
+}
+.ListUtil_btnIn{
+  width:33px;
+  height:16px;
+  border-top:2px white solid;
+  border-right:2px #e3d65f solid;
+  border-bottom:2px #e3d65f solid;
+  border-left:2px white solid;
+  background-color:#faeb6d;
+  text-align:center;
+  cursor:hand;
+}
+.ListUtil_input_user{
+  width:120px;
+  height:18px;
+  border:1px #859bb5 solid;
+}
+.tail_Td1{
+  font-size:10pt;
+  height:25px;
+  background-color:#C2CEEB;
+  border-bottom:1px #646c94 solid;
+  border-left:1px #646c94 solid;
+}
+.tail_Td2{
+  font-size:10pt;
+  height:25px;
+  background-color:#C2CEEB;
+  border-right:1px #646c94 solid;
+  border-bottom:1px #646c94 solid;
+}

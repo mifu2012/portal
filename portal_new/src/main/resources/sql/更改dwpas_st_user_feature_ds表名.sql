@@ -1,0 +1,1 @@
+alter table dwpas_st_user_feature_ds rename dwpas_st_user_feature_ms;

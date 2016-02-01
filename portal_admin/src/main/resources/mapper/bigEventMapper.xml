@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.BigEventPo">
+
+	<!-- 参数表数据 -->
+	<resultMap id="MISEVENT" type="BigEventPo">
+		<result property="eventId" column="EVENT_ID" />
+		<result property="eventStartDate" column="EVENT_START_DATE" />
+		<result property="eventEndDate" column="EVENT_ENT_DATE" />
+		<result property="eventType" column="EVENT_TYPE" />
+		<result property="title" column="TITLE" />
+		<result property="eventTypeName" column="TYPE_NAME" />
+		<result property="content" column="CONTENT" />
+		<result property="isPublic" column="IS_PUBLIC" />
+		<result property="createUser" column="CREATE_USER" />
+		<result property="createDate" column="CREATE_DATE" />
+	</resultMap>
+	
+	<resultMap id="DWMISMISTYPE" type="DwpasCSysType">
+        <result property="typeId" column="TYPE_ID" />
+        <result property="groupId" column="GROUP_ID" />
+        <result property="eventType" column="EVENT_TYPE" />
+        <result property="typeName" column="TYPE_NAME" />
+        <result property="detail" column="DETAIL" />
+    </resultMap>
+	<!-- 获取所有的大事记 -->
+	<select id="getALLMisEventlistPage" parameterType="BigEventPo" resultMap="MISEVENT">
+		select a.EVENT_ID
+		,a.EVENT_START_DATE
+		,a.EVENT_ENT_DATE
+		,b.TYPE_NAME
+		,a.EVENT_TYPE
+		,a.TITLE
+		,a.CONTENT
+		,a.IS_PUBLIC
+		,a.CREATE_USER
+		,a.CREATE_DATE
+		from MIS_EVENT a
+		left join dwpas_c_sys_type b
+		on a.EVENT_TYPE =	b.TYPE_ID
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="title !=null and title!=''">
+				a.TITLE LIKE CONCAT(CONCAT('%',#{title}),'%') 
+			</if>
+			<if test="eventTypeName !=null and eventTypeName!=''">
+				and a.EVENT_TYPE =#{eventTypeName}
+			</if>
+		</trim>
+		order by a.EVENT_START_DATE DESC
+	</select>
+
+	<!-- 添加一条大事记记录 -->
+	<insert id="insertMisEvent" parameterType="BigEventPo">
+		insert into
+		MIS_EVENT(EVENT_START_DATE,EVENT_ENT_DATE,TITLE,EVENT_TYPE,CONTENT,IS_PUBLIC,CREATE_DATE)
+		values(#{eventStartDate},#{eventEndDate},#{title},#{eventType},#{content},#{isPublic},now())
+	</insert>
+
+	<!-- 修改相关大事记记录 -->
+	<update id="upMisEventByEnentId" parameterType="BigEventPo">
+		update MIS_EVENT
+		set EVENT_START_DATE=#{eventStartDate}
+		,EVENT_ENT_DATE=#{eventEndDate}
+		,TITLE=#{title}
+		,EVENT_TYPE = #{eventType}
+		,CONTENT=#{content}
+		,IS_PUBLIC=#{isPublic}
+		where EVENT_ID=#{eventId}
+	</update>
+
+	<!--批量删除相关大事记记录 -->
+	<delete id="deleteMisEventByEnentIds" parameterType="list">
+        <![CDATA[
+            delete from MIS_EVENT where EVENT_ID in
+        ]]>
+		<foreach collection="list" item="ids" open="(" separator=","
+			close=")">
+			#{ids}
+		</foreach>
+	</delete>
+	<!--删除相关大事记记录 -->
+	<delete id="deleteMisEventByEnentId" parameterType="int">
+		delete from
+		MIS_EVENT where EVENT_ID = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<!-- 根据ID获取对应的大事记记录 -->
+	<select id="getMisEventById" resultMap="MISEVENT">
+		select a.EVENT_ID
+		,a.EVENT_START_DATE
+		,a.EVENT_ENT_DATE
+		,b.TYPE_NAME
+		,a.EVENT_TYPE
+		,a.TITLE
+		,a.CONTENT
+		,a.IS_PUBLIC
+		,a.CREATE_USER
+		,a.CREATE_DATE
+		from MIS_EVENT a
+		left join dwpas_c_sys_type b
+		on a.EVENT_TYPE =	b.TYPE_ID
+		where a.EVENT_ID = #{eventId}
+		order by a.EVENT_START_DATE DESC
+		
+	</select>
+	<!-- 根据指标CODE获得最近最新N条大事记列表 -->
+	<select id="queryNewEventsByKpiCode" resultMap="MISEVENT" >
+		select 
+		EVENT_ID,EVENT_START_DATE,EVENT_ENT_DATE,EVENT_TYPE,TITLE,CONTENT,ATTACH,IS_PUBLIC,CREATE_USER,CREATE_DATE
+		from
+		(
+			select * 
+			from MIS_EVENT
+			where EVENT_ID in(
+				select EVENT_ID from MIS_KPI_EVENT_R
+				where KPI_CODE = #{kpiCode} 
+			)
+			order by EVENT_START_DATE DESC
+		)a
+		where 1 = 1
+		
+	</select>
+
+	<!-- 获取eventId -->
+	<select id="getEventId" resultMap="MISEVENT">
+		select EVENT_ID as eventId
+		from MIS_EVENT
+	</select>
+	
+	<!-- 获得大事记类型列表 -->
+	<select id="getEventsTypeName"  resultMap="DWMISMISTYPE">
+		<![CDATA[ 
+		SELECT b.type_id,b.TYPE_NAME,b.group_id,b.detail
+		FROM DWPAS_C_SYS_TYPE b
+		WHERE b.TYPE_NAME != null
+		OR b.TYPE_NAME != ''
+		AND type_id < 8000
+		AND type_id > 7000
+		GROUP BY b.type_id,b.TYPE_NAME
+		]]>   
+	</select>
+<!-- 根据ID获得大事记类型列表 -->
+	<select id="getEventsTypeNameById"  resultMap="DWMISMISTYPE">	
+	<![CDATA[ 
+		SELECT b.type_id,b.TYPE_NAME,b.group_id,b.detail
+		FROM DWPAS_C_SYS_TYPE b
+		WHERE b.TYPE_NAME != null
+		OR b.TYPE_NAME != ''
+		AND type_id < 8000
+		AND type_id > 7000
+	]]>   
+		<if test="id !=null ">
+		AND	type_id != #{id}   
+       	</if>
+		GROUP BY b.type_id,b.TYPE_NAME
+		   
+	</select>
+	
+	<!-- 根据ID删除对应事件类型 -->
+	<delete id="deleteEventTypeById">
+	delete from DWPAS_C_SYS_TYPE where type_id = #{typeId,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 根据ID查询对应事件类型 -->
+	<select id="getDwpasCSysTypeById"  resultMap="DWMISMISTYPE">
+		<![CDATA[ 
+		SELECT b.type_id,b.TYPE_NAME,b.group_id,b.detail
+		FROM DWPAS_C_SYS_TYPE b
+		WHERE b.TYPE_NAME != null
+		OR b.TYPE_NAME != ''
+		AND type_id < 8000
+		AND type_id > 7000
+		AND type_id = #{typeId,jdbcType=INTEGER}
+		GROUP BY b.type_id,b.TYPE_NAME
+		]]>   
+	</select>
+	<!-- 校验事件类型名称是否已存在  zy -->
+	<select id="checkTypeName" parameterType="java.lang.String" resultMap="DWMISMISTYPE">
+	<![CDATA[
+	 SELECT b.TYPE_NAME
+		FROM DWPAS_C_SYS_TYPE b
+		where type_id < 8000
+		AND type_id > 7000
+		AND TYPE_NAME = #{typeName}
+	]]>  	
+	</select> 
+	<!-- 插入一条事件类别 -->
+	<insert id="insertEventType" parameterType="DWMISMISTYPE">
+		insert into
+		DWPAS_C_SYS_TYPE(type_id,type_name,group_id,detail,gmt_create)
+		values(#{typeId},#{typeName},#{groupId},#{detail},now())
+	</insert>
+	
+	<!-- 修改相关事件类别 -->
+	<update id="updateEventType" parameterType="DWMISMISTYPE">
+		update DWPAS_C_SYS_TYPE
+		set type_name=#{typeName}
+		,group_id=#{groupId}
+		,detail = #{detail}
+		,gmt_modified = now()
+		where type_id=#{typeId}
+	</update>
+</mapper>

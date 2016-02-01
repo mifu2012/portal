@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasCSysMenu">
+    <!-- 默认加上缓存 -->
+    <!--  
+    <cache readOnly="true"/>
+    -->
+    
+	<!-- 系统菜单表 -->
+	<resultMap id="RM-DWPAS-C-SYS-MENU-RESULTMAP" type="DwpasCSystemMenu">
+		<result property="menuId" column="MENU_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuPid" column="MENU_PID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="templateId" column="TEMPLATE_ID" javaType="int"
+			jdbcType="DECIMAL" />
+		<result property="menuCode" column="MENU_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />			
+		<result property="menuName" column="MENU_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuType" column="MENU_TYPE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuUrl" column="MENU_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isShow" column="IS_SHOW" javaType="int"
+			jdbcType="DECIMAL" />
+		<result property="menuOrder" column="MENU_ORDER" javaType="int"
+			jdbcType="DECIMAL" />
+		<result property="remark" column="REMARK" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="createTime" column="CREATE_TIME" javaType="java.util.Date"
+			jdbcType="TIMESTAMP" />
+		<result property="dateType" column="date_type" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 父级菜单信息 -->
+	<resultMap id="parentSystemMenuMap" type="DwpasCSystemMenu">
+		<result property="menuId" column="p_menu_id" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuCode" column="MENU_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />			
+		<result property="menuName" column="p_menu_name" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuUrl" column="p_menu_url" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dateType" column="date_type" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 菜单及父级菜单信息 -->
+	<resultMap id="MenuAndParentMenuInfoMap" type="DwpasCSystemMenu">
+		<result property="menuId" column="MENU_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuPid" column="MENU_PID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuCode" column="MENU_CODE" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuName" column="MENU_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="menuUrl" column="MENU_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="dateType" column="date_type" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<association property="systemParentMenu" column="MENU_PID"
+			resultMap="parentSystemMenuMap" javaType="DwpasCSystemMenu"></association>
+	</resultMap>
+	<!-- 查询菜单及父级菜单信息 -->
+	<select id="getMenuAndParentMenuInfo" resultMap="MenuAndParentMenuInfoMap">
+		SELECT
+		csm.MENU_ID,
+		csm.MENU_CODE,
+		csm.MENU_NAME,
+		csm.MENU_PID,
+		csm.MENU_URL,
+		csm.date_type,
+		psm.MENU_NAME as
+		p_menu_name,
+		psm.MENU_ID as p_menu_id,
+		psm.MENU_URL as
+		p_menu_url
+		FROM
+		dwpas_c_system_menu csm
+		LEFT JOIN dwpas_c_system_menu psm
+		ON
+		csm.MENU_PID = psm.MENU_ID
+		WHERE
+		csm.MENU_ID =
+		#{menuId,jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 根据menuCode和templateId查询menu信息 -->
+	<select id="getMenuInfoByMenuCodeAndTemplateId" resultMap="RM-DWPAS-C-SYS-MENU-RESULTMAP"
+		parameterType="java.util.HashMap">
+		SELECT
+		MENU_ID, MENU_PID, TEMPLATE_ID, MENU_CODE, MENU_NAME, MENU_URL, MENU_ORDER, MENU_TYPE, REMARK, date_type
+		FROM dwpas_c_system_menu 
+		WHERE 
+		MENU_CODE=#{menuCode,jdbcType=VARCHAR} 
+		AND TEMPLATE_ID=#{templateId,jdbcType=INTEGER}
+	</select>
+	
+	<!-- 列出所有有效的菜单 -->
+	<select id="queryAllSystemMenu" resultMap="RM-DWPAS-C-SYS-MENU-RESULTMAP"
+		parameterType="int">
+		SELECT
+		csm.MENU_ID,
+		IFNULL(csm.MENU_PID,'') MENU_PID,
+		csm.TEMPLATE_ID,
+		csm.MENU_NAME,
+		csm.MENU_TYPE,
+		csm.MENU_URL,
+		csm.MENU_ORDER,
+		csm.REMARK
+		FROM dwpas_c_system_menu csm
+		where
+		csm.IS_SHOW= 1 and csm.TEMPLATE_ID=#{templateId,jdbcType=INTEGER}
+		order by IFNULL(csm.MENU_PID,''), csm.MENU_ORDER asc
+	</select>
+	<!-- 列出某个有效菜单 -->
+	<select id="queryOneSystemMenu" resultMap="RM-DWPAS-C-SYS-MENU-RESULTMAP"
+		parameterType="java.util.HashMap">
+		SELECT
+		csm.MENU_ID,
+		IFNULL(csm.MENU_PID,'') MENU_PID,
+		csm.TEMPLATE_ID,
+		csm.MENU_NAME,
+		csm.MENU_TYPE,
+		csm.MENU_URL,
+		csm.MENU_ORDER,
+		csm.REMARK,
+		csm.menu_code
+		FROM dwpas_c_system_menu csm
+		where
+		csm.IS_SHOW= 1 and csm.TEMPLATE_ID=#{templateId,jdbcType=INTEGER} and
+		csm.MENU_TYPE=#{menuType,jdbcType=VARCHAR}
+		order by
+		IFNULL(csm.MENU_PID,''), csm.MENU_ORDER asc
+	</select>
+</mapper>

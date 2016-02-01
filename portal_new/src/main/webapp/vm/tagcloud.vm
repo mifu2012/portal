@@ -1,0 +1,6 @@
+<tags>
+#set($num=0)
+#foreach($askWind in $askWindVaneDatas)
+#set($num=$num+1)
+<a href='$basePath/userVoice/showUserVoice.html?menuId=$voiceMenuId' target='_parent' style='22' color='#050505' hicolor='#050505'>$num.$askWind.catTitle</a>
+#end</tags>

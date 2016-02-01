@@ -1,0 +1,92 @@
+/*body*/
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	text-align: center;
+	background-color:#f0f0f0;
+}
+/*div*/
+body div {
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+}
+/*table*/
+body table{
+  font-size:12px;
+}
+/*面板*/
+.panel {
+	width: 900px;
+}
+/*面板左边容器*/
+.panel .left_container {
+	float: left;
+	padding-top:0px;
+	width: 60%;
+	height:160px;
+	margin: 3px;
+}
+/*面板右边容器*/
+.panel .right_container {
+	float: left;
+	padding-top:0px;
+	margin: 3px;
+	margin-left:6px;
+	height:160px;
+	width: 38%
+}
+/*面板底部容器*/
+.panel .bottom_container {
+	float: left;
+	width: 99%;
+	height:160px;
+	border: 1px dashed  #FF0000;
+	margin: 3px
+}
+/*模块*/
+.module {
+	height: auto;
+	border: 1px solid #CCC;
+	margin: 3px;
+	background: #FFF
+}
+
+/*模块标题*/
+.module_title {
+	background: #ECF9FF;
+	height: 18px;
+	padding: 3px;
+	font-weight: bold;
+	border-bottom:1px solid #CCC;
+}
+/*标题*/
+.module_title_header{
+  float:left;
+  cursor: move;
+  width:88%;
+  text-align:left;
+}
+/*最小化*/
+.module_title_min{
+  float:right;
+  cursor:hand;
+  padding-right:5px;
+  color:red;
+}
+/*关闭*/
+.module_title_close{
+  float:right;
+  cursor:hand;
+  padding-right:10px;
+  color:red;
+}
+/*模块正文*/
+.module .module_content {
+	height: 80px;
+	border: 0px solid red;
+	width:100%;
+	text-align:left;
+	margin: 2px
+}

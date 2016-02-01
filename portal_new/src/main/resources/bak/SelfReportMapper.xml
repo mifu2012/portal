@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.SelfReportMapper">
+	<!-- 报表配置 -->
+	<resultMap id="SelfReportConfigMap" type="com.infosmart.portal.pojo.SelfReportConfig">
+		<id column="REPORT_ID" property="reportId" jdbcType="VARCHAR" />
+		<result column="REPORT_NAME" property="reportName" jdbcType="VARCHAR" />
+		<result column="QUERY_SQL" property="querySql" jdbcType="VARCHAR" />
+		<result column="PAGE_SIZE" property="pageSize" jdbcType="INTEGER" />
+		<result column="REMARK" property="remark" jdbcType="VARCHAR" />
+		<result column="GMT_CREATOR" property="gmtCreator" jdbcType="VARCHAR" />
+		<!-- 报表列配置 -->
+		<collection property="columnConfigList" resultMap="SelfReportColumnConfigMap"
+			javaType="java.util.ArrayList" column="REPORT_ID" />
+	</resultMap>
+	<!-- 报表列配置 -->
+	<resultMap id="SelfReportColumnConfigMap"
+		type="com.infosmart.portal.pojo.SelfReportColumnConfig">
+		<result column="REPORT_ID" property="reportId" jdbcType="VARCHAR" />
+		<result column="COLUMN_CODE" property="columnCode" jdbcType="VARCHAR" />
+		<result column="COLUMN_LABEL" property="columnLabel" jdbcType="VARCHAR" />
+		<result column="COLUMN_TYPE" property="columnType" jdbcType="INTEGER" />
+		<result column="COLUMN_TYPE_NAME" property="columnTypeName"
+			jdbcType="VARCHAR" />
+		<result column="COLUMN_CLASS_NAME" property="columnClassName"
+			jdbcType="VARCHAR" />
+		<result column="IS_DATA_COLUMN" property="isDataColumn"
+			jdbcType="INTEGER" />
+		<result column="IS_QUERY_COLUMN" property="isQueryColumn"
+			jdbcType="INTEGER" />
+		<result column="COLUMN_SORT" property="columnSort" jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 查询报表信息 -->
+	<select id="queryReportConfig" resultMap="SelfReportConfigMap">
+		SELECT
+		crc.report_id,
+		crc.report_name,
+		crc.query_sql,
+		crc.page_size,
+		crc.remark,
+		rcc.column_code,
+		rcc.column_label,
+		rcc.column_type,
+		rcc.column_type_name,
+		rcc.column_class_name,
+		rcc.is_data_column,
+		rcc.is_query_column
+		FROM
+		dwpas_c_report_config crc
+		LEFT JOIN
+		dwpas_c_report_column_config rcc ON crc.report_id =
+		rcc.report_id
+		WHERE
+		crc.report_id = #{reportId,jdbcType=VARCHAR}
+		ORDER BY
+		rcc.column_sort
+	</select>
+	<!-- 查询报表列 -->
+	<select id="listReportColumnConfig" resultMap="SelfReportColumnConfigMap">
+		SELECT
+		rcc.report_id,
+		rcc.column_code,
+		rcc.column_label,
+		rcc.column_type,
+		rcc.column_type_name,
+		rcc.column_class_name,
+		rcc.is_data_column,
+		rcc.is_query_column
+		FROM
+		dwpas_c_report_column_config rcc
+		WHERE
+		rcc.report_id = #{reportId,jdbcType=VARCHAR}
+		ORDER BY
+		rcc.column_sort
+	</select>
+	<!-- 删除报表列 -->
+	<delete id="deletReportColumnConfig">
+		delete from dwpas_c_report_column_config where
+		report_id=#{reportId,jdbcType=VARCHAR}
+	</delete>
+	<!-- 保存报表信息 -->
+	<insert id="insertReportConfig" parameterType="com.infosmart.portal.pojo.SelfReportConfig">
+		INSERT INTO
+		dwpas_c_report_config(
+		REPORT_ID,
+		REPORT_NAME,
+		QUERY_SQL,
+		PAGE_SIZE,
+		GMT_CREATOR
+		)
+		VALUES
+		(
+		#{reportId},
+		#{reportName},
+		#{querySql},
+		#{pageSize},
+		#{gmtCreator}
+		)
+	</insert>
+	<insert id="insertReportColumnConfig" parameterType="com.infosmart.portal.pojo.SelfReportColumnConfig">
+		INSERT INTO dwpas_c_report_column_config(
+		REPORT_ID,
+		COLUMN_CODE,
+		COLUMN_LABEL,
+		COLUMN_TYPE,
+		COLUMN_TYPE_NAME,
+		COLUMN_CLASS_NAME,
+		IS_DATA_COLUMN,
+		IS_QUERY_COLUMN,
+		COLUMN_SORT
+		)
+		VALUES
+		(
+		#{reportId},
+		#{columnCode},
+		#{columnLabel},
+		#{columnType},
+		#{columnTypeName},
+		#{columnClassName},
+		#{isDataColumn},
+		#{isQueryColumn},
+		#{columnSort}
+		)
+	</insert>
+	<!-- 修改报表信息 -->
+	<update id="updateReportConfig" parameterType="com.infosmart.portal.pojo.SelfReportConfig">
+		UPDATE
+		dwpas_c_report_config
+		SET REPORT_NAME=#{reportName},
+		QUERY_SQL=#{querySql},
+		PAGE_SIZE=#{pageSize},
+		GMT_MODIFIED = now()
+		WHERE
+		REPORT_ID =#{reportId}
+	</update>
+</mapper>

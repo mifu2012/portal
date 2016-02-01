@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PrdMngInfoMapper">
+	<!-- result maps for database table DWPAS_C_PRD_INFO -->
+	<resultMap id="PrdMngInfoMap" type="PrdMngInfo">
+		<result property="productId" column="PRODUCT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="parentId" column="PARENT_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isFolder" column="IS_FOLDER" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="productName" column="PRODUCT_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="isIndexShow" column="IS_INDEX_SHOW" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="indexShowOrder" column="INDEX_SHOW_ORDER"
+			javaType="int" jdbcType="INTEGER" />
+		<result property="isUse" column="IS_USE" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="iconUrl" column="ICON_URL" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="funnelId" column="FUNNEL_ID" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="funnelName" column="FUNNEL_NAME" javaType="java.lang.String"
+			jdbcType="VARCHAR" />
+		<result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date"
+			jdbcType="DATE" />
+		<result property="productMark" column="PRODUCT_MARK" javaType="java.lang.String"
+			jdbcType="CHAR" />
+		<result property="productMarkDesc" column="PRODUCT_MARK_DESC"
+			javaType="java.lang.String" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="common_sql">
+		PRODUCT_ID,PARENT_ID,IS_FOLDER,PRODUCT_NAME,IS_INDEX_SHOW,INDEX_SHOW_ORDER,IS_USE,ICON_URL,FUNNEL_ID,FUNNEL_NAME,GMT_CREATE,GMT_MODIFIED,PRODUCT_MARK
+	</sql>
+	<select id="listPagePrdinfo" resultMap="PrdMngInfoMap"
+		parameterType="PrdMngInfo">
+		select
+		<include refid="common_sql" />
+		from dwpas_c_prd_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="productId !=null and productId != ''">
+				product_id LIKE CONCAT(CONCAT('%',
+				#{productId}),'%')
+			</if>
+			<if test="productName !=null and productName != '' ">
+				AND product_name LIKE CONCAT(CONCAT('%',
+				#{productName}),'%')
+			</if>
+		</trim>
+	</select>
+	<select id="PrdMngInfoQueryAll" resultMap="PrdMngInfoMap">
+    <![CDATA[
+        SELECT
+	/*MS-DWPAS-DWPAS-C-PRD-INFO-QRY-ALL*/
+	product_id,
+	parent_id,
+	is_folder,
+	product_name,
+	is_index_show,
+	index_show_order,
+	is_use,
+	icon_url,
+	funnel_id,
+	funnel_name,
+	gmt_create,
+	gmt_modified,
+	product_mark,
+	cst.type_name AS product_mark_desc
+FROM
+	dwpas_c_prd_info cpi,
+	(
+		SELECT
+			cst.type_id,
+			cst.type_name
+		FROM
+			dwpas_c_sys_type cst
+		WHERE
+			cst.group_id = 4000
+	)cst
+WHERE
+	cpi.product_mark = cst.type_id
+order by product_mark
+    ]]>
+	</select>
+	<!-- 查询跟产品健康度关系的所有产品 -->
+	<select id="queryAllHelthPrdInfo" resultMap="PrdMngInfoMap">
+    <![CDATA[
+         select  product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info
+        where parent_id is null and is_folder='0' and is_use='1' and (product_mark='4001' or product_mark='4002' or product_mark='4004')
+    ]]>
+	</select>
+
+	<!-- 查询跟产品健康度关系的所有产品 -->
+	<select id="qryHelthPrdInfoByTemplateId" parameterType="java.lang.String"
+		resultMap="PrdMngInfoMap">
+    <![CDATA[
+        select  dci.product_id, dci.parent_id, dci.is_folder, dci.product_name, dci.is_index_show, dci.index_show_order, dci.is_use, dci.icon_url, dci.funnel_id, dci.funnel_name, dci.gmt_create, dci.gmt_modified, dci.product_mark 
+        from dwpas_c_prd_info dci, dwpas_r_prd_template rpt
+        where dci.parent_id is null and dci.is_folder='0' and dci.is_use='1' and dci.product_id=rpt.product_id and rpt.template_id=#{templateId}
+    ]]>
+	</select>
+
+	<!-- mapped statement for IbatisDwpasCPrdInfoDAO.insert -->
+	<insert id="PrdMngInfoInsert">
+    <![CDATA[
+        insert /*MS-DWPAS-DWPAS-C-PRD-INFO-INSERT*/ into dwpas_c_prd_info(product_id,parent_id,is_folder,product_name,is_index_show,index_show_order,is_use,icon_url,funnel_id,funnel_name,gmt_create,gmt_modified,product_mark) values (#{productId}, #{parentId}, #{isFolder}, #{productName}, #{isIndexShow}, #{indexShowOrder}, #{isUse}, #{iconUrl}, #{funnelId}, #{funnelName}, now(), now(), #{productMark})
+    ]]>
+	</insert>
+
+	<!-- mapped statement for IbatisDwpasCPrdInfoDAO.delete -->
+	<delete id="PrdMngInfoDelete">
+    <![CDATA[
+        delete /*MS-DWPAS-DWPAS-C-PRD-INFO-DELETE*/ from dwpas_c_prd_info where (product_id = #{productId})
+    ]]>
+	</delete>
+	<update id="updatePrdInfo" parameterType="PrdMngInfo">
+		update dwpas_c_prd_info set
+<!-- 		PARENT_ID=#{parentId}, -->
+<!-- 		IS_FOLDER=#{isFolder}, -->
+		PRODUCT_NAME=#{productName},
+<!-- 		IS_INDEX_SHOW=#{isIndexShow}, -->
+<!-- 		INDEX_SHOW_ORDER=#{indexShowOrder}, -->
+		IS_USE=#{isUse},
+<!-- 		ICON_URL=#{iconUrl}, -->
+<!-- 		FUNNEL_ID=#{funnelId}, -->
+<!-- 		FUNNEL_NAME=#{funnelName}, -->
+<!-- 		GMT_CREATE=#{gmtCreate}, -->
+		GMT_MODIFIED=now(),
+		PRODUCT_MARK=#{productMark}
+		where
+		PRODUCT_ID=#{productId}
+	</update>
+
+	<!-- mapped statement for IbatisDwpasCPrdInfoDAO.qryOneByCode -->
+	<select id="PrdMngInfoQueryByCode" resultMap="PrdMngInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-PRD-INFO-QRY-ONE-BY-CODE*/ product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info where (product_id = #{productId})
+    ]]>
+	</select>
+
+	<!-- 根据模板Id查询产品信息 -->
+	<select id="queryPrdInfoBytemplateId" parameterType="java.lang.String"
+		resultMap="PrdMngInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-PRD-INFO-QRY-ALL*/ product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info
+        where is_use='1' and exists(select rpt.PRODUCT_ID from
+				dwpas_r_prd_template rpt where
+				rpt.product_id=dwpas_c_prd_info.product_id and
+				rpt.template_id=#{templateId})  
+    ]]>
+	</select>
+
+	<!-- 根据产品Id更新产品信息 -->
+	<update id="updateProInfoByProductIdList" parameterType="java.util.Map">
+		update dwpas_c_prd_info set product_mark=#{markValue}
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<!-- 多个指标查询 -->
+			<if test="productIds!=null">
+				AND product_id in
+				<foreach collection="productIds" close=")" separator=","
+					open="(" item="productId">
+					#{productId}
+				</foreach>
+			</if>
+		</trim>
+	</update>
+
+	<!-- mapped statement for IbatisDwpasCPrdInfoDAO.qryAllPrdClasses -->
+	<select id="PrdMngInfoQueryAllPrdClasses" resultMap="PrdMngInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-PRD-INFO-QRY-ALL-PRD-CLASSES*/ product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info where ((parent_id IS NULL) AND (is_folder = '1') AND (product_mark = '4002') AND (is_use = '1')) order by index_show_order ASC
+    ]]>
+	</select>
+
+	<!-- mapped statement for IbatisDwpasCPrdInfoDAO.qryAllByParentIds -->
+	<select id="PrdMngInfoQueryAllByParentIds" resultMap="PrdMngInfoMap">
+		select /*MS-DWPAS-DWPAS-C-PRD-INFO-QRY-ALL-BY-PARENT-IDS*/ product_id,
+		parent_id, is_folder, product_name, is_index_show, index_show_order,
+		is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified,
+		product_mark from dwpas_c_prd_info where is_folder='0' and is_use='1'
+		and product_mark='4002'
+		<if test="parentIds !=null and parentIds != '' ">
+			<foreach collection="parentIds" open=" parent_id in(" close=")"
+				separator=",">#parentIds[]#</foreach>
+		</if>
+	</select>
+
+	<!-- mapped statement for IbatisDwpasCPrdInfoDAO.qryAllNormalPrds -->
+	<select id="PrdMngInfoQueryAllNormalPrds" resultMap="PrdMngInfoMap">
+    <![CDATA[
+        select /*MS-DWPAS-DWPAS-C-PRD-INFO-QRY-ALL-NORMAL-PRDS*/ product_id, parent_id, is_folder, product_name, is_index_show, index_show_order, is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified, product_mark from dwpas_c_prd_info where ((is_folder = '0') AND (is_use = '1') AND (product_mark = '4001'))
+    ]]>
+	</select>
+
+	<!-- mapped statement for IbatisDwpasCPrdInfoDAO.qryAllByDO -->
+	<select id="PrdMngInfoQueryAllByDo" resultMap="PrdMngInfoMap">
+		select /*MS-DWPAS-DWPAS-C-PRD-INFO-QRY-ALL-BY-DO*/ product_id,
+		parent_id, is_folder, product_name, is_index_show, index_show_order,
+		is_use, icon_url, funnel_id, funnel_name, gmt_create, gmt_modified,
+		product_mark from dwpas_c_prd_info
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="productId !=null and productId != '' ">
+				product_id LIKE CONCAT(CONCAT('%',
+				#{productId}),'%')
+			</if>
+			<if test="parentId !=null and parentId != '' ">
+				AND parent_id LIKE CONCAT(CONCAT('%',
+				#{parentId}),'%')
+			</if>
+			<if test="productMark!=null and productMark != '' ">
+				AND product_mark LIKE CONCAT(CONCAT('%',
+				#{productMark}),'%')
+			</if>
+			<if test="isFolder !=null and isFolder != '' ">
+				AND is_folder LIKE CONCAT(CONCAT('%',
+				#{isFolder}),'%')
+			</if>
+			<if test="productName !=null and productName != '' ">
+				AND product_name LIKE CONCAT(CONCAT('%',
+				#{productName}),'%')
+			</if>
+			<if test="isIndexShow!=null and isIndexShow != '' ">
+				AND is_index_show LIKE CONCAT(CONCAT('%',
+				#{isIndexShow}),'%')
+			</if>
+			<if test="isUse !=null and isUse != '' ">
+				AND is_use LIKE CONCAT(CONCAT('%',
+				#{isUse}),'%')
+			</if>
+		</trim>
+	</select>
+
+	<!-- 根据typeId查询已关联产品信息 -->
+	<select id="getMarkedPro" resultMap="PrdMngInfoMap">
+		select
+		cpi.product_id,
+		cpi.parent_id, cpi.is_folder, cpi.product_name, cpi.is_index_show,
+		cpi.index_show_order, cpi.is_use, cpi.icon_url, cpi.funnel_id,
+		cpi.funnel_name,
+		cpi.gmt_create, cpi.gmt_modified, cpi.product_mark
+		from dwpas_c_prd_info cpi ,dwpas_c_sys_type cst
+		where cpi.product_mark
+		= cst.type_id
+		and cpi.product_mark=#{typeId}
+	</select>
+
+	<!-- 根据typeId查询未关联产品信息 模糊查询产品搜索 -->
+	<select id="getUnMarkedPro" resultMap="PrdMngInfoMap">
+		SELECT cpi.product_id, cpi.parent_id, cpi.is_folder, cpi.product_name,
+		cpi.is_index_show,
+		cpi.index_show_order, cpi.is_use, cpi.icon_url,
+		cpi.funnel_id, cpi.funnel_name,
+		cpi.gmt_create, cpi.gmt_modified,
+		cpi.product_mark
+		FROM
+		dwpas_c_prd_info cpi
+		WHERE
+		cpi.product_mark NOT IN(
+		SELECT cst.type_id
+		FROM dwpas_c_sys_type cst
+		WHERE
+		cst.type_id=#{typeId}
+		AND
+		cpi.product_mark = cst.type_id )
+		<if test="keyCode!=null and keyCode!=''">
+			AND (cpi.product_id LIKE UPPER(CONCAT(CONCAT('%',
+			#{keyCode,jdbcType=VARCHAR}), '%')) OR
+			cpi.product_name LIKE
+			UPPER(CONCAT(CONCAT('%', #{keyCode,jdbcType=VARCHAR}), '%')))
+		</if>
+		ORDER BY
+		cpi.product_id
+	</select>
+
+	<!-- 修改已关联产品信息 -->
+	<update id="updateMarkedPro" parameterType="java.util.List">
+		update dwpas_c_prd_info set product_mark=#{typeId}
+		where product_id in
+		<foreach collection="productIds" item="productIds" open="("
+			separator="," close=")">
+			#{productIds}
+		</foreach>
+	</update>
+
+	<!-- 修改未关联产品信息 -->
+	<update id="updateUnMarkedPro" parameterType="java.util.List">
+		update dwpas_c_prd_info set product_mark=null
+		where product_id in
+		<foreach collection="productIds" item="productIds" open="("
+			separator="," close=")">
+			#{productIds}
+		</foreach>
+		and product_mark=#{typeId}
+	</update>
+
+	<!-- 根据产品Ids 查询产品信息列表 -->
+	<select id="getPrdMngInfoByProids" parameterType="java.util.List"
+		resultMap="PrdMngInfoMap">
+		select product_id, parent_id, is_folder, product_name, is_index_show,
+		index_show_order, is_use, icon_url, funnel_id, funnel_name,
+		gmt_create, gmt_modified, product_mark from dwpas_c_prd_info
+		where
+		product_id in
+		<foreach collection="list" close=")" separator="," open="("
+			item="productIds">
+			#{productIds}
+		</foreach>
+	</select>
+
+	<!-- 删除模板产品关联表中的信息 -->
+	<delete id="deleteTepRPrdByProdId" parameterType="java.lang.String">
+		delete from
+		dwpas_r_prd_template where PRODUCT_ID=#{productId}
+	</delete>
+
+	<!-- 根据templateId获取关联的产品Id -->
+	<select id="getAllProInfosByTemplateId" parameterType="java.lang.String"
+		resultMap="PrdMngInfoMap">
+	<![CDATA[
+		
+		select  cpi.product_id, cpi.parent_id, cpi.is_folder, cpi.product_name, cpi.is_index_show, cpi.index_show_order, cpi.is_use, cpi.icon_url, cpi.funnel_id, cpi.funnel_name, cpi.gmt_create, cpi.gmt_modified, cpi.product_mark 
+     from dwpas_c_prd_info cpi, dwpas_r_prd_template rpt
+      WHERE 
+      cpi.product_id=rpt.PRODUCT_ID AND rpt.TEMPLATE_ID =#{templateId}
+		
+    ]]>
+	</select>
+</mapper>

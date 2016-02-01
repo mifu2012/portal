@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.DwpasStLogCampMapping">
+  <resultMap id="DwpasStLogCampResultMap" type="ChannelInfo" >
+        <result property="reportDate" column="REPORT_DATE" javaType="string" jdbcType="VARCHAR"/>
+        <result property="productId" column="PRODUCT_ID" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campCode" column="CAMP_CODE" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campName" column="CAMP_NAME" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campDept" column="CAMP_DEPT" javaType="string" jdbcType="VARCHAR"/>
+        <!--  <result property="campStart" column="CAMP_START" javaType="java.util.Date" jdbcType="TIMESTAMP"/>-->
+        <!--  <result property="campEnd" column="CAMP_END" javaType="java.util.Date" jdbcType="TIMESTAMP"/>-->
+        <result property="campToUrl" column="CAMP_TO_URL" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campFromUrl" column="CAMP_FROM_URL" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campType" column="CAMP_TYPE" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campMethod" column="CAMP_METHOD" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campLoc" column="CAMP_LOC" javaType="string" jdbcType="VARCHAR"/>
+        <result property="campUv" column="CAMP_UV" javaType="long" jdbcType="DECIMAL" />
+        <result property="createUser" column="CREATE_USER" javaType="long" jdbcType="DECIMAL" />
+        <result property="succUser" column="SUCC_USER" javaType="long" jdbcType="DECIMAL" />
+        <!--  <result property="gmtCreate" column="GMT_CREATE" javaType="java.util.Date" jdbcType="TIMESTAMP"/> -->
+        <!--  <result property="gmtModified" column="GMT_MODIFIED" javaType="java.util.Date" jdbcType="TIMESTAMP"/> -->
+    </resultMap>
+    
+    <select id="listChannelInfo" resultMap="DwpasStLogCampResultMap">
+    
+        select 
+        report_date, product_id, camp_code, camp_name, camp_dept,
+         camp_start, camp_end, camp_to_url, camp_from_url, 
+         camp_type, camp_method, camp_loc, camp_uv, create_user, 
+         succ_user, gmt_create, gmt_modified
+         from dwpas_st_log_camp 
+         where ((product_id = #{productId}) AND (report_date = #{reportDate}))
+         order by succ_user DESC limit 10
+    
+    </select>
+    <select id="listAllChannelInfo" resultMap="DwpasStLogCampResultMap">
+    
+        select 
+        report_date, product_id, camp_code, camp_name, camp_dept,
+         camp_start, camp_end, camp_to_url, camp_from_url, 
+         camp_type, camp_method, camp_loc, camp_uv, create_user, 
+         succ_user, gmt_create, gmt_modified
+         from dwpas_st_log_camp 
+         where ((product_id = #{productId}) AND (report_date = #{reportDate}))
+         order by succ_user DESC
+    
+    </select>
+    
+    <select id="listChannelInfoOrderBy" resultMap="DwpasStLogCampResultMap">
+      select 
+        report_date, product_id, camp_code, camp_name, camp_dept,
+         camp_start, camp_end, camp_to_url, camp_from_url, 
+         camp_type, camp_method, camp_loc, camp_uv, create_user, 
+         succ_user, gmt_create, gmt_modified
+         from dwpas_st_log_camp 
+         where ((product_id = #{productId}) AND (report_date = #{reportDate}))
+         
+          order by ${orderId}  ${ascOrDesc} limit 10
+      
+    </select>
+    
+ </mapper>

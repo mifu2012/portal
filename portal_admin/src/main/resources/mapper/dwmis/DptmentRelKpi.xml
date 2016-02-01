@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.DptmentRelKpiMapper">
+	<!-- 指标信息记录集 -->
+	<resultMap id="dwmisKpiInfoMap" type="DwmisKpiInfo">
+		<result column="kpi_code" property="kpiCode" jdbcType="VARCHAR" />
+		<result column="kpi_name" property="kpiName" jdbcType="VARCHAR" />
+		<result column="goal_type" property="goalType" jdbcType="INTEGER" />
+		<result column="goal_type_desc" property="goalTypeDesc"
+			jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 获取此部门关联的指标 -->
+	<select id="getRelativeDwmisMisDptmntKPI" resultMap="dwmisKpiInfoMap">
+		select
+		a.kpi_code,a.kpi_name,a.goal_type,
+		goal_type.type_name goal_type_desc
+		from dwmis_kpi_info a
+		inner join dwmis_mis_kpi_dep_r b on a.kpi_code =
+		b.kpi_code
+		LEFT JOIN(
+		SELECT
+		*
+		FROM
+		DWMIS_MIS_TYPE mt
+		WHERE
+		mt.group_id =
+		3000
+		) goal_type ON goal_type.type_id = a.goal_type
+		where b.dep_id =
+		#{depId}
+	</select>
+
+	<!-- 获取此部门不关联的指标 -->
+	<select id="getUnRelativeDwmisMisDptmntKPIByKeyCode" resultMap="dwmisKpiInfoMap">
+		<choose>
+			<when test=" keyCode !=null and keyCode != '' ">
+				SELECT
+				*
+				FROM
+				(
+				SELECT
+				dki.kpi_code,
+				dki.kpi_name,
+				dki.goal_type,
+				goal_type.type_name goal_type_desc
+				FROM
+				dwmis_kpi_info
+				dki
+				LEFT JOIN(
+				SELECT
+				*
+				FROM
+				DWMIS_MIS_TYPE mt
+				WHERE
+				mt.group_id = 3000
+				)goal_type ON goal_type.type_id = dki.goal_type
+				WHERE
+				dki.kpi_code NOT
+				IN(
+				SELECT
+				dr.kpi_code
+				FROM
+				dwmis_mis_kpi_dep_r dr
+				WHERE
+				dr.dep_id =
+				#{depId}
+				AND dr.kpi_code = dki.kpi_code
+				)
+				)c
+				WHERE
+				c.kpi_code LIKE
+				UPPER(CONCAT(CONCAT('%', #{keyCode,jdbcType=VARCHAR}), '%'))
+				OR
+				c.kpi_name LIKE CONCAT(CONCAT('%', #{keyCode,jdbcType=VARCHAR},
+				'%'))
+				ORDER BY
+				c.kpi_code
+			</when>
+			<otherwise>
+				SELECT
+				dki.kpi_code,
+				dki.kpi_name,
+				dki.goal_type,
+				goal_type.type_name goal_type_desc
+				FROM
+				dwmis_kpi_info dki
+				LEFT JOIN(
+				SELECT
+				*
+				FROM
+				DWMIS_MIS_TYPE mt
+				WHERE
+				mt.group_id = 3000
+				)goal_type ON
+				goal_type.type_id = dki.goal_type
+				WHERE
+				dki.kpi_code NOT IN(
+				SELECT
+				dr.kpi_code
+				FROM
+				dwmis_mis_kpi_dep_r dr
+				WHERE
+				dr.dep_id = #{depId}
+				)
+				ORDER BY
+				dki.kpi_code
+			</otherwise>
+		</choose>
+	</select>
+	<!-- 查询所有指标信息 -->
+	<select id="listAllKpiInfos" resultMap="dwmisKpiInfoMap">
+		select
+		a.kpi_code,a.kpi_name,a.goal_type,
+		goal_type.type_name goal_type_desc
+		from dwmis_kpi_info a LEFT JOIN(
+		SELECT
+		*
+		FROM
+		DWMIS_MIS_TYPE mt
+		WHERE
+		mt.group_id = 3000
+		) goal_type ON goal_type.type_id = a.goal_type
+		order
+		by kpi_code;
+	</select>
+	<!-- 批量插入此部门关联的指标 -->
+	<insert id="insertRelativeDwmisMisDptmntKPI" parameterType="java.util.List">
+		insert into dwmis_mis_kpi_dep_r (dep_id,kpi_code) values
+		<foreach collection="list" item="kpiInfoList" index="index"
+			separator=",">
+			(#{kpiInfoList.depId},#{kpiInfoList.kpiCode})
+		</foreach>
+	</insert>
+
+	<!-- 删除此部门关联的指标 -->
+	<delete id="deleteRelativeDwmisMisDptmntKPI">
+		delete from dwmis_mis_kpi_dep_r where dep_id =
+		#{depId}
+	</delete>
+
+	<!-- 根据指标Codes查询指标信息 -->
+	<select id="getKPIInfoByCodes" parameterType="java.util.List"
+		resultMap="dwmisKpiInfoMap">
+		SELECT
+		dki.kpi_code,
+		dki.kpi_name,
+		dki.goal_type,
+		goal_type.type_name goal_type_desc
+		FROM
+		dwmis_kpi_info dki
+		LEFT JOIN(
+		SELECT
+		*
+		FROM
+		DWMIS_MIS_TYPE mt
+		WHERE
+		mt.group_id = 3000
+		)goal_type ON goal_type.type_id = dki.goal_type where kpi_code
+		in
+		<foreach collection="list" item="kpiCodes" open="(" separator=","
+			close=")">
+			#{kpiCodes}
+		</foreach>
+	</select>
+</mapper>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.infosmart.mapper.dwpasstDeptKpiDate">
+	<!-- 部门信息数据 -->
+	<resultMap id="dwpasStDeptKpiData" type="DwpasStDeptKpiData">
+		<result property="id" column="id" />
+		<result property="deptId" column="dept_id" />
+		<result property="deptName" column="dept_name" />
+		<result property="kpiCode" column="kpi_code" />
+		<result property="kpiName" column="kpi_name" />
+		<result property="unit" column="unit" />
+		<result property="kpiFulfillValue" column="KPI_FULFILL_VALUE" />
+		<result property="kpiTaskValue" column="KPI_TASK_VALUE" />
+		<result property="reportDate" column="REPORT_DATE" />
+	</resultMap>
+	
+	<select id="getAllDeptNames" resultMap="dwpasStDeptKpiData" parameterType="java.lang.String">
+		select DISTINCT dept_id,dept_name from dwpas_st_dept_kpi_data where REPORT_DATE=#{reportDate}
+	</select>
+	<select id="getAllDwpasStDeptDates" resultMap="dwpasStDeptKpiData" parameterType="java.util.HashMap">
+		select * from dwpas_st_dept_kpi_data where dept_id=#{deptId} and REPORT_DATE=#{reportDate};
+	</select>
+	
+	<select id="getDetInfoByKpiCode" resultMap="dwpasStDeptKpiData" parameterType="java.lang.String">
+		select * from dwpas_st_dept_kpi_data where kpi_Code=#{kpiCode};
+	</select>
+
+</mapper>
